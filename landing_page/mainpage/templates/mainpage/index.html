@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+{% load static %}
 <head>
   <meta charset="UTF-8">
   <meta
@@ -13,21 +14,21 @@
       rel="stylesheet">
   <link
       rel="stylesheet"
-      href="./static/vendor/css/bootstrap-reboot.min.css">
+      href="{% static 'vendor/css/bootstrap-reboot.min.css' %}">
   <link
       rel="stylesheet"
-      href="./static/vendor/css/bootstrap-grid.min.css">
+      href="{% static 'vendor/css/bootstrap-grid.min.css' %}">
   <link
       rel="stylesheet"
-      href="./static/vendor/css/bootstrap.min.css">
+      href="{% static 'vendor/css/bootstrap.min.css' %}">
   <link
       rel="stylesheet"
       type="text/css"
       href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
   <link
       rel="stylesheet"
-      href="./static/css/style.css">
-  <link rel="shortcut icon" href="./static/images/favicon.ico">
+      href="{% static 'css/style.css' %}">
+  <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
   <title>LEARN PYTHON</title>
 </head>
 <body
@@ -246,7 +247,7 @@
                 <div class="d-flex align-items-start widget">
                   <div class="widget-icon">
                     <img
-                        src="./static/images/icons_practice.svg"
+                        src="{% static 'images/icons_practice.svg' %}"
                         alt="80+ часов практики">
                   </div>
                   <div class="widget-content">
@@ -260,7 +261,7 @@
                 <div class="d-flex align-items-start widget">
                   <div class="widget-icon">
                     <img
-                        src="./static/images/icons_video.svg"
+                        src="{% static 'images/icons_video.svg' %}"
                         alt="30 часов видеоуроков">
                   </div>
                   <div class="widget-content">
@@ -274,7 +275,7 @@
                 <div class="d-flex align-items-start widget">
                   <div class="widget-icon">
                     <img
-                        src="./static/images/icons_group.svg"
+                        src="{% static 'images/icons_group.svg' %}"
                         alt="Куратор, группа 5-7 человек">
                   </div>
                   <div class="widget-content">
@@ -288,7 +289,7 @@
                 <div class="d-flex align-items-start widget">
                   <div class="widget-icon">
                     <img
-                        src="./static/images/icons_task.svg"
+                        src="{% static 'images/icons_task.svg' %}"
                         alt="Интересные задания">
                   </div>
                   <div class="widget-content">
@@ -302,7 +303,7 @@
                 <div class="d-flex align-items-start widget">
                   <div class="widget-icon">
                     <img
-                        src="./static/images/icons_review.svg"
+                        src="{% static 'images/icons_review.svg' %}"
                         alt="Код-ревью">
                   </div>
                   <div class="widget-content">
@@ -316,7 +317,7 @@
                 <div class="d-flex align-items-start widget">
                   <div class="widget-icon">
                     <img
-                        src="./static/images/icons_support.svg"
+                        src="{% static 'images/icons_support.svg' %}"
                         alt="2 месяца поддержки">
                   </div>
                   <div class="widget-content">
@@ -330,7 +331,7 @@
                 <div class="d-flex align-items-start widget">
                   <div class="widget-icon">
                     <img
-                        src="./static/images/icons_portfolio.svg"
+                        src="{% static 'images/icons_portfolio.svg' %}"
                         alt="Готовое портфолио">
                   </div>
                   <div class="widget-content">
@@ -344,7 +345,7 @@
                 <div class="d-flex align-items-start widget">
                   <div class="widget-icon">
                     <img
-                        src="./static/images/icons_connection.svg"
+                        src="{% static 'images/icons_connection.svg' %}"
                         alt="Знакомства в отрасли">
                   </div>
                   <div class="widget-content">
@@ -370,33 +371,33 @@
       <div class="examples-slider row">
         <div class="text-center ">
           <img
-              src="./static/images/sl1.jpg"
+              src="{% static 'images/sl1.png' %}"
               alt="slide">
           <p class="text-center">Своя система управления проектами.</p>
         </div>
         <div class="text-center ">
           <img
-              src="./static/images/sl2.png"
+              src="{% static 'images/sl2.png' %}"
               alt="slide">
           <p class="text-center">Агрегатор личных цифровых данных и система поиска по ним.</p>
         </div>
         <div class="text-center ">
           <img
-              src="./static/images/sl3.jpg"
+              src="{% static 'images/sl3.png' %}"
               alt="slide">
           <p class="text-center">Бот для изучения иностранного языка.</p>
         </div>
         <div class="text-center ">
           <p class="my-2 py-2"></p>
           <img
-              src="./static/images/sl4.jpg"
+              src="{% static 'images/sl4.png' %}"
               alt="slide">
           <p class="my-2 py-2"></p>
           <p class="text-center">Свой переводчик на десятки языков.</p>
         </div>
         <div class="text-center ">
           <img
-              src="./static/images/sl5.png"
+              src="{% static 'images/sl5.png' %}"
               alt="slide">
           <p class="text-center">Программа для совместного просмотра фильмов.</p>
         </div>
@@ -412,7 +413,7 @@
         <div class="feature-block">
           <div
               class="feature-image col-sm-10 col-lg-9 col-xl-10"
-              style="background-image: url(./static/images/image-01.jpg)">
+              style="background-image: url({% static '/images/image-01.jpg' %})"> <-- Shit is going on -->
           </div>
           <div class="feature-descr">
             <div class="ide-style">
@@ -462,7 +463,7 @@
         <div class="feature-block">
           <div
               class="feature-image col-sm-10 col-lg-9 col-xl-10"
-              style="background-image: url( ./static/images/image-02.jpg)">
+              style="background-image: url( {% static 'images/image-02.jpg' %})">
           </div>
           <div class="feature-descr">
             <div class="ide-style">
@@ -513,7 +514,7 @@
         <div class="feature-block">
           <div
               class="feature-image col-sm-10 col-lg-9 col-xl-10"
-              style="background-image: url(./static/images/image-03.jpg)">
+              style="background-image: url({% static 'images/image-03.jpg' %})">
           </div>
           <div class="feature-descr">
             <div class="ide-style">
@@ -571,7 +572,7 @@
         <div class="feature-block">
           <div
               class="feature-image col-sm-10 col-lg-9 col-xl-10"
-              style="background-image: url(./static/images/image-04.jpg)">
+              style="background-image: url({% static 'images/image-04.jpg' %})">
           </div>
           <div class="feature-descr">
             <div class="ide-style">
@@ -653,7 +654,7 @@
               <div class="person col-sm-4 p-0">
                 <img
                     class="img-fluid"
-                    src="./static/images/photo_2018-06-02_14-31-11.jpg"
+                    src="{% static 'images/photo_2018-06-02_14-31-11.jpg' %}"
                     alt="">
               </div>
               <div class="history-message col-sm-8">
@@ -719,7 +720,7 @@
               <div class="person col-sm-4 p-0">
                 <img
                     class="img-fluid"
-                    src="./static/images/image-portret.jpg"
+                    src="{% static 'images/image-portret.jpg' %}"
                     alt="">
               </div>
               <div class="history-message col-sm-8">
@@ -786,7 +787,7 @@
               <div class="person col-sm-4 p-0">
                 <img
                     class="img-fluid"
-                    src="./static/images/photo_2018-06-02_15-31-42.jpg"
+                    src="{% static 'images/photo_2018-06-02_15-31-42.jpg' %}"
                     alt="">
               </div>
               <div class="history-message col-sm-8">
@@ -911,7 +912,7 @@
             <div class="img-wrapper">
               <img
                   class="img-fluid"
-                  src="./static/images/imagestudent.jpg"
+                  src="{% static 'images/imagestudent.jpg' %}"
                   alt="">
             </div>
             <figcaption>
@@ -924,7 +925,7 @@
             <div class="img-wrapper">
               <img
                   class="img-fluid"
-                  src="./static/images/imagemail.jpg"
+                  src="{% static 'images/imagemail.jpg' %}"
                   alt="">
             </div>
             <figcaption>
@@ -936,7 +937,7 @@
             <div class="img-wrapper">
               <img
                   class="img-fluid"
-                  src="./static/images/imageyputube.jpg"
+                  src="{% static 'images/imageyputube.jpg' %}"
                   alt="">
             </div>
             <figcaption>
@@ -950,7 +951,7 @@
             <div class="img-wrapper">
               <img
                   class="img-fluid"
-                  src="./static/images/imageenstain.jpg"
+                  src="{% static 'images/imageenstain.jpg' %}"
                   alt="">
             </div>
             <figcaption>
@@ -967,7 +968,7 @@
             <div class="img-wrapper">
               <img
                   class="img-fluid"
-                  src="./static/images/imagepresentation.jpg"
+                  src="{% static 'images/imagepresentation.jpg' %}"
                   alt="">
             </div>
             <figcaption>
@@ -1099,7 +1100,7 @@
             <div class="img-wrapper">
               <img
                   class="img-fluid"
-                  src="./static/images/image-1.jpg"
+                  src="{% static 'images/image-1.jpg' %}"
                   alt="">
             </div>
             <figcaption>
@@ -1116,7 +1117,7 @@
             <div class="img-wrapper">
               <img
                   class="img-fluid"
-                  src="./static/images/image-2.jpg"
+                  src="{% static 'images/image-2.jpg' %}"
                   alt="">
             </div>
             <figcaption>
@@ -1131,7 +1132,7 @@
             <div class="img-wrapper">
               <img
                   class="img-fluid"
-                  src="./static/images/image-3.jpg"
+                  src="{% static 'images/image-3.jpg' %}"
                   alt="">
             </div>
             <figcaption>
@@ -1148,7 +1149,7 @@
             <div class="img-wrapper">
               <img
                   class="img-fluid"
-                  src="./static/images/image-4.jpg"
+                  src="{% static 'images/image-4.jpg' %}"
                   alt="">
             </div>
             <figcaption>
@@ -1164,7 +1165,7 @@
             <div class="img-wrapper">
               <img
                   class="img-fluid"
-                  src="./static/images/image-5.jpg"
+                  src="{% static 'images/image-5.jpg' %}"
                   alt="">
             </div>
             <figcaption>
@@ -1249,32 +1250,32 @@
           <div class="img-wrapper">
             <img
                 class="img-fluid"
-                src="./static/images/1-gall.jpg"
+                src="{% static 'images/1-gall.jpg' %}"
                 alt=""></div>
         </div>
         <div class="col-6 p-0 row m-0">
           <div class="img-wrapper col-6 p-0">
             <img
                 class="img-fluid"
-                src="./static/images/2-gall.jpg"
+                src="{% static 'images/2-gall.jpg' %}"
                 alt="">
           </div>
           <div class="img-wrapper col-6 p-0">
             <img
                 class="img-fluid"
-                src="./static/images/3-gall.jpg"
+                src="{% static 'images/3-gall.jpg' %}"
                 alt="">
           </div>
           <div class="img-wrapper col-6 p-0">
             <img
                 class="img-fluid"
-                src="./static/images/4-gall.jpg"
+                src="{% static 'images/4-gall.jpg' %}"
                 alt="">
           </div>
           <div class="img-wrapper col-6 p-0">
             <img
                 class="img-fluid"
-                src="./static/images/5-gall.jpg"
+                src="{% static 'images/5-gall.jpg' %}"
                 alt="">
           </div>
         </div>
@@ -1431,7 +1432,7 @@
             <div class="img-wrapper">
               <img
                   class="img-fluid"
-                  src="./static/images/image-t1.jpg"
+                  src="{% static 'images/image-t1.jpg' %}"
                   alt="">
             </div>
             <div class="teacher-info">
@@ -1455,7 +1456,7 @@
             <div class="img-wrapper order-lg-1">
               <img
                   class="img-fluid"
-                  src="./static/images/image-t2.jpg"
+                  src="{% static 'images/image-t2.jpg' %}"
                   alt=""></div>
             <div class="teacher-info">
               <h3 class="teacher-name brackets brackets-blue-yellow">Илья Лебедев</h3>
@@ -1479,7 +1480,7 @@
             <div class="img-wrapper">
               <img
                   class="img-fluid"
-                  src="./static/images/image-t3.jpg"
+                  src="{% static 'images/image-t3.jpg' %}"
                   alt="">
             </div>
             <div class="teacher-info">
@@ -1508,7 +1509,7 @@
             <div class="img-wrapper">
               <img
                   class="img-fluid"
-                  src="./static/images/image-ts1.jpg"
+                  src="{% static 'images/image-ts1.jpg' %}"
                   alt="">
             </div>
             <div class="teacher-info">
@@ -1527,7 +1528,7 @@
             <div class="img-wrapper">
               <img
                   class="img-fluid"
-                  src="./static/images/image-ts2.jpg"
+                  src="{% static 'images/image-ts2.jpg' %}"
                   alt="">
             </div>
             <div class="teacher-info">
@@ -1546,7 +1547,7 @@
             <div class="img-wrapper">
               <img
                   class="img-fluid"
-                  src="./static/images/image-ts3.jpg"
+                  src="{% static 'images/image-ts3.jpg' %}"
                   alt="">
             </div>
             <div class="teacher-info">
@@ -1564,7 +1565,7 @@
             <div class="img-wrapper">
               <img
                   class="img-fluid"
-                  src="./static/images/image-ts4.jpg"
+                  src="{% static 'images/image-ts4.jpg' %}"
                   alt="">
             </div>
             <div class="teacher-info">
@@ -1785,7 +1786,7 @@
       <ul class="payment-info lambda-style offset-md-1 col-md-8 pt-lg-4">
         <li><span>Вернем деньги в первые 2 недели, если не сочтете курс полезным.</span></li>
         <li><span>Курс можно оплатить с помощью </span><img
-            src="./static/images/Rectangle%2061-visa.svg"
+            src="{% static 'images/Rectangle%2061-visa.svg' %}"
             alt="visa"></li>
         <li><span>Для оплаты по безналичному расчету или получения корпоративной скидки (от 5 билетов) пишите на
           <a href="mailto:team@python.ru">team@python.ru</a></span>
@@ -1822,7 +1823,7 @@
               <div class="review-author d-flex align-items-center">
                 <div class="img-wrapper">
                   <img
-                      src="./static/images/testimony_alena.png"
+                      src="{% static 'images/testimony_alena.png' %}"
                       alt="">
                 </div>
                 <div class="review-author-info">
@@ -1849,7 +1850,7 @@
               <div class="review-author d-flex align-items-center">
                 <div class="img-wrapper">
                   <img
-                      src="./static/images/testimony_ilya.png"
+                      src="{% static 'images/testimony_ilya.png' %}"
                       alt="">
                 </div>
                 <div class="review-author-info">
@@ -1901,7 +1902,7 @@
               <div class="review-author d-flex align-items-center">
                 <div class="img-wrapper">
                   <img
-                      src="./static/images/image-review1.jpg"
+                      src="{% static '/images/image-review1.jpg' %}"
                       alt="">
                 </div>
                 <div class="review-author-info">
@@ -2379,7 +2380,7 @@
                 (function () {
                   return {
                     "loadCSS": [
-                      "https://dmaok.github.io/learn-python/static/css/modal.css"
+                      "{% static '/css/modal.css' %}"
                     ],
                     "skipBaseCSS": false,
                     "disableBootstrap": false
@@ -2394,12 +2395,12 @@
   </div>
 
 </div>
-<script src="./static/vendor/js/jquery-3.3.1.min.js"></script>
-<script src="./static/vendor/js/bootstrap.bundle.min.js"></script>
-<script src="./static/vendor/js/bootstrap.min.js"></script>
-<script src="./static/vendor/js/slick.min.js"></script>
+<script src="{% static 'vendor/js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'vendor/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'vendor/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'vendor/js/slick.min.js' %}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false"></script>
-<script src="./static/js/google_map.js"></script>
-<script src="./static/js/main.js"></script>
+<script src="{% static 'js/google_map.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>
