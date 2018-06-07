@@ -4,7 +4,7 @@ pyvenv.cfg
 pip-selfcheck.json
 lib/
 venv/ 
-db.sq3lite 
+db.sqlite3
 landing_page/db.sqlite3
 *.pyc
 *.sqlite3
