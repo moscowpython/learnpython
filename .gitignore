@@ -7,4 +7,5 @@ db.sq3lite
 landing_page\db.sqlite3
 *.pyc
 *.sqlite3
+__pycache__\
 
