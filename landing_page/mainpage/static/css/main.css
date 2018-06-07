@@ -1,0 +1,196 @@
+html {
+  font-size: 100%;
+}
+body {
+  font-family: 'PT Mono', monospace;
+  font-size: 1.125rem;
+  line-height: 1.66;
+  counter-reset: linenum;
+  color: $text-on-light;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.heading-style {
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+h1 {
+  font-size: 4.3vmax;
+}
+h2 {
+  font-size: 4rem;
+}
+h3 {
+  font-size: 2rem;
+}
+h4 {
+  font-size: 1.25rem;
+}
+h5 {
+  font-size: 1.125rem;
+}
+.expired {
+  color: $text-on-dark;
+}
+.bg-blue .expired {
+  color: #fff;
+  opacity: 0.5;
+}
+.color-blue {
+  color: $mainblue;
+}
+.color-yellow {
+  color: $mainyellow;
+}
+.brackets {
+  text-transform: uppercase;
+}
+.brackets:before {
+  content: '[';
+}
+.brackets:after {
+  content: ']';
+}
+.brackets:before,
+.brackets:after {
+  font-weight: bold;
+}
+.brackets.brackets-yellow:before,
+.brackets.brackets-yellow:after {
+  color: $mainyellow;
+}
+.brackets.brackets-blue:before,
+.brackets.brackets-blue:after {
+  color: $mainblue;
+}
+.brackets.brackets-blue-yellow:before {
+  color: $mainblue;
+}
+.brackets.brackets-blue-yellow:after {
+  color: $mainyellow;
+}
+.darked {
+  background: $background-black;
+  color: #fff;
+}
+.bg-yellow {
+  background: $mainyellow;
+}
+.bg-blue {
+  background: $mainblue;
+}
+.hdescr {
+  margin: 1rem 0;
+  line-height: 1.875rem;
+}
+.ide-style {
+  background: $background-black;
+  color: $text-on-dark;
+  overflow: hidden;
+  position: relative;
+  max-width: 689px;
+  border-radius: 3px;
+  padding: 80px;
+}
+.ide-style .ide-style-line-number {
+  padding-left: 20px;
+  padding-top: 15px;
+  position: absolute;
+  list-style: none;
+  left: 0;
+  top: 0;
+}
+.ide-style .ide-style-line-number li:before {
+  font-size: 16px;
+  line-height: 30px;
+  counter-increment: linenum;
+  content: counter(linenum) '';
+  color: $ide-color;
+}
+.ide-style .lambda-style {
+  list-style: none;
+}
+.ide-style .lambda-style li:before {
+  content: '~';
+  color: $mainyellow;
+  font-weight: 600;
+}
+.ide-style .feature-content h4 {
+  color: #fff;
+}
+.ide-style .feature-content h3 {
+  color: #fff;
+  line-height: 3rem;
+}
+.ide-style .feature-content h3:after,
+.ide-style .feature-content h3:before {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 900px;
+  background: $ide-color;
+  position: absolute;
+}
+.ide-style .feature-content h3:before {
+  bottom: calc(100% - 80px);
+}
+.ide-style .feature-content .ide-descr {
+  max-width: 480px;
+  margin: 0 auto 1.5rem;
+  padding-left: 40px;
+}
+.ide-style kbd {
+  background-color: $mainyellow;
+  padding: 0.3rem 0.4rem;
+  font-size: 100%;
+  color: #333;
+}
+.lambda-style {
+  list-style: none;
+  padding: 0;
+}
+.lambda-style li {
+  margin: 13px 0;
+}
+.lambda-style li:before {
+  content: '~';
+  color: $mainyellow;
+  font-weight: 600;
+  margin-right: 12px;
+}
+.slick-dots {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding-left: 0;
+}
+.slick-dots li button {
+  padding: 4px;
+  font-size: 0;
+  background: transparent;
+  border: none;
+  outline: 0;
+  cursor: pointer;
+}
+.slick-dots li button:after {
+  content: '';
+  display: block;
+  text-indent: 1000px;
+  overflow: hidden;
+  width: 6px;
+  height: 6px;
+  background: rgba(255,255,255,0.35);
+  border-radius: 3px;
+  padding: 0;
+}
+.slick-dots li.slick-active button:after {
+  background: $mainyellow;
+}
+.slick-dots li:hover button:after {
+  background: $mainyellow;
+}

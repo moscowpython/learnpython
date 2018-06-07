@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Mono|Ubuntu');
+* {
+  font-family: 'PT Mono';
+  font-size: 14px
+}
+.b-unit__header_size_small {
+  font-size: 1.625rem;
+  line-height: 1.3;
+  margin-bottom: 1.5rem;
+  font-family: 'Ubuntu', sans-serif;
+  text-transform: uppercase
+}
+.twf2-branding,
+.b-reg-table__cell-count,
+.b-reg-table__row_header{
+  display: none!important ;
+  width: 0;
+}
+.b-reg-table__row:nth-of-type(2n),
+.b-reg-table__row {
+  background-color: transparent;
+  border-top: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.row-fluid.b-reg-table__row:not(:last-child):hover {
+  background-color: #FAFAFA
+}
+.row-fluid.b-reg-table__row:last-child{
+  text-align: right
+}
+.b-reg-table{
+  border: none
+}
+.b-registration__label span,
+.selectedTicketsInfo{
+  font-weight: 400
+}
+.b-reg-table__cell-price{
+  text-align:right;
+}
+.b-reg-table__text.b-not-bold{
+  font-weight: 600!important;
+}
+.b-reg-table__text_with_radio{
+  margin: 0;
+  cursor: pointer;
+}
+.b-reg-table__text{
+  padding: 0
+}
+#eventreg_form input[type="radio"]{
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  position:relative;
+  -webkit-appearance: none;
+  border: 1px solid #e1e1e1;
+  border-radius: 50%;
+  padding: 7px;
+  outline: 0;
+}
+#eventreg_form input[type="radio"]:after{
+  content: '';
+}
+#eventreg_form input[type="radio"]:hover{
+  border: 2px solid #F2C94C;
+  padding: 6px;
+}
+#eventreg_form input[type="radio"]:checked{
+  border-color: #F2C94C;
+  background: #F2C94C;
+}
+#eventreg_form input[type="radio"]:checked:after{
+  display: block;
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  border-radius: 4px;
+}
+.row-fluid:before, .row-fluid:after{
+  display: none
+}
+.row-fluid .span9.b-reg-table__cell{
+  width: 95%
+}
+.b-registration__question{
+  text-transform: uppercase;
+  font-family: 'Ubuntu', sans-serif
+}
+.b-input_type_textarea,
+.row-fluid input.b-input[type="text"]{
+  box-shadow: none;
+  border: 1px solid #BDBDBD!important;
+  border-radius: 3px;
+  background: none!important;
+}
+.b-registration__label:hover, .b-registration__label:focus{
+  background: 0
+}
+
+.b-input_type_textarea:focus,
+.row-fluid input.b-input[type="text"]:focus {
+  border-color:#F2C94C!important;
+}
+
+.b-registration__section {
+  margin-bottom: 50px;
+}
+
+.b-reg-descr {
+  color: #f00;
+  display: none;
+}
+.b-pro-wiget__reg-button{
+  background: #F2C94C;
+  border-radius:24px;
+  padding: 14px 35px;
+}
+.b-pro-wiget__reg-button:focus,
+.b-pro-wiget__reg-button:active,
+.b-pro-wiget__reg-button:hover{
+  box-shadow: 0px 4px 0px #E0AC10;
+  background: #F2C94C!important;
+  transform: translateY(-4px)
+}
+.b-pro-wiget__reg-button:active{
+  transform: translateY(0);
+  box-shadow: none
+}

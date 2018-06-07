@@ -1,0 +1,429 @@
+@media (max-width: 992px)
+  h1, h2
+    font-size: 1.5rem
+
+  h3
+    font-size: 1.125rem
+    color: $title-on-light;
+
+  h4, h5, h6
+    font-size: 1rem
+    color: $title-on-light;
+
+  body
+    font-size: .875rem
+    line-height: 1.3
+
+  .navbar-toggler-icon
+    width: 24px
+    height: 24px
+    flex-shrink 0
+    background url("./../images/baseline-menu-24px.svg") no-repeat 50% 50%
+    cursor pointer
+
+  .navbar-close-icon
+    width: 24px
+    height: 24px
+    flex-shrink 0
+    background url("./../images/close.svg") no-repeat 50% 50%
+    cursor pointer
+    display: block
+    position: absolute;
+    left: 20px;
+    top: 20px;
+
+  .nav-bar
+    position: fixed;
+    background-color $background-black
+    left: 0
+    top: 0
+    padding: 50px 15px 30px
+    transform: translate(0, -100%);
+    transition transform .15s ease-in-out
+    &.open
+      transform: translate(0, 0);
+    .nav
+      flex-direction column
+      height: 100%
+      .nav-item
+        width: 100%
+        a
+          color: #fff
+          text-transform: uppercase
+          line-height: 1.4
+        .custom-btn
+          margin-top: 25px
+
+  .btn
+    font-size: .75rem;
+    padding: 8px 24px;
+    &.bigger
+      min-width auto
+      padding: 12px 25px;
+  .main-header
+    max-width: calc(100vw - 0px);
+  .main-header .custom-btn.btn-outline-warning
+    font-size: .75rem;
+    padding: 8px 24px;
+    border-color $mainyellow
+
+  .hero
+    padding: 80px 0 30px
+    .ticket-block
+      transform: translateY(0);
+      .card
+        margin: 20px 0
+        .card-body
+          padding: 1.5rem
+        .hdescr
+          margin: 1rem 0 .5rem
+        .price
+          font-size: 1.125rem
+
+  section:not(.show)
+    .m-hide
+      display: none
+
+  .m-section-header
+    h4
+      margin-bottom: 0
+      position: relative
+      &:before
+        content: '+'
+        height: 24px
+        width: 24px
+        border 2px solid $mainyellow
+        display: inline-block
+        text-align: center
+        font-size: 22px
+        line-height: 18px
+        color: $mainyellow;
+        border-radius 3px
+        margin-right: 12px
+
+  section.show
+    .m-section-header h4:before
+      content: '-'
+      color: #fff;
+      background: $mainyellow;
+
+  .about
+    padding: 40px 0 9px
+    .about-heading
+      top: 70px
+    .about-widget
+      margin-bottom: 30px
+      .widget
+        margin: 0
+        flex-direction column
+        text-align: center
+        .widget-content p
+          font-size: .75rem
+
+  .details-section
+    padding: 9px 0!important;
+    .price-box
+      margin-top: 24px
+      margin-bottom: 25px
+      padding: 24px 8px
+      border-radius 0
+      &.yellow
+        background: $mainyellow;
+      &.blue
+        background: $mainblue;
+        color: #fff;
+        h3
+          color: $title-on-dark;
+        .expired
+          color: rgba(255, 255, 255, 0.51);
+      .price-label, h3
+        font-size: 1rem
+      h3
+        text-transform: none
+      .btn
+        word-wrap break-word
+        white-space normal
+        word-break: break-word;
+      .price-list
+        li
+          display flex
+          align-items center
+          justify-content space-between
+          padding: 10px 0
+          div b
+            order 0
+          .cost
+            font-size: 1.125rem
+            white-space nowrap
+            padding: 0
+          button.btn
+            order 2
+            font-size: 12px
+            padding: 14px 32px
+            line-height: 1.125
+            &:not(.btn-link)
+              background: #fff;
+              color: $title-on-light!important
+          &:not(:last-child):after
+            background: transparent;
+            border-bottom: 1px dashed #333;
+            opacity: .25;
+    .you-get
+      figure
+        padding: 15px
+        margin: 0
+        figcaption
+          padding: 0
+    .btn-outline-warning.bigger
+      margin-bottom: 40px
+
+  .calendar
+    padding: 9px 0
+    .slick-dots
+      justify-content left
+      padding: 0 30px
+      li:not(.slick-active) button:after
+        background: #E0E0E0
+
+  .teachers
+    padding: 9px 0
+    h3.in-section
+      margin: 20px 0 10px
+      padding: 0
+      font-size: 1rem
+      text-transform none
+    .teachers-list
+      margin-bottom: 30px
+      li
+        padding-bottom: 4px
+        padding-top: 4px
+        .img-wrapper
+          padding: 15px
+          flex 0 0 52%
+        .teacher-info
+          flex 0 0 48%
+          display: flex
+          padding: 15px 15px 15px 0
+          align-items center
+        .teacher-name
+          margin-bottom: 0
+        .hdescr
+          width: 100%
+          flex-shrink 0
+          margin: 0
+          padding: 0 15px 15px
+          color: $text-on-dark;
+    .mentor-list
+      li
+        opacity: 0
+        transition opacity .5s
+        div.d-flex
+          flex-wrap wrap
+          padding: 15px
+          align-items center
+          width: 110%
+        &.slick-current
+          opacity: 1
+        .darked
+          .img-wrapper
+            margin-right: 15px
+          .teacher-info
+            flex 0 0 50%
+            h4
+              font-size: .875rem;
+              line-height: 1.3
+          .hdescr
+            width: 100%
+            color: $text-on-dark;
+    .slick-dots
+      justify-content left
+      padding: 0 30px
+      li
+        margin: 0
+      li:not(.slick-active) button:after
+        background: #E0E0E0
+
+  .counter
+    padding: 9px 0
+    h2
+      font-size: 1rem
+      text-transform: none
+      margin: 20px 0 15px
+    .counter-container
+      padding: 0
+      margin-bottom: 20px
+      .delimeter
+        font-size: 1.5rem
+        line-height: 1.3
+      & > div
+        width: 23%
+        padding: 8px
+        border-radius 3px
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.13);
+        span
+          font-size: .75rem
+        b
+          font-size: 1.5rem
+          line-height: 1.3
+    .tab-holder
+      padding: 2rem 15px 0
+      text-align: center
+      margin-right: -15px
+      margin-left: -15px
+      &.bg-blue
+        h4
+          color: $title-on-dark
+
+      .button-holder
+        background: #fff
+        border-radius 21px
+        display: inline-block;
+        padding: 8px 14px
+        .custom-tab
+          font-family: 'Ubuntu', sans-serif
+          font-size: .75rem
+          text-transform: uppercase
+          display: inline-block
+          margin: 0 15px
+          border-bottom 2px solid transparent
+          &.active[data-target=".online-tab"]
+            border-color $mainyellow
+          &.active[data-target=".offline-tab"]
+            border-color $mainblue
+      h4
+        margin: 15px 0 0
+        padding-bottom: 5px
+    .online-tab:not(.active),
+    .offline-tab:not(.active)
+      display: none
+    .price-second
+      padding: 0 15px
+      border-radius 0
+      margin-right: -15px
+      margin-left: -15px
+      margin-bottom: 0
+      .price-s-list
+        padding: 15px 0
+        li
+          padding: 15px 0
+          border-top 1px dashed rgba(51, 51, 51, 0.25);
+          b
+            margin-bottom: -5px
+            display: block
+      .cost
+        font-size: 1.125rem
+        align-self flex-end
+    .payment-info li
+      font-size: .875rem
+
+  .reviews
+    padding: 9px 0
+    h4
+      color: $title-on-light;
+    .container.m-hide
+      padding: 0 !important
+      margin-top: 20px
+    &.darked
+      background: #fff;
+      .reviews-carousel
+        background: $background-black;
+        padding: 25px 15px
+        .reviews-carousel-slider
+          .slick-custom-slide
+            padding-left: 0
+            &:before
+              left: 0
+        .slide-heading
+          padding-left: 80px
+          min-height: 56px;
+    .reviews-carousel-slider .slick-custom-slide:before
+      left: 20px
+      font-size: 5rem
+
+  .footer
+    padding: 9px 0 0
+    .m-section-header
+      margin-bottom: 10px
+    &.darked
+      background: #fff;
+    .map-container-fluid
+      position: initial !important;
+      height: 320px
+      .fh5co-map
+        height: 320px !important
+
+  .contact-container
+    background: #fff;
+    padding: 15px 15px 0
+    .footer-card
+      margin-bottom: 15px
+      p,
+      address
+        color: $text-on-light;
+      .contact-list
+        a
+          color: #2D9CDB;
+    h3
+      text-transform: none
+
+  .hdescr
+    margin: 1.5rem 0
+
+  .lambda-style li
+    margin: .5rem 0
+
+  .register.modal.show
+    .close
+      position: absolute
+      top: 20px
+      right: 20px
+      z-index: 14
+      padding: 5px
+      .close-label
+        display: none
+      .close-icon
+        width: 24px
+        height: 24px
+        //background: url(./../images/close-menu-24px.png) no-repeat 50% 50%;
+    .modal-dialog
+      margin: 0 auto
+      .modal-content
+        border 0
+    .modal-header
+      padding: 0
+      h2
+        font-size: 1.375rem
+        margin-top: 40px
+      .modal-descr
+        font-size: .875rem
+    .modal-body
+      .small
+        font-size: 100%
+      .container
+        padding: 10px 0 0
+      h3
+        font-size: 1.375rem
+        margin-bottom: 1rem
+      .group-radio
+        margin: 0 -15px
+      .type-section,
+      .info-section,
+      .experience-radio,
+      .additional-section
+        margin-bottom: 10px
+      .total-selected
+        margin: 0
+      .additional-section label.heading,
+      .experience-text h4
+        text-transform: none
+      .custom-checkbox-container
+        label
+          align-items flex-start
+      .final
+        .btn
+          color: #333333 !important
+          padding: 14px 34px
+  .copyright
+    margin-top: 20px
+  .modal-content
+    border-radius 0
