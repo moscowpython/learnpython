@@ -3,11 +3,8 @@ bin/
 pyvenv.cfg
 pip-selfcheck.json
 lib/
-venv/ 
-db.sqlite3
-landing_page/db.sqlite3
+venv/
 *.pyc
-*.sqlite3
 __pycache__/
 landing_page/maipage/__pycache__/
 landing_page/landing_page/__pycache__/
