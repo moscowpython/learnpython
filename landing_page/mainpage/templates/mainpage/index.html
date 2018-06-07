@@ -1642,8 +1642,8 @@
     <div class="container-fluid">
       <div class="row">
         <div class="meetup col-5 ml-auto text-center">
-          <h3 class="text-uppercase w-100">Moscow Python Meetup №56</h3>
-          <b class="date d-flex"><span>22 МАЯ, 19:00</span></b>
+          <h3 class="text-uppercase w-100">Moscow Python Meetup № {{ meetup.meetup_number }}</h3>
+          <b class="date d-flex"><span>{{ meetup.meetup_day }} {{ meetup.meetup_month }}, 19:00</span></b>
           <div class="w-100">
             <a
                 class="btn btn-outline-warning"
