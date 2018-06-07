@@ -1,0 +1,27 @@
+{
+  "name": "python.ru",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "npm": "^6.1.0",
+    "livereload": "^0.7.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "live": "livereload . -w 1000 -d"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmaok/learn-python.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dmaok/learn-python/issues"
+  },
+  "homepage": "https://github.com/dmaok/learn-python#readme"
+}

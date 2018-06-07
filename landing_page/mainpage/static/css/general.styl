@@ -1,0 +1,852 @@
+header
+  font-family: 'Ubuntu', sans-serif
+
+.logo
+  white-space: nowrap
+  font-family: 'Rubik', 'Ubuntu', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.16em;
+  color: #fff;
+  &:hover
+    color: #fff;
+    text-decoration: none;
+
+.main-header
+  position: fixed;
+  width: 100%
+  top: 0
+  left: 0
+  right: 0
+  padding: 22px 0;
+  z-index: 1000
+  transition padding .2s ease
+  max-width: calc(100vw - 17px);
+  .btn
+    color: $mainyellow
+  &.scrolled
+    box-shadow: 0 10px 14px rgba(0, 0, 0, 0.25);
+    background: $background-black
+    padding: 13px 0;
+    .btn
+      @extend .btn-warning
+      color: #333 !important
+      border-color $mainyellow!important
+      padding: 14px 30px
+      margin-left: 5px
+      font-size: .8rem
+
+.nav
+  .nav-link
+    color: $text-on-dark
+    text-transform: uppercase
+    font-size: .8rem
+    padding: 10px
+    &:not(.btn-outline-warning)
+      line-height: 26px
+    &:hover
+      color: $mainyellow;
+    &.active
+      color: $mainyellow;
+.main-header:not(.scrolled) .nav
+  .custom-btn.btn-outline-warning
+    font-size: .8rem
+    color: $text-on-dark !important
+    padding: 14px 30px
+    border-color: $text-on-dark
+    margin-left: 5px
+    &:hover
+      color: $text-on-light !important
+      border-color: $mainyellow
+    &:active
+      border-color: #E0AC10;
+      color: $text-on-light !important
+
+.hero
+  background: url(./../images/image-hero.jpg) $background-black 50% 50% no-repeat;
+  color: #fff;
+  padding: 170px 0 0
+  h1
+    font-size: 4.3vmax
+  .hdescr
+    color: $text-on-dark;
+  .curs-place
+    color: #fff;
+    margin: 1rem 0;
+  .ticket-block
+    color: $text-on-light
+    transform: translateY(80px)
+    .hdescr
+      color: $text-on-light
+    .price
+      font-size: 1.25rem
+      font-family: 'Ubuntu', sans-serif
+      text-transform: uppercase;
+      white-space nowrap
+    .card
+      height: 100%;
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.07);
+      border none
+  .curs-place
+    padding-left: 60px
+    position: relative
+    line-height: 32px
+    &:before
+      content: ''
+      display: block
+      position: absolute
+      width: 32px
+      height: 32px
+      left: 15px
+      top: 0
+      background: url("./../images/calendar-32.png");
+
+.about
+  padding: 237px 0 123px
+  p.hdescr.d-none.d-lg-block
+    margin: 2rem 0
+  .about-sticky
+    margin-bottom: 90px
+  .about-widget
+    padding: 15px 0 0
+    .widget
+      margin-top: 24px
+      margin-bottom: 24px
+      .widget-content
+        p
+          font-size: 1rem
+      .widget-icon
+        width: 64px
+        height: 64px
+        margin: 0 20px 10px 0
+  .about-heading
+    position: sticky;
+    top: 120px
+    margin-bottom: 0
+
+.example-project
+  padding: 120px 0
+  .section-heading
+    margin-bottom: 40px
+  .slick-list
+    padding-top: 70px !important;
+  .slick-slide
+    outline: none
+    transition opacity .15s ease
+    opacity: 0.5
+    &.slick-current
+      opacity 1
+    &.slick-active:not(.slick-current)
+      opacity: 0.5
+    img
+      width: 100%
+      transform scale(1)
+      transition transform .15s ease
+    p.text-center
+      display: none
+    &.slick-center.slick-current
+      img
+        transform scale(1.4)
+        z-index: 40
+        position: relative
+      p
+        display: block
+        margin-top: 110px;
+        color: $text-on-dark;
+
+  .examples-slider
+    position: relative
+    .slick-arrow
+      border: none;
+      text-indent: 1000px;
+      overflow: hidden;
+      width: 20vw;
+      height: 100%;
+      position: absolute;
+      top: 0
+      outline none
+      z-index: 100;
+      cursor: pointer;
+      opacity: 0;
+      transition opacity .15s
+      &:hover
+        opacity: 1;
+      &.slick-next
+        background url("./../images/next.png") transparent no-repeat 50% 50%
+        right: 0;
+      &.slick-prev
+        left: 0
+        background url("./../images/prew.png") transparent no-repeat 50% 50%
+
+.project-features
+  padding: 130px 0 140px
+  h2
+    font-size: 3.45rem;
+  .feature-group
+    margin: 20px 0
+  .feature-block
+    padding: 70px 0 140px
+    position: relative
+    overflow: hidden;
+    .feature-image
+      position: absolute
+      left: 0;
+      height: 100%
+      background-repeat no-repeat
+      background-size: contain;
+    .feature-descr
+      max-width: 689px;
+      margin-left: auto
+      right: 0
+      padding: 5% 0 0 36px;
+    .feature-content
+      p.hdescr
+        padding-left: 60px
+    &:nth-child(2n)
+      .feature-descr
+        margin-left: 0
+        padding: 5% 36px 0 0
+      .feature-image
+        right: 0
+        left: auto
+        background-position-x: right;
+    h5.ide-descr
+      padding-top: 20px
+    .lambda-style
+      li
+        margin: 10px 0
+    &:nth-child(3)
+      padding-bottom: 0
+
+.student-history
+  padding: 94px 0 103px;
+  h2
+    font-size: 3.45rem;
+  .history-container
+    padding: 50px 0
+    .nav.nav-tabs
+      justify-content: center;
+      border-color $text-on-light
+      li
+        a
+          padding: 15px
+          display: block
+          text-align: center
+          font-family: 'Ubuntu'
+          font-weight: 600
+          text-transform: uppercase
+          color: #fff;
+          font-size: 16px
+          position: relative;
+          &:after
+            content: ''
+            height: 6px
+            border-radius 3px
+            background transparent
+            position: absolute
+            bottom: 0
+            left: 0
+            right: 0
+            text-decoration: none
+          &:hover:not(.active)
+            color: $mainyellow
+          &:hover
+            text-decoration: none;
+          &.active:after
+            background $mainyellow;
+    .person
+      img
+        object-fit cover
+        height: 100%
+        width: 100%
+    .small-review
+      padding: 40px 0
+      color: $text-on-dark;
+    .history-content
+      border 1px solid $text-on-light
+      position: relative
+      border-radius 3px
+    .history-message
+      padding: 60px
+    .person-status
+      font-family: Ubuntu;
+      font-style: normal;
+      font-weight: bold;
+      text-transform: uppercase;
+    .person-last-status
+      font-size: 16px;
+      color: $text-on-dark;
+    .history-slider
+      position: relative
+    .prehistory
+      color: $text-on-dark;
+      transition opacity .1s ease
+      &:not(.show)
+        opacity: 0
+        top 0
+        position: absolute
+      .heading-style
+        display: block
+        padding: 25px 0 20px
+        color: #fff;
+        font-family: Ubuntu;
+        font-style: normal;
+        font-weight: bold;
+        line-height: 28px;
+        font-size: 20px;
+        text-transform: uppercase;
+    .tab-nav-container
+      position: absolute;
+      right: -2px;
+      bottom: -1px;
+      display: flex
+      a
+        display: block
+        width: 64px
+        height: 64px
+        background-position: 50% 50%
+        border-top 1px solid $text-on-light
+        border-left 1px solid $text-on-light
+        background-repeat no-repeat
+      .read-more
+        width: auto;
+        padding-right: 64px;
+        padding-left: 20px;
+        background-position-x: calc(100% - 32px);
+
+.how-it-work
+  background-position: 100% 0
+  background-repeat no-repeat;
+  background-size contain
+  h2
+    color: $title-on-light;
+  &.bg-yellow
+    background-image: url(./../images/student.jpg);
+    color: $title-on-light;
+  &.bg-blue
+    background-image: url(./../images/team.jpg);
+    color: #fff;
+    h2
+      color: #fff;
+  .container
+    .bg-yellow
+    .bg-blue
+      padding-top: 132px;
+      padding-bottom: 173px;
+
+.how-it-work.bg-blue .container .bg-blue
+  padding-top: 172px;
+  padding-bottom: 233px;
+
+.details-section
+  padding: 130px 0 150px;
+  &.offline-details
+    padding-bottom: 80px
+
+.price-box
+  border: 8px solid
+  padding: 50px
+  margin-bottom: 100px
+  &.yellow
+    border-color $mainyellow
+  &.blue
+    border-color $mainblue
+  .price-label
+    padding: 40px 0 13px
+  .price-list
+    margin: 0
+    padding: 40px 0 30px
+    li
+      padding: 30px 0
+      list-style: none
+      position: relative
+      .cost
+        padding: 15px 0 40px
+        font-size: 2rem
+        font-family: 'Ubuntu', sans-serif
+      &:not(:last-child):after
+        content: ''
+        display: block
+        position: absolute
+        height: 100%
+        width: 1px
+        background: #e0e0e0
+        top: 0
+        right: 0
+
+.you-get
+  figure
+    padding: 25px 15px 15px
+    position: relative
+    .img-wrapper
+      height: 200px
+      border-radius 3px
+      img
+        width: 100%
+        height: 100%
+        object-fit cover
+        border-radius 3px
+    figcaption
+      margin-top: 15px
+      padding: 0 20px
+      bottom: 0;
+      left: 0
+      right: 0
+      line-height: 1.4;
+      kbd
+        padding: 0.3rem 0.6rem;
+        color: $text-on-dark;
+
+.schedule-wrapper
+  padding: 40px 0
+  .schedule-list
+    padding: 70px 0 0
+    list-style: none
+    position: relative
+    li
+      position: relative;
+      padding: 20px 0 20px 110px
+      &:not(:last-child):before
+        content: ''
+        display: block
+        height: 100%
+        width: 1px
+        background: #E0E0E0;
+        position: absolute
+        left: 42px
+        top 15px
+      &:after
+        content: ''
+        display: block
+        border: 2px solid
+        width: 84px
+        height: 84px
+        border-radius 42px
+        position: absolute
+        left: 0
+        top: 10px
+        background: #fff;
+        background-repeat no-repeat
+        background-position 50% 50%
+        .online-details &
+          border-color $mainyellow
+        .offline-details &
+          border-color $mainblue
+      .schedule-desc
+        padding-left: 15%
+        padding-top: 20px
+      &.flag:after
+        background-image url("./../images/Vectorflag.png")
+      &.comment:after
+        background-image url("./../images/Outline-comment.png")
+      &.hat:after
+        background-image url("./../images/Outline-hat.png")
+      &.code:after
+        background-image url("./../images/Vector-code.png")
+      &.directory:after
+        background-image url("./../images/Outline-dir.png")
+      &.chat:after
+        background-image url("./../images/Outline-chat.png")
+
+.gallery
+  img
+    height: 100%
+    width: 100%;
+    object-fit: cover;
+
+.calendar
+  padding: 120px 0 60px
+
+  .section-heading
+    padding: 40px 0
+  .calendar-list
+    padding-left: 0
+    .day-wrapper
+      list-style: none
+      margin: 15px 0
+      &:first-child .day
+        background-color $mainyellow
+        border-color $mainyellow!important
+        li:before
+          color: $text-on-light
+      &:last-child .day
+        background-color $mainblue
+        border-color $mainblue!important
+        color: #fff;
+        li:before
+          color: #fff;
+        h6
+          color: #fff;
+      .day
+        height: 100%
+        padding: 25px
+        border-color #E0E0E0
+        border-radius 3px
+        .date
+          font-size: 2rem
+          font-weight: 600
+        ul
+          padding-top: 10px
+          padding-bottom: 10px
+        li
+          font-size: .875rem
+          line-height: 1.35
+
+.teachers
+  padding: 60px 0 140px
+  h2
+    font-size: 3.45rem;
+  .in-section
+    padding-top: 70px
+    &+p
+      margin: 2rem 0
+  h3 + p
+    margin: 2rem 0
+  .teachers-list
+    list-style: none
+    margin-bottom: 120px
+    padding-left: 0
+    li
+      padding-top: 2.5rem
+      padding-bottom: 2rem
+      .darked
+        border-radius 3px
+      .img-wrapper
+        flex 0 0 40%
+        img
+          width: 100%
+          height: 100%
+          object-fit cover
+      .teacher-info
+        padding: 80px
+      .teacher-name
+        margin-bottom: 3rem
+        color: $title-on-dark;
+        & ~ p
+          margin-left: 4rem
+          font-size: 1.125rem
+          color: $text-on-dark;
+          line-height: 1.875rem
+      kbd
+        font-size: 1.125rem
+        background-color $mainyellow
+        color: $text-on-light
+  .mentor-list
+    padding-left: 0
+    list-style: none
+    li
+      margin-top: 15px
+      margin-bottom: 15px
+      .darked
+        height: 100%
+        padding: 30px 24px
+        border-radius 3px
+        margin: 1rem 0;
+        .img-wrapper
+          width: 90px
+          height: 90px
+          margin-right: 25px
+          flex-shrink: 0;
+          img
+            width: 100%
+            height: 100%
+            object-fit cover
+      .teacher-name
+        margin-bottom: 15px
+        line-height: 2rem
+        color: $title-on-dark;
+        & ~ p
+          color: $text-on-dark;
+          font-size: .875rem
+          line-height: 1.6rem
+
+.moscow-python
+  padding: 100px 0
+  position: relative
+  background-image: url("./../images/logo-mp.png")
+  background-repeat no-repeat
+  background-position 0 20%
+  .meetup
+    background url("./../images/image-bg.jpg") no-repeat
+    background-position center
+    background-size cover
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    right: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    .date
+      height: 32px
+      display: inline-block
+      margin: 10px 0
+      line-height: 32px
+      vertical-align: middle
+      &:before
+        content: ''
+        display: inline-block
+        width: 32px
+        height: 32px
+        margin-right: 10px
+        background url("./../images/calendar-32.png") no-repeat 50% 50%
+    .btn-outline-warning
+      margin-top: 30px
+      color: #fff !important;
+      span:after
+        display: inline-block
+        width: 18px
+        height: 18px
+        content: ''
+        background url("./../images/Vectornt.png") no-repeat 50% 50%
+        margin-left: 10px
+        margin-bottom: -3px
+      &:hover
+        color: #fff;
+        span:after
+          background url("./../images/outline-open_in_new-24px.png") no-repeat 50% 50%
+  .mp-items
+    list-style: none
+    padding-left: 0
+    b
+      font-size: 1.25rem;
+      text-transform: uppercase;
+      margin-bottom: 10px
+      display: block
+      margin-top: 10px
+    p
+      font-size: .875rem
+      color: $text-on-dark;
+  .hdescr
+    color: $text-on-dark;
+    line-height: 2rem
+
+.counter
+  padding: 160px 0 100px
+  h2
+    font-size: 3.45rem;
+    max-width:850px
+    margin: 0 auto
+    text-align: center
+  .counter-container
+    padding: 80px 0 64px
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    .delimeter
+      font-size: 3.5rem
+      color: $background-black;
+    & > div
+      background $background-black
+      width: 110px
+      flex-shrink 0
+      padding: 25px 15px
+      border-radius 16px
+      b
+        line-height: 3.4rem
+        font-size: 3.5rem
+        color: #fff;
+      span
+        color: $text-on-dark
+  .price-second
+    padding: 75px 80px 80px
+    border-radius 3px
+    .price-s-list
+      padding-left: 0
+      list-style: none
+      li
+        padding: 20px 0
+        b
+          font-family: 'Ubuntu', sans-serif
+    .cost
+      font-size: 2rem
+      font-family: 'Ubuntu', sans-serif
+      & + a
+        flex: 0 0 286px;
+        text-align: center;
+    &.bg-yellow
+      color: $title-on-light
+      .expired
+        color: rgba(51, 51, 51, 0.5)
+      p
+        color: $title-on-light
+    &.bg-blue
+      color: #fff
+      .btn-link
+        color: #fff
+  .payment-info
+    li
+      padding-left: 25px
+      position: relative
+      margin: 5px 0
+      font-size: 1rem
+      &:before
+        position: absolute
+        left: 0
+        top: 0
+
+.reviews
+  padding: 120px 0
+  color: $text-on-dark;
+  .reviews-carousel
+    position: relative
+  .reviews-carousel-slider
+    .slick-custom-slide
+      position: relative;
+      padding-left: 150px
+      &:before
+        content: '//';
+        font-size: 5.4rem;
+        color: #f2c94c;
+        position: absolute;
+        left: 50px
+        font-weight: 900;
+        top: 0;
+        line-height: 70px;
+        letter-spacing: -24px;
+      .review-author
+        margin-top: 20px
+        padding: 30px 0
+        .img-wrapper
+          width: 80px
+          height: 80px
+          border-radius 40px
+          overflow: hidden
+          margin-right: 25px
+          img
+            height: 100%
+            width: 100%
+            object-fit cover
+          &:empty
+            display: none
+    .slide-wrapper
+      p
+        max-width 720px
+    .review-author-info
+      span
+        font-size: 1rem
+  .nav-container
+    position: relative
+    border-top: 1px solid $text-on-light
+    border-right: 1px solid $text-on-light
+    display flow-root
+    .carousel-control
+      float right
+      margin: -1px -1px 0 0
+    .pagerSelector
+      display: block
+      float: right
+      width: 64px
+      height: 64px
+      line-height: 64px
+      text-align: center
+      font-size: 1rem
+  .slide-heading
+    position: relative
+    color: #fff;
+    margin-bottom: 30px
+  .slick-dots
+    padding: 0
+    list-style: none
+    li
+      display: none
+      &.slick-active
+        display: inline
+  h5
+    color: #fff;
+    margin-bottom: 0
+
+.faq
+  padding: 160px 0
+  .faq-heading
+    position: sticky;
+    top 100px
+  .faq-accordion
+    & > div
+      margin: 30px 0
+      position: relative;
+    h5
+      cursor: pointer
+      text-transform: none;
+      span
+        position: relative
+        &:before
+          content: '+'
+          display: block
+          position: absolute
+          font-size: 20px
+          width: 24px
+          height: 24px
+          color: $mainyellow;
+          border 2px solid $mainyellow
+          line-height: 20px
+          text-align: center
+          left: -40px
+          transition color .15s ease, background .15s ease
+        &:not(.collapsed):before
+          content: '-'
+          color: #fff;
+          background $mainyellow
+      &:hover
+        span.collapsed:before
+          color: #fff;
+          background $mainyellow
+    [data-parent="#accordion"]
+      & > div
+        padding: 20px 0 20px 60px
+        font-size: .875em
+        &:before
+          content: ''
+          display: block
+          position: absolute
+          left: -28px;
+          top: 30px;
+          width: 12px;
+          height: calc(100% - 40px)
+          border-left: 1px solid #e0e0e0
+          border-bottom: 1px solid #e0e0e0
+
+.remind-letter
+  padding: 200px 0 236px
+  color: #fff;
+  background url("./../images/bgnext-time.jpg") no-repeat 50% 50%
+  background-size: cover
+  .email-field
+    border-radius 27px 0 0 27px
+    border none
+    padding: 16px 25px;
+    flex: 1;
+    outline 0
+    line-height: 1;
+  .btn-warning
+    box-shadow none !important
+  h4
+    font-size: 2rem
+    margin: 1rem 0 0
+
+.footer
+  position: relative;
+  overflow: hidden;
+
+.contact-container
+  padding-top: 120px
+  padding-bottom: 0
+  .footer-card
+    margin-bottom: 110px
+    p,
+    address
+      color: $text-on-dark
+    .contact-list
+      li
+        &:before
+          content: '>'
+          color: $text-on-dark
+      a
+        color: $mainyellow
+  .copyright
+    margin-top:60px
+    color: $text-on-dark;
+    margin-bottom: 30px

@@ -1,0 +1,235 @@
+html
+  font-size: 100%
+
+body
+  font-family: 'PT Mono', monospace
+  font-size: 1.125rem
+  line-height: 1.5;
+  counter-reset: linenum
+  color: $text-on-light
+
+h1, h2, h3, h4, h5, h6, .heading-style
+  font-family: 'Ubuntu', sans-serif
+  font-weight: 600
+  text-transform: uppercase
+
+h1
+  font-size 4.3vmax
+
+h2
+  font-size: 3.42rem
+
+h3
+  font-size: 2rem
+
+h4
+  font-size: 1.25rem
+
+h5
+  font-size: 1.125rem
+
+.expired
+  opacity 0.7
+  [disabled]
+    opacity: 1
+
+.color-blue
+  color: $mainblue
+
+.color-yellow
+  color: $mainyellow
+
+.brackets
+  text-transform: uppercase
+  &:before
+    content: '['
+  &:after
+    content ']'
+  &:before,
+  &:after
+    font-weight: bold
+  &.brackets-yellow
+    &:before
+    &:after
+      color: $mainyellow
+  &.brackets-blue
+    &:before
+    &:after
+      color: $mainblue;
+  &.brackets-blue-yellow
+    &:before
+      color: $mainblue;
+    &:after
+      color: $mainyellow;
+
+.darked
+  background: $background-black;
+  color: #fff
+
+.bg-yellow
+  background: $mainyellow;
+
+.bg-blue
+  background: $mainblue;
+
+.hdescr
+  margin: 1rem 0
+  line-height: 1.875rem
+
+.ide-style
+  background: $background-black;
+  color: $text-on-dark
+  overflow: hidden
+  position: relative
+  max-width: 689px
+  border-radius: 3px;
+  padding: 80px
+  .ide-style-line-number
+    padding-left: 20px
+    padding-top: 15px
+    position: absolute
+    list-style: none
+    left: 0;
+    top: 0;
+    li
+      &:before
+        font-size: 16px
+        line-height: 30px
+        counter-increment: linenum
+        content counter(linenum) ''
+        color: $ide-color;
+  .lambda-style
+    list-style: none
+    li
+      &:before
+        content '~'
+        color: $mainyellow;
+        font-weight: 600
+  .feature-content
+    h4
+      color: #fff;
+    h3
+      color: #fff;
+      line-height: 3rem
+      &:after,
+      &:before
+        content ''
+        display: block
+        width: 1px
+        height: 900px
+        background: $ide-color
+        position: absolute
+      &:before
+        bottom calc(100% - 80px)
+    .ide-descr
+      max-width: 480px
+      margin: 0 auto 1.5rem
+      padding-left: 40px
+  kbd
+    background-color: $mainyellow
+    padding: .4rem;
+    font-size: 100%;
+    color: #333;
+
+.lambda-style
+  list-style: none
+  padding: 0
+  li
+    margin: 13px 0
+    position: relative
+    padding-left: 20px
+    &:before
+      content '~'
+      color: $mainyellow;
+      font-weight: 600;
+      margin-right: 12px
+      position: absolute
+      left: 0
+
+.slick-dots
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding-left: 0
+  li
+    button
+      padding: 4px
+      font-size: 0
+      background: transparent;
+      border none
+      outline: 0
+      cursor: pointer
+      &:after
+        content: ''
+        display: block
+        text-indent: 1000px
+        overflow: hidden;
+        width: 6px
+        height: 6px
+        background: rgba(255, 255, 255, 0.35)
+        border-radius 3px
+        padding: 0
+    &.slick-active
+      button:after
+        background: $mainyellow;
+    &:hover
+      button:after
+        background: $mainyellow;
+
+.slider-nav
+  a
+    width: 64px
+    height: 64px
+    display: block
+    line-height: 62px
+    text-align: center
+    background-position: center
+    border-width: 1px;
+    border-style: solid;
+    background-color $background-black
+    border-color #4F4F4F
+    background-repeat: no-repeat;
+    transition background-color .15s ease
+    &.prev
+      background-image url("./../images/prew.png")
+    &.next
+      background-image: url("./../images/next.png")
+    &:hover
+      background-color $mainyellow
+      border-color $background-color
+      cursor pointer
+      &.prev
+        background-image url("./../images/Vector-2.svg")
+      &.next
+        background-image: url("./../images/Vector-1.svg")
+    &:active
+      background-color #E0AC10
+      &.prev
+        background-image url("./../images/Vector-2.svg")
+      &.next
+        background-image: url("./../images/Vector-1.svg")
+
+@keyframes slideInUp
+  from
+    transform: translate3d(0, 100%, 0);
+    visibility: visible;
+  to
+    transform: translate3d(0, 0, 0);
+
+@keyframes fadeInLeft
+  from
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  to
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+
+.animated
+  animation-duration: 1s;
+  animation-fill-mode: both;
+
+.slideInUp
+  animation-name: slideInUp
+
+.fadeInLeft
+  animation-name: fadeInLeft;
