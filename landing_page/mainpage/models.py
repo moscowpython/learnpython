@@ -231,7 +231,7 @@ class GraduateStories(models.Model):
 
 	story_author_position = models.CharField(
 		verbose_name='Должность выпускника',
-		help_text= 'Кто теперь выпускник',
+		help_text='Кто теперь выпускник',
 		max_length=50,
 		null=True
 	)
@@ -264,5 +264,6 @@ class GraduateProjects(models.Model):
 
 	project_image = models.ImageField(
 		help_text="Пример интерфейса проекта",
-		default=None
+		default=None,
+		upload_to='projects/'
 	)

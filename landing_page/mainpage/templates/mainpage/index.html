@@ -369,38 +369,14 @@
         Проекты, созданные во время обучения
       </h2>
       <div class="examples-slider row">
-        <div class="text-center ">
-          <img
-              src="{% static 'images/sl1.png' %}"
-              alt="slide">
-          <p class="text-center">Своя система управления проектами.</p>
-        </div>
-        <div class="text-center ">
-          <img
-              src="{% static 'images/sl2.png' %}"
-              alt="slide">
-          <p class="text-center">Агрегатор личных цифровых данных и система поиска по ним.</p>
-        </div>
-        <div class="text-center ">
-          <img
-              src="{% static 'images/sl3.png' %}"
-              alt="slide">
-          <p class="text-center">Бот для изучения иностранного языка.</p>
-        </div>
-        <div class="text-center ">
-          <p class="my-2 py-2"></p>
-          <img
-              src="{% static 'images/sl4.png' %}"
-              alt="slide">
-          <p class="my-2 py-2"></p>
-          <p class="text-center">Свой переводчик на десятки языков.</p>
-        </div>
-        <div class="text-center ">
-          <img
-              src="{% static 'images/sl5.png' %}"
-              alt="slide">
-          <p class="text-center">Программа для совместного просмотра фильмов.</p>
-        </div>
+        {% if projects %}
+	      {% for project in projects %}
+	      <div class="text-center ">
+		      <img src="{{ project.project_image.url }}" alt="slide">
+		      <p class="text-center">{{ project.project_name }}</p>
+	      </div>
+	      {% endfor %}
+	    {% endif %}
       </div>
     </div>
   </section>
