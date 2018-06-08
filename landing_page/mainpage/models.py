@@ -83,6 +83,45 @@ class LearnPythonCourse(models.Model):
 
     )
 
+    course_day_2 = models.DateField(
+        verbose_name='Второй день занятий',
+        help_text='Дата второго занятия'
+    )
+
+    course_day_3 = models.DateField(
+        verbose_name='Третий день занятий',
+        help_text='Дата третьего занятия'
+    )
+
+    course_day_4 = models.DateField(
+        verbose_name='Четвертый день занятий',
+        help_text='Дата четвертого занятия'
+    )
+
+    course_day_5 = models.DateField(
+        verbose_name='Пятый день занятий',
+        help_text='Дата пятого занятия'
+    )
+
+    course_day_6 = models.DateField(
+        verbose_name='Шестой день занятий',
+        help_text='Дата шестого занятия'
+    )
+
+    course_day_7 = models.DateField(
+        verbose_name='Седьмой день занятий',
+        help_text='Дата седьмого занятия'
+    )
+
+    course_day_8 = models.DateField(
+        verbose_name='Восьмой день занятий',
+        help_text='Дата восьмого занятия'
+    )
+
+    course_day_9 = models.DateField(
+        verbose_name='Девятый день занятий',
+        help_text='Дата девятого занятия'
+    )
 
 class LearnPythonCoursePrices(models.Model):
     class Meta:
