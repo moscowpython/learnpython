@@ -156,7 +156,7 @@
           у практиков, удобным способом и с любого уровня подготовки.
         </p>
         <h4 class="curs-place col-12 col-md-8 col-xl-7 fadeInLeft animated-on-ready">
-          <span class="d-lg-inline d-none">Набор № {{ course.course_index }} — </span>с 12 мая по 14 июля
+          <span class="d-lg-inline d-none">Набор № {{ course.course_index }} — </span>с {{course_day_start}} {{course_month_start}} по {{course_day_end}} {{course_month_end}}
         </h4>
       </div>
       <div class="ticket-block row ">
@@ -169,7 +169,7 @@
                 <span class="d-none d-lg-inline">Онлайн-поддержка.</span>
               </p>
               <div class="pt-lg-3 align-items-center d-flex justify-content-between smooth-scroll">
-                <strong class="price">от 21 500 руб.</strong>
+                <strong class="price">От {{lowest_online_course_price.price_range_price}} рублей</strong>
                 <button
                     class="yellow btn btn-warning scroll-to"
                     data-target="#how-it-work-online">ПОДРОБНЕЕ
@@ -187,7 +187,7 @@
                 <span class="d-none d-lg-inline">Группы по 5-7 человек.</span>
               </p>
               <div class="pt-lg-3 align-items-center d-flex justify-content-between smooth-scroll">
-                <strong class="price">от 31 500 руб.</strong>
+                <strong class="price">От {{lowest_offline_course_price.price_range_price}} рублей</strong>
                 <button
                     class="btn btn-info scroll-to"
                     data-target="#how-it-work-offline">ПОДРОБНЕЕ
