@@ -203,20 +203,20 @@ class LearnPythonCoursePrices(models.Model):
     @property
     def range_month_end(self):
         months_list = (
-            'Января',
-            'Февраля',
-            'Марта',
-            'Апреля',
-            'Мая',
-            'Июня',
-            'Июля',
-            'Августа',
-            'Сентября',
-            'Октября',
-            'Ноября',
-            'Декабря'
+            'января',
+            'февраля',
+            'марта',
+            'апреля',
+            'мая',
+            'июня',
+            'июля',
+            'августа',
+            'сентября',
+            'октября',
+            'ноября',
+            'декабря'
         )
-        return date(self.price_range_end_date)
+        return months_list[self.price_range_end_date.month-1]
 
 
 class Curators(models.Model):
