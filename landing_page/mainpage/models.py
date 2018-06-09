@@ -85,43 +85,68 @@ class LearnPythonCourse(models.Model):
 
     course_day_2 = models.DateField(
         verbose_name='Второй день занятий',
-        help_text='Дата второго занятия'
+        help_text='Дата второго занятия',
+        default=None,
+        blank=True,
+        null=True
     )
 
     course_day_3 = models.DateField(
         verbose_name='Третий день занятий',
-        help_text='Дата третьего занятия'
+        help_text='Дата третьего занятия',
+        default=None,
+        blank=True,
+        null=True
     )
 
     course_day_4 = models.DateField(
         verbose_name='Четвертый день занятий',
-        help_text='Дата четвертого занятия'
+        help_text='Дата четвертого занятия',
+        default=None,
+        blank=True,
+        null=True
     )
 
     course_day_5 = models.DateField(
         verbose_name='Пятый день занятий',
-        help_text='Дата пятого занятия'
+        help_text='Дата пятого занятия',
+        default=None,
+        blank=True,
+        null=True
     )
 
     course_day_6 = models.DateField(
         verbose_name='Шестой день занятий',
-        help_text='Дата шестого занятия'
+        help_text='Дата шестого занятия',
+        default=None,
+        blank=True,
+        null=True
     )
 
     course_day_7 = models.DateField(
         verbose_name='Седьмой день занятий',
-        help_text='Дата седьмого занятия'
+        help_text='Дата седьмого занятия',
+        default=None,
+        blank=True,
+        null=True
     )
 
     course_day_8 = models.DateField(
         verbose_name='Восьмой день занятий',
-        help_text='Дата восьмого занятия'
+        help_text='Дата восьмого занятия',
+        default=None,
+        blank=True,
+        null=True
     )
 
     course_day_9 = models.DateField(
         verbose_name='Девятый день занятий',
-        help_text='Дата девятого занятия'
+        help_text='Дата девятого занятия',
+        default=None,
+        blank=True,
+        null=True
     )
+
 
 class LearnPythonCoursePrices(models.Model):
     class Meta:
