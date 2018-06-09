@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 import datetime
-from .models import MoscowPythonMeetup, LearnPythonCourse, GraduateProjects, LearnPythonCoursePrices, Feedback
+from .models import (MoscowPythonMeetup, LearnPythonCourse, GraduateProjects, LearnPythonCoursePrices,
+                     Feedback, Curators)
 
 
 def index(request):
@@ -54,8 +55,11 @@ def index(request):
     course_day_9_date = LearnPythonCourse.objects.all()[:1].get().course_day_9
     course_day_10_date = LearnPythonCourse.objects.all()[:1].get().course_end_date
 
-    # Registation closure data
+    # Registration closure data
     registration_closes_date = LearnPythonCourse.objects.all()[:1].get().end_registration_date
+
+    # Curators data
+    curators_list = Curators.objects.filter(curator_status=True)
 
     # Feedback data
     student_feedback = list(Feedback.objects.all())
@@ -87,7 +91,8 @@ def index(request):
         'course_day_10': course_day_10_date.strftime('%d.%m'),
         'today_range': today_range,
         'registration_closes_date': registration_closes_date.strftime('%b %d, %Y %H:%M:%S'),
-        'student_feedback': student_feedback
+        'student_feedback': student_feedback,
+        'curators_list': curators_list
 
     }
     return HttpResponse(template.render(context, request))

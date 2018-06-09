@@ -183,7 +183,7 @@ class LearnPythonCoursePrices(models.Model):
     )
 
 
-class Courators(models.Model):
+class Curators(models.Model):
     class Meta:
         verbose_name_plural = 'LearnPython Кураторы'
 
@@ -204,27 +204,31 @@ class Courators(models.Model):
     curator_motto = models.CharField(
         max_length=150,
         verbose_name='Девиз куратора',
-        help_text='Через тернии к звездам или что-нибудь такое'
+        help_text='Через тернии к звездам или что-нибудь такое',
+        blank=True,
+        null=True
     )
 
     curator_photo = models.ImageField(
         help_text='Фотография куратора',
-        verbose_name='Фото куратора'
+        verbose_name='Фото куратора',
+        blank=True,
+        upload_to='courators/'
     )
 
-    courator_status = models.BooleanField(
+    curator_status = models.BooleanField(
         verbose_name="Куратор для ближайшего набора?",
         help_text='Куратор работает в текущем наборе?',
         default=True
     )
 
-    courator_github = models.URLField(
+    curator_github = models.URLField(
         blank=True,
         help_text='Ссылка на гит-хаб куратора',
         verbose_name='GitHub куратора'
     )
 
-    courator_social_network = models.URLField(
+    curator_social_network = models.URLField(
         blank=True,
         help_text='Если есть, ссылка на соцсеточку',
         verbose_name='Соцсеточка куратора'

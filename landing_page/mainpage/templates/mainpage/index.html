@@ -1478,80 +1478,35 @@
         выпускном проекте.
       </p>
       <ul class="mentor-list row">
-        <li class="col-12 col-lg-6 col-xl-4">
-          <div class="d-flex darked">
-            <div class="img-wrapper">
-              <img
+        {% for curator in curators_list %}
+          <li class="col-12 col-lg-6 col-xl-4">
+            <div class="d-flex darked">
+              <div class="img-wrapper">
+                {% if curator.curator_photo %}
+                  <img
                   class="img-fluid"
-                  src="{% static 'images/image-ts1.jpg' %}"
+                  src="{{ curator.curator_photo.url }}"
                   alt="">
-            </div>
-            <div class="teacher-info">
-              <h4 class="teacher-name brackets brackets-blue-yellow">Злата Обуховская</h4>
-              <p class="d-none d-lg-block">
-                Разработчик в Облаке Mail.ru. Ранее — тимлид в Рамблер-Новостях и программист-исследователь в Яндексе.
-              </p>
-            </div>
-            <p class="hdescr d-lg-none">
-              Разработчик в Облаке Mail.ru. Ранее — тимлид в Рамблер-Новостях и программист-исследователь в Яндексе.
-            </p>
-          </div>
-        </li>
-        <li class="col-12 col-lg-6 col-xl-4">
-          <div class="d-flex darked">
-            <div class="img-wrapper">
-              <img
-                  class="img-fluid"
-                  src="{% static 'images/image-ts2.jpg' %}"
-                  alt="">
-            </div>
-            <div class="teacher-info">
-              <h4 class="teacher-name brackets brackets-blue-yellow">Александр Строганов</h4>
-              <p class="d-none d-lg-block">
-                Миддл-разработчик в Biganto Visual. Ассистент курса «Разработка ПО» в Бауманке.
-              </p>
-            </div>
-            <p class="hdescr d-lg-none">
-              Миддл-разработчик в Biganto Visual. Ассистент курса "Разработка ПО" в Бауманке.
-            </p>
-          </div>
-        </li>
-        <li class="col-12 col-lg-6 col-xl-4">
-          <div class="d-flex darked">
-            <div class="img-wrapper">
-              <img
-                  class="img-fluid"
-                  src="{% static 'images/image-ts3.jpg' %}"
-                  alt="">
-            </div>
-            <div class="teacher-info">
-              <h4 class="teacher-name brackets brackets-blue-yellow">Алевтина Щекотурова</h4>
-              <p class="d-none d-lg-block">
-                Разработчик биллинга в ivi. Ранее — старший тестировщик в ivi и тестировщик в Tutu.ru.
-              </p>
-            </div>
-            <p class="hdescr d-lg-none">Разработчик биллинга в ivi. Ранее — старший тестировщик в ivi и тестировщик в
-                                        Tutu.ru.</p>
-          </div>
-        </li>
-        <li class="col-12 col-lg-6 col-xl-4">
-          <div class="d-flex darked">
-            <div class="img-wrapper">
-              <img
-                  class="img-fluid"
-                  src="{% static 'images/image-ts4.jpg' %}"
-                  alt="">
-            </div>
-            <div class="teacher-info">
-              <h4 class="teacher-name brackets brackets-blue-yellow">Алексей Штырняев</h4>
-              <p class="d-none d-lg-block">
-                Фуллстек-разработчик в инвестиционной группе FinEx. Ранее — веб-разработчик в TVzavr.
-              </p>
-            </div>
-            <p class="hdescr d-lg-none">Фуллстек-разработчик в инвестиционной группе FinEx. Ранее — веб-разработчик в
-                                        TVzavr.</p>
-          </div>
-        </li>
+                {% else %}
+                  <img
+                    class="img-fluid"
+                      src=""
+                      alt="">
+                {%endif%}
+              </div>
+              <div class="teacher-info">
+                <h4 class="teacher-name brackets brackets-blue-yellow">{{curator.curator_name}}</h4>
+                <p class="d-none d-lg-block">
+                  {{ curator.curator_bio }}
+                </p>
+              </div>
+                <p class="hdescr d-lg-none">
+                  {{ curator.curator_bio }}
+                </p>
+              </div>
+          </li>
+        {% endfor %}
+      <!--
         <li class="col-12 col-lg-6 col-xl-4">
           <div class="d-flex darked">
             <div class="img-wrapper">
@@ -1578,6 +1533,7 @@
             <p class="hdescr d-lg-none">Миддл-рзработчик, выпускник курсов.</p>
           </div>
         </li>
+        -->
       </ul>
     </div>
   </section>
