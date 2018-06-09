@@ -54,6 +54,9 @@ def index(request):
     course_day_9_date = LearnPythonCourse.objects.all()[:1].get().course_day_9
     course_day_10_date = LearnPythonCourse.objects.all()[:1].get().course_end_date
 
+    # Registation closure data
+    registration_closes_date = LearnPythonCourse.objects.all()[:1].get().end_registration_date
+
     # Meetup data
     current_meetup = MoscowPythonMeetup.objects.latest('meetup_number')
 
@@ -80,6 +83,7 @@ def index(request):
         'course_day_9': course_day_9_date.strftime('%d.%m'),
         'course_day_10': course_day_10_date.strftime('%d.%m'),
         'today_range': today_range,
+        'registration_closes_date': registration_closes_date.strftime('%b %d, %Y %H:%M:%S')
 
     }
     return HttpResponse(template.render(context, request))
