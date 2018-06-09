@@ -157,7 +157,7 @@
           у практиков, удобным способом и с любого уровня подготовки.
         </p>
         <h4 class="curs-place col-12 col-md-8 col-xl-7 fadeInLeft animated-on-ready">
-          <span class="d-lg-inline d-none">Набор № {{ course.course_index }} — </span>с {{course.course_start_date.day}} {{course_month_start}} по {{course.course_end_date.day}} {{course_month_end}}
+          <span class="d-lg-inline d-none">Набор № {{ course.course_index }} — </span>с {{course.course_start_date.day}} {{course.course_start_date.month}} по {{course.course_end_date.day}} {{course.course_end_date.month}}
         </h4>
       </div>
       <div class="ticket-block row ">
@@ -966,7 +966,7 @@
           <ul class="schedule-list col-12 col-sm-10 col-xl-8 m-auto">
             <li class="flag">
               <div class="schedule-item">
-                <h4 class="schedule-title">Старт в субботу {{course_day_start}}-го {{course_month_start}}</h4>
+                <h4 class="schedule-title">Старт в субботу {{course.course_start_date.day}}-го {{course.course_start_date.month}}</h4>
                 <b>Дальше — гибкий график</b>
                 <p class="schedule-desc">
                   Если оффлайн-группа проходит интенсив за 8 часов, у вас есть несколько дней на
@@ -978,7 +978,7 @@
             </li>
             <li class="comment">
               <div class="schedule-item">
-                <h4 class="schedule-title">С {{course_day_after_start}}-го {{course_month_start}} по {{course_day_before_end}}-го {{course_month_end}}</h4>
+                <h4 class="schedule-title">С {{course.course_start_date.day | add:"1" }}-го {{course.course_start_date.month}} по {{course.course_end_date.day | add:"-1" }}-го {{course.course_end_date.month}}</h4>
                 <b>В удобный день: созвоны в группе и 1-на-1 </b>
                 <p class="schedule-desc">
                   Как только накопятся вопросы — пишем преподавателю и назначаем время для звонка. Вы можете спокойно
@@ -993,7 +993,7 @@
             </li>
             <li class="hat">
               <div class="schedule-item">
-                <h4 class="schedule-title">Финал {{course_day_end}}-го {{course_month_end}}</h4>
+                <h4 class="schedule-title">Финал {{course.course_end_date.day}}-го {{course.course_end_date.month}}</h4>
                 <b>Презентуем результат перед сообществом</b>
                 <p class="schedule-desc">
                   Вы не только остаетесь на связи со всем курсом и получаете те же материалы. В конце вы с напарником
@@ -1169,7 +1169,7 @@
           <ul class="schedule-list col-12 col-sm-10 col-xl-8 m-auto">
             <li class="flag">
               <div class="schedule-item">
-                <h4 class="schedule-title">Десять суббот с {{course_day_start}}-го {{course_month_start}}</h4>
+                <h4 class="schedule-title">Десять суббот с {{course.course_start_date.day}}-го {{course.course_start_date.month}}</h4>
                 <b>Днем — работа в классе</b>
                 <p class="schedule-desc">
                   Встречаемся очно, задаем вопросы, решаем их на месте и вместе работаем с кодом. В первый день — с 10
@@ -1210,7 +1210,7 @@
             </li>
             <li class="hat">
               <div class="schedule-item">
-                <h4 class="schedule-title">Финал {{course_day_end}}-го {{course_month_end}}</h4>
+                <h4 class="schedule-title">Финал {{course.course_end_date.day}}-го {{course.course_end_date.month}}</h4>
                 <b>Презентуем проекты </b>
                 <p class="schedule-desc">
                   В конце курса вы и напарник показываете рабочий прототип своего проекта: 5-7 минут перед аудиторией

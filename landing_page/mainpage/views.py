@@ -26,8 +26,6 @@ def index(request):
 
     # Course data
     current_course = LearnPythonCourse.objects.latest('course_index')
-    course_month_start = LearnPythonCourse.objects.all()[:1].get().course_start_date
-    course_month_end = LearnPythonCourse.objects.all()[:1].get().course_end_date
     online_prices = LearnPythonCoursePrices.objects.filter(course_type='Online').order_by('price_range_price')
     offline_prices = LearnPythonCoursePrices.objects.filter(course_type='Offline').order_by('price_range_price')
 
@@ -66,13 +64,7 @@ def index(request):
         'offline_price_ranges': offline_prices,
         'lowest_online_course_price': online_prices[0],
         'lowest_offline_course_price': offline_prices[0],
-        'course_day_start': course_month_start.day,
-        'course_day_after_start': course_month_start.day + 1,
-        'course_day_before_end': course_month_end.day - 1,
-        'course_day_end': course_month_end.day,
-        'course_month_start': months_list[course_month_start.month - 1],
-        'course_month_end': months_list[course_month_end.month - 1],
-        'course_day_1': course_day_1_date.strftime('%d.%m'),
+        'course_day_1': current_course.course_start_date.strftime('%d.%m'),
         'course_day_2': course_day_2_date.strftime('%d.%m'),
         'course_day_3': course_day_3_date.strftime('%d.%m'),
         'course_day_4': course_day_4_date.strftime('%d.%m'),
@@ -82,7 +74,9 @@ def index(request):
         'course_day_8': course_day_8_date.strftime('%d.%m'),
         'course_day_9': course_day_9_date.strftime('%d.%m'),
         'course_day_10': course_day_10_date.strftime('%d.%m'),
-        'registration_closes_date': registration_closes_date.strftime('%b %d, %Y %H:%M:%S'),
+        'registration_closes_date': registration_closes_date.strftime(
+            '%b %d, %Y %H:%M:%S'
+        ),
         'student_feedback': student_feedback,
         'curators_list': curators_list
 
