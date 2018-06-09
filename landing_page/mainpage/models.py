@@ -200,24 +200,6 @@ class LearnPythonCoursePrices(models.Model):
     def past_due_date(self):
         return date.today() > self.price_range_end_date
 
-    @property
-    def range_month_end(self):
-        months_list = (
-            'января',
-            'февраля',
-            'марта',
-            'апреля',
-            'мая',
-            'июня',
-            'июля',
-            'августа',
-            'сентября',
-            'октября',
-            'ноября',
-            'декабря'
-        )
-        return months_list[self.price_range_end_date.month-1]
-
 
 class Curators(models.Model):
     class Meta:
