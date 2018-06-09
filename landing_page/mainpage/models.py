@@ -262,7 +262,15 @@ class Feedback(models.Model):
     feedback_author_photo = models.ImageField(
         verbose_name='Фотография автора',
         help_text='Прикрепите фото автора отзыва',
-        null=True
+        blank=True,
+        upload_to='feedbacks/'
+    )
+
+    feedback_title = models.CharField(
+        verbose_name='Заголовок отзыва',
+        help_text='Большие буквы заголовка',
+        max_length=140,
+        default=None
     )
 
     feedback_text = models.TextField(

@@ -1779,113 +1779,32 @@
     <div class="container m-hide">
       <div class="reviews-carousel col-xl-8 offset-xl-2">
         <div class="reviews-carousel-slider">
+          {% for feedback in student_feedback %}
           <div class="slick-custom-slide">
             <div class="slide-wrapper">
               <h3 class="slide-heading">
-                Серьезно, никакие другие курсы с этим не сравнятся.
+                {{feedback.feedback_title}}
               </h3>
               <p>
-                Глубокой ночью целый час объяснять по скайпу, как устроен http, — ребята из Learn Python не только
-                крутые профессионалы и фанаты своего дела, но еще и фантастически терпеливые и отзывчивые люди.
-
-              </p>
-              <p>
-                2 месяца пролетели очень быстро, главное сейчас — не останавливаться и продолжать учиться,
-                стараться использовать Python в работе и жизни. Кто бы знал, как это окажется интересно,
-                полезно и вдохновляюще!
+                {{feedback.feedback_text | linebreaksbr }}
               </p>
               <div class="review-author d-flex align-items-center">
+                {% if feedback.feedback_author_photo %}
                 <div class="img-wrapper">
                   <img
-                      src="{% static 'images/testimony_alena.png' %}"
-                      alt="">
+                          src="{{ feedback.feedback_author_photo.url }}"
+                          alt="">
                 </div>
+                {% else %}
+                {% endif %}
                 <div class="review-author-info">
-                  <h5 class="name text-uppercase d-block">Алена Глотова</h5>
-                  <span>выпускница курсов</span>
+                  <h5 class="name text-uppercase d-block">{{ feedback.feedback_author}}</h5>
+                  <span>{{ feedback.feedback_author_position}}</span>
                 </div>
               </div>
             </div>
           </div>
-          <div class="slick-custom-slide">
-            <div class="slide-wrapper">
-              <h3 class="slide-heading">
-                Господа, теперь я умею программировать на Python.
-              </h3>
-              <p>
-                За спиной: 2 месяца обучения, 10 понятных лекций человеческим языком, совмещение с практикой.
-
-              </p>
-              <p>
-                Сильными сторонами курса я считаю структурированную и последовательную подачу материала,
-                крутые и интересные домашние задания (создание сайтов, чатботов, работа с данными), детальные
-                разборы и исправление кода с преподавателями. Ну и всесторонняя поддержка 24/7 порадовала.
-              </p>
-              <div class="review-author d-flex align-items-center">
-                <div class="img-wrapper">
-                  <img
-                      src="{% static 'images/testimony_ilya.png' %}"
-                      alt="">
-                </div>
-                <div class="review-author-info">
-                  <h5 class="name text-uppercase d-block">Илья Чернышов</h5>
-                  <span>«Консультант Плюс»</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="slick-custom-slide">
-            <div class="slide-wrapper">
-              <h3 class="slide-heading">
-                Изучение я начинала с нуля. Спустя год оценила,
-                как правильно был выбран материал и примеры для изучения.
-              </h3>
-              <p>
-                По профессии я сетевой инженер. Сегодня все больше сетевых устройств имеет свой API интерфейс,
-                позволяющий автоматизировать мою работу. А Python, благодаря его простоте, распространенности
-                и открытости любят многие производители. В общем, язык — вещь незаменимая.
-              </p>
-              <p>
-                Придя на курсы, я не имела никакого представления о Python, поэтому домашние задания и дипломный
-                проект были еще тем мозговым штурмом. Нам рассказали о необходимых основах, а замечательные кураторы,
-                к которым всегда можно обратиться в Slack`е, помогали закрепить знания.
-              </p>
-              <div class="review-author d-flex align-items-center">
-                <div class="img-wrapper"></div>
-                <div class="review-author-info">
-                  <h5 class="name text-uppercase d-block">Анастасия Сидорова</h5>
-                  <span>сетевой инженер</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="slick-custom-slide">
-            <div class="slide-wrapper">
-              <h3 class="slide-heading">
-                Хочу сказать спасибо ребятам из Moscow Python
-              </h3>
-              <p>
-                Я перепробовал разные способы изучать программирование, начиная с бесплатных курсов и заканчивая
-                работой по самоучителю. Ничего из этого не давало сколько-нибудь значимого результата.
-              </p>
-              <p>
-                И вот однажды я наткнулся на Learn Python. Понятные лекции и дружеское отношение кураторов дали мне то,
-                чего не хватало раньше: уверенного знания основ и умения обращаться с этим знанием. Отдельное спасибо
-                за то, что учли мои пожелания и пошли навстречу, для меня это дорогого стоит.
-              </p>
-              <div class="review-author d-flex align-items-center">
-                <div class="img-wrapper">
-                  <img
-                      src="{% static '/images/image-review1.jpg' %}"
-                      alt="">
-                </div>
-                <div class="review-author-info">
-                  <h5 class="name text-uppercase d-block">Олег Сахнов</h5>
-                  <span>Seo-специалист (Busfor)</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          {% endfor %}
         </div>
         <div class="slider-nav nav-container offset-md-2">
           <a
