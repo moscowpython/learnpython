@@ -846,39 +846,45 @@
           <h4 class="price-label d-block text-center brackets brackets-yellow">онлайн-курс</h4>
           <h3 class="text-center">Чем ближе старт, тем выше цены</h3>
           <ul class="row price-list">
-            <li class="col-12 col-xl-4 text-center expired">
-              <div>
-                <b>до 20 марта</b>
-                <div class="cost">
-                  <s>21 500 руб.</s>
-                </div>
-              </div>
-              <button
-                  class="btn btn-link bigger"
-                  disabled>скидка закончилась
-              </button>
-            </li>
-            <li class="col-12 col-xl-4 text-center">
-              <div>
-                <b>до 20 марта</b>
-                <div class="cost"><strong>23 500 руб.</strong></div>
-              </div>
-              <button
-                  data-toggle="modal"
-                  data-target="#overlay"
-                  class="btn btn-warning bigger color-brown">Записаться
-              </button>
-            </li>
-            <li class="col-12 col-xl-4 text-center">
-              <div>
-                <b>до 12 мая</b>
-                <div class="cost expired">25 500 руб.</div>
-              </div>
-              <button
-                  class="btn bigger color-white"
-                  disabled>Записаться
-              </button>
-            </li>
+            {% for range in online_price_ranges %}
+              {% if range.within_price_range %}
+                <li class="col-12 col-xl-4 text-center">
+                  <div>
+                    <b>до {{range.price_range_end_date.day}} марта</b>
+                    <div class="cost"><strong>{{range.price_range_price}} руб.</strong></div>
+                  </div>
+                  <button
+                          data-toggle="modal"
+                          data-target="#overlay"
+                          class="btn btn-warning bigger color-brown">Записаться
+                  </button>
+                </li>
+              {% elif range.past_due_date %}
+                <li class="col-12 col-xl-4 text-center expired">
+                  <div>
+                    <b>до {{range.price_range_end_date.day}} марта</b>
+                    <div class="cost"><s>{{range.price_range_price}} руб.</s></div>
+                  </div>
+                  <button
+                          class="btn btn-link bigger"
+                          disabled>скидка закончилась
+                  </button>
+                </li>
+              {% else %}
+                <li class="col-12 col-xl-4 text-center">
+                  <div>
+                    <b>до {{range.price_range_end_date.day}} марта</b>
+                    <div class="cost expired color-white">
+                      {{range.price_range_price}} руб.
+                    </div>
+                  </div>
+                  <button
+                          class="btn btn-link bigger"
+                          disabled>Записаться
+                  </button>
+                </li>
+              {% endif %}
+            {% endfor %}
           </ul>
         </div>
         <div class="d-flex justify-content-center you-get flex-wrap">
@@ -1035,38 +1041,45 @@
           <h4 class="d-block text-center brackets brackets-blue price-label">оффлайн-курс</h4>
           <h3 class="text-center">Чем ближе старт, тем выше цены</h3>
           <ul class="row price-list">
+            {% for range in offline_price_ranges %}
+            {% if range.within_price_range %}
+            <li class="col-12 col-xl-4 text-center">
+              <div>
+                <b>до {{range.price_range_end_date.day}}</b>
+                <div class="cost"><strong>{{range.price_range_price}} руб.</strong></div>
+              </div>
+              <button
+                      data-toggle="modal"
+                      data-target="#overlay"
+                      class="btn btn-info bigger color-white">Записаться
+              </button>
+            </li>
+            {% elif range.past_due_date %}
             <li class="col-12 col-xl-4 text-center expired">
               <div>
-                <b>до 20 марта</b>
-                <div class="cost"><s>31 500 руб.</s></div>
+                <b>до {{range.price_range_end_date.day}}</b>
+                <div class="cost"><s>{{range.price_range_price}} руб.</s></div>
               </div>
               <button
-                  class="btn btn-link bigger"
-                  disabled>скидка закончилась
+                      class="btn btn-link bigger"
+                      disabled>скидка закончилась
               </button>
             </li>
+            {% else %}
             <li class="col-12 col-xl-4 text-center">
               <div>
-                <b>до 20 марта</b>
-                <div class="cost"><strong>33 500 руб.</strong></div>
+                <b>до {{range.price_range_end_date.day}}</b>
+                <div class="cost expired color-white">
+                  {{range.price_range_price}} руб.
+                </div>
               </div>
               <button
-                  data-toggle="modal"
-                  data-target="#overlay"
-                  class="btn btn-info bigger color-white">
-                Записаться
+                      class="btn btn-link bigger"
+                      disabled>Записаться
               </button>
             </li>
-            <li class="col-12 col-xl-4 text-center">
-              <div>
-                <b>до 12 мая</b>
-                <div class="cost expired color-white">35 500 руб.</div>
-              </div>
-              <button
-                  class="btn bigger color-white"
-                  disabled>Записаться
-              </button>
-            </li>
+            {% endif %}
+            {% endfor %}
           </ul>
         </div>
         <div class="d-flex justify-content-center you-get flex-wrap">
@@ -1485,7 +1498,7 @@
                 {% if curator.curator_photo %}
                   <img
                   class="img-fluid"
-                  src="{{ curator.curator_photo.url }}"
+                  src="{{curator.curator_photo.url}}"
                   alt="">
                 {% else %}
                   <img
@@ -1506,34 +1519,6 @@
               </div>
           </li>
         {% endfor %}
-      <!--
-        <li class="col-12 col-lg-6 col-xl-4">
-          <div class="d-flex darked">
-            <div class="img-wrapper">
-            </div>
-            <div class="teacher-info">
-              <h4 class="teacher-name brackets brackets-blue-yellow">Валентина Худякова</h4>
-              <p class="d-none d-lg-block">
-                Cтарший разработчик в ЦИАН. Ранее — Рамблер.
-              </p>
-            </div>
-            <p class="hdescr d-lg-none">Cтарший разработчик в ЦИАН. Ранее — Рамблер.</p>
-          </div>
-        </li>
-        <li class="col-12 col-lg-6 col-xl-4">
-          <div class="d-flex darked">
-            <div class="img-wrapper">
-            </div>
-            <div class="teacher-info">
-              <h4 class="teacher-name brackets brackets-blue-yellow">Игорь Перипилицын</h4>
-              <p class="d-none d-lg-block">
-                Миддл-разработчик, выпускник курсов.
-              </p>
-            </div>
-            <p class="hdescr d-lg-none">Миддл-рзработчик, выпускник курсов.</p>
-          </div>
-        </li>
-        -->
       </ul>
     </div>
   </section>

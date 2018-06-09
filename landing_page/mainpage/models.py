@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date, datetime
 
 
 class MoscowPythonMeetup(models.Model):
@@ -172,15 +173,50 @@ class LearnPythonCoursePrices(models.Model):
         help_text='Выберите тип курса'
     )
 
+    price_range_start_date = models.DateField(
+        verbose_name='Дата начала интервала',
+        help_text='Когда начинается данное предложение',
+        blank=True,
+        null=True
+    )
+
     price_range_end_date = models.DateField(
         verbose_name='Дата окончания интервала',
-        help_text='Когда истекает данное предложение'
+        help_text='Когда истекает данное предложение',
+        blank=True,
+        null=True
     )
 
     price_range_price = models.IntegerField(
         verbose_name='Цена',
         help_text='Сколько стоит курс в этот период'
     )
+
+    @property
+    def within_price_range(self):
+        return self.price_range_start_date < date.today() <= self.price_range_end_date
+
+    @property
+    def past_due_date(self):
+        return date.today() > self.price_range_end_date
+
+    @property
+    def range_month_end(self):
+        months_list = (
+            'Января',
+            'Февраля',
+            'Марта',
+            'Апреля',
+            'Мая',
+            'Июня',
+            'Июля',
+            'Августа',
+            'Сентября',
+            'Октября',
+            'Ноября',
+            'Декабря'
+        )
+        return date(self.price_range_end_date)
 
 
 class Curators(models.Model):
