@@ -157,7 +157,7 @@
           у практиков, удобным способом и с любого уровня подготовки.
         </p>
         <h4 class="curs-place col-12 col-md-8 col-xl-7 fadeInLeft animated-on-ready">
-          <span class="d-lg-inline d-none">Набор № {{ course.course_index }} — </span>с {{course.course_start_date.day}} {{course.course_start_date | date:"E" }} по {{course.course_end_date.day}} {{course.course_end_date | date:"E" }}
+          <span class="d-lg-inline d-none">Набор № {{ course.course_index }} — </span>с {{course.course_start_date | date:"j E" }} по {{course.course_end_date | date:"j E" }}
         </h4>
       </div>
       <div class="ticket-block row ">
@@ -802,7 +802,7 @@
               {% if range.within_price_range %}
                 <li class="col-12 col-xl-4 text-center">
                   <div>
-                    <b>до {{range.price_range_end_date.day}} {{range.price_range_end_date | date:"E"}}</b>
+                    <b>до {{range.price_range_end_date | date:"j E"}}</b>
                     <div class="cost"><strong>{{range.price_range_price}} руб.</strong></div>
                   </div>
                   <button
@@ -814,7 +814,7 @@
               {% elif range.past_due_date %}
                 <li class="col-12 col-xl-4 text-center expired">
                   <div>
-                    <b>до {{range.price_range_end_date.day}} {{range.price_range_end_date | date:"E"}}</b>
+                    <b>до {{range.price_range_end_date | date:"j E"}}</b>
                     <div class="cost"><s>{{range.price_range_price}} руб.</s></div>
                   </div>
                   <button
@@ -825,7 +825,7 @@
               {% else %}
                 <li class="col-12 col-xl-4 text-center">
                   <div>
-                    <b>до {{range.price_range_end_date.day}} {{range.price_range_end_date | date:"E"}}</b>
+                    <b>до {{range.price_range_end_date | date:"j E"}}</b>
                     <div class="cost expired color-white">
                       {{range.price_range_price}} руб.
                     </div>
@@ -917,7 +917,7 @@
           <ul class="schedule-list col-12 col-sm-10 col-xl-8 m-auto">
             <li class="flag">
               <div class="schedule-item">
-                <h4 class="schedule-title">Старт в субботу {{course.course_start_date.day}}-го {{course.course_start_date | date:"E"}}</h4>
+                <h4 class="schedule-title">Старт в субботу {{course.course_start_date | date:"j-го E"}}</h4>
                 <b>Дальше — гибкий график</b>
                 <p class="schedule-desc">
                   Если оффлайн-группа проходит интенсив за 8 часов, у вас есть несколько дней на
@@ -929,7 +929,7 @@
             </li>
             <li class="comment">
               <div class="schedule-item">
-                <h4 class="schedule-title">С {{course.course_start_date.day | add:"1" }}-го {{course.course_start_date | date:"E"}} по {{course.course_end_date.day | add:"-1" }}-го {{course.course_end_date | date:"E"}}</h4>
+                <h4 class="schedule-title">С {{course.get_date_after_first_lesson | date:"j-го E"}} по {{course.get_day_before_last_lesson | date:"j E"}}</h4>
                 <b>В удобный день: созвоны в группе и 1-на-1 </b>
                 <p class="schedule-desc">
                   Как только накопятся вопросы — пишем преподавателю и назначаем время для звонка. Вы можете спокойно
@@ -944,7 +944,7 @@
             </li>
             <li class="hat">
               <div class="schedule-item">
-                <h4 class="schedule-title">Финал {{course.course_end_date.day}}-го {{course.course_end_date | date:"E"}}</h4>
+                <h4 class="schedule-title">Финал {{course.course_end_date | date:"j E"}}</h4>
                 <b>Презентуем результат перед сообществом</b>
                 <p class="schedule-desc">
                   Вы не только остаетесь на связи со всем курсом и получаете те же материалы. В конце вы с напарником
@@ -997,7 +997,7 @@
             {% if range.within_price_range %}
             <li class="col-12 col-xl-4 text-center">
               <div>
-                <b>до {{range.price_range_end_date.day}} {{range.price_range_end_date | date:"E"}}</b>
+                <b>до {{range.price_range_end_date | date:"j E"}}</b>
                 <div class="cost"><strong>{{range.price_range_price}} руб.</strong></div>
               </div>
               <button
@@ -1009,7 +1009,7 @@
             {% elif range.past_due_date %}
             <li class="col-12 col-xl-4 text-center expired">
               <div>
-                <b>до {{range.price_range_end_date.day}} {{range.price_range_end_date | date:"E"}}</b>
+                <b>до {{range.price_range_end_date | date:"j E"}}</b>
                 <div class="cost"><s>{{range.price_range_price}} руб.</s></div>
               </div>
               <button
@@ -1020,7 +1020,7 @@
             {% else %}
             <li class="col-12 col-xl-4 text-center">
               <div>
-                <b>до {{range.price_range_end_date.day}} {{range.price_range_end_date | date:"E"}}</b>
+                <b>до {{range.price_range_end_date | date:"j E"}}</b>
                 <div class="cost expired color-white">
                   {{range.price_range_price}} руб.
                 </div>
@@ -1120,7 +1120,7 @@
           <ul class="schedule-list col-12 col-sm-10 col-xl-8 m-auto">
             <li class="flag">
               <div class="schedule-item">
-                <h4 class="schedule-title">Десять суббот с {{course.course_start_date.day}}-го {{course.course_start_date | date:"E"}}</h4>
+                <h4 class="schedule-title">Десять суббот с {{course.course_start_date | date:"j-го E"}}</h4>
                 <b>Днем — работа в классе</b>
                 <p class="schedule-desc">
                   Встречаемся очно, задаем вопросы, решаем их на месте и вместе работаем с кодом. В первый день — с 10
@@ -1161,7 +1161,7 @@
             </li>
             <li class="hat">
               <div class="schedule-item">
-                <h4 class="schedule-title">Финал {{course.course_end_date.day}}-го {{course.course_end_date | date:"E"}}</h4>
+                <h4 class="schedule-title">Финал {{course.course_end_date | date:"j E"}}</h4>
                 <b>Презентуем проекты </b>
                 <p class="schedule-desc">
                   В конце курса вы и напарник показываете рабочий прототип своего проекта: 5-7 минут перед аудиторией
@@ -1452,11 +1452,6 @@
                   class="img-fluid"
                   src="{{curator.curator_photo.url}}"
                   alt="">
-                {% else %}
-                  <img
-                    class="img-fluid"
-                      src=""
-                      alt="">
                 {%endif%}
               </div>
               <div class="teacher-info">
@@ -1510,7 +1505,7 @@
       <div class="row">
         <div class="meetup col-5 ml-auto text-center">
           <h3 class="text-uppercase w-100">Moscow Python Meetup № {{ meetup.meetup_number }}</h3>
-          <b class="date d-flex"><span>{{ meetup.meetup_day }} {{ meetup.meetup_month }}, 19:00</span></b>
+          <b class="date d-flex"><span>{{ meetup.meetup_day | date:"j E, H:i"}}</span></b>
           <div class="w-100">
             <a
                 class="btn btn-outline-warning"

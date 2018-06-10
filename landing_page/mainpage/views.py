@@ -9,21 +9,6 @@ from .models import (MoscowPythonMeetup, LearnPythonCourse, GraduateProjects, Le
 def index(request):
     template = loader.get_template('mainpage/index.html')
 
-    months_list = (
-        'Января',
-        'Февраля',
-        'Марта',
-        'Апреля',
-        'Мая',
-        'Июня',
-        'Июля',
-        'Августа',
-        'Сентября',
-        'Октября',
-        'Ноября',
-        'Декабря'
-    )
-
     # Course data
     current_course = LearnPythonCourse.objects.latest('course_index')
     online_prices = LearnPythonCoursePrices.objects.filter(

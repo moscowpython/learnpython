@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 
 
 class MoscowPythonMeetup(models.Model):
@@ -14,38 +14,9 @@ class MoscowPythonMeetup(models.Model):
         help_text='Введите номер митапа'
     )
 
-    meetup_day = models.IntegerField(
-        verbose_name='День Митапа',
-        help_text='День месяца, в который будет митап'
-    )
-
-    months_list = [
-        ('Января', 'Январь'),
-        ('Февраля', 'Февраль'),
-        ('Марта', 'Март'),
-        ('Апреля', 'Апрель'),
-        ('Мая', 'Май'),
-        ('Июня', 'Июнь'),
-        ('Июля', 'Июль'),
-        ('Августа', 'Август'),
-        ('Сентября', 'Сентябрь'),
-        ('Октября', 'Октябрь'),
-        ('Ноября', 'Ноябрь'),
-        ('Декабря', 'Декабрь')
-    ]
-
-    meetup_month = models.TextField(
-        choices=months_list,
-        default='Январь',
-        verbose_name='Месяц Митапа',
-        help_text='Месяц, в котором будет проходить митап'
-    )
-
-    meetup_time = models.TimeField(
-        blank=True,
-        auto_now=True,
-        verbose_name='Время Митапа',
-        help_text='Время начала митапа'
+    meetup_day = models.DateTimeField(
+        verbose_name='Дата и время митапа',
+        help_text='Где и во сколько?'
     )
 
     meetup_link = models.URLField(
@@ -147,6 +118,12 @@ class LearnPythonCourse(models.Model):
         blank=True,
         null=True
     )
+
+    def get_date_after_first_lesson(self):
+        return self.course_start_date + timedelta(days=1)
+
+    def get_day_before_last_lesson(self):
+        return self.course_end_date - timedelta(days=1)
 
 
 class LearnPythonCoursePrices(models.Model):
