@@ -1534,9 +1534,9 @@
           <span class="delimeter">:</span>
           <div><b class="d-block">00</b><span>часов</span></div>
           <span class="delimeter">:</span>
-          <div><b class="d-block">59</b><span>минут</span></div>
+          <div><b class="d-block">00</b><span>минут</span></div>
           <span class="delimeter">:</span>
-          <div><b class="d-block">59</b><span>секунд</span></div>
+          <div><b class="d-block">00</b><span>секунд</span></div>
         </div>
       </div>
       <div class="price-second-container row justify-content-center">
@@ -1564,7 +1564,7 @@
               {% for range in online_price_ranges %}
               {% if range.within_price_range %}
               <li>
-                <b>до {{range.price_range_end_date.day}} {{range.price_range_end_date | date:"E"}} </b>
+                <b>до {{range.price_range_end_date | date:"j E"}} </b>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="cost font-weight-bold">{{range.price_range_price}} руб.</div>
                   <button
@@ -1577,7 +1577,7 @@
               </li>
               {% elif range.past_due_date%}
               <li class="expired">
-                <b>до {{range.price_range_end_date.day}} {{range.price_range_end_date | date:"E"}}</b>
+                <b>до {{range.price_range_end_date | date:"j E"}}</b>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="cost"><s>{{range.price_range_price}} руб.</s></div>
                   <button
@@ -1588,7 +1588,7 @@
               </li>
               {% else %}
               <li>
-                <b>до {{range.price_range_end_date.day}} {{range.price_range_end_date | date:"E"}}</b>
+                <b>до {{range.price_range_end_date | date:"j E"}}</b>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="cost expired">{{range.price_range_price}} руб.</div>
                   <button
