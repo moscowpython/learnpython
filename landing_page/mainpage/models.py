@@ -319,7 +319,8 @@ class GraduateStories(models.Model):
     story_author_photo = models.ImageField(
         verbose_name='Фотография автора',
         help_text='Прикрепите фото автора истории',
-        null=True
+        null=True,
+        upload_to='stories/'
     )
 
     story_author_position = models.CharField(
@@ -335,9 +336,40 @@ class GraduateStories(models.Model):
         max_length=150
     )
 
-    story_text = models.TextField(
+    story_section_choices = {
+        ('Никогда не программировал',
+         'Никогда не программировал'
+         ),
+        ('Хочу новый навык или работу',
+         'Хочу новый навык или работу'
+         ),
+        ('Есть опыт, хочу освоить новый язык',
+         'Есть опыт, хочу освоить новый язык'
+         )
+    }
+
+    story_section = models.TextField(
+        choices=story_section_choices,
+        default='Никогда не программировал',
+        verbose_name='Раздел истории',
+        help_text='В какую из секций историй'
+    )
+
+    story_text_before_course = models.TextField(
         verbose_name='История пользователя',
-        help_text='Что хотел бы автор рассказать',
+        help_text='До курса',
+        default=None
+    )
+
+    story_text_on_course = models.TextField(
+        verbose_name='История пользователя',
+        help_text='На курсе',
+        default=None
+    )
+
+    story_text_after_course = models.TextField(
+        verbose_name='История пользователя',
+        help_text='После курса',
         default=None
     )
 

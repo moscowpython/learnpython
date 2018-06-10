@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.template import loader
 import datetime
 from .models import (MoscowPythonMeetup, LearnPythonCourse, GraduateProjects, LearnPythonCoursePrices,
-                     Feedback, Curators)
+                     Feedback, Curators, GraduateStories)
 
 
 def index(request):
@@ -44,6 +44,9 @@ def index(request):
     course_day_8_date = LearnPythonCourse.objects.all()[:1].get().course_day_8
     course_day_9_date = LearnPythonCourse.objects.all()[:1].get().course_day_9
 
+    # User stories
+    graduate_stories_list = list(GraduateStories.objects.all())
+
     # Curators data
     curators_list = Curators.objects.filter(curator_status=True)
 
@@ -73,7 +76,8 @@ def index(request):
             '%b %d, %Y %H:%M:%S'
         ),
         'student_feedback': student_feedback,
-        'curators_list': curators_list
+        'curators_list': curators_list,
+        'graduate_stories': graduate_stories_list
 
     }
     return HttpResponse(template.render(context, request))

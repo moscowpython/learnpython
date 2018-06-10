@@ -631,49 +631,32 @@
               <div class="person col-sm-4 p-0">
                 <img
                     class="img-fluid"
-                    src="{% static 'images/photo_2018-06-02_14-31-11.jpg' %}"
+                    src="{{graduate_stories.0.story_author_photo.url}}"
                     alt="">
               </div>
               <div class="history-message col-sm-8">
-                <h3 class="brackets brackets-blue-yellow">Денис Михайлов</h3>
-                <div class="person-status">прошел онлайн-версию курса</div>
+                <h3 class="brackets brackets-blue-yellow">{{graduate_stories.0.story_author}}</h3>
+                <div class="person-status">{{graduate_stories.0.story_author_position}}</div>
                 <div class="person-last-status">
-                  В прошлом: резчик на Первоуральском новотрубном заводе, мечтает стать программистом
+                  В прошлом: {{graduate_stories.0.story_author_background}}
                 </div>
                 <div class="history-slider" data-nav="tab-nav-1">
                   <div class="prehistory ml-5 show">
                     <b class="heading-style">Предыстория</b>
                     <p>
-                      Весь мой «опыт» в программировании до курса заключался в том, что перед армией я мечтал стать
-                      айтишником — но тогда в семье не было денег на компьютер. А когда вернулся, надо было работать
-                      — пошел на завод. Но друг (он устроился программистом в Екатеринбурге) и девушка не давали забыть
-                      о планах.
-                    </p>
-                    <p>
-                      И хотя доступ к информации у меня теперь был, стало понятно, что на бесплатных онлайн-курсах
-                      возиться с тобой никто не будет. А тут есть и куратор, и мотивация — ты вкладываешь деньги в свое
-                      образование.
+                      {{graduate_stories.0.story_text_before_course | linebreaksbr }}
                     </p>
                   </div>
                   <div class="prehistory ml-5">
                     <b class="heading-style">На курсе</b>
                     <p>
-                      Что удобно, ты сам подстраиваешь обучение под график работы. Если материал идет хорошо, все
-                      делается бодрячком. А если что — есть преподаватель. Например, на старте у меня возникли затыки с
-                      изучением циклов, — и он накидал дополнительных задачек, чтобы я точно разобрался в теме.
-                    </p>
-                    <p>
-                      По всем вопросам я «пинал» его: он объяснял, что и как можно сделать, но не давал готовое решение, задавал наводящие вопросы.
-                      Постепенно, выполняя задачи, я стал находить решения сам: преподаватель смотрел и говорил, где можно было сделать проще. В итоге, я написал парсер для Avito.
+                      {{ graduate_stories.0.story_text_on_course | linebreaksbr }}
                     </p>
                   </div>
                   <div class="prehistory ml-5">
                     <b class="heading-style">После курса</b>
                     <p>
-                      Я понял, что если буду продолжать, то у меня получится. Первым делом попытался найти оплачиваемые
-                      стажировки по городу: но везде требуются люди с опытом от 2-3 лет. У нас мало кто хочет
-                      заморачиваться с обучением новичков. Так что продолжаю сам углублять знания и планирую переезд в
-                      ближайший крупный город — Екатеринбург.
+                      {{ graduate_stories.0.story_text_after_course | linebreaksbr }}
                     </p>
                   </div>
                 </div>
@@ -695,52 +678,32 @@
               <div class="person col-sm-4 p-0">
                 <img
                     class="img-fluid"
-                    src="{% static 'images/image-portret.jpg' %}"
+                    src="{{graduate_stories.1.story_author_photo.url}}"
                     alt="">
               </div>
               <div class="history-message col-sm-8">
-                <h3 class="brackets brackets-blue-yellow">Юрий Орлов</h3>
-                <div class="person-status">бэкенд-разработчик в Ingenix AI</div>
+                <h3 class="brackets brackets-blue-yellow">{{graduate_stories.1.story_author}}</h3>
+                <div class="person-status">{{graduate_stories.1.story_author_position}}</div>
                 <div class="person-last-status">
-                  В прошлом: терапевт, эндокринолог, заведующий
-                  отделением
+                  В прошлом: {{graduate_stories.1.story_author_background}}
                 </div>
                 <div class="history-slider" data-nav="tab-nav-2">
                   <div class="prehistory ml-5 show">
                     <b class="heading-style">Предыстория</b>
                     <p>
-                      После медицинского в Сургуте я отправился пытать счастья в столице. И десять лет
-                      спустя достиг потолка — к 30 годам стал заведующим отделением. Чтобы
-                      перепрыгнуть на следующую ступеньку, нужны были связи или «выслуга лет». Их не было.
+                      {{graduate_stories.1.story_text_before_course | linebreaksbr }}
                     </p>
-                    <p>
-                      Так и пришла мысль, что стоит что-то менять: миром программирования я интересовался со школы. Стал
-                      учиться на Coursera, EdX, проходить открытые курсы MIT, читать книги...
-                    </p>
-
                   </div>
                   <div class="prehistory ml-5">
                     <b class="heading-style">На курсе</b>
                     <p>
-                      В интернете не на все найдешь ответы, а задать предметный вопрос некому. Так что я начал с
-                      посещения пары митапов ребят. Мне понравилось и сообщество, и темы, что там обсуждались. Решил
-                      сходить на курс.
-                    </p>
-                    <p>
-                      Отличная атмосфера, помощь в решении задач, драйв от понимания того, как разрозненные знания
-                      складываются в единую картинку, — вот неполный список того, что я испытал!
+                      {{ graduate_stories.1.story_text_on_course | linebreaksbr }}
                     </p>
                   </div>
                   <div class="prehistory ml-5">
                     <b class="heading-style">После курса</b>
                     <p>
-                      Я попал именно в тот мир, куда мне хотелось попасть последние 18 лет. Через полгода после
-                      окончания курса я присоединился к команде разработчиков, которые преподавали на Learn Python. А
-                      год спустя я смело могу называть себя программистом.
-                    </p>
-                    <p>
-                      Есть ли у меня план на будущее? Да, несомненно. Хочу развиваться в анализе данных и построении
-                      нейронных сетей: кое-что я уже делал, и оно даже работает в «проде».
+                      {{ graduate_stories.1.story_text_after_course | linebreaksbr }}
                     </p>
                   </div>
                 </div>
@@ -762,44 +725,32 @@
               <div class="person col-sm-4 p-0">
                 <img
                     class="img-fluid"
-                    src="{% static 'images/photo_2018-06-02_15-31-42.jpg' %}"
+                    src="{{graduate_stories.2.story_author_photo.url}}"
                     alt="">
               </div>
               <div class="history-message col-sm-8">
-                <h3 class="brackets brackets-blue-yellow">Игорь Перепилицын</h3>
-                <div class="person-status">миддл-разработчик</div>
+                <h3 class="brackets brackets-blue-yellow">{{graduate_stories.2.story_author}}</h3>
+                <div class="person-status">{{graduate_stories.2.story_author_position}}</div>
                 <div class="person-last-status">
-                  В прошлом: студент НИУ ВШЭ без «боевого» опыта
+                  В прошлом: {{graduate_stories.2.story_author_background}}
                 </div>
                 <div class="history-slider" data-nav="tab-nav-3">
                   <div class="prehistory ml-5 show">
                     <b class="heading-style">Предыстория</b>
                     <p>
-                      Моим первым языком был C#. На втором курсе нам дали факультатив по анализу данных на Python —
-                      но мы использовали готовые алгоритмы, а хотелось перейти к программированию. Так что я взял
-                      Flask — фреймворк для создания веб-приложений и сайтов, и стал писать код.
-                      Где-то выходило хорошо, где-то не очень.
+                      {{graduate_stories.2.story_text_before_course | linebreaksbr }}
                     </p>
                   </div>
                   <div class="prehistory ml-5">
                     <b class="heading-style">На курсе</b>
                     <p>
-                      Я попал только во второй набор. Преподаватели понравились — общаемся до сих пор. Но занятию к
-                      пятому началась «бомбежка»: мы писали и писали код — на занятиях и дома. Я думал, это будет более
-                      классический курс с упором на лекции. Но если хочешь что-то быстро освоить, подход ребят работает:
-                      в итоге я сделал свой проект — что-то вроде собственного Last.fm.
+                      {{ graduate_stories.2.story_text_on_course | linebreaksbr }}
                     </p>
                   </div>
                   <div class="prehistory ml-5">
                     <b class="heading-style">После курса</b>
                     <p>
-                      Я стал ходить по собеседованиям, и преподаватели — Илья и Володя — подкинули работу джуниора на
-                      удаленке. С пятого набора я по приглашению ребят стал куратором на курсе: помогаю другим
-                      спланировать задачки, важные для базовой работы их проектов, даю советы, что улучшить в коде.
-                    </p>
-                    <p>
-                      А еще я познакомился со всей пайтоновской тусовкой — так что вложения в курс себя бесконечно
-                      окупили.
+                      {{ graduate_stories.2.story_text_after_course | linebreaksbr }}
                     </p>
                   </div>
                 </div>
