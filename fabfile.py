@@ -26,7 +26,7 @@ config = {
 
     "deploy_server": "dev.python.ru",
     "compose_path": "/opt/servers",
-    "compose_block_name": "laernpython",
+    "compose_block_name": "learnpython",
 
     "post_deploy": "docker exec -i -t servers_learnpython_1 python3 manage.py migrate --noinput"
 }
