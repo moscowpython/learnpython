@@ -20,6 +20,7 @@ RUN pip3 install -r /opt/requirements.txt
 COPY landing_page /opt/app
 
 WORKDIR /opt/app
+RUN mkdir -p /opt/app/static
 RUN mkdir -p /opt/staticfiles
 RUN python3 manage.py collectstatic --noinput
 
