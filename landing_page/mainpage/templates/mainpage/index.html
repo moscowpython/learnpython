@@ -1234,7 +1234,7 @@
       <ul class="calendar-list row">
         <li class="day-wrapper col-12 col-md-6 col-xl-4">
           <div class="day border">
-            <div class="date">{{course_day_1}}</div>
+            <div class="date">{{course.course_start_date | date:"j E" }}</div>
             <h6 class="day-title">Поехали! Однодневный интенсив</h6>
             <ul class="lambda-style">
               <li>Естественные и искусственные языки.</li>
@@ -1247,7 +1247,7 @@
         </li>
         <li class="day-wrapper col-12 col-md-6 col-xl-4">
           <div class="day border">
-            <div class="date">{{course_day_2}}</div>
+            <div class="date">{{course.course_day_2 | date:"j E" }}</div>
             <h6 class="day-title">Закрепляем основы</h6>
             <ul class="lambda-style">
               <li>Переменные и объекты.</li>
@@ -1259,7 +1259,7 @@
         </li>
         <li class="day-wrapper col-12 col-md-6 col-xl-4">
           <div class="day border">
-            <div class="date">{{course_day_3}}</div>
+            <div class="date">{{course.course_day_3 | date:"j E" }}</div>
             <h6 class="day-title">Используем чужой код</h6>
             <ul class="lambda-style">
               <li>Главное правило программиста: DRY.</li>
@@ -1272,7 +1272,7 @@
         </li>
         <li class="day-wrapper col-12 col-md-6 col-xl-4">
           <div class="day border">
-            <div class="date">{{course_day_4}}</div>
+            <div class="date">{{course.course_day_4 | date:"j E" }}</div>
             <h6 class="day-title">Храним данные</h6>
             <ul class="lambda-style">
               <li>Базы данных: хорошие и разные</li>
@@ -1283,7 +1283,7 @@
         </li>
         <li class="day-wrapper col-12 col-md-6 col-xl-4">
           <div class="day border">
-            <div class="date">{{course_day_5}}</div>
+            <div class="date">{{course.course_day_5 | date:"j E" }}</div>
             <h6 class="day-title">Интеграция с другими сайтами</h6>
             <ul class="lambda-style">
               <li>HTTP — как работает интернет.</li>
@@ -1294,7 +1294,7 @@
         </li>
         <li class="day-wrapper col-12 col-md-6 col-xl-4">
           <div class="day border">
-            <div class="date">{{course_day_6}}</div>
+            <div class="date">{{course.course_day_6 | date:"j E" }}</div>
             <h6 class="day-title">Бекенд vs фронтенд</h6>
             <ul class="lambda-style">
               <li>Делаем простое веб-приложение.</li>
@@ -1304,7 +1304,7 @@
         </li>
         <li class="day-wrapper col-12 col-md-6 col-xl-4">
           <div class="day border">
-            <div class="date">{{course_day_7}}</div>
+            <div class="date">{{course.course_day_7 | date:"j E" }}</div>
             <h6 class="day-title">Передача данных на сервер</h6>
             <ul class="lambda-style">
               <li>Веб-формы.</li>
@@ -1315,7 +1315,7 @@
         </li>
         <li class="day-wrapper col-12 col-md-6 col-xl-4">
           <div class="day border">
-            <div class="date">{{course_day_8}}</div>
+            <div class="date">{{course.course_day_8 | date:"j E" }}</div>
             <h6 class="day-title">Контроль качества</h6>
             <ul class="lambda-style">
               <li>Тестирование кода.</li>
@@ -1325,7 +1325,7 @@
         </li>
         <li class="day-wrapper col-12 col-md-6 col-xl-4">
           <div class="day border">
-            <div class="date">{{course_day_9}}</div>
+            <div class="date">{{course.course_day_9 | date:"j E" }}</div>
             <h6 class="day-title">Показываем приложение миру</h6>
             <ul class="lambda-style">
               <li>Как устроен боевой сервер.</li>
@@ -1336,7 +1336,7 @@
         </li>
         <li class="day-wrapper col-12 col-md-6 col-xl-4">
           <div class="day border">
-            <div class="date">{{course_day_10}}</div>
+            <div class="date">{{course.course_end_date | date:"j E" }}</div>
             <h6 class="day-title">Выпускной!</h6>
             <ul class="lambda-style">
               <li>Мини-хакатон — дорабатываем дипломный проект.</li>
