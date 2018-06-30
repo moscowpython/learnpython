@@ -171,7 +171,7 @@ class LearnPythonCoursePrices(models.Model):
 
     @property
     def within_price_range(self):
-        return self.price_range_start_date < date.today() <= self.price_range_end_date
+        return self.price_range_start_date <= date.today() <= self.price_range_end_date
 
     @property
     def past_due_date(self):
