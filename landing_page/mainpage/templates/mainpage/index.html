@@ -81,7 +81,8 @@
           <li class="nav-item d-none d-lg-inline">
             <a
                 class="nav-link scroll-to"
-                href="#how-it-work-online">
+                href="#how-it-work-online"
+                onclick="dataLayer.push({'event':'head_online'});">
               онлайн
             </a>
           </li>
@@ -95,7 +96,8 @@
           <li class="nav-item d-none d-lg-inline">
             <a
                 class="nav-link scroll-to"
-                href="#how-it-work-offline">
+                href="#how-it-work-offline"
+                onclick="dataLayer.push({'event':'head_offline'});">
               офлайн
             </a>
           </li>
@@ -138,7 +140,10 @@
                 data-toggle="modal"
                 data-target="#overlay"
                 class="custom-btn btn btn-outline-warning"
-                href="#counter">Записаться</a>
+                href="#counter"
+                onclick="dataLayer.push({'event':'head_record'});">
+                Записаться
+            </a>
           </li>
         </ul>
       </nav>
@@ -184,7 +189,9 @@
                 <strong class="price">От {{online_price_ranges.0.price_range_price}} рублей</strong>
                 <button
                     class="yellow btn btn-warning scroll-to"
-                    data-target="#how-it-work-online">ПОДРОБНЕЕ
+                    data-target="#how-it-work-online"
+                    onclick="dataLayer.push({'event':'form_more_online'});">
+                    ПОДРОБНЕЕ
                 </button>
               </div>
             </div>
@@ -202,7 +209,9 @@
                 <strong class="price">От {{offline_price_ranges.0.price_range_price}} рублей</strong>
                 <button
                     class="btn btn-info scroll-to"
-                    data-target="#how-it-work-offline">ПОДРОБНЕЕ
+                    data-target="#how-it-work-offline"
+                    onclick="dataLayer.push({'event':'form_more_offline'});">
+                    ПОДРОБНЕЕ
                 </button>
               </div>
             </div>
@@ -817,9 +826,10 @@
                     <div class="cost"><strong>{{range.price_range_price}} руб.</strong></div>
                   </div>
                   <button
-                          data-toggle="modal"
-                          data-target="#overlay"
-                          class="btn btn-warning bigger color-brown">Записаться
+                      data-toggle="modal"
+                      data-target="#overlay"
+                      class="btn btn-warning bigger color-brown"
+                      onclick="dataLayer.push({'event':'form_online_record'});">Записаться
                   </button>
                 </li>
               {% elif range.past_due_date %}
@@ -1012,9 +1022,11 @@
                 <div class="cost"><strong>{{range.price_range_price}} руб.</strong></div>
               </div>
               <button
-                      data-toggle="modal"
-                      data-target="#overlay"
-                      class="btn btn-info bigger color-white">Записаться
+                  data-toggle="modal"
+                  data-target="#overlay"
+                  class="btn btn-info bigger color-white"
+                  onclick="dataLayer.push({'event':'form_offline_record'});">
+                  Записаться
               </button>
             </li>
             {% elif range.past_due_date %}
@@ -1578,10 +1590,11 @@
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="cost font-weight-bold">{{range.price_range_price}} руб.</div>
                   <button
-                          data-toggle="modal"
-                          data-target="#overlay"
-                          class="btn btn-special">
-                    Записаться <span class="d-none d-lg-inline">сейчас</span>
+                      data-toggle="modal"
+                      data-target="#overlay"
+                      class="btn btn-special"
+                      onclick="dataLayer.push({'event':'form_online_cost'});">
+                      Записаться <span class="d-none d-lg-inline">сейчас</span>
                   </button>
                 </div>
               </li>
@@ -1629,10 +1642,10 @@
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="cost font-weight-bold">{{range.price_range_price}} руб.</div>
                     <button
-                            data-toggle="modal"
-                            data-target="#overlay"
-                            class="btn btn-special">
-                      Записаться <span class="d-none d-lg-inline">сейчас</span>
+                        data-toggle="modal"
+                        data-target="#overlay"
+                        class="btn btn-special"
+                        onclick="dataLayer.push({'event':'form_offline_cost'});">Записаться <span class="d-none d-lg-inline">сейчас</span>
                     </button>
                   </div>
                 </li>
