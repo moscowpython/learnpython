@@ -10,3 +10,4 @@ landing_page/maipage/__pycache__/
 landing_page/landing_page/__pycache__/
 .DS_Store
 *.pyc
+db.sqlite3
