@@ -12,7 +12,7 @@ function init () {
     var myGeoObject = new ymaps.GeoObject({
         geometry: {
             type: "Point",
-            coordinates: [55.7408157, 37.608925]
+            coordinates: [55.741931, 37.615166]
         }}, {
         iconLayout: 'default#image',
         iconImageHref: 'static/images/pin.png',
