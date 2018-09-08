@@ -125,6 +125,12 @@ class LearnPythonCourse(models.Model):
         default=False,
     )
 
+    online_session_closed = models.BooleanField(
+        verbose_name='Закрыть онлайн набор?',
+        help_text='Поставь галочку, чтобы закрыть набор',
+        default=False,
+    )
+
     def get_date_after_first_lesson(self):
         return self.course_start_date + timedelta(days=1)
 
