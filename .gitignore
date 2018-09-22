@@ -1,5 +1,6 @@
 .idea
 bin/
+*.sqlite3
 pyvenv.cfg
 pip-selfcheck.json
 lib/
