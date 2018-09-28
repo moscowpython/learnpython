@@ -18,7 +18,7 @@ server {
     }
 
     location = /robots.txt {
-        root /opt/static;
+        root /opt/staticfiles;
         access_log     off;
         log_not_found  off;
         expires max;
