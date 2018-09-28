@@ -7,6 +7,7 @@ from .models import (MoscowPythonMeetup, LearnPythonCourse, GraduateProjects,
 
 
 def index(request):
+    '''Docstring test'''
     template = loader.get_template('mainpage/index.html')
 
     # Course data
