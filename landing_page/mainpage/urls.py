@@ -1,10 +1,9 @@
 from django.urls import path
-from django.views.generic.simple import direct_to_template
+from django.http import HttpResponse
 
 from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    (r'^robots\.txt$', direct_to_template,
-     {'template': 'robots.txt', 'mimetype': 'text/plain'})
+    path('robots.txt', lambda x: HttpResponse('User-agent: *\nDisallow: *lessons*\nHost: https://learn.python.ru/', content_type="text/plain")),
 ]
