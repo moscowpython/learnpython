@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: *lessons*
+Host: https://learn.python.ru/

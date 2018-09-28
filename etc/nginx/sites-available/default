@@ -18,7 +18,7 @@ server {
     }
 
     location = /robots.txt {
-        root /opt/app/landing_page/mainpage/templates/mainpage/;
+        root /opt/static;
         access_log     off;
         log_not_found  off;
         expires max;
