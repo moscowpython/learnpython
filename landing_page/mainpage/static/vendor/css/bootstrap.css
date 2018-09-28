@@ -5306,10 +5306,10 @@ button.close {
 
 .modal {
   position: absolute;
-  top: 0;
+  top: initial;
   right: 0;
   bottom: initial;
-  left: initial;
+  left: 0;
   z-index: 1050;
   display: none;
   overflow: hidden;
