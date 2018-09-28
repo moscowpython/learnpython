@@ -17,6 +17,13 @@ server {
         alias /opt/staticfiles;
     }
 
+    location = /robots.txt {
+        root landing_page/mainpage/templates/mainpage/;
+        access_log     off;
+        log_not_found  off;
+        expires max;
+    }
+
     location / {
         uwsgi_pass  django;
         include     /etc/nginx/uwsgi_params;
