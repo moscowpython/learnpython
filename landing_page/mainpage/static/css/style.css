@@ -2457,3 +2457,9 @@ header {
     border-radius: 0;
   }
 }
+
+.modal--scroll {
+  position: absolute;
+  bottom: initial;
+  top: initial;
+}
