@@ -1001,6 +1001,3 @@ header {
   color: $text-on-dark;
   margin-bottom: 30px;
 }
-iContainer {
-  -webkit-overflow-scrolling: touch;
-}
