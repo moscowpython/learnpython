@@ -2458,7 +2458,11 @@ header {
   }
 }
 
-.modal--scroll {
-  /* position: absolute; */
-  /* bottom: initial; */
+@supports (-webkit-overflow-scrolling: touch) {
+  /* CSS specific to iOS devices */ 
+  .modal--scroll {
+    position: absolute;
+    bottom: initial;
+  }
 }
+
