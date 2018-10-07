@@ -3,7 +3,8 @@
 * Set up virtualenv
 * Install requirements from `requirements.txt`
 * Change settings in `settings.py`
-* Run migrations and start the project with `python manage.py runserver`
+* Run migrations `python manage.py migrate`
+* Start the project with `python manage.py runserver`
 
 # To deploy project
 
