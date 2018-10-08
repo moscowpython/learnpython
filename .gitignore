@@ -6,8 +6,20 @@ pyvenv.cfg
 pip-selfcheck.json
 lib/
 venv/
-*.pyc
-__pycache__/
 .DS_Store
-*.pyc
 db.sqlite3
+
+# Eric IDE project settings
+*.e4p
+*.e5p
+*.e6p
+.eric5project/
+.eric6project/
+
+# Rope project settings
+.ropeproject
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
