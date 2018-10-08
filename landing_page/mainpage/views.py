@@ -11,7 +11,12 @@ def index(request):
     template = loader.get_template('mainpage/index.html')
 
     # Course data
-    current_course = LearnPythonCourse.objects.latest('course_index')
+    # Fixes #3 LearnPythonCourse matching query does not exist.
+    try:
+        current_course = LearnPythonCourse.objects.latest('course_index')
+    except LearnPythonCourse.DoesNotExist:
+        current_course = LearnPythonCourse()
+
     online_prices = LearnPythonCoursePrices.objects.filter(
         course_type='Online').order_by('price_range_price')
     offline_prices = LearnPythonCoursePrices.objects.filter(
@@ -40,7 +45,11 @@ def index(request):
     student_feedback = list(Feedback.objects.all())
 
     # Meetup data
-    current_meetup = MoscowPythonMeetup.objects.latest('meetup_number')
+    # Fixes #3 MoscowPythonMeetup matching query does not exist.
+    try:
+        current_meetup = MoscowPythonMeetup.objects.latest('meetup_number')
+    except MoscowPythonMeetup.DoesNotExist:
+        current_meetup = MoscowPythonMeetup()
 
     context = {
         'meetup': current_meetup,
