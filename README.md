@@ -11,6 +11,7 @@
 ![Inside the Admin panel](img/enter_admin.jpg)
 * Create enrollment.
 ![Create enrollment example](img/create_enrollment.jpg)
+* Login to Admin panel in a browser `http://127.0.0.1:8000/admin/`
 
 # To deploy project
 
