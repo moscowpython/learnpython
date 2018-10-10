@@ -163,3 +163,5 @@ RQ_QUEUES = {
         'DB': 0,
     }
 }
+
+TIMEPAD_WEBHOOK_SECRET = 'pythonmachinelearningcv.com'
