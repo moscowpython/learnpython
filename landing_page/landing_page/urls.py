@@ -20,3 +20,9 @@ urlpatterns = [
     path('', include('mainpage.urls')),
     path('admin/', admin.site.urls),
 ]
+
+# Django integration with RQ, a Redis based Python queuing library.
+# For Django >= 2.0
+urlpatterns += [
+    path('django-rq/', include('django_rq.urls'))
+]

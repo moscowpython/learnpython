@@ -36,7 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'timepad_mail.apps.TimepadMailConfig'
+    'django_rq',  # Django integration with RQ.
+    'timepad_mail.apps.TimepadMailConfig'  # Timepad ticket status mailing.
 ]
 
 MIDDLEWARE = [
@@ -132,3 +133,33 @@ MEDIA_ROOT = os.path.join(BASE_DIR, '../media')
 
 MEDIA_URL = '/media/'
 
+# Django integration with RQ, a Redis based Python queuing library.
+# Django-RQ is a simple app that allows you to configure your queues in django's
+# settings.py and easily use them in your project.
+# Configure your queues in django's settings.py
+# (syntax based on Django's database config):
+RQ_QUEUES = {
+    'default': {
+        'HOST': 'localhost',
+        'PORT': 6379,
+        'DB': 0,
+        'PASSWORD': 'some-password',
+        'DEFAULT_TIMEOUT': 360,
+    },
+    'with-sentinel': {
+       'SENTINELS': [('localhost', 26736), ('localhost', 26737)],
+       'MASTER_NAME': 'redismaster',
+       'DB': 0,
+       'PASSWORD': 'secret',
+       'SOCKET_TIMEOUT': None,
+    },
+    'high': {
+        'URL': os.getenv('REDISTOGO_URL', 'redis://localhost:6379/0'), # If you're on Heroku
+        'DEFAULT_TIMEOUT': 500,
+    },
+    'low': {
+        'HOST': 'localhost',
+        'PORT': 6379,
+        'DB': 0,
+    }
+}
