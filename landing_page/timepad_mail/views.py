@@ -14,6 +14,7 @@ def process_webhook(payload):
 
 @csrf_exempt
 def handle_webhook(request):
+    """Webhook handler check sender sha1 signature."""
     # TODO: wrap in try-except, use safe get, etc.
     # Check the X-Hub-Signature header to make sure this is a valid request.
     message_signature = request.META['HTTP_X_HUB_SIGNATURE']
