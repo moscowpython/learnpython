@@ -140,28 +140,13 @@ MEDIA_URL = '/media/'
 # (syntax based on Django's database config):
 RQ_QUEUES = {
     'default': {
-        'HOST': 'localhost',
-        'PORT': 6379,
-        'DB': 0,
-        'PASSWORD': 'some-password',
-        'DEFAULT_TIMEOUT': 360,
-    },
-    'with-sentinel': {
-       'SENTINELS': [('localhost', 26736), ('localhost', 26737)],
-       'MASTER_NAME': 'redismaster',
-       'DB': 0,
-       'PASSWORD': 'secret',
-       'SOCKET_TIMEOUT': None,
-    },
-    'high': {
-        'URL': os.getenv('REDISTOGO_URL', 'redis://localhost:6379/0'), # If you're on Heroku
-        'DEFAULT_TIMEOUT': 500,
-    },
-    'low': {
-        'HOST': 'localhost',
-        'PORT': 6379,
-        'DB': 0,
-    }
+         'HOST': 'localhost',
+         'PORT': '6379',
+         'URL': os.getenv('REDISTOGO_URL', 'redis://localhost:6379'),
+         'DB': 0,
+         'DEFAULT_TIMEOUT': 360
+     },
 }
 
-TIMEPAD_WEBHOOK_SECRET = 'pythonmachinelearningcv.com'
+TIMEPAD_WEBHOOK_SECRET = os.getenv(
+    'TIMEPAD_WEBHOOK_SECRET', 'pythonmachinelearningcv.com')
