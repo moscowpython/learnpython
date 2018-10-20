@@ -150,3 +150,4 @@ RQ_QUEUES = {
 
 TIMEPAD_WEBHOOK_SECRET = os.getenv(
     'TIMEPAD_WEBHOOK_SECRET', 'pythonmachinelearningcv.com')
+MANDRILL_API_KEY = os.getenv('MANDRILL_API_KEY')

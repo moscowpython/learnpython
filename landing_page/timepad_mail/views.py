@@ -6,10 +6,14 @@ from django.conf import settings
 from django.http import HttpResponse, HttpResponseForbidden
 from django.views.decorators.csrf import csrf_exempt
 
+from .mail_calls import send_mail
+
 
 def process_webhook(payload):
     """Simple webhook handler that prints the event and payload to the console"""
     print(json.dumps(payload, indent=4))
+    result = send_mail(payload)
+    print(result)
 
 
 @csrf_exempt
@@ -19,7 +23,7 @@ def handle_webhook(request):
     # Check the X-Hub-Signature header to make sure this is a valid request.
     message_signature = request.META['HTTP_X_HUB_SIGNATURE']
     # Solution: hmac works with ``bytes``, not ``str``.
-    key_bytes = bytes(settings.TIMEPAD_WEBHOOK_SECRET , 'utf8')
+    key_bytes = bytes(settings.TIMEPAD_WEBHOOK_SECRET, 'utf8')
     signature = hmac.new(
         key_bytes, request.body, hashlib.sha1)
     expected_signature = 'sha1=' + signature.hexdigest()
