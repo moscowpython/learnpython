@@ -1,13 +1,15 @@
 .idea
-.vscode
 bin/
 *.sqlite3
-pyvenv.cfg
 pip-selfcheck.json
 lib/
-venv/
 .DS_Store
 db.sqlite3
+
+# Venv
+venv/
+env/
+pyvenv.cfg
 
 # Eric IDE project settings
 *.e4p
@@ -23,3 +25,7 @@ db.sqlite3
 __pycache__/
 *.py[cod]
 *$py.class
+
+# VS Code
+.vscode
+*.code-workspace
