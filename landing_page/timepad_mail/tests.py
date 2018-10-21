@@ -16,7 +16,7 @@ class MandrillSendTest(SimpleTestCase):
         self.assertInHTML("17862035", html)
 
     def test_send_mail(self):
-        """ Send a new transactional message through Mandrill using 
+        """ Test for send a new transactional message through Mandrill using 
             real timepad webhook json data.
         """
         timepad_json_payload = """

@@ -10,9 +10,9 @@ from .send_mail_mandrill import send_mail
 
 
 def process_webhook(payload):
-    """Simple webhook handler that prints the event and payload to the console"""
+    """Simple webhook handler that prints the event and payload."""
     print(json.dumps(payload, indent=4))
-    result = send_mail(payload)
+    result = send_mail(json.loads(payload))
     print(result)
 
 

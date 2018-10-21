@@ -1,6 +1,9 @@
+# -*- coding: UTF-8 -*-
 """Send timepad ticket status to mail."""
+from datetime import datetime
 import mandrill
 
+# from django.utils import timezone
 from django.conf import settings
 
 def _create_html_table_from_dict(payload: dict) -> str:
@@ -33,15 +36,23 @@ def send_mail(payload: dict) -> list:
     try:
         mandrill_client = mandrill.Mandrill(settings.MANDRILL_API_KEY)
         message = {
-                   'html': html,
-                   'tags': [payload['status']],
-                   'to': [{'email': payload['email'],
-                           'name': f"{payload['name']} {payload['surname']}",
-                           'type': 'to'}],
+            'html': html,
+            'subject': 'Набор на курсы Learn Python.',
+            'from_email': 'learn@python.ru',
+            'from_name': 'Learn Python Team',
+            'to': [{'email': payload['email'],
+                    'name': f"{payload['name']} {payload['surname']}",
+                    'type': 'to'}],
+            'important': True,
+
+            'tags': [payload['status']],
         }
+        """send_at: string when this message should be sent 
+        as a UTC timestamp in YYYY-MM-DD HH:MM:SS format."""
+        sent_at = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
+        
         result = mandrill_client.messages.send(
-            message=message, async=False, ip_pool='Main Pool',
-            send_at='example send_at'
+            message=message, async=False, send_at=sent_at
         )
         '''
         [{'_id': 'abc123abc123abc123abc123abc123',
