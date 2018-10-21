@@ -3,9 +3,8 @@ import mandrill
 
 from django.conf import settings
 
-def _create_html_table_from_dict(payload: dict):
+def _create_html_table_from_dict(payload: dict) -> str:
     """ Create HTML with sutable data from payload."""
-
 #    html = open("basic_template.html", 'rt').readlines()
     cells = ''
     for key, value in payload.items():
@@ -28,9 +27,9 @@ def _create_html_table_from_dict(payload: dict):
     """
     return base
 
-def send_mail(payload):
-    html = _create_html_table_from_dict(payload)
+def send_mail(payload: dict) -> list:
     """ Send a new transactional message through Mandrill."""
+    html = _create_html_table_from_dict(payload)
     try:
         mandrill_client = mandrill.Mandrill(settings.MANDRILL_API_KEY)
         message = {
