@@ -6,7 +6,7 @@ from django.conf import settings
 from django.http import HttpResponse, HttpResponseForbidden
 from django.views.decorators.csrf import csrf_exempt
 
-from .mail_calls import send_mail
+from .send_mail_mandrill import send_mail
 
 
 def process_webhook(payload):
