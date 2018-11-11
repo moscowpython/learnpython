@@ -31,7 +31,21 @@ def _create_html_table_from_dict(payload: dict) -> str:
     return base
 
 def send_mail(payload: dict) -> list:
-    """ Send a new transactional message through Mandrill."""
+    """ Send a new transactional message through Mandrill.
+
+        Example Call fixed syntax for Python 3
+        https://mandrillapp.com/api/docs/messages.python.html#method=send
+
+        :returns: responce in JSON
+        [
+            {
+                '_id': 'abc123abc123abc123abc123abc123',
+                'email': payload['email'],
+                'reject_reason': 'hard-bounce',
+                'status': 'sent'
+            }
+        ]
+    """
     html = _create_html_table_from_dict(payload)
     try:
         mandrill_client = mandrill.Mandrill(settings.MANDRILL_API_KEY)
@@ -54,12 +68,6 @@ def send_mail(payload: dict) -> list:
         result = mandrill_client.messages.send(
             message=message, async=False, send_at=sent_at
         )
-        '''
-        [{'_id': 'abc123abc123abc123abc123abc123',
-        'email': payload['email'],
-        'reject_reason': 'hard-bounce',
-        'status': 'sent'}]
-        '''
         return result
     except mandrill.Error as e:
         # Mandrill errors are thrown as exceptions
@@ -75,10 +83,14 @@ def send_template(payload):
         https://mandrillapp.com/api/docs/messages.python.html#method=send-template
 
         :returns: responce in JSON
-            [{'_id': 'abc123abc123abc123abc123abc123',
-              'email': payload['email'],
-              'reject_reason': 'hard-bounce',
-              'status': 'sent'}]
+        [
+            {
+                '_id': 'abc123abc123abc123abc123abc123',
+                'email': payload['email'],
+                'reject_reason': 'hard-bounce',
+                'status': 'sent'
+            }
+        ]
     """
     try:
         mandrill_client = mandrill.Mandrill(settings.MANDRILL_API_KEY)
