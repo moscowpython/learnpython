@@ -82,9 +82,8 @@ class MandrillSendTest(SimpleTestCase):
     #     print(result)
     #     self.assertEqual(result[0]['status'], 'sent')
 
-    def test_send_template_ticket_creation(self):
-        """ Test for send a new transactional message through Mandrill using 
-            real timepad webhook json data.
+    def __send_template_ticket_creation(self):
+        """ Test for send a new message through Mandrill using a template.
 
             result = [
                 {
@@ -96,12 +95,106 @@ class MandrillSendTest(SimpleTestCase):
             ]
         """
         kwargs = {
-            "template_name": "ticket-creation",
+            "template_name": "ticket-success",
             "email": self.test_email,
             "surname": self.test_surname,
             "name": self.test_name,
         }
         result = send_template(**kwargs)
         self.assertEqual(result[0]['status'], 'sent')
-        self.assertEqual(result[0]['reject_reason'], 'None')
+        self.assertEqual(result[0]['reject_reason'], None)
         self.assertEqual(result[0]['email'], self.test_email)
+        
+    def test_send_template_all_cases(self):
+        """ Test for send a new message through Mandrill using a template.
+
+            result = [
+                {
+                    'email': 'denistrofimov@pythonmachinelearningcv.com',
+                    'status': 'sent', 
+                    '_id': 'd32e79d1922a4a34ae89d7cfc27dd246', 
+                    'reject_reason': None
+                }
+            ]
+        """
+        kwargs = {
+            "email": self.test_email,
+            "surname": self.test_surname,
+            "name": self.test_name,
+        }
+        templates = (
+            {
+                "template_name": "ticket-success", 
+            },
+            {
+                "template_name": "ticket-cancel", 
+            },        
+            {
+                "template_name": "ticket-creation",
+                'vars': [
+                    {
+                        "name": "paylink",
+                        "content": "http://example",
+                    },
+                ],
+            },
+            {
+                "template_name": "ticket-expiration1",
+                'vars': [
+                    {
+                        "name": "paylink",
+                        "content": "http://example",
+                    },
+                    {
+                        "name": "ddate",
+                        "content": "22.12.1234"
+                    },
+                    {
+                        "name": "dtime",
+                        "content": "12:12"
+                    },
+                ],
+            },
+            {
+                "template_name": "ticket-expiration2",
+                'vars': [
+                    {
+                        "name": "paylink",
+                        "content": "http://example",
+                    },
+                    {
+                        "name": "ddate",
+                        "content": "22.12.1234"
+                    },
+                    {
+                        "name": "dtime",
+                        "content": "12:12"
+                    },
+                ],
+            },   
+            {
+                "template_name": "ticket-expiration3",
+                'vars': [
+                    {
+                        "name": "paylink",
+                        "content": "http://example",
+                    },
+                    {
+                        "name": "ddate",
+                        "content": "22.12.1234"
+                    },
+                    {
+                        "name": "dtime",
+                        "content": "12:12"
+                    },
+                ],
+            },                                       
+        )
+        for template in templates:
+            for key, value in template.items():
+                kwargs[key] = value
+            print(kwargs["template_name"])
+            result = send_template(**kwargs)
+            self.assertEqual(result[0]['status'], 'sent')
+            self.assertEqual(result[0]['reject_reason'], None)
+            self.assertEqual(result[0]['email'], self.test_email)
