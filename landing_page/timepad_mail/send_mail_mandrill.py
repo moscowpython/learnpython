@@ -47,34 +47,32 @@ def send_mail(payload: dict) -> list:
         ]
     """
     html = _create_html_table_from_dict(payload)
-    try:
-        mandrill_client = mandrill.Mandrill(settings.MANDRILL_API_KEY)
-        message = {
-            'html': html,
-            'subject': 'Набор на курсы Learn Python.',
-            'from_email': 'learn@python.ru',
-            'from_name': 'Learn Python Team',
-            'to': [{'email': payload['email'],
-                    'name': f"{payload['name']} {payload['surname']}",
-                    'type': 'to'}],
-            'important': True,
+    message = {
+        'html': html,
+        'subject': 'Набор на курсы Learn Python.',
+        'from_email': 'learn@python.ru',
+        'from_name': 'Learn Python Team',
+        'to': [{'email': payload['email'],
+                'name': f"{payload['name']} {payload['surname']}",
+                'type': 'to'}],
+        'important': True,
 
-            'tags': [payload['status']],
-        }
-        """send_at: string when this message should be sent 
-        as a UTC timestamp in YYYY-MM-DD HH:MM:SS format."""
-        sent_at = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
-        
+        'tags': [payload['status']],
+    }
+    """send_at: string when this message should be sent 
+    as a UTC timestamp in YYYY-MM-DD HH:MM:SS format."""
+    sent_at = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')    
+    try:
+        mandrill_client = mandrill.Mandrill(settings.MANDRILL_API_KEY)     
         result = mandrill_client.messages.send(
             message=message, async=False, send_at=sent_at
         )
         return result
     except mandrill.Error as e:
         # Mandrill errors are thrown as exceptions
-        print('A mandrill error occurred: %s - %s' % (e.__class__, e))
-        # A mandrill error occurred: <class 'mandrill.UnknownSubaccountError'> - No subaccount exists with the id 'customer-123'
+        print('A mandrill {0} occurred: {1}'.format(e.__class__.__name__, e))
+        # A mandrill UnknownSubaccountError occurred: No subaccount exists with the id 'customer-123'
         raise
-
 
 def send_template(payload):
     """ Send a new transactional message through Mandrill using a template.
