@@ -1,11 +1,16 @@
 import json
-from django.test import TestCase, SimpleTestCase
+from django.test import SimpleTestCase
 
 from .send_mail_mandrill import (
     send_mail, _create_html_table_from_dict, send_template)
 
 
 class MandrillSendTest(SimpleTestCase):
+    """ Tests for send a transactional messages through Mandrill."""
+    test_email = "denistrofimov@pythonmachinelearningcv.com"
+    test_surname = "Трофимов"
+    test_name = "Денис"
+
     timepad_json_payload = """
     {
         "id": "22398586:56559903",
@@ -58,6 +63,7 @@ class MandrillSendTest(SimpleTestCase):
         "hook_resend": 2
     }
     """
+
     def test_create_html_table_from_dict(self):
         """ Create HTML with sutable data from payload."""
         payload = {"event_id": 830329, "order_id": "17862035"}
@@ -91,9 +97,11 @@ class MandrillSendTest(SimpleTestCase):
         """
         kwargs = {
             "template_name": "ticket-creation",
-            "email": "denistrofimov@pythonmachinelearningcv.com",
-            "surname": "trofimov",
-            "name": "denis",
+            "email": self.test_email,
+            "surname": self.test_surname,
+            "name": self.test_name,
         }
         result = send_template(**kwargs)
         self.assertEqual(result[0]['status'], 'sent')
+        self.assertEqual(result[0]['reject_reason'], 'None')
+        self.assertEqual(result[0]['email'], self.test_email)
