@@ -1,9 +1,8 @@
 # -*- coding: UTF-8 -*-
 """Send timepad ticket status to mail."""
-from datetime import datetime
 import mandrill
 
-# from django.utils import timezone
+from django.utils import timezone
 from django.conf import settings
 
 def _create_html_table_from_dict(payload: dict) -> str:
@@ -61,20 +60,92 @@ def send_mail(payload: dict) -> list:
     }
     """send_at: string when this message should be sent 
     as a UTC timestamp in YYYY-MM-DD HH:MM:SS format."""
-    sent_at = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')    
+    send_at = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
     try:
         mandrill_client = mandrill.Mandrill(settings.MANDRILL_API_KEY)     
         result = mandrill_client.messages.send(
-            message=message, async=False, send_at=sent_at
+            message=message, async=False, send_at=send_at
         )
         return result
     except mandrill.Error as e:
         # Mandrill errors are thrown as exceptions
         print('A mandrill {0} occurred: {1}'.format(e.__class__.__name__, e))
-        # A mandrill UnknownSubaccountError occurred: No subaccount exists with the id 'customer-123'
         raise
 
-def send_template(payload):
+def send_template(*, template_name, email, name, surname, vars=[]):
+    """ Send a new transactional message through Mandrill using a template.
+
+        Example Call fixed syntax for Python 3
+        https://mandrillapp.com/api/docs/messages.python.html#method=send-template
+
+        :param template_name: the name or slug of a template in the user's account
+        :param email: email
+        :param name: name
+        :param surname: surname or family name
+        :param vars: merge tags JSON, maximum example from KK:
+        [
+            {
+                "name": "paylink",
+                "content": "http://example"
+            },
+            {
+                "name": "ddate",
+                "content": "22.12.1234"
+            },
+            {
+                "name": "dtime",
+                "content": "12:12"
+            }
+        ]
+        :returns: responce in JSON
+        [
+            {
+                '_id': 'abc123abc123abc123abc123abc123',
+                'email': payload['email'],
+                'reject_reason': 'hard-bounce',
+                'status': 'sent'
+            }
+        ]
+    """
+    message = {
+        "merge_vars": [
+            {
+                "rcpt": email,
+                "vars": vars
+            },
+        ],
+        'subject': 'Набор на курсы Learn Python.',
+        'from_email': 'learn@python.ru',
+        'from_name': 'Learn Python Team',
+        'to': [
+            {
+                'email': email,
+                'name': f"{name} {surname}",
+                'type': 'to'
+            }
+        ],
+        'important': True,
+        'tags': [template_name],
+    }
+    """send_at: string when this message should be sent 
+    as a UTC timestamp in YYYY-MM-DD HH:MM:SS format."""
+    send_at = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
+    try:
+        mandrill_client = mandrill.Mandrill(settings.MANDRILL_API_KEY)
+        result = mandrill_client.messages.send_template(
+            template_name=template_name, 
+            template_content=(), 
+            message=message, 
+            async=False, 
+            send_at=send_at,
+        )
+        return result
+    except mandrill.Error as e:
+        # Mandrill errors are thrown as exceptions
+        print('A mandrill {0} occurred: {1}'.format(e.__class__.__name__, e))
+        raise
+
+def send_template_example(payload):
     """ Send a new transactional message through Mandrill using a template.
 
         Example Call fixed syntax for Python 3
