@@ -73,16 +73,16 @@ class MandrillSendTest(SimpleTestCase):
         self.assertInHTML("order_id", html)
         self.assertInHTML("17862035", html)
 
-    # def test_send_mail(self):
-    #     """ Test for send a new transactional message through Mandrill using 
-    #         real timepad webhook json data.
-    #     """
-    #     payload = json.loads(self.timepad_json_payload)
-    #     result = send_mail(payload)
-    #     print(result)
-    #     self.assertEqual(result[0]['status'], 'sent')
+    def deprecated_test_send_mail(self):
+        """ Test for send a new transactional message through Mandrill using 
+            real timepad webhook json data.
+        """
+        payload = json.loads(self.timepad_json_payload)
+        result = send_mail(payload)
+        print(result)
+        self.assertEqual(result[0]['status'], 'sent')
 
-    def __send_template_ticket_creation(self):
+    def test_send_template_ticket_success(self):
         """ Test for send a new message through Mandrill using a template.
 
             result = [
@@ -94,18 +94,77 @@ class MandrillSendTest(SimpleTestCase):
                 }
             ]
         """
-        kwargs = {
-            "template_name": "ticket-success",
-            "email": self.test_email,
-            "surname": self.test_surname,
-            "name": self.test_name,
-        }
-        result = send_template(**kwargs)
+        result = send_template(
+            template_name="ticket-success",
+            email=self.test_email,
+            surname=self.test_surname,
+            name=self.test_name,
+        )
         self.assertEqual(result[0]['status'], 'sent')
         self.assertEqual(result[0]['reject_reason'], None)
         self.assertEqual(result[0]['email'], self.test_email)
+
+    def test_send_template_ticket_cancel(self):
+        " Test for send a new message through Mandrill using a template."
+        result = send_template(
+            template_name="ticket-cancel",
+            email=self.test_email,
+            surname=self.test_surname,
+            name=self.test_name,
+        )
+        self.assertEqual(result[0]['status'], 'sent')
+        self.assertEqual(result[0]['reject_reason'], None)
+        self.assertEqual(result[0]['email'], self.test_email)\
+
+    def test_send_template_ticket_creation(self):
+        " Test for send a new message through Mandrill using a template."
+        result = send_template(
+            template_name="ticket-creation",
+            email=self.test_email,
+            surname=self.test_surname,
+            name=self.test_name,
+            vars=[
+                {
+                    "name": "paylink",
+                    "content": "http://pay_link.python.ru",
+                },
+            ],
+        )
+        self.assertEqual(result[0]['status'], 'sent')
+        self.assertEqual(result[0]['reject_reason'], None)
+        self.assertEqual(result[0]['email'], self.test_email)
+
+    def test_send_template_ticket_ticket_expiration(self):
+        " Test for send a new message through Mandrill using a template."
+        vars_expiration = [
+            {
+                "name": "paylink",
+                "content": "http://pay_link.python.ru",
+            },
+            {
+                "name": "ddate",
+                "content": "31.12.2018"
+            },
+            {
+                "name": "dtime",
+                "content": "12:30"
+            },
+        ]
         
-    def test_send_template_all_cases(self):
+        for digit in ('1', '2', '3'):
+            result = send_template(
+                template_name="ticket-expiration{0}".format(digit),
+                email=self.test_email,
+                surname=self.test_surname,
+                name=self.test_name,
+                vars=vars_expiration
+            )
+            self.assertEqual(result[0]['status'], 'sent')
+            self.assertEqual(result[0]['reject_reason'], None)
+            self.assertEqual(result[0]['email'], self.test_email)
+
+                
+    def deprecated_test_send_template_all_cases(self):
         """ Test for send a new message through Mandrill using a template.
 
             result = [
