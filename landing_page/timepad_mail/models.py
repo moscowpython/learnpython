@@ -1,6 +1,7 @@
 """Timepad ticket status mailing."""
 from django.db import models
 from django.utils import timezone
+from .send_mail_mandrill import send_template
 
 
 class TicketQuerySet(models.QuerySet):
@@ -15,84 +16,131 @@ class TicketQuerySet(models.QuerySet):
     #     " Create ticket instance."
     #     return self.create(**kwargs)
 
-    def promote_status_paid(self, **kwargs):
-        " Promote ticket status to paid."
-        queryset = self.filter()
+    @staticmethod
+    def _convert_raw_status(status_raw: str) -> str:
+        " Convert status_raw to constant statuses, None on fail."
+        return Ticket.STATUS_RAW_TO_CHOICE.get(status_raw, None)
+
+    @staticmethod
+    def _convert_reg_date(reg_date: str) -> timezone.datetime:
+        """ Convert status_raw to constant statuses, None on fail.
+            :param reg_date: "2015-07-24 19:04:37", // Дата заказа билета
+            :return: timezone.datetime reg_date
+        """
+        return timezone.datetime.strptime(reg_date, '%Y-%m-%d %H:%M:%S')  
+
+    def set_ticket_status(
+        self, *, order_id, event_id, status, reg_date, email, name, 
+        surname, printed_id, **kwargs
+    ) -> int:
+        """ Set ticket status to `status_raw`.
+
+        :param event_id: 215813, ID мероприятия
+        :param order_id: "4955686", ID заказа
+        :param reg_date: "2015-07-24 19:04:37", Дата заказа билета
+        :param status: Статус заказа в машиночитаемом формате
+        :param email: "test-mail@ya.ru", E-mail заказчика
+        :param surname: "Смирнов", Фамилия на билете
+        :param name: "Владимир", Имя на билете
+        :param printed_id: "5184211:83845994", ID билета 
+            (печататется на самом билете)
+        :return: int Rows affected 
+        
+        """
+        if status == Ticket.STATUS_NEW:
+            if self.filter(order_id=order_id, event_id=event_id).exists():
+                # TODO: exectional situation, double webhook
+                return 0
+            else:
+                self.create(
+                    order_id=order_id,
+                    event_id=event_id, 
+                    status=status, 
+                    reg_date=reg_date,
+                    email=email,
+                    name=name,
+                    surname=surname,
+                    printed_id=printed_id,
+                )
+                send_template(
+                    template_name=Ticket.STATUS_TEMPLATE[status],
+                    email=email,
+                    surname=surname,
+                    name=name,
+                )
+                return 1
+        else:
+            tickets = self.filter(order_id=order_id, event_id=event_id)
+            for ticket in tickets:
+                send_template(
+                    template_name=Ticket.STATUS_TEMPLATE[status],
+                    email=ticket.email,
+                    surname=ticket.surname,
+                    name=ticket.name,
+                )
+            return tickets.update(status=status)
+
+    def set_status_canceled(self, *, order_id, event_id, **kwargs):
+        " Set ticket status to canceled."
+        tickets = self.filter(order_id=order_id, event_id=event_id)
+        for ticket in tickets:
+            result = send_template(
+                template_name="ticket-cancel",
+                email=ticket.email,
+                surname=ticket.surname,
+                name=ticket.name,
+            )
+        tickets.update(status=Ticket.STATUS_CANCELED)
 
 class Ticket(models.Model):
     """ Ticket from the timepad.
 
-    Содержание JSON запроса для хука изменения статусов билетов #
-    {
-    "id": "5184211:83845994", // ID билета (печататется на самом билете)
-    "event_id": 215813, // ID мероприятия
-    "organization_id": 29963, // ID организации, создавшей мероприятие
-    "order_id": "4955686", // ID заказа
-    "reg_date": "2015-07-24 19:04:37", // Дата заказа билета
-    "reg_id": 361138, // Внутренний ID билета
-    "status": "забронировано", // Статус заказа / билета
-    "status_raw": "booked", // Статус заказа в машиночитаемом формате
-    "email": "test-mail@ya.ru", // E-mail заказчика
-    "surname": "Смирнов", // Фамилия на билете
-    "name": "Владимир", // Имя на билете
-    "attended": false, // Отметка о посещении мероприятия
-    "code": "83845994", // Числовой код билета
-    "barcode": "1000838459949", // Числовой код в формате EAN-13, напечатан на билете в виде штрих-кода
-    "price_nominal": 1000, // Стоимость билета на момент заказа 
-    "answers": [ // Список ответов на вопросы анкеты (если есть)
-        {
-        "id": 889802, // ID вопроса
-        "type": "text", // Тип вопроса
-        "name": "E-mail", // Текст вопроса
-        "mandatory": null, // Обязательность вопроса
-        "value": "test-mail@ya.ru" // Текст ответа
-        },
-        {
-        "id": 889803, // ID вопроса
-        "type": "text", // Тип вопроса
-        "name": "Фамилия", // Текст вопроса
-        "mandatory": null, // Обязательность вопроса
-        "value": "Смирнов" // Текст ответа
-        },
-        {
-        "id": 889804, // ID вопроса
-        "type": "text", // Тип вопроса
-        "name": "Имя", // Текст вопроса
-        "mandatory": null, // Обязательность вопроса
-        "value": "Владимир" // Текст ответа
-        }
-    ],
-    "aux": []
-    }
+        :param event_id: 215813, ID мероприятия
+        :param order_id: "4955686", ID заказа
+        :param reg_date: "2015-07-24 19:04:37", Дата заказа билета
+        :param status: Статус заказа в машиночитаемом формате
+        :param email: "test-mail@ya.ru", E-mail заказчика
+        :param surname: "Смирнов", Фамилия на билете
+        :param name: "Владимир", Имя на билете
+        :param printed_id: "5184211:83845994", ID билета 
+            (печататется на самом билете)
     """
     STATUS_PAID = 'p'
     STATUS_CANCELED = 'c'
     STATUS_NEW = 'n'
-    STATUS_REMINEDED_1 ='1'
-    STATUS_REMINEDED_2 ='2'
-    STATUS_REMINEDED_3 ='3'
+    STATUS_REMINDED_1 ='1'
+    STATUS_REMINDED_2 ='2'
+    STATUS_REMINDED_3 ='3'
     STATUS_CHOICES = (
         (STATUS_NEW, 'новый'),
         (STATUS_PAID, 'оплачено'),
         (STATUS_CANCELED, 'отказ'),
-        (STATUS_REMINEDED_1, 'напоминание 1'),
-        (STATUS_REMINEDED_2, 'напоминание 2'),
-        (STATUS_REMINEDED_3, 'напоминание 3'),
+        (STATUS_REMINDED_1, 'напоминание 1'),
+        (STATUS_REMINDED_2, 'напоминание 2'),
+        (STATUS_REMINDED_3, 'напоминание 3'),
     )
-    STATUS_ACTION = {
-        'paid': 'ticket-success',
-        'paid_ur': 'ticket-success',
-        'paid_offline': 'ticket-success',
-        'transfer_payment': 'ticket-success',
-        'inactive': 'ticket-cancel',
-        'notpaid': 'ticket-cancel',
-        'booked': 'ticket-creation',
-        'booked_offline': 'ticket-creation',
+    STATUS_TEMPLATE = {
+        STATUS_PAID: 'ticket-success',
+        STATUS_CANCELED: 'ticket-cancel',
+        STATUS_NEW: 'ticket-creation',
+        STATUS_REMINDED_1: "ticket-expiration1",
+        STATUS_REMINDED_2: "ticket-expiration2",
+        STATUS_REMINDED_3: "ticket-expiration3",
+    }
+    STATUS_RAW_TO_CHOICE = {
+        'paid': STATUS_PAID,
+        'paid_ur': STATUS_PAID,
+        'paid_offline': STATUS_PAID,
+        'transfer_payment': STATUS_PAID,
+        'inactive': STATUS_CANCELED,
+        'notpaid': STATUS_CANCELED,
+        'booked': STATUS_NEW,
+        'booked_offline': STATUS_NEW,
     }
     order_id = models.IntegerField('ID заказа')
     event_id = models.IntegerField('ID мероприятия')
     """ Статус заказа в машиночитаемом формате."""
-    status_raw = models.CharField(
+    status = models.CharField(
         'статус',
         max_length=1,
         choices=STATUS_CHOICES,
@@ -114,6 +162,11 @@ class Ticket(models.Model):
         'ID печатный',
         max_length=20,
     )
+    """ The reason why I’m saying queryset/managers is that in Django
+        you can easily get one from the other, e.g. defining a queryset
+        but then calling the as_manager().
+    """
+    objects = TicketQuerySet.as_manager()
     # code = models.IntegerField('код')
     # barcode = models.BigIntegerField('штрих-код')
     # reg_id = models.BigIntegerField('внутренний ID')
@@ -128,10 +181,10 @@ class Ticket(models.Model):
                 name='unique_ticket_index'
             ),
             models.Index(
-                fields=['status_raw', 'reg_date',],
+                fields=['status', 'reg_date',],
                 name='expiration_ticket_index' 
             ),
         ]
 
     def __str__(self):
-        return 'Билет {0}, статус {1}'.format(self.ticket_id, self.status_raw)
+        return 'Билет {0}, статус {1}'.format(self.ticket_id, self.status)
