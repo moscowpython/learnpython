@@ -3,6 +3,22 @@ from django.db import models
 from django.utils import timezone
 
 
+class TicketQuerySet(models.QuerySet):
+    """ Ticket methods.
+    
+        What matters, is that implementing the methods on querysets/managers
+        rather than Models would allow for more efficient queries.
+        https://sunscrapers.com/blog/where-to-put-business-logic-django/
+    """
+
+    # def create_ticket(self, **kwargs):
+    #     " Create ticket instance."
+    #     return self.create(**kwargs)
+
+    def promote_status_paid(self, **kwargs):
+        " Promote ticket status to paid."
+        queryset = self.filter()
+
 class Ticket(models.Model):
     """ Ticket from the timepad.
 
@@ -74,21 +90,7 @@ class Ticket(models.Model):
         'booked_offline': 'ticket-creation',
     }
     order_id = models.IntegerField('ID заказа')
-    ticket_id = models.CharField(
-        'ID',
-        max_length=20,
-    )
-    code = models.IntegerField('код')
-    barcode = models.BigIntegerField('штрих-код')
-    email = models.EmailField('e-mail')
-    name = models.CharField(
-        'имя',
-        max_length=20,
-    )
-    surname = models.CharField(
-        'фамилия',
-        max_length=64,
-    )    
+    event_id = models.IntegerField('ID мероприятия')
     """ Статус заказа в машиночитаемом формате."""
     status_raw = models.CharField(
         'статус',
@@ -99,12 +101,37 @@ class Ticket(models.Model):
     )
     """ "2015-07-24 19:04:37", Дата заказа билета"""
     reg_date = models.DateTimeField('дата заказа')
-    reg_id = models.BigIntegerField('внутренний ID')
+    email = models.EmailField('e-mail')
+    name = models.CharField(
+        'имя',
+        max_length=20,
+    )
+    surname = models.CharField(
+        'фамилия',
+        max_length=64,
+    )    
+    printed_id = models.CharField(
+        'ID печатный',
+        max_length=20,
+    )
+    # code = models.IntegerField('код')
+    # barcode = models.BigIntegerField('штрих-код')
+    # reg_id = models.BigIntegerField('внутренний ID')
 
     class Meta:
         verbose_name = 'билет'
         verbose_name_plural = 'билеты'
+        unique_together = (('order_id', 'event_id',),)
+        indexes = [
+            models.Index(
+                fields=['order_id', 'event_id',], 
+                name='unique_ticket_index'
+            ),
+            models.Index(
+                fields=['status_raw', 'reg_date',],
+                name='expiration_ticket_index' 
+            ),
+        ]
 
     def __str__(self):
         return 'Билет {0}, статус {1}'.format(self.ticket_id, self.status_raw)
-        
