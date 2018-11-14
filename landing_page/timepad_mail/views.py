@@ -34,17 +34,13 @@ STATUS_ACTION = {
     'booked_offline': 'ticket-creation',
 }
 
-def process_webhook(payload):
-    """Simple webhook handler that prints the event and payload."""
-    print(json.dumps(payload, indent=4))
-    result = send_mail(json.loads(payload))
-    print(result)
-
 @csrf_exempt
 def handle_webhook(request):
     """Webhook handler check sender sha1 signature."""
     # TODO: wrap in try-except, use safe get, etc.
     # Check the X-Hub-Signature header to make sure this is a valid request.
+    if not 'HTTP_X_HUB_SIGNATURE' in request.META:
+        return HttpResponseForbidden('Invalid signature header')
     message_signature = request.META['HTTP_X_HUB_SIGNATURE']
     # Solution: hmac works with ``bytes``, not ``str``.
     key_bytes = bytes(settings.TIMEPAD_WEBHOOK_SECRET, 'utf8')

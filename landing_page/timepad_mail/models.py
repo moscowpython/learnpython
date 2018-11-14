@@ -102,6 +102,19 @@ class Ticket(models.Model):
         STATUS_REMINDED_2: "ticket-expiration2",
         STATUS_REMINDED_3: "ticket-expiration3",
     }
+    
+    """ Status to action required correspondance.
+        paid (оплачено): платный билет успешно оплачен он-лайн
+        booked (забронировано): билет находится в статусе "Забронировано"
+        notpaid (просрочено): билет не был оплачен и срок брони для него истек
+        inactive (отказ): участник отказался от участия
+        booked_offline (бронь для выкупа): билет был заказан для выкупа в офисе 
+        организатора
+        paid_offline (оплачено на месте): билет был оплачен в офисе организатора
+        paid_ur (оплачено компанией): билет был оплачен юридическим платежом
+        transfer_payment (перенесена оплата): билет был оплачен переносом оплаты 
+        с другого заказа
+    """
     STATUS_RAW_TO_CHOICE = {
         'paid': STATUS_PAID,
         'paid_ur': STATUS_PAID,
