@@ -40,7 +40,11 @@ class TicketQuerySet(models.QuerySet):
             :return: timezone.datetime reg_date
         """
         try:
-            return timezone.datetime.strptime(reg_date, '%Y-%m-%d %H:%M:%S')
+            naive_datetime = timezone.datetime.strptime(
+                reg_date, '%Y-%m-%d %H:%M:%S'
+            )
+            current_tz = timezone.get_current_timezone()
+            return current_tz.localize(naive_datetime) 
         except BaseException as e:
             logger.error(e)
 
@@ -114,6 +118,25 @@ class TicketQuerySet(models.QuerySet):
         )
         return ticket
     
+    def create_ticket(self, ticket):
+        new_ticket = self.create(
+            order_id=ticket.order_id,
+            event_id=ticket.event_id, 
+            status=ticket.status, 
+            reg_date=ticket.reg_date,
+            email=ticket.email,
+            name=ticket.name,
+            surname=ticket.surname,
+            printed_id=ticket.printed_id,
+        )
+        # send_template(
+        #     template_name=self.status_to_template(new_ticket.status),
+        #     email=new_ticket.email,
+        #     surname=new_ticket.surname,
+        #     name=new_ticket.name,
+        # )
+        return new_ticket
+
     def set_ticket_status(
         self, *, order_id, event_id, status, reg_date, email, name, 
         surname, printed_id, **kwargs
@@ -268,4 +291,14 @@ class Ticket(models.Model):
         ]
 
     def __str__(self):
-        return 'Билет {0}, статус {1}'.format(self.ticket_id, self.status)
+        return f"""
+            {self.printed_id}: ID билета (печататется на самом билете)
+            {self.event_id}: ID мероприятия
+            {self.order_id}: ID заказа
+            {self.reg_date}: Дата заказа билета
+            {self.status}: Статус заказа в машиночитаемом формате
+            {self.email}: E-mail заказчика
+            {self.surname}: Фамилия на билете
+            {self.name}: Имя на билете
+            """
+

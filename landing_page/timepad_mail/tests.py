@@ -173,14 +173,28 @@ class TicketQuerySetTest(TestCase):
     def test_dict_deserialize(self):
         data = json.loads(TIMEPAD_PAYLOAD)
         ticket = Ticket.objects.dict_deserialize(data)
+        naive_datetime = timezone.datetime.strptime(
+            "2018-10-11 00:45:53", '%Y-%m-%d %H:%M:%S'
+        )
+        current_tz = timezone.get_current_timezone()
+        local_dt = current_tz.localize(naive_datetime)
+
         self.assertEqual(ticket.order_id, 17862035)
         self.assertEqual(ticket.event_id, 830329)
         self.assertEqual(ticket.status, Ticket.STATUS_NEW)
-        self.assertEqual(
-            ticket.reg_date, 
-            timezone.datetime.strptime("2018-10-11 00:45:53", '%Y-%m-%d %H:%M:%S')
-        )
+        self.assertEqual(ticket.reg_date, local_dt)
         self.assertEqual(ticket.email, EMAIL)
         self.assertEqual(ticket.name, NAME)
         self.assertEqual(ticket.surname, SURNAME)
         self.assertEqual(ticket.printed_id, "22398586:56559903")
+
+    def test_create_ticket(self):
+        data = json.loads(TIMEPAD_PAYLOAD)
+        ticket = Ticket.objects.dict_deserialize(data)
+        new_ticket = Ticket.objects.create_ticket(ticket)
+        check = Ticket.objects.filter(
+            order_id=ticket.order_id, 
+            event_id=ticket.event_id
+        ).exists()
+        self.assertEqual(check, True)
+        print(new_ticket)
