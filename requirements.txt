@@ -5,3 +5,4 @@ mandrill==1.0.57
 celery[django]~=4.2
 django-celery-beat~=1.3
 django-celery-results~=1.0
+redis
