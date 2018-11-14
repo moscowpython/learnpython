@@ -1,6 +1,7 @@
 """Timepad ticket status mailing."""
 from __future__ import absolute_import, unicode_literals
 from celery import shared_task
+import json
 import logging
 from django.db import models
 from django.utils import timezone
@@ -10,6 +11,7 @@ from django.core.exceptions import (
     ValidationError,
 )
 from .send_mail_mandrill import send_template
+
 
 
 # Get an instance of a logger
@@ -27,33 +29,12 @@ class TicketQuerySet(models.QuerySet):
     #     " Create ticket instance."
     #     return self.create(**kwargs)
 
-    def create_ticket(
-        self, *, order_id, event_id, status, reg_date, email, name, 
-        surname, printed_id, **kwargs
-    ):
+    def create_ticket(self, **kwargs):
         """ Ticket create customization that send mail.
 
-            :param event_id: 215813, ID мероприятия
-            :param order_id: "4955686", ID заказа
-            :param reg_date: "2015-07-24 19:04:37", Дата заказа билета
-            :param status: Статус заказа в машиночитаемом формате
-            :param email: "test-mail@ya.ru", E-mail заказчика
-            :param surname: "Смирнов", Фамилия на билете
-            :param name: "Владимир", Имя на билете
-            :param printed_id: "5184211:83845994", ID билета 
-                (печататется на самом билете)
             :return: new Ticket 
         """
-        ticket = self.create(
-            order_id=order_id,
-            event_id=event_id, 
-            status=status, 
-            reg_date=reg_date,
-            email=email,
-            name=name,
-            surname=surname,
-            printed_id=printed_id,
-        )
+        ticket = self.create(**kwargs)
         send_template(
             template_name=ticket.status_to_template(ticket.status),
             email=ticket.email,
@@ -73,63 +54,17 @@ class TicketQuerySet(models.QuerySet):
         )
         return ticket
 
-    def set_ticket_status(
-        self, *, order_id, event_id, status, reg_date, email, name, 
-        surname, printed_id, **kwargs
-    ) -> int:
-        """ Set ticket status to `status_raw`.
-
-        :param event_id: 215813, ID мероприятия
-        :param order_id: "4955686", ID заказа
-        :param reg_date: "2015-07-24 19:04:37", Дата заказа билета
-        :param status: Статус заказа в машиночитаемом формате
-        :param email: "test-mail@ya.ru", E-mail заказчика
-        :param surname: "Смирнов", Фамилия на билете
-        :param name: "Владимир", Имя на билете
-        :param printed_id: "5184211:83845994", ID билета 
-            (печататется на самом билете)
-        :return: int Rows affected 
-        
-        """
-        if status == Ticket.STATUS_NEW:
-            ticket = self.create_ticket(
-                order_id=order_id,
-                event_id=event_id, 
-                status=status, 
-                reg_date=reg_date,
-                email=email,
-                name=name,
-                surname=surname,
-                printed_id=printed_id,
-            )
-            if ticket:
-                return 1
-            else:
-                return 0
-        else:
-            try:
-                ticket = self.get(order_id=order_id, event_id=event_id)
-                send_template(
-                    template_name=self.status_to_template(ticket.status),
-                    email=ticket.email,
-                    surname=ticket.surname,
-                    name=ticket.name,
-                )
-                return 1
-            except (ObjectDoesNotExist, MultipleObjectsReturned):
-                return 0
-
-    def set_status_canceled(self, *, order_id, event_id, **kwargs):
-        " Set ticket status to canceled."
-        tickets = self.filter(order_id=order_id, event_id=event_id)
-        for ticket in tickets:
+    def update_ticket_status(self, ticket):
+        "Update ticket status."
+        tickets = self.filter(order_id=ticket.order_id, event_id=ticket.event_id)
+        for old_ticket in tickets:
             send_template(
-                template_name="ticket-cancel",
+                template_name=ticket.status_to_template(ticket.status),
                 email=ticket.email,
                 surname=ticket.surname,
                 name=ticket.name,
             )
-        tickets.update(status=Ticket.STATUS_CANCELED)
+        tickets.update(status=ticket.status)
 
 class Ticket(models.Model):
     """ Ticket from the timepad.
@@ -141,9 +76,10 @@ class Ticket(models.Model):
         :param email: "test-mail@ya.ru", E-mail заказчика
         :param surname: "Смирнов", Фамилия на билете
         :param name: "Владимир", Имя на билете
-        :param printed_id: "5184211:83845994", ID билета 
-            (печататется на самом билете)
+        :param printed_id: "5184211:83845994", ID билета печататется
+        :param event_name: название
     """
+    CAMPAIGN_EVENTS = ('Learn Python 11', )
     STATUS_PAID = 'p'
     STATUS_CANCELED = 'c'
     STATUS_NEW = 'n'
@@ -202,6 +138,10 @@ class Ticket(models.Model):
         'ID печатный',
         max_length=20,
     )
+    event_name = models.CharField(
+        'событие',
+        max_length=32,
+    ) 
     """ The reason why I’m saying queryset/managers is that in Django
         you can easily get one from the other, e.g. defining a queryset
         but then calling the as_manager().
@@ -247,10 +187,10 @@ class Ticket(models.Model):
             ============================================
             """
 
-    @staticmethod
-    def get_status_from_raw(status_raw: str) -> str:
+    @classmethod
+    def get_status_from_raw(cls, status_raw: str) -> str:
         " Convert status_raw to constant statuses, None on fail."
-        status = Ticket.STATUS_RAW_TO_CHOICE.get(status_raw, None)
+        status = cls.STATUS_RAW_TO_CHOICE.get(status_raw, None)
         if not status:
             logger.error(f'KeyError no such status as {status_raw}')
         return status
@@ -270,34 +210,59 @@ class Ticket(models.Model):
         except BaseException as e:
             logger.error(e)
 
-    @staticmethod
-    def status_to_template(status: str) -> str:
+    @classmethod
+    def status_to_template(cls, status: str) -> str:
         " Convert status to template_name, None on fail."
         try:
-            return Ticket.STATUS_TEMPLATE.get(status, None)
+            return cls.STATUS_TEMPLATE.get(status, None)
         except BaseException as e:
             logger.error(e)
 
-    @staticmethod
-    def dict_deserialize(data: dict):
+    @classmethod
+    def dict_deserialize(cls, data: dict):
         """ Deserialize a ticket from a Timepad JSON parsed to dict.
         
             :param data: a Timepad payload JSON parsed to dict.
             :return: a Ticket instance or None on error.
         """
         try:
-            ticket = Ticket(
+            ticket = cls(
                 order_id=int(data['order_id']),
                 event_id=int(data['event_id']), 
-                status=Ticket.get_status_from_raw(data['status_raw']), 
-                reg_date=Ticket.reg_date_to_datatime(data['reg_date']),
+                status=cls.get_status_from_raw(data['status_raw']), 
+                reg_date=cls.reg_date_to_datatime(data['reg_date']),
                 email=data['email'],
                 name=data['name'],
                 surname=data['surname'],
                 printed_id=data['id'],
+                event_name=data['event_name'],
             )
             ticket.full_clean()
             return ticket
         except (KeyError, ValueError, ValidationError) as e:
             logger.error(e)
             return
+
+    @classmethod
+    def manage_webhook_payload(cls, payload: str):
+        try:
+            payload_dict = json.loads(payload)
+        except json.JSONDecodeError as e:
+            logger.error(e)
+            return
+        status = cls.get_status_from_raw(payload_dict['status_raw'])
+        event_name = payload_dict['event_name']
+        
+
+        if not status:
+            logger.info(f"{payload_dict['status_raw']} is not targeted.")
+        elif not event_name in cls.CAMPAIGN_EVENTS:
+            """ If an event is not in campaign, no action required."""
+            logger.info(f"{event_name} is not in campaign, no action required.")
+        else:
+            ticket = cls.dict_deserialize(payload_dict)
+            if ticket and ticket.status == cls.STATUS_NEW:
+                cls.objects.save_ticket(ticket)
+            elif ticket:
+                cls.objects.update_ticket_status(ticket)
+            return ticket

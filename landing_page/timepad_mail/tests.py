@@ -53,7 +53,7 @@ TIMEPAD_PAYLOAD = """
         "use_ticket_remind": "1"
     },
     "org_name": "PythonMachineLearningCV",
-    "event_name": "\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435",
+    "event_name": "Learn Python 11",
     "event_city": "\u0411\u0435\u0437 \u0433\u043e\u0440\u043e\u0434\u0430",
     "event_place": "",
     "hook_generated_at": "2018-10-11 00:45:54",
@@ -61,6 +61,7 @@ TIMEPAD_PAYLOAD = """
     "hook_resend": 2
 }
 """
+TIMEPAD_SIDE_EVENT = ''
 
 class MandrillSendTest(SimpleTestCase):
     """ Tests for send a transactional messages through Mandrill."""
@@ -168,7 +169,7 @@ class MandrillSendTest(SimpleTestCase):
             self.assertEqual(result[0]['email'], self.test_email)
 
 
-class TicketQuerySetTest(TestCase):
+class TicketTest(TestCase):
 
     def test_dict_deserialize(self):
         data = json.loads(TIMEPAD_PAYLOAD)
@@ -189,6 +190,30 @@ class TicketQuerySetTest(TestCase):
         data = json.loads(TIMEPAD_PAYLOAD)
         ticket = Ticket.dict_deserialize(data)
         Ticket.objects.save_ticket(ticket)
+        check = Ticket.objects.filter(
+            order_id=ticket.order_id, 
+            event_id=ticket.event_id
+        ).exists()
+        self.assertEqual(check, True)
+
+        self.assertEqual(ticket.order_id, int(data['order_id']))
+        self.assertEqual(ticket.event_id, int(data['event_id']))
+        self.assertEqual(ticket.status, Ticket.STATUS_NEW)
+        self.assertEqual(
+            ticket.reg_date, 
+            Ticket.reg_date_to_datatime(data['reg_date'])
+        )
+        self.assertEqual(ticket.email, data['email'])
+        self.assertEqual(ticket.name, data['name'])
+        self.assertEqual(ticket.surname, data['surname'])
+        self.assertEqual(ticket.printed_id,  data['id'])
+
+    def test_manage_webhook_payload(self):
+        data = json.loads(TIMEPAD_PAYLOAD)
+        ticket = Ticket.dict_deserialize(data)
+  
+        new_ticket = Ticket.manage_webhook_payload(TIMEPAD_PAYLOAD)
+        self.assertIsInstance(new_ticket, Ticket)
         check = Ticket.objects.filter(
             order_id=ticket.order_id, 
             event_id=ticket.event_id

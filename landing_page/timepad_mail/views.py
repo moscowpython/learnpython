@@ -6,6 +6,7 @@ from django.conf import settings
 from django.http import HttpResponse, HttpResponseForbidden
 from django.views.decorators.csrf import csrf_exempt
 
+from .models import Ticket
 from .send_mail_mandrill import send_template, send_mail
 
 
@@ -39,20 +40,6 @@ def process_webhook(payload):
     result = send_mail(json.loads(payload))
     print(result)
 
-def parse_webhook_payload(payload: str):
-    try:
-        payload_dict = json.loads(payload)
-    except json.JSONDecodeError:
-        # TODO: log error
-        return
-    status = payload_dict.get('status_raw')
-    action = STATUS_ACTION.get(status)
-    if not action:
-        # no action required
-        return
-    # TODO: queue an action
-
-
 @csrf_exempt
 def handle_webhook(request):
     """Webhook handler check sender sha1 signature."""
@@ -75,6 +62,6 @@ def handle_webhook(request):
         payload = json.loads(request.body)
 
     # This is where you'll do something with the webhook
-    process_webhook(payload)
+    Ticket.manage_webhook_payload(payload)
 
     return HttpResponse('Webhook received', status=200)
