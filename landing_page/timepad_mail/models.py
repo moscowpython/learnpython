@@ -1,4 +1,6 @@
 """Timepad ticket status mailing."""
+from __future__ import absolute_import, unicode_literals
+from celery import shared_task
 import logging
 from django.db import models
 from django.utils import timezone
@@ -97,9 +99,6 @@ class TicketQuerySet(models.QuerySet):
                 (печататется на самом билете)
             :return: new Ticket 
         """
-        if self.filter(order_id=order_id, event_id=event_id).exists():
-            # TODO: exectional situation, double webhook
-            return None
         ticket = self.create(
             order_id=order_id,
             event_id=event_id, 
@@ -118,14 +117,15 @@ class TicketQuerySet(models.QuerySet):
         )
         return ticket
     
+    # @shared_task
     def save_ticket(self, ticket):
         ticket.save()
-        # send_template(
-        #     template_name=self.status_to_template(new_ticket.status),
-        #     email=new_ticket.email,
-        #     surname=new_ticket.surname,
-        #     name=new_ticket.name,
-        # )
+        send_template(
+            template_name=self.status_to_template(ticket.status),
+            email=ticket.email,
+            surname=ticket.surname,
+            name=ticket.name,
+        )
         return ticket
 
     def set_ticket_status(
