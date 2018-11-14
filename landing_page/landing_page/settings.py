@@ -151,3 +151,20 @@ RQ_QUEUES = {
 TIMEPAD_WEBHOOK_SECRET = os.getenv(
     'TIMEPAD_WEBHOOK_SECRET', 'pythonmachinelearningcv.com')
 MANDRILL_API_KEY = os.getenv('MANDRILL_API_KEY', '')
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'ERROR'),
+        },
+    },
+}

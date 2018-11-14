@@ -1,8 +1,17 @@
 """Timepad ticket status mailing."""
+import logging
 from django.db import models
 from django.utils import timezone
+from django.core.exceptions import (
+    ObjectDoesNotExist,
+    MultipleObjectsReturned,
+    ValidationError,
+)
 from .send_mail_mandrill import send_template
 
+
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
 
 class TicketQuerySet(models.QuerySet):
     """ Ticket methods.
@@ -17,18 +26,94 @@ class TicketQuerySet(models.QuerySet):
     #     return self.create(**kwargs)
 
     @staticmethod
-    def _convert_raw_status(status_raw: str) -> str:
+    def get_status_from_raw(status_raw: str) -> str:
         " Convert status_raw to constant statuses, None on fail."
-        return Ticket.STATUS_RAW_TO_CHOICE.get(status_raw, None)
+        status = Ticket.STATUS_RAW_TO_CHOICE.get(status_raw, None)
+        if not status:
+            logger.error(f'KeyError no such status as {status_raw}')
+        return status
 
     @staticmethod
-    def _convert_reg_date(reg_date: str) -> timezone.datetime:
+    def reg_date_to_datatime(reg_date: str) -> timezone.datetime:
         """ Convert status_raw to constant statuses, None on fail.
             :param reg_date: "2015-07-24 19:04:37", // Дата заказа билета
             :return: timezone.datetime reg_date
         """
-        return timezone.datetime.strptime(reg_date, '%Y-%m-%d %H:%M:%S')  
+        try:
+            return timezone.datetime.strptime(reg_date, '%Y-%m-%d %H:%M:%S')
+        except BaseException as e:
+            logger.error(e)
 
+    @staticmethod
+    def status_to_template(status: str) -> str:
+        " Convert status to template_name, None on fail."
+        try:
+            return Ticket.STATUS_TEMPLATE.get(status, None)
+        except BaseException as e:
+            logger.error(e)
+
+    @staticmethod
+    def dict_deserialize(data: dict):
+        """ Deserialize a ticket from a Timepad JSON parsed to dict.
+        
+            :param data: a Timepad payload JSON parsed to dict.
+            :return: a Ticket instance or None on error.
+        """
+        try:
+            ticket = Ticket(
+                order_id=int(data['order_id']),
+                event_id=int(data['event_id']), 
+                status=TicketQuerySet.get_status_from_raw(data['status_raw']), 
+                reg_date=TicketQuerySet.reg_date_to_datatime(data['reg_date']),
+                email=data['email'],
+                name=data['name'],
+                surname=data['surname'],
+                printed_id=data['id'],
+            )
+            ticket.full_clean()
+            return ticket
+        except (KeyError, ValueError, ValidationError) as e:
+            logger.error(e)
+            return
+
+    def create_ticket(
+        self, *, order_id, event_id, status, reg_date, email, name, 
+        surname, printed_id, **kwargs
+    ):
+        """ Ticket create customization that send mail.
+
+            :param event_id: 215813, ID мероприятия
+            :param order_id: "4955686", ID заказа
+            :param reg_date: "2015-07-24 19:04:37", Дата заказа билета
+            :param status: Статус заказа в машиночитаемом формате
+            :param email: "test-mail@ya.ru", E-mail заказчика
+            :param surname: "Смирнов", Фамилия на билете
+            :param name: "Владимир", Имя на билете
+            :param printed_id: "5184211:83845994", ID билета 
+                (печататется на самом билете)
+            :return: new Ticket 
+        """
+        if self.filter(order_id=order_id, event_id=event_id).exists():
+            # TODO: exectional situation, double webhook
+            return None
+        ticket = self.create(
+            order_id=order_id,
+            event_id=event_id, 
+            status=status, 
+            reg_date=reg_date,
+            email=email,
+            name=name,
+            surname=surname,
+            printed_id=printed_id,
+        )
+        send_template(
+            template_name=self.status_to_template(ticket.status),
+            email=ticket.email,
+            surname=ticket.surname,
+            name=ticket.name,
+        )
+        return ticket
+    
     def set_ticket_status(
         self, *, order_id, event_id, status, reg_date, email, name, 
         surname, printed_id, **kwargs
@@ -48,43 +133,38 @@ class TicketQuerySet(models.QuerySet):
         
         """
         if status == Ticket.STATUS_NEW:
-            if self.filter(order_id=order_id, event_id=event_id).exists():
-                # TODO: exectional situation, double webhook
-                return 0
-            else:
-                self.create(
-                    order_id=order_id,
-                    event_id=event_id, 
-                    status=status, 
-                    reg_date=reg_date,
-                    email=email,
-                    name=name,
-                    surname=surname,
-                    printed_id=printed_id,
-                )
-                send_template(
-                    template_name=Ticket.STATUS_TEMPLATE[status],
-                    email=email,
-                    surname=surname,
-                    name=name,
-                )
+            ticket = self.create_ticket(
+                order_id=order_id,
+                event_id=event_id, 
+                status=status, 
+                reg_date=reg_date,
+                email=email,
+                name=name,
+                surname=surname,
+                printed_id=printed_id,
+            )
+            if ticket:
                 return 1
+            else:
+                return 0
         else:
-            tickets = self.filter(order_id=order_id, event_id=event_id)
-            for ticket in tickets:
+            try:
+                ticket = self.get(order_id=order_id, event_id=event_id)
                 send_template(
-                    template_name=Ticket.STATUS_TEMPLATE[status],
+                    template_name=self.status_to_template(ticket.status),
                     email=ticket.email,
                     surname=ticket.surname,
                     name=ticket.name,
                 )
-            return tickets.update(status=status)
+                return 1
+            except (ObjectDoesNotExist, MultipleObjectsReturned):
+                return 0
 
     def set_status_canceled(self, *, order_id, event_id, **kwargs):
         " Set ticket status to canceled."
         tickets = self.filter(order_id=order_id, event_id=event_id)
         for ticket in tickets:
-            result = send_template(
+            send_template(
                 template_name="ticket-cancel",
                 email=ticket.email,
                 surname=ticket.surname,
@@ -128,6 +208,7 @@ class Ticket(models.Model):
         STATUS_REMINDED_3: "ticket-expiration3",
     }
     STATUS_RAW_TO_CHOICE = {
+        'ok': STATUS_PAID,  # no store, no mail
         'paid': STATUS_PAID,
         'paid_ur': STATUS_PAID,
         'paid_offline': STATUS_PAID,
@@ -156,7 +237,7 @@ class Ticket(models.Model):
     )
     surname = models.CharField(
         'фамилия',
-        max_length=64,
+        max_length=32,
     )    
     printed_id = models.CharField(
         'ID печатный',
@@ -174,7 +255,7 @@ class Ticket(models.Model):
     class Meta:
         verbose_name = 'билет'
         verbose_name_plural = 'билеты'
-        unique_together = (('order_id', 'event_id',),)
+        # unique_together = (('order_id', 'event_id',),)
         indexes = [
             models.Index(
                 fields=['order_id', 'event_id',], 
