@@ -27,61 +27,6 @@ class TicketQuerySet(models.QuerySet):
     #     " Create ticket instance."
     #     return self.create(**kwargs)
 
-    @staticmethod
-    def get_status_from_raw(status_raw: str) -> str:
-        " Convert status_raw to constant statuses, None on fail."
-        status = Ticket.STATUS_RAW_TO_CHOICE.get(status_raw, None)
-        if not status:
-            logger.error(f'KeyError no such status as {status_raw}')
-        return status
-
-    @staticmethod
-    def reg_date_to_datatime(reg_date: str) -> timezone.datetime:
-        """ Convert status_raw to constant statuses, None on fail.
-            :param reg_date: "2015-07-24 19:04:37", // Дата заказа билета
-            :return: timezone.datetime reg_date
-        """
-        try:
-            naive_datetime = timezone.datetime.strptime(
-                reg_date, '%Y-%m-%d %H:%M:%S'
-            )
-            current_tz = timezone.get_current_timezone()
-            return current_tz.localize(naive_datetime) 
-        except BaseException as e:
-            logger.error(e)
-
-    @staticmethod
-    def status_to_template(status: str) -> str:
-        " Convert status to template_name, None on fail."
-        try:
-            return Ticket.STATUS_TEMPLATE.get(status, None)
-        except BaseException as e:
-            logger.error(e)
-
-    @staticmethod
-    def dict_deserialize(data: dict):
-        """ Deserialize a ticket from a Timepad JSON parsed to dict.
-        
-            :param data: a Timepad payload JSON parsed to dict.
-            :return: a Ticket instance or None on error.
-        """
-        try:
-            ticket = Ticket(
-                order_id=int(data['order_id']),
-                event_id=int(data['event_id']), 
-                status=TicketQuerySet.get_status_from_raw(data['status_raw']), 
-                reg_date=TicketQuerySet.reg_date_to_datatime(data['reg_date']),
-                email=data['email'],
-                name=data['name'],
-                surname=data['surname'],
-                printed_id=data['id'],
-            )
-            ticket.full_clean()
-            return ticket
-        except (KeyError, ValueError, ValidationError) as e:
-            logger.error(e)
-            return
-
     def create_ticket(
         self, *, order_id, event_id, status, reg_date, email, name, 
         surname, printed_id, **kwargs
@@ -110,7 +55,7 @@ class TicketQuerySet(models.QuerySet):
             printed_id=printed_id,
         )
         send_template(
-            template_name=self.status_to_template(ticket.status),
+            template_name=ticket.status_to_template(ticket.status),
             email=ticket.email,
             surname=ticket.surname,
             name=ticket.name,
@@ -121,7 +66,7 @@ class TicketQuerySet(models.QuerySet):
     def save_ticket(self, ticket):
         ticket.save()
         send_template(
-            template_name=self.status_to_template(ticket.status),
+            template_name=ticket.status_to_template(ticket.status),
             email=ticket.email,
             surname=ticket.surname,
             name=ticket.name,
@@ -302,3 +247,57 @@ class Ticket(models.Model):
             ============================================
             """
 
+    @staticmethod
+    def get_status_from_raw(status_raw: str) -> str:
+        " Convert status_raw to constant statuses, None on fail."
+        status = Ticket.STATUS_RAW_TO_CHOICE.get(status_raw, None)
+        if not status:
+            logger.error(f'KeyError no such status as {status_raw}')
+        return status
+
+    @staticmethod
+    def reg_date_to_datatime(reg_date: str) -> timezone.datetime:
+        """ Convert status_raw to constant statuses, None on fail.
+            :param reg_date: "2015-07-24 19:04:37", // Дата заказа билета
+            :return: timezone.datetime reg_date
+        """
+        try:
+            naive_datetime = timezone.datetime.strptime(
+                reg_date, '%Y-%m-%d %H:%M:%S'
+            )
+            current_tz = timezone.get_current_timezone()
+            return current_tz.localize(naive_datetime) 
+        except BaseException as e:
+            logger.error(e)
+
+    @staticmethod
+    def status_to_template(status: str) -> str:
+        " Convert status to template_name, None on fail."
+        try:
+            return Ticket.STATUS_TEMPLATE.get(status, None)
+        except BaseException as e:
+            logger.error(e)
+
+    @staticmethod
+    def dict_deserialize(data: dict):
+        """ Deserialize a ticket from a Timepad JSON parsed to dict.
+        
+            :param data: a Timepad payload JSON parsed to dict.
+            :return: a Ticket instance or None on error.
+        """
+        try:
+            ticket = Ticket(
+                order_id=int(data['order_id']),
+                event_id=int(data['event_id']), 
+                status=Ticket.get_status_from_raw(data['status_raw']), 
+                reg_date=Ticket.reg_date_to_datatime(data['reg_date']),
+                email=data['email'],
+                name=data['name'],
+                surname=data['surname'],
+                printed_id=data['id'],
+            )
+            ticket.full_clean()
+            return ticket
+        except (KeyError, ValueError, ValidationError) as e:
+            logger.error(e)
+            return

@@ -172,13 +172,13 @@ class TicketQuerySetTest(TestCase):
 
     def test_dict_deserialize(self):
         data = json.loads(TIMEPAD_PAYLOAD)
-        ticket = Ticket.objects.dict_deserialize(data)
+        ticket = Ticket.dict_deserialize(data)
         self.assertEqual(ticket.order_id, int(data['order_id']))
         self.assertEqual(ticket.event_id, int(data['event_id']))
         self.assertEqual(ticket.status, Ticket.STATUS_NEW)
         self.assertEqual(
             ticket.reg_date, 
-            Ticket.objects.reg_date_to_datatime(data['reg_date'])
+            Ticket.reg_date_to_datatime(data['reg_date'])
         )
         self.assertEqual(ticket.email, data['email'])
         self.assertEqual(ticket.name, data['name'])
@@ -187,7 +187,7 @@ class TicketQuerySetTest(TestCase):
 
     def test_save_ticket(self):
         data = json.loads(TIMEPAD_PAYLOAD)
-        ticket = Ticket.objects.dict_deserialize(data)
+        ticket = Ticket.dict_deserialize(data)
         Ticket.objects.save_ticket(ticket)
         check = Ticket.objects.filter(
             order_id=ticket.order_id, 
@@ -200,7 +200,7 @@ class TicketQuerySetTest(TestCase):
         self.assertEqual(ticket.status, Ticket.STATUS_NEW)
         self.assertEqual(
             ticket.reg_date, 
-            Ticket.objects.reg_date_to_datatime(data['reg_date'])
+            Ticket.reg_date_to_datatime(data['reg_date'])
         )
         self.assertEqual(ticket.email, data['email'])
         self.assertEqual(ticket.name, data['name'])
