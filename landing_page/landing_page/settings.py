@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_rq',  # Django integration with RQ.
+
     'timepad_mail.apps.TimepadMailConfig'  # Timepad ticket status mailing.
 ]
 
