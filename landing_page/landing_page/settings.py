@@ -149,8 +149,7 @@ RQ_QUEUES = {
      },
 }
 
-TIMEPAD_WEBHOOK_SECRET = os.getenv(
-    'TIMEPAD_WEBHOOK_SECRET', 'pythonmachinelearningcv.com')
+TIMEPAD_WEBHOOK_SECRET = os.getenv('TIMEPAD_WEBHOOK_SECRET', '')
 MANDRILL_API_KEY = os.getenv('MANDRILL_API_KEY', '')
 
 
@@ -165,7 +164,7 @@ LOGGING = {
     'loggers': {
         'django': {
             'handlers': ['console'],
-            'level': os.getenv('DJANGO_LOG_LEVEL', 'ERROR'),
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
         },
     },
 }

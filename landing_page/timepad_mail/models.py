@@ -103,7 +103,6 @@ class Ticket(models.Model):
         STATUS_REMINDED_3: "ticket-expiration3",
     }
     STATUS_RAW_TO_CHOICE = {
-        'ok': STATUS_PAID,  # no store, no mail
         'paid': STATUS_PAID,
         'paid_ur': STATUS_PAID,
         'paid_offline': STATUS_PAID,
@@ -190,9 +189,7 @@ class Ticket(models.Model):
     @classmethod
     def get_status_from_raw(cls, status_raw: str) -> str:
         " Convert status_raw to constant statuses, None on fail."
-        status = cls.STATUS_RAW_TO_CHOICE.get(status_raw, None)
-        if not status:
-            logger.error(f'KeyError no such status as {status_raw}')
+        status = cls.STATUS_RAW_TO_CHOICE.get(status_raw)
         return status
 
     @staticmethod
@@ -213,10 +210,7 @@ class Ticket(models.Model):
     @classmethod
     def status_to_template(cls, status: str) -> str:
         " Convert status to template_name, None on fail."
-        try:
-            return cls.STATUS_TEMPLATE.get(status, None)
-        except BaseException as e:
-            logger.error(e)
+        return cls.STATUS_TEMPLATE.get(status)
 
     @classmethod
     def dict_deserialize(cls, data: dict):

@@ -61,7 +61,7 @@ TIMEPAD_PAYLOAD = """
     "hook_resend": 2
 }
 """
-TIMEPAD_SIDE_EVENT = ''
+TIMEPAD_DICT = json.loads(TIMEPAD_PAYLOAD)
 
 class MandrillSendTest(SimpleTestCase):
     """ Tests for send a transactional messages through Mandrill."""
@@ -206,14 +206,15 @@ class TicketTest(TestCase):
         self.assertEqual(ticket.email, data['email'])
         self.assertEqual(ticket.name, data['name'])
         self.assertEqual(ticket.surname, data['surname'])
-        self.assertEqual(ticket.printed_id,  data['id'])
+        self.assertEqual(ticket.printed_id, data['id'])
 
     def test_manage_webhook_payload(self):
-        data = json.loads(TIMEPAD_PAYLOAD)
-        ticket = Ticket.dict_deserialize(data)
-  
-        new_ticket = Ticket.manage_webhook_payload(TIMEPAD_PAYLOAD)
-        self.assertIsInstance(new_ticket, Ticket)
+        """ Check new ticket."""
+        data = TIMEPAD_DICT
+        data['event_name'] = Ticket.CAMPAIGN_EVENTS[0]
+        payload = json.dumps(data) 
+        ticket = Ticket.manage_webhook_payload(payload)
+        self.assertIsInstance(ticket, Ticket)
         check = Ticket.objects.filter(
             order_id=ticket.order_id, 
             event_id=ticket.event_id
@@ -230,4 +231,20 @@ class TicketTest(TestCase):
         self.assertEqual(ticket.email, data['email'])
         self.assertEqual(ticket.name, data['name'])
         self.assertEqual(ticket.surname, data['surname'])
-        self.assertEqual(ticket.printed_id,  data['id'])
+        self.assertEqual(ticket.printed_id, data['id'])
+        self.assertEqual(ticket.event_name, data['event_name'])
+
+        """ Check new ticket from not tracked event."""
+        data = TIMEPAD_DICT
+        data['event_name'] = 'crap'
+        payload = json.dumps(data) 
+        ticket = Ticket.manage_webhook_payload(payload)
+        self.assertEqual(ticket, None)
+
+        """ Check new ticket from not tracked status_raw."""
+        data = TIMEPAD_DICT
+        data['event_name'] = Ticket.CAMPAIGN_EVENTS[0]
+        data['status_raw'] = 'ok'
+        payload = json.dumps(data) 
+        ticket = Ticket.manage_webhook_payload(payload)
+        self.assertEqual(ticket, None)
