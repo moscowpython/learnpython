@@ -10,30 +10,6 @@ from .models import Ticket
 from .send_mail_mandrill import send_template, send_mail
 
 
-""" Status to action required correspondance.
-
-paid (оплачено): платный билет успешно оплачен он-лайн
-booked (забронировано): билет находится в статусе "Забронировано"
-notpaid (просрочено): билет не был оплачен и срок брони для него истек
-inactive (отказ): участник отказался от участия
-booked_offline (бронь для выкупа): билет был заказан для выкупа в офисе 
-организатора
-paid_offline (оплачено на месте): билет был оплачен в офисе организатора
-paid_ur (оплачено компанией): билет был оплачен юридическим платежом
-transfer_payment (перенесена оплата): билет был оплачен переносом оплаты 
-с другого заказа
-"""
-STATUS_ACTION = {
-    'paid': 'ticket-success',
-    'paid_ur': 'ticket-success',
-    'paid_offline': 'ticket-success',
-    'transfer_payment': 'ticket-success',
-    'inactive': 'ticket-cancel',
-    'notpaid': 'ticket-cancel',
-    'booked': 'ticket-creation',
-    'booked_offline': 'ticket-creation',
-}
-
 @csrf_exempt
 def handle_webhook(request):
     """Webhook handler check sender sha1 signature."""
