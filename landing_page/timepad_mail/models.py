@@ -46,25 +46,35 @@ class TicketQuerySet(models.QuerySet):
     # @shared_task
     def save_ticket(self, ticket):
         ticket.save()
-        send_template(
+        response = send_template(
             template_name=ticket.status_to_template(ticket.status),
             email=ticket.email,
             surname=ticket.surname,
             name=ticket.name,
         )
-        return ticket
+        return response
 
     def update_ticket_status(self, ticket):
         "Update ticket status."
-        tickets = self.filter(order_id=ticket.order_id, event_id=ticket.event_id)
-        for old_ticket in tickets:
-            send_template(
-                template_name=ticket.status_to_template(ticket.status),
-                email=ticket.email,
-                surname=ticket.surname,
-                name=ticket.name,
-            )
-        tickets.update(status=ticket.status)
+        try:
+            read_ticket = self.get(order_id=ticket.order_id, event_id=ticket.event_id)
+            read_ticket.status = ticket.status
+            read_ticket.save(update_fields=('status', ))
+        except ObjectDoesNotExist as exception:
+            logger.error(f'{exception.__class__.__name__} occurred: {exception}')
+            ticket.save()
+        except MultipleObjectsReturned as exception:
+            logger.error(f'{exception.__class__.__name__} occurred: {exception}')
+            tickets = self.filter(order_id=ticket.order_id, event_id=ticket.event_id)
+            tickets.update(status=ticket.status)
+        response = send_template(
+            template_name=ticket.status_to_template(ticket.status),
+            email=ticket.email,
+            surname=ticket.surname,
+            name=ticket.name,
+        )
+        return response     
+
 
 class Ticket(models.Model):
     """ Ticket from the timepad.
@@ -102,7 +112,7 @@ class Ticket(models.Model):
         STATUS_REMINDED_2: "ticket-expiration2",
         STATUS_REMINDED_3: "ticket-expiration3",
     }
-    
+
     """ Status to action required correspondance.
         paid (оплачено): платный билет успешно оплачен он-лайн
         booked (забронировано): билет находится в статусе "Забронировано"
@@ -260,7 +270,6 @@ class Ticket(models.Model):
         status = cls.get_status_from_raw(payload_dict['status_raw'])
         event_name = payload_dict['event_name']
         
-
         if not status:
             logger.info(f"{payload_dict['status_raw']} is not targeted.")
         elif not event_name in cls.CAMPAIGN_EVENTS:
@@ -269,7 +278,7 @@ class Ticket(models.Model):
         else:
             ticket = cls.dict_deserialize(payload_dict)
             if ticket and ticket.status == cls.STATUS_NEW:
-                cls.objects.save_ticket(ticket)
+                return ticket, cls.objects.save_ticket(ticket)
             elif ticket:
-                cls.objects.update_ticket_status(ticket)
+                return ticket, cls.objects.update_ticket_status(ticket)
             return ticket

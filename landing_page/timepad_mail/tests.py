@@ -208,12 +208,14 @@ class TicketTest(TestCase):
         self.assertEqual(ticket.surname, data['surname'])
         self.assertEqual(ticket.printed_id, data['id'])
 
-    def test_manage_webhook_payload(self):
+    def test_manage_webhook_payload_booked(self):
         """ Check new ticket."""
         data = TIMEPAD_DICT
         data['event_name'] = Ticket.CAMPAIGN_EVENTS[0]
         payload = json.dumps(data) 
-        ticket = Ticket.manage_webhook_payload(payload)
+        ticket, response = Ticket.manage_webhook_payload(payload)
+        self.assertIn(response[0]['status'], ('sent', 'queued'))
+        self.assertEqual(response[0]['email'], ticket.email)
         self.assertIsInstance(ticket, Ticket)
         check = Ticket.objects.filter(
             order_id=ticket.order_id, 
@@ -234,6 +236,7 @@ class TicketTest(TestCase):
         self.assertEqual(ticket.printed_id, data['id'])
         self.assertEqual(ticket.event_name, data['event_name'])
 
+    def test_manage_webhook_payload_booked_not_tracked(self):
         """ Check new ticket from not tracked event."""
         data = TIMEPAD_DICT
         data['event_name'] = 'crap'
@@ -241,6 +244,7 @@ class TicketTest(TestCase):
         ticket = Ticket.manage_webhook_payload(payload)
         self.assertEqual(ticket, None)
 
+    def test_manage_webhook_payload_ok_not_tracked(self):
         """ Check new ticket from not tracked status_raw."""
         data = TIMEPAD_DICT
         data['event_name'] = Ticket.CAMPAIGN_EVENTS[0]
@@ -248,3 +252,64 @@ class TicketTest(TestCase):
         payload = json.dumps(data) 
         ticket = Ticket.manage_webhook_payload(payload)
         self.assertEqual(ticket, None)
+
+    def test_manage_webhook_payload_notpaid(self):
+        """ Check new ticket."""
+        data = TIMEPAD_DICT
+        data['event_name'] = Ticket.CAMPAIGN_EVENTS[0]
+        data['status_raw'] = 'notpaid'
+        payload = json.dumps(data) 
+        ticket, response = Ticket.manage_webhook_payload(payload)
+        self.assertIn(response[0]['status'], ('sent', 'queued'))
+        self.assertEqual(response[0]['email'], ticket.email)
+        self.assertIsInstance(ticket, Ticket)
+        check = Ticket.objects.filter(
+            order_id=ticket.order_id, 
+            event_id=ticket.event_id
+        ).exists()
+        self.assertEqual(check, True)
+
+        self.assertEqual(ticket.order_id, int(data['order_id']))
+        self.assertEqual(ticket.event_id, int(data['event_id']))
+        self.assertEqual(ticket.status, Ticket.get_status_from_raw(data['status_raw']))
+        self.assertEqual(
+            ticket.reg_date, 
+            Ticket.reg_date_to_datatime(data['reg_date'])
+        )
+        self.assertEqual(ticket.email, data['email'])
+        self.assertEqual(ticket.name, data['name'])
+        self.assertEqual(ticket.surname, data['surname'])
+        self.assertEqual(ticket.printed_id, data['id'])
+        self.assertEqual(ticket.event_name, data['event_name'])
+
+    def test_manage_webhook_payload_paid(self):
+        """ Check new ticket."""
+        data = TIMEPAD_DICT
+        data['event_name'] = Ticket.CAMPAIGN_EVENTS[0]
+        data = json.loads(TIMEPAD_PAYLOAD)
+        ticket = Ticket.dict_deserialize(data)
+        ticket.save()
+        data['status_raw'] = 'paid'
+        payload = json.dumps(data) 
+        ticket, response = Ticket.manage_webhook_payload(payload)
+        self.assertIn(response[0]['status'], ('sent', 'queued'))
+        self.assertEqual(response[0]['email'], ticket.email)
+        self.assertIsInstance(ticket, Ticket)
+        check = Ticket.objects.filter(
+            order_id=ticket.order_id, 
+            event_id=ticket.event_id
+        ).exists()
+        self.assertEqual(check, True)
+
+        self.assertEqual(ticket.order_id, int(data['order_id']))
+        self.assertEqual(ticket.event_id, int(data['event_id']))
+        self.assertEqual(ticket.status, Ticket.get_status_from_raw(data['status_raw']))
+        self.assertEqual(
+            ticket.reg_date, 
+            Ticket.reg_date_to_datatime(data['reg_date'])
+        )
+        self.assertEqual(ticket.email, data['email'])
+        self.assertEqual(ticket.name, data['name'])
+        self.assertEqual(ticket.surname, data['surname'])
+        self.assertEqual(ticket.printed_id, data['id'])
+        self.assertEqual(ticket.event_name, data['event_name'])
