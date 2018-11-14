@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'celery',
     'timepad_mail.apps.TimepadMailConfig'  # Timepad ticket status mailing.
 ]
 
