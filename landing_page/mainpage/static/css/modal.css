@@ -149,6 +149,8 @@
 }
 .b-registration__check-block .b-registration__label{
     position: relative;
+    display: flex;
+    align-items: center;
     /*padding-left: 30px;*/
 
 }
