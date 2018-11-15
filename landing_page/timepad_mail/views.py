@@ -29,9 +29,9 @@ def handle_webhook(request):
     # Sometimes the payload comes in as the request body, sometimes it comes in
     # as a POST parameter. This will handle either case.
     if 'payload' in request.POST:
-        payload = json.loads(request.POST['payload'])
+        payload = request.POST['payload']
     else:
-        payload = json.loads(request.body)
+        payload = request.body
 
     # This is where you'll do something with the webhook
     Ticket.manage_webhook_payload(payload)
