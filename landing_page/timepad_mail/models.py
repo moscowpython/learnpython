@@ -10,7 +10,7 @@ from django.core.exceptions import (
     MultipleObjectsReturned,
     ValidationError,
 )
-from .send_mail_mandrill import send_template
+from .senders import send_template
 
 
 

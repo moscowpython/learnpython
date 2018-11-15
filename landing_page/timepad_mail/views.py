@@ -7,7 +7,7 @@ from django.http import HttpResponse, HttpResponseForbidden
 from django.views.decorators.csrf import csrf_exempt
 
 from .models import Ticket
-from .send_mail_mandrill import send_template, send_mail
+from .senders import send_template, send_mail
 
 
 @csrf_exempt

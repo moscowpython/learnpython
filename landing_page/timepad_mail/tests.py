@@ -2,7 +2,7 @@ import json
 from django.test import SimpleTestCase, TestCase
 from django.utils import timezone
 
-from .send_mail_mandrill import (
+from .senders import (
     send_mail, _create_html_table_from_dict, send_template)
 from .models import Ticket, TicketQuerySet
 
