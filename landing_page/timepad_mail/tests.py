@@ -296,8 +296,7 @@ class TicketUpdateTest(TestCase):
         data['status_raw'] = 'notpaid'
 
         payload = json.dumps(data) 
-        response = process_webhook_async.delay(payload)
-        response.get()
+        response = process_webhook_async.delay(payload).get()
         self.assertIn(response[0]['status'], ('sent', 'queued'))
         self.assertEqual(response[0]['email'], self.new_ticket.email)
 
