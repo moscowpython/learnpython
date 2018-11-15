@@ -215,9 +215,9 @@ class TicketTest(TestCase):
         payload = json.dumps(data) 
         new_ticket, response = process_webhook_payload(payload)
         self.assertIn(response[0]['status'], ('sent', 'queued'))
-        self.assertEqual(response[0]['email'], ticket.email)
+        self.assertEqual(response[0]['email'], new_ticket.email)
         self.assertIsInstance(new_ticket, Ticket)
-        ticket = Ticket.objects.get_ticket(ticket)
+        ticket = Ticket.objects.get_ticket(new_ticket)
 
         self.assertEqual(ticket.order_id, int(data['order_id']))
         self.assertEqual(ticket.event_id, int(data['event_id']))
@@ -264,8 +264,8 @@ class TicketUpdateTest(TestCase):
             "name": "Денис",
             "event_name": "Learn Python 11",
         }
-        self.new_ticket = Ticket.dict_deserialize(self.ticket_dict)
-        self.new_ticket.save()        
+        self.ticket = Ticket.dict_deserialize(self.ticket_dict)
+        self.ticket.save()        
 
     def test_manage_webhook_payload_notpaid(self):
         data = self.ticket_dict
@@ -298,9 +298,9 @@ class TicketUpdateTest(TestCase):
         payload = json.dumps(data) 
         response = process_webhook_async.delay(payload).get()
         self.assertIn(response[0]['status'], ('sent', 'queued'))
-        self.assertEqual(response[0]['email'], self.new_ticket.email)
+        self.assertEqual(response[0]['email'], self.ticket.email)
 
-        ticket = Ticket.objects.get_ticket(self.new_ticket)
+        ticket = Ticket.objects.get_ticket(self.ticket)
 
         self.assertEqual(ticket.order_id, int(data['order_id']))
         self.assertEqual(ticket.event_id, int(data['event_id']))
@@ -339,3 +339,25 @@ class TicketUpdateTest(TestCase):
         self.assertEqual(ticket.surname, data['surname'])
         self.assertEqual(ticket.printed_id, data['id'])
         self.assertEqual(ticket.event_name, data['event_name'])
+
+class TicketExpirationTest(TestCase):
+
+    def setUp(self):
+        "Create new ticket."
+        self.ticket_dict = {
+            "id": "22398586:56559903",
+            "event_id": 830329,
+            "order_id": "17862035",
+            "reg_date": "2018-10-11 00:45:53",
+            "status_raw": "booked",
+            "email": "denistrofimov@pythonmachinelearningcv.com",
+            "surname": "Трофимов",
+            "name": "Денис",
+            "event_name": "Learn Python 11",
+        }
+        self.ticket = Ticket.dict_deserialize(self.ticket_dict)
+
+    def test_check_ticket_expiration(self):
+        self.ticket.reg_date = timezone.now() - timezone.timedelta(days=1)
+        self.ticket.save()
+        self.assertLessEqual(timezone.timedelta(hours=9), timezone.now() - self.ticket.reg_date)
