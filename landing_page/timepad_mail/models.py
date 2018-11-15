@@ -189,8 +189,7 @@ class Ticket(models.Model):
         ]
 
     def __str__(self):
-        return (f"ID билета: {self.printed_id}, ID заказа: {self.order_id}, "
-        f"ID мероприятия: {self.event_id}, Дата: {self.reg_date}, "
+        return (f"{self.event_name}, ID заказа: {self.order_id}, "
         f"Статус: {self.status}, E-mail: {self.email}, "
         f"Имя: {self.name}, Фамилия: {self.surname}")
 
@@ -256,8 +255,14 @@ class Ticket(models.Model):
             )
             ticket.full_clean()
             return ticket
-        except (KeyError, ValueError, ValidationError) as e:
-            logger.error(e)
+        except (KeyError, ValueError) as exception:
+            logger.error(f'Deserialize {exception.__class__.__name__}: '
+            f'{exception}')
+            return
+        except ValidationError as exception:
+            logger.error(f'Deserialize {exception.__class__.__name__}: '
+            f'{exception}')
+            logger.error(f'Invalid ticket: {ticket}')
             return
 
     @classmethod

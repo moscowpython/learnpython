@@ -1,10 +1,11 @@
 import json
 from django.test import SimpleTestCase, TestCase
 from django.utils import timezone
-
+from django.conf import settings
 from .senders import (
     send_mail, _create_html_table_from_dict, send_template)
 from .models import Ticket, TicketQuerySet
+from .tasks import process_webhook_payload
 
 EMAIL = "denistrofimov@pythonmachinelearningcv.com"
 SURNAME = "Трофимов"
@@ -211,9 +212,10 @@ class TicketTest(TestCase):
     def test_manage_webhook_payload_booked(self):
         """ Check new ticket."""
         data = TIMEPAD_DICT
-        data['event_name'] = Ticket.CAMPAIGN_EVENTS[0]
+        data['event_name'] = settings.WATCHED_EVENTS[0]
         payload = json.dumps(data) 
-        ticket, response = Ticket.manage_webhook_payload(payload)
+        # ticket, response = Ticket.manage_webhook_payload(payload)
+        ticket, response = process_webhook_payload(payload)
         self.assertIn(response[0]['status'], ('sent', 'queued'))
         self.assertEqual(response[0]['email'], ticket.email)
         self.assertIsInstance(ticket, Ticket)
