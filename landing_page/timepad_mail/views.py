@@ -6,8 +6,7 @@ from django.conf import settings
 from django.http import HttpResponse, HttpResponseForbidden
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import Ticket
-from .senders import send_template, send_mail
+from .tasks import process_webhook_async
 
 
 @csrf_exempt
@@ -34,6 +33,6 @@ def handle_webhook(request):
         payload = request.body
 
     # This is where you'll do something with the webhook
-    Ticket.manage_webhook_payload(payload)
+    process_webhook_async.delay(payload)
 
     return HttpResponse('Webhook received', status=200)

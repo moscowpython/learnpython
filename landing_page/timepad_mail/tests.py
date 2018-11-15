@@ -5,7 +5,7 @@ from django.conf import settings
 from .senders import (
     send_mail, _create_html_table_from_dict, send_template)
 from .models import Ticket, TicketQuerySet
-from .tasks import process_webhook_payload
+from .tasks import process_webhook_payload, process_webhook_async
 
 EMAIL = "denistrofimov@pythonmachinelearningcv.com"
 SURNAME = "Трофимов"
@@ -277,6 +277,31 @@ class TicketUpdateTest(TestCase):
         self.assertEqual(response[0]['email'], updated_ticket.email)
         self.assertIsInstance(updated_ticket, Ticket)
         ticket = Ticket.objects.get_ticket(updated_ticket)
+
+        self.assertEqual(ticket.order_id, int(data['order_id']))
+        self.assertEqual(ticket.event_id, int(data['event_id']))
+        self.assertEqual(ticket.status, Ticket.get_status_from_raw(data['status_raw']))
+        self.assertEqual(
+            ticket.reg_date, 
+            Ticket.reg_date_to_datatime(data['reg_date'])
+        )
+        self.assertEqual(ticket.email, data['email'])
+        self.assertEqual(ticket.name, data['name'])
+        self.assertEqual(ticket.surname, data['surname'])
+        self.assertEqual(ticket.printed_id, data['id'])
+        self.assertEqual(ticket.event_name, data['event_name'])
+
+    def test_process_webhook_async_notpaid(self):
+        data = self.ticket_dict
+        data['status_raw'] = 'notpaid'
+
+        payload = json.dumps(data) 
+        response = process_webhook_async.delay(payload)
+        response.get()
+        self.assertIn(response[0]['status'], ('sent', 'queued'))
+        self.assertEqual(response[0]['email'], self.new_ticket.email)
+
+        ticket = Ticket.objects.get_ticket(self.new_ticket)
 
         self.assertEqual(ticket.order_id, int(data['order_id']))
         self.assertEqual(ticket.event_id, int(data['event_id']))
