@@ -25,9 +25,17 @@ class TicketQuerySet(models.QuerySet):
         https://sunscrapers.com/blog/where-to-put-business-logic-django/
     """
 
-    # def create_ticket(self, **kwargs):
-    #     " Create ticket instance."
-    #     return self.create(**kwargs)
+    def get_ticket(self, ticket):
+        "Get ticket instance."
+        try:
+            return self.get(order_id=ticket.order_id, event_id=ticket.event_id)
+        except ObjectDoesNotExist as exception:
+            logger.error(f'{exception.__class__.__name__} occurred: {exception}')
+            return
+        except MultipleObjectsReturned as exception:
+            logger.error(f'{exception.__class__.__name__} occurred: {exception}')
+            tickets = self.filter(order_id=ticket.order_id, event_id=ticket.event_id)
+            return tickets[0]
 
     def create_ticket(self, **kwargs):
         """ Ticket create customization that send mail.
@@ -43,7 +51,6 @@ class TicketQuerySet(models.QuerySet):
         )
         return ticket
     
-    # @shared_task
     def save_ticket(self, ticket):
         ticket.save()
         response = send_template(
@@ -126,6 +133,7 @@ class Ticket(models.Model):
         с другого заказа
     """
     STATUS_RAW_TO_CHOICE = {
+        'ok': STATUS_PAID,
         'paid': STATUS_PAID,
         'paid_ur': STATUS_PAID,
         'paid_offline': STATUS_PAID,
@@ -263,7 +271,7 @@ class Ticket(models.Model):
             logger.error(f'Deserialize {exception.__class__.__name__}: '
             f'{exception}')
             logger.error(f'Invalid ticket: {ticket}')
-            return
+            return 
 
     @classmethod
     def manage_webhook_payload(cls, payload: str):

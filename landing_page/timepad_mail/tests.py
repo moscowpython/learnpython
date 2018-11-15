@@ -62,7 +62,6 @@ TIMEPAD_PAYLOAD = """
     "hook_resend": 2
 }
 """
-TIMEPAD_DICT = json.loads(TIMEPAD_PAYLOAD)
 
 class MandrillSendTest(SimpleTestCase):
     """ Tests for send a transactional messages through Mandrill."""
@@ -211,19 +210,14 @@ class TicketTest(TestCase):
 
     def test_manage_webhook_payload_booked(self):
         """ Check new ticket."""
-        data = TIMEPAD_DICT
+        data = json.loads(TIMEPAD_PAYLOAD)
         data['event_name'] = settings.WATCHED_EVENTS[0]
         payload = json.dumps(data) 
-        # ticket, response = Ticket.manage_webhook_payload(payload)
-        ticket, response = process_webhook_payload(payload)
+        new_ticket, response = process_webhook_payload(payload)
         self.assertIn(response[0]['status'], ('sent', 'queued'))
         self.assertEqual(response[0]['email'], ticket.email)
-        self.assertIsInstance(ticket, Ticket)
-        check = Ticket.objects.filter(
-            order_id=ticket.order_id, 
-            event_id=ticket.event_id
-        ).exists()
-        self.assertEqual(check, True)
+        self.assertIsInstance(new_ticket, Ticket)
+        ticket = Ticket.objects.get_ticket(ticket)
 
         self.assertEqual(ticket.order_id, int(data['order_id']))
         self.assertEqual(ticket.event_id, int(data['event_id']))
@@ -240,36 +234,49 @@ class TicketTest(TestCase):
 
     def test_manage_webhook_payload_booked_not_tracked(self):
         """ Check new ticket from not tracked event."""
-        data = TIMEPAD_DICT
+        data = json.loads(TIMEPAD_PAYLOAD)
         data['event_name'] = 'crap'
         payload = json.dumps(data) 
-        ticket = Ticket.manage_webhook_payload(payload)
+        ticket, response = process_webhook_payload(payload)
         self.assertEqual(ticket, None)
 
-    def test_manage_webhook_payload_ok_not_tracked(self):
+    def test_manage_webhook_payload_status_not_tracked(self):
         """ Check new ticket from not tracked status_raw."""
-        data = TIMEPAD_DICT
-        data['event_name'] = Ticket.CAMPAIGN_EVENTS[0]
+        data = json.loads(TIMEPAD_PAYLOAD)
         data['status_raw'] = 'ok'
+        data['event_name'] = settings.WATCHED_EVENTS[0]
         payload = json.dumps(data) 
-        ticket = Ticket.manage_webhook_payload(payload)
+        ticket, response = process_webhook_payload(payload)
         self.assertEqual(ticket, None)
+
+class TicketUpdateTest(TestCase):
+
+    def setUp(self):
+        "Create new ticket."
+        self.ticket_dict = {
+            "id": "22398586:56559903",
+            "event_id": 830329,
+            "order_id": "17862035",
+            "reg_date": "2018-10-11 00:45:53",
+            "status_raw": "booked",
+            "email": "denistrofimov@pythonmachinelearningcv.com",
+            "surname": "Трофимов",
+            "name": "Денис",
+            "event_name": "Learn Python 11",
+        }
+        self.new_ticket = Ticket.dict_deserialize(self.ticket_dict)
+        self.new_ticket.save()        
 
     def test_manage_webhook_payload_notpaid(self):
-        """ Check new ticket."""
-        data = TIMEPAD_DICT
-        data['event_name'] = Ticket.CAMPAIGN_EVENTS[0]
+        data = self.ticket_dict
         data['status_raw'] = 'notpaid'
+
         payload = json.dumps(data) 
-        ticket, response = Ticket.manage_webhook_payload(payload)
+        updated_ticket, response = process_webhook_payload(payload)
         self.assertIn(response[0]['status'], ('sent', 'queued'))
-        self.assertEqual(response[0]['email'], ticket.email)
-        self.assertIsInstance(ticket, Ticket)
-        check = Ticket.objects.filter(
-            order_id=ticket.order_id, 
-            event_id=ticket.event_id
-        ).exists()
-        self.assertEqual(check, True)
+        self.assertEqual(response[0]['email'], updated_ticket.email)
+        self.assertIsInstance(updated_ticket, Ticket)
+        ticket = Ticket.objects.get_ticket(updated_ticket)
 
         self.assertEqual(ticket.order_id, int(data['order_id']))
         self.assertEqual(ticket.event_id, int(data['event_id']))
@@ -286,22 +293,15 @@ class TicketTest(TestCase):
 
     def test_manage_webhook_payload_paid(self):
         """ Check new ticket."""
-        data = TIMEPAD_DICT
-        data['event_name'] = Ticket.CAMPAIGN_EVENTS[0]
-        data = json.loads(TIMEPAD_PAYLOAD)
-        ticket = Ticket.dict_deserialize(data)
-        ticket.save()
+        data = self.ticket_dict
         data['status_raw'] = 'paid'
+
         payload = json.dumps(data) 
-        ticket, response = Ticket.manage_webhook_payload(payload)
+        updated_ticket, response = process_webhook_payload(payload)
         self.assertIn(response[0]['status'], ('sent', 'queued'))
-        self.assertEqual(response[0]['email'], ticket.email)
-        self.assertIsInstance(ticket, Ticket)
-        check = Ticket.objects.filter(
-            order_id=ticket.order_id, 
-            event_id=ticket.event_id
-        ).exists()
-        self.assertEqual(check, True)
+        self.assertEqual(response[0]['email'], updated_ticket.email)
+        self.assertIsInstance(updated_ticket, Ticket)
+        ticket = Ticket.objects.get_ticket(updated_ticket)
 
         self.assertEqual(ticket.order_id, int(data['order_id']))
         self.assertEqual(ticket.event_id, int(data['event_id']))
