@@ -5,7 +5,7 @@ from django.conf import settings
 from .senders import (
     send_mail, _create_html_table_from_dict, send_template)
 from .models import Ticket, TicketQuerySet
-from .tasks import process_webhook_payload, process_webhook_async, beta_preprocess_webhook_payload
+from .tasks import process_webhook_payload, process_webhook_payload_synchro
 
 EMAIL = "denistrofimov@pythonmachinelearningcv.com"
 SURNAME = "Трофимов"
@@ -213,12 +213,12 @@ class TicketTest(TestCase):
         data = json.loads(TIMEPAD_PAYLOAD)
         data['event_name'] = settings.WATCHED_EVENTS[0]
         payload = json.dumps(data) 
-        new_ticket, response = process_webhook_payload(payload)
+        new_ticket = Ticket.dict_deserialize(data)
+        response = process_webhook_payload_synchro(payload)
         self.assertIn(response[0]['status'], ('sent', 'queued'))
         self.assertEqual(response[0]['email'], new_ticket.email)
-        self.assertIsInstance(new_ticket, Ticket)
-        ticket = Ticket.objects.get_ticket(new_ticket)
 
+        ticket = Ticket.objects.get_ticket(new_ticket)
         self.assertEqual(ticket.order_id, int(data['order_id']))
         self.assertEqual(ticket.event_id, int(data['event_id']))
         self.assertEqual(ticket.status, Ticket.STATUS_NEW)
@@ -237,15 +237,15 @@ class TicketTest(TestCase):
         data = json.loads(TIMEPAD_PAYLOAD)
         data['event_name'] = settings.WATCHED_EVENTS[0]
         payload = json.dumps(data) 
-        beta_preprocess_webhook_payload(payload)
+        process_webhook_payload(payload)
 
     def test_manage_webhook_payload_booked_not_tracked(self):
         """ Check new ticket from not tracked event."""
         data = json.loads(TIMEPAD_PAYLOAD)
         data['event_name'] = 'crap'
         payload = json.dumps(data) 
-        ticket, response = process_webhook_payload(payload)
-        self.assertEqual(ticket, None)
+        response = process_webhook_payload_synchro(payload)
+        self.assertEqual(response, None)
 
     def test_manage_webhook_payload_status_not_tracked(self):
         """ Check new ticket from not tracked status_raw."""
@@ -253,9 +253,27 @@ class TicketTest(TestCase):
         data['status_raw'] = 'ok'
         data['event_name'] = settings.WATCHED_EVENTS[0]
         payload = json.dumps(data) 
-        ticket, response = process_webhook_payload(payload)
-        self.assertEqual(ticket, None)
+        response = process_webhook_payload_synchro(payload)
+        self.assertEqual(response, None)
 
+
+class TicketUpdateAsyncTest(TestCase):
+    def setUp(self):
+        "Create new ticket."
+        self.ticket_dict = {
+            "id": "22398586:56559903",
+            "event_id": 830329,
+            "order_id": "17862035",
+            "reg_date": "2018-10-11 00:45:53",
+            "status_raw": "booked",
+            "email": "denistrofimov@pythonmachinelearningcv.com",
+            "surname": "Трофимов",
+            "name": "Денис",
+            "event_name": "Learn Python 11",
+        }
+        self.ticket = Ticket.dict_deserialize(self.ticket_dict)
+        self.ticket.save()  
+        
 class TicketUpdateTest(TestCase):
 
     def setUp(self):
@@ -272,14 +290,39 @@ class TicketUpdateTest(TestCase):
             "event_name": "Learn Python 11",
         }
         self.ticket = Ticket.dict_deserialize(self.ticket_dict)
-        self.ticket.save()        
+        self.ticket.save() 
+
+    def test_process_webhook_payload_async_notpaid(self):
+        data = self.ticket_dict
+        data['status_raw'] = 'notpaid'
+
+        payload = json.dumps(data) 
+        response = process_webhook_payload_synchro(payload).get()
+        self.assertIn(response[0]['status'], ('sent', 'queued'))
+        self.assertEqual(response[0]['email'], self.ticket.email)
+
+        ticket = Ticket.objects.get_ticket(self.ticket)
+
+        self.assertEqual(ticket.order_id, int(data['order_id']))
+        self.assertEqual(ticket.event_id, int(data['event_id']))
+        self.assertEqual(ticket.status, Ticket.get_status_from_raw(data['status_raw']))
+        self.assertEqual(
+            ticket.reg_date, 
+            Ticket.reg_date_to_datatime(data['reg_date'])
+        )
+        self.assertEqual(ticket.email, data['email'])
+        self.assertEqual(ticket.name, data['name'])
+        self.assertEqual(ticket.surname, data['surname'])
+        self.assertEqual(ticket.printed_id, data['id'])
+        self.assertEqual(ticket.event_name, data['event_name'])               
 
     def test_manage_webhook_payload_notpaid(self):
         data = self.ticket_dict
         data['status_raw'] = 'notpaid'
 
         payload = json.dumps(data) 
-        updated_ticket, response = process_webhook_payload(payload)
+        updated_ticket = Ticket.dict_deserialize(data)
+        response = process_webhook_payload_synchro(payload)
         self.assertIn(response[0]['status'], ('sent', 'queued'))
         self.assertEqual(response[0]['email'], updated_ticket.email)
         self.assertIsInstance(updated_ticket, Ticket)
@@ -298,37 +341,13 @@ class TicketUpdateTest(TestCase):
         self.assertEqual(ticket.printed_id, data['id'])
         self.assertEqual(ticket.event_name, data['event_name'])
 
-    def test_process_webhook_async_notpaid(self):
-        data = self.ticket_dict
-        data['status_raw'] = 'notpaid'
-
-        payload = json.dumps(data) 
-        response = beta_preprocess_webhook_payload(payload).get()
-        self.assertIn(response[0]['status'], ('sent', 'queued'))
-        self.assertEqual(response[0]['email'], self.ticket.email)
-
-        ticket = Ticket.objects.get_ticket(self.ticket)
-
-        self.assertEqual(ticket.order_id, int(data['order_id']))
-        self.assertEqual(ticket.event_id, int(data['event_id']))
-        self.assertEqual(ticket.status, Ticket.get_status_from_raw(data['status_raw']))
-        self.assertEqual(
-            ticket.reg_date, 
-            Ticket.reg_date_to_datatime(data['reg_date'])
-        )
-        self.assertEqual(ticket.email, data['email'])
-        self.assertEqual(ticket.name, data['name'])
-        self.assertEqual(ticket.surname, data['surname'])
-        self.assertEqual(ticket.printed_id, data['id'])
-        self.assertEqual(ticket.event_name, data['event_name'])
-
     def test_manage_webhook_payload_paid(self):
         """ Check new ticket."""
         data = self.ticket_dict
         data['status_raw'] = 'paid'
-
         payload = json.dumps(data) 
-        updated_ticket, response = process_webhook_payload(payload)
+        updated_ticket = Ticket.dict_deserialize(data)
+        response = process_webhook_payload_synchro(payload)
         self.assertIn(response[0]['status'], ('sent', 'queued'))
         self.assertEqual(response[0]['email'], updated_ticket.email)
         self.assertIsInstance(updated_ticket, Ticket)
