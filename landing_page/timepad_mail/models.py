@@ -4,6 +4,7 @@ from celery import shared_task
 import json
 import logging
 from django.db import models
+from django.db.models import Q
 from django.utils import timezone
 from django.core.exceptions import (
     ObjectDoesNotExist,
@@ -81,16 +82,10 @@ class TicketQuerySet(models.QuerySet):
             surname=ticket.surname,
             name=ticket.name,
         )
-        return response     
+        return response
 
-    def send_ticket_reminder_one(self):
-        """ Check expired ticket and send reminder one. 
-            ticket-expiration1: 
-            следующий день в 9 утра по МСК, если билет не оплачен
-        """
-        expire_date = timezone.now() - timezone.timedelta(hours=9)
-        status = Ticket.STATUS_REMINDED_1
-        tickets = self.filter(status=Ticket.STATUS_NEW, reg_date__lt=expire_date)
+    def update_tickets_status(self, tickets, status):
+        "Update tickets status and send template emails."
         responses = []
         for ticket in tickets:
             response = send_template(
@@ -109,8 +104,73 @@ class TicketQuerySet(models.QuerySet):
                 ticket.save(update_fields=('status', ))
         return responses
 
+    def send_ticket_reminder_one(self):
+        """ Check expired ticket and send reminder one. 
+            ticket-expiration1: 
+            следующий день в 9 утра по МСК, если билет не оплачен
+        """
+        reminder_date = timezone.now() - timezone.timedelta(days=1)
+        expire_date = timezone.now() - timezone.timedelta(days=2)
+        status = Ticket.STATUS_REMINDED_1
+        tickets = self.filter(
+            status=Ticket.STATUS_NEW,
+            reg_date__lt=reminder_date,
+        ) & self.filter(
+            status=Ticket.STATUS_NEW,
+            reg_date__gt=expire_date,
+        )    
+        return Ticket.objects.update_tickets_status(tickets, status)
 
+    def send_ticket_reminder_two(self):
+        """ Check expired ticket and send reminder one. 
+            ticket-expiration2
+            через два дня в 9 утра по МСК, если билет не оплачен
+        """
+        reminder_date = timezone.now() - timezone.timedelta(days=2)
+        expire_date = timezone.now() - timezone.timedelta(hours=66)
+        status = Ticket.STATUS_REMINDED_2
+        tickets = self.filter(
+            status__in=(
+                Ticket.STATUS_NEW,
+                Ticket.STATUS_REMINDED_1,
+            ), 
+            reg_date__lt=reminder_date,
+        ) & self.filter(
+            status__in=(
+                Ticket.STATUS_NEW,
+                Ticket.STATUS_REMINDED_1,
+            ), 
+            reg_date__gt=expire_date,
+        )  
+        return Ticket.objects.update_tickets_status(tickets, status)
         
+    def send_ticket_reminder_three(self):
+        """ Check expired ticket and send reminder one. 
+
+            На TimePad установлен срок брони – 80 часов. 
+            Условие проверки №3: за 14 часов до конца брони, если билет
+            не оплачен, означает, что билет создан ранее на 66 часов,
+            чем время сейчас, на момент проверки.
+        """
+        reminder_date = timezone.now() - timezone.timedelta(hours=66)
+        expire_date = timezone.now() - timezone.timedelta(hours=80)
+        status = Ticket.STATUS_REMINDED_3
+        tickets = self.filter(
+            status__in=(
+                Ticket.STATUS_NEW,
+                Ticket.STATUS_REMINDED_1,
+                Ticket.STATUS_REMINDED_2,
+            ), 
+            reg_date__lt=reminder_date,
+        ) & self.filter(
+            status__in=(
+                Ticket.STATUS_NEW,
+                Ticket.STATUS_REMINDED_1,
+                Ticket.STATUS_REMINDED_2,
+            ), 
+            reg_date__gt=expire_date,
+        )    
+        return Ticket.objects.update_tickets_status(tickets, status)
 
 class Ticket(models.Model):
     """ Ticket from the timepad.
