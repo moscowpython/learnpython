@@ -63,29 +63,11 @@ TIMEPAD_PAYLOAD = """
 }
 """
 
-class MandrillSendTest(SimpleTestCase):
+class SendersTest(SimpleTestCase):
     """ Tests for send a transactional messages through Mandrill."""
     test_email = "denistrofimov@pythonmachinelearningcv.com"
     test_surname = "Трофимов"
     test_name = "Денис"
-
-    def test_create_html_table_from_dict(self):
-        """ Create HTML with sutable data from payload."""
-        payload = {"event_id": 830329, "order_id": "17862035"}
-        html = _create_html_table_from_dict(payload)
-        self.assertInHTML("event_id", html)
-        self.assertInHTML("830329", html)
-        self.assertInHTML("order_id", html)
-        self.assertInHTML("17862035", html)
-
-    def deprecated_test_send_mail(self):
-        """ Test for send a new transactional message through Mandrill using 
-            real timepad webhook json data.
-        """
-        payload = json.loads(TIMEPAD_PAYLOAD)
-        result = send_mail(payload)
-        print(result)
-        self.assertEqual(result[0]['status'], 'sent')
 
     def test_send_template_ticket_success(self):
         """ Test for send a new message through Mandrill using a template.
@@ -208,6 +190,8 @@ class TicketTest(TestCase):
         self.assertEqual(ticket.surname, data['surname'])
         self.assertEqual(ticket.printed_id, data['id'])
 
+class TasksTest(TestCase):
+
     def test_manage_webhook_payload_booked(self):
         """ Check new ticket."""
         data = json.loads(TIMEPAD_PAYLOAD)
@@ -292,29 +276,30 @@ class TicketUpdateTest(TestCase):
         self.ticket = Ticket.dict_deserialize(self.ticket_dict)
         self.ticket.save() 
 
-    def test_process_webhook_payload_async_notpaid(self):
-        data = self.ticket_dict
-        data['status_raw'] = 'notpaid'
 
-        payload = json.dumps(data) 
-        response = process_webhook_payload_synchro(payload).get()
-        self.assertIn(response[0]['status'], ('sent', 'queued'))
-        self.assertEqual(response[0]['email'], self.ticket.email)
+    # def test_process_webhook_payload_async_notpaid(self):
+    #     data = self.ticket_dict
+    #     data['status_raw'] = 'notpaid'
 
-        ticket = Ticket.objects.get_ticket(self.ticket)
+    #     payload = json.dumps(data) 
+    #     response = process_webhook_payload(payload).get()
+    #     self.assertIn(response[0]['status'], ('sent', 'queued'))
+    #     self.assertEqual(response[0]['email'], self.ticket.email)
 
-        self.assertEqual(ticket.order_id, int(data['order_id']))
-        self.assertEqual(ticket.event_id, int(data['event_id']))
-        self.assertEqual(ticket.status, Ticket.get_status_from_raw(data['status_raw']))
-        self.assertEqual(
-            ticket.reg_date, 
-            Ticket.reg_date_to_datatime(data['reg_date'])
-        )
-        self.assertEqual(ticket.email, data['email'])
-        self.assertEqual(ticket.name, data['name'])
-        self.assertEqual(ticket.surname, data['surname'])
-        self.assertEqual(ticket.printed_id, data['id'])
-        self.assertEqual(ticket.event_name, data['event_name'])               
+    #     ticket = Ticket.objects.get_ticket(self.ticket)
+
+    #     self.assertEqual(ticket.order_id, int(data['order_id']))
+    #     self.assertEqual(ticket.event_id, int(data['event_id']))
+    #     self.assertEqual(ticket.status, Ticket.get_status_from_raw(data['status_raw']))
+    #     self.assertEqual(
+    #         ticket.reg_date, 
+    #         Ticket.reg_date_to_datatime(data['reg_date'])
+    #     )
+    #     self.assertEqual(ticket.email, data['email'])
+    #     self.assertEqual(ticket.name, data['name'])
+    #     self.assertEqual(ticket.surname, data['surname'])
+    #     self.assertEqual(ticket.printed_id, data['id'])
+    #     self.assertEqual(ticket.event_name, data['event_name'])               
 
     def test_manage_webhook_payload_notpaid(self):
         data = self.ticket_dict

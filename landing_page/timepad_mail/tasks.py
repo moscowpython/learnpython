@@ -72,7 +72,7 @@ def process_webhook_payload(payload):
     if not payload_dict or not isinstance(payload_dict, dict):
         return
     "Check valid and process dictionary holding ticket values."
-    return process_payload_dict.delay(payload_dict)
+    process_payload_dict.delay(payload_dict)
 
 def process_webhook_payload_synchro(payload):
     """ Process payload from web hook.
@@ -86,3 +86,4 @@ def process_webhook_payload_synchro(payload):
         return
     "Check valid and process dictionary holding ticket values."
     return process_payload_dict(payload_dict)
+
