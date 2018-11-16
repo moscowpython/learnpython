@@ -152,7 +152,20 @@ class SendersTest(SimpleTestCase):
 
 
 class TicketTest(TestCase):
-
+    def setUp(self):
+        "Create new ticket."
+        self.ticket_dict = {
+            "id": "22398586:56559903",
+            "event_id": 830329,
+            "order_id": "17862035",
+            "reg_date": "2018-10-11 00:45:53",
+            "status_raw": "booked",
+            "email": "denistrofimov@pythonmachinelearningcv.com",
+            "surname": "Трофимов",
+            "name": "Денис",
+            "event_name": "Learn Python 11",
+        }
+        
     def test_dict_deserialize(self):
         data = json.loads(TIMEPAD_PAYLOAD)
         ticket = Ticket.dict_deserialize(data)
@@ -189,6 +202,17 @@ class TicketTest(TestCase):
         self.assertEqual(ticket.name, data['name'])
         self.assertEqual(ticket.surname, data['surname'])
         self.assertEqual(ticket.printed_id, data['id'])
+
+    def test_send_ticket_reminder_one(self):
+        self.ticket = Ticket.dict_deserialize(self.ticket_dict)
+        self.ticket.reg_date = timezone.now() - timezone.timedelta(days=1)
+        self.ticket.save()
+        self.assertLessEqual(timezone.timedelta(hours=9), timezone.now() - self.ticket.reg_date)
+        responses = Ticket.objects.send_ticket_reminder_one()
+        for resonse in responses:
+            self.assertIn(response[0]['status'], ('sent', 'queued'))
+        ticket = Ticket.objects.get_ticket(self.ticket)
+        self.assertEqual(ticket.status, Ticket.STATUS_REMINDED_1)
 
 class TasksTest(TestCase):
 
@@ -366,9 +390,13 @@ class TicketExpirationTest(TestCase):
             "name": "Денис",
             "event_name": "Learn Python 11",
         }
+        
+    def test_check_ticket_expiration1(self):
         self.ticket = Ticket.dict_deserialize(self.ticket_dict)
-
-    def test_check_ticket_expiration(self):
         self.ticket.reg_date = timezone.now() - timezone.timedelta(days=1)
         self.ticket.save()
         self.assertLessEqual(timezone.timedelta(hours=9), timezone.now() - self.ticket.reg_date)
+        self.ticket.objects.check_expired_ticket()
+        ticket = self.ticket.objects.get_ticket(self.ticket)
+        self.assertEqual(ticket.status, Ticket.STATUS_REMINDED_1)
+

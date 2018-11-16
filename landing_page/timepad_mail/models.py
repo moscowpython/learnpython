@@ -52,6 +52,7 @@ class TicketQuerySet(models.QuerySet):
         return ticket
     
     def save_ticket(self, ticket):
+        "Save (store) ticket and send template email."
         ticket.save()
         response = send_template(
             template_name=ticket.status_to_template(ticket.status),
@@ -62,7 +63,7 @@ class TicketQuerySet(models.QuerySet):
         return response
 
     def update_ticket_status(self, ticket):
-        "Update ticket status."
+        "Update ticket status and send template email."
         try:
             read_ticket = self.get(order_id=ticket.order_id, event_id=ticket.event_id)
             read_ticket.status = ticket.status
@@ -82,6 +83,34 @@ class TicketQuerySet(models.QuerySet):
         )
         return response     
 
+    def send_ticket_reminder_one(self):
+        """ Check expired ticket and send reminder one. 
+            ticket-expiration1: 
+            следующий день в 9 утра по МСК, если билет не оплачен
+        """
+        expire_date = timezone.now() - timezone.timedelta(hours=9)
+        status = Ticket.STATUS_REMINDED_1
+        tickets = self.filter(status=Ticket.STATUS_NEW, reg_date__lt=expire_date)
+        responses = []
+        for ticket in tickets:
+            response = send_template(
+                template_name=ticket.status_to_template(status),
+                email=ticket.email,
+                surname=ticket.surname,
+                name=ticket.name,
+            )
+            responses.append(response)
+            if (
+                isinstance(response, list) 
+                and len(response) 
+                and response[0].get('status') in ('sent', 'queued')
+            ):
+                ticket.status = status
+                ticket.save(update_fields=('status', ))
+        return responses
+
+
+        
 
 class Ticket(models.Model):
     """ Ticket from the timepad.
