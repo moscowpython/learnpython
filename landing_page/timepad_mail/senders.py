@@ -143,7 +143,7 @@ def send_template(*, template_name, email, name, surname, vars=[]):
             async=False, 
             send_at=send_at,
         )
-        status = result[0]['status'], 'sent'
+        status = result[0]['status']
         
         if status in ('sent', 'queued'):
             logger.info(f'{send_at} - {template_name} is {status} for '
