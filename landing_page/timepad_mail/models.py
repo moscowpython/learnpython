@@ -88,11 +88,26 @@ class TicketQuerySet(models.QuerySet):
         "Update tickets status and send template emails."
         responses = []
         for ticket in tickets:
+            current_tz = timezone.get_current_timezone()
+            expire_date = current_tz.normalize(
+                ticket.reg_date + timezone.timedelta(hours=80)
+            )
+            vars = [
+                {
+                    "name": "ddate",
+                    "content": expire_date.strftime('%d.%m.%Y')
+                },
+                {
+                    "name": "dtime",
+                    "content": expire_date.strftime('%H:%M')
+                },
+            ]
             response = send_template(
                 template_name=ticket.status_to_template(status),
                 email=ticket.email,
                 surname=ticket.surname,
                 name=ticket.name,
+                vars=vars,
             )
             responses.append(response)
             if (

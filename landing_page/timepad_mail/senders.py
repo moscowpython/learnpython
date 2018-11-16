@@ -86,7 +86,11 @@ def send_template(*, template_name, email, name, surname, vars=[]):
         :param email: email
         :param name: name
         :param surname: surname or family name
-        :param vars: merge tags JSON, maximum example from KK:
+        :param vars: merge tags JSON, 
+        paylink - ссылка на страницу оплаты заказа в таймпад
+        ddate - дата истечения брони (формат дд.мм.гггг)
+        dtime - время истечения брони (формат чч:мм)
+        maximum example from KK:
         [
             {
                 "name": "paylink",
