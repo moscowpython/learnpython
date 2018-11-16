@@ -5,7 +5,7 @@ from django.conf import settings
 from .senders import (
     send_mail, _create_html_table_from_dict, send_template)
 from .models import Ticket, TicketQuerySet
-from .tasks import process_webhook_payload, process_webhook_async
+from .tasks import process_webhook_payload, process_webhook_async, beta_preprocess_webhook_payload
 
 EMAIL = "denistrofimov@pythonmachinelearningcv.com"
 SURNAME = "Трофимов"
@@ -232,6 +232,13 @@ class TicketTest(TestCase):
         self.assertEqual(ticket.printed_id, data['id'])
         self.assertEqual(ticket.event_name, data['event_name'])
 
+    def test_manage_webhook_payload_booked_async(self):
+        """ Check new ticket."""
+        data = json.loads(TIMEPAD_PAYLOAD)
+        data['event_name'] = settings.WATCHED_EVENTS[0]
+        payload = json.dumps(data) 
+        beta_preprocess_webhook_payload(payload)
+
     def test_manage_webhook_payload_booked_not_tracked(self):
         """ Check new ticket from not tracked event."""
         data = json.loads(TIMEPAD_PAYLOAD)
@@ -296,7 +303,7 @@ class TicketUpdateTest(TestCase):
         data['status_raw'] = 'notpaid'
 
         payload = json.dumps(data) 
-        response = process_webhook_async.delay(payload).get()
+        response = beta_preprocess_webhook_payload(payload).get()
         self.assertIn(response[0]['status'], ('sent', 'queued'))
         self.assertEqual(response[0]['email'], self.ticket.email)
 
