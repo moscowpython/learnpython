@@ -6,7 +6,7 @@ from django.conf import settings
 from django.http import HttpResponse, HttpResponseForbidden
 from django.views.decorators.csrf import csrf_exempt
 
-from .tasks import process_webhook_async
+from .tasks import process_webhook_payload, process_webhook_payload_synchro
 
 
 @csrf_exempt
@@ -33,6 +33,6 @@ def handle_webhook(request):
         payload = request.body
 
     # This is where you'll do something with the webhook
-    process_webhook_async.delay(payload)
+    process_webhook_payload(payload)
 
     return HttpResponse('Webhook received', status=200)
