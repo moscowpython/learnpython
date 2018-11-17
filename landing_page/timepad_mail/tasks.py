@@ -16,18 +16,7 @@ def preprocess_webhook_payload(payload):
     """ Prepare a payload from web hook.
 
         :param payload: a payload from web hook
-        :type payload: can be str or bytes (weird!) according to #10
     """
-
-
-    """ Workaround of issue #10.
-        Calling process_webhook_async.delay(payload): 
-        Object of type 'bytes' is not JSON serializable.
-    """
-    if isinstance(payload, bytes):
-        # 'ignore' (just leave the character out of the Unicode result)
-        payload = payload.decode("utf-8", "ignore")
-
     try:
         payload_dict = json.loads(payload)
     except json.JSONDecodeError as exception:

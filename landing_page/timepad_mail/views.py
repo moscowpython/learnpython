@@ -32,6 +32,14 @@ def handle_webhook(request):
     else:
         payload = request.body
 
+    """ Workaround of issue #10.
+        Calling process_webhook_async.delay(payload): 
+        Object of type 'bytes' is not JSON serializable.
+    """
+    if isinstance(payload, bytes):
+        # 'ignore' (just leave the character out of the Unicode result)
+        payload = payload.decode("utf-8", "ignore")
+
     # This is where you'll do something with the webhook
     process_webhook_payload(payload)
 
