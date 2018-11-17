@@ -6,5 +6,12 @@ from . import views
 urlpatterns = [
     path('timepad_ticket_status_webhook',
         views.handle_webhook,
-        name='ticket_status_webhook'),
+        'ticket_status_webhook',
+        {'kind': 'ticket'},
+    ),
+    path('timepad_order_status_webhook',
+        views.handle_webhook,
+        'order_status_webhook',
+        {'kind': 'order'},
+    ),
 ]

@@ -6,11 +6,11 @@ from django.conf import settings
 from django.http import HttpResponse, HttpResponseForbidden
 from django.views.decorators.csrf import csrf_exempt
 
-from .tasks import process_webhook_payload, process_webhook_payload_synchro
+from .tasks import process_webhook_payload, process_order_payload
 
 
 @csrf_exempt
-def handle_webhook(request):
+def handle_webhook(request, **kwargs):
     """Webhook handler check sender sha1 signature."""
     # TODO: wrap in try-except, use safe get, etc.
     # Check the X-Hub-Signature header to make sure this is a valid request.
@@ -41,6 +41,9 @@ def handle_webhook(request):
         payload = payload.decode("utf-8", "ignore")
 
     # This is where you'll do something with the webhook
-    process_webhook_payload(payload)
+    if kwargs['kind'] == 'ticket':
+        process_webhook_payload(payload)
+    elif kwargs['kind'] == 'order':
+        process_order_payload(payload)
 
     return HttpResponse('Webhook received', status=200)
