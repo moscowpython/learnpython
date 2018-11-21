@@ -146,7 +146,7 @@
 								<div class="price-parent">
 									<span class="price-old d-none">34 500 р.</span>
 									<strong class="price">32 500 р.</strong>
-									<span class="price-date"> до 1 января</span>
+									<span class="price-date"> до {{ online_price_ranges.0.price_range_end_date | date:"j E" }}</span>
 								</div>
 								<div class="decr-price-parent">
 									<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В рассрочку
@@ -181,7 +181,7 @@
 								<div class="price-parent">
 									<span class="price-old d-none">39 500 р.</span>
 									<strong class="price">37 500 р.</strong>
-									<span class="price-date"> до 1 января</span>
+									<span class="price-date"> до {{ offline_price_ranges.0.price_range_end_date | date:"j E" }}</span>
 								</div>
 								<div class="decr-price-parent">
 									<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В рассрочку
@@ -2010,7 +2010,7 @@
 						<div class="pt-lg-4 pb-lg-5 align-items-end d-flex justify-content-between smooth-scroll mobi-fomrmater">
 							<div class="price-parent">
 								<span class="price-old d-none">34 500 р.</span>
-								<strong class="price">32 500 р.</strong><span class="price-date"> до 1 января</span>
+								<strong class="price">32 500 р.</strong><span class="price-date"> до {{ online_price_ranges.0.price_range_end_date | date:"j E" }} </span>
 							</div>
 							<div>
 								<a href="#howToPay" class="decr-price d-lg-none scroll-to">Есть рассрочка</a>
@@ -2034,7 +2034,7 @@
 							<div class="price-parent">
 								<span class="price-old d-none">39 500 р.</span>
 								<strong class="price">37 500 р.</strong>
-								<span class="price-date"> до 1 января</span>
+								<span class="price-date"> до {{ offline_price_ranges.0.price_range_end_date | date:"j E" }}</span>
 							</div>
 							<div>
 								<a href="#howToPay" class="decr-price d-lg-none scroll-to">Есть рассрочка</a>

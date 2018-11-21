@@ -25,16 +25,6 @@ def index(request):
     # Student projects data
     student_projects = list(GraduateProjects.objects.all())
 
-    # Program dates data
-    course_day_2_date = LearnPythonCourse.objects.all()[:1].get().course_day_2
-    course_day_3_date = LearnPythonCourse.objects.all()[:1].get().course_day_3
-    course_day_4_date = LearnPythonCourse.objects.all()[:1].get().course_day_4
-    course_day_5_date = LearnPythonCourse.objects.all()[:1].get().course_day_5
-    course_day_6_date = LearnPythonCourse.objects.all()[:1].get().course_day_6
-    course_day_7_date = LearnPythonCourse.objects.all()[:1].get().course_day_7
-    course_day_8_date = LearnPythonCourse.objects.all()[:1].get().course_day_8
-    course_day_9_date = LearnPythonCourse.objects.all()[:1].get().course_day_9
-
     # Time for lessons
     lesson_start_time = LearnPythonCourse.objects\
         .all()[:1].get().time_lessons_start
@@ -50,15 +40,7 @@ def index(request):
     # Feedback data
     student_feedback = list(Feedback.objects.all())
 
-    # Meetup data
-    # Fixes #3 MoscowPythonMeetup matching query does not exist.
-    try:
-        current_meetup = MoscowPythonMeetup.objects.latest('meetup_number')
-    except MoscowPythonMeetup.DoesNotExist:
-        current_meetup = MoscowPythonMeetup()
-
     context = {
-        'meetup': current_meetup,
         'course': current_course,
         'projects': student_projects,
         'online_price_ranges': online_prices,
