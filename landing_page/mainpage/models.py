@@ -119,6 +119,22 @@ class LearnPythonCourse(models.Model):
         null=True
     )
 
+    time_lessons_start = models.TimeField(
+        verbose_name='Время начала занятия',
+        help_text='Во сколько занятие начинается',
+        default='11:00:00',
+        blank=True,
+        null=True
+    )
+
+    time_lessons_ends = models.TimeField(
+        verbose_name='Время окончания занятия',
+        help_text='Во сколько занятие заканчивается',
+        default='14:00:00',
+        blank=True,
+        null=True
+    )
+
     offline_session_closed = models.BooleanField(
         verbose_name='Закрыть офлайн набор?',
         help_text='Поставь галочку, чтобы закрыть набор',
