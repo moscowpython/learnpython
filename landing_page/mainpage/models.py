@@ -135,7 +135,7 @@ class LearnPythonCourse(models.Model):
         null=True
     )
 
-    offline_session_closed = models.BooleanField(
+    offline_session_end = models.BooleanField(
         verbose_name='Закрыть офлайн набор?',
         help_text='Поставь галочку, чтобы закрыть набор',
         default=False,

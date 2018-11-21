@@ -35,6 +35,12 @@ def index(request):
     course_day_8_date = LearnPythonCourse.objects.all()[:1].get().course_day_8
     course_day_9_date = LearnPythonCourse.objects.all()[:1].get().course_day_9
 
+    # Time for lessons
+    lesson_start_time = LearnPythonCourse.objects\
+        .all()[:1].get().time_lessons_start
+    lesson_end_time = LearnPythonCourse.objects\
+        .all()[:1].get().offline_session_end
+
     # User stories
     graduate_stories_list = list(GraduateStories.objects.all())
 
@@ -57,19 +63,12 @@ def index(request):
         'projects': student_projects,
         'online_price_ranges': online_prices,
         'offline_price_ranges': offline_prices,
-        'course_day_1': current_course.course_start_date.strftime('%d.%m'),
-        'course_day_2': course_day_2_date.strftime('%d.%m'),
-        'course_day_3': course_day_3_date.strftime('%d.%m'),
-        'course_day_4': course_day_4_date.strftime('%d.%m'),
-        'course_day_5': course_day_5_date.strftime('%d.%m'),
-        'course_day_6': course_day_6_date.strftime('%d.%m'),
-        'course_day_7': course_day_7_date.strftime('%d.%m'),
-        'course_day_8': course_day_8_date.strftime('%d.%m'),
-        'course_day_9': course_day_9_date.strftime('%d.%m'),
-        'course_day_10': current_course.course_end_date.strftime('%d.%m'),
-        'registration_closes_date': current_course.end_registration_date.strftime(
-            '%b %d, %Y %H:%M:%S'
-        ),
+        'lesson_start_time': lesson_start_time,
+        'lessons_end_time': lesson_end_time,
+        'registration_closes_date': current_course.end_registration_date
+        .strftime(
+                '%b %d, %Y %H:%M:%S'
+            ),
         'student_feedback': student_feedback,
         'curators_list': curators_list,
         'graduate_stories': graduate_stories_list
