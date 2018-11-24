@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
-import datetime
 from .models import (MoscowPythonMeetup, LearnPythonCourse, GraduateProjects,
-                     LearnPythonCoursePrices, Feedback, Curators, GraduateStories)
+                     LearnPythonCoursePrices, 
+                     Feedback, Curators, GraduateStories)
+from datetime import date
 
 
 def index(request):
@@ -53,7 +54,8 @@ def index(request):
             ),
         'student_feedback': student_feedback,
         'curators_list': curators_list,
-        'graduate_stories': graduate_stories_list
+        'graduate_stories': graduate_stories_list,
+        'today': date.today()
 
     }
     return HttpResponse(template.render(context, request))

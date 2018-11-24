@@ -144,9 +144,13 @@
 							</ul>
 							<div class="pt-lg-3 align-items-center d-flex justify-content-between smooth-scroll flex-wrap">
 								<div class="price-parent">
-									<span class="price-old d-none">34 500 р.</span>
-									<strong class="price">32 500 р.</strong>
-									<span class="price-date"> до {{ online_price_ranges.0.price_range_end_date | date:"j E" }}</span>
+									{% if today <= online_price_ranges.0.price_range_end_date %}
+										<strong class="price">{{ online_price_ranges.0.price_range_price}} р.</strong>
+										<span class="price-date"> до {{ online_price_ranges.0.price_range_end_date | date:"j E" }}</span>
+									{% else %}
+										<strong class="price">{{ online_price_ranges.1.price_range_price}} р.</strong>
+										<span class="price-date"> до {{ online_price_ranges.1.price_range_end_date | date:"j E" }}</span>
+									{% endif%}	
 								</div>
 								<div class="decr-price-parent">
 									<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В рассрочку
@@ -178,11 +182,15 @@
 								</li>
 							</ul>
 							<div class="pt-lg-3 align-items-center d-flex justify-content-between smooth-scroll flex-wrap">
-								<div class="price-parent">
-									<span class="price-old d-none">39 500 р.</span>
-									<strong class="price">37 500 р.</strong>
-									<span class="price-date"> до {{ offline_price_ranges.0.price_range_end_date | date:"j E" }}</span>
-								</div>
+									<div class="price-parent">
+										{% if today <= offline_price_ranges.0.price_range_end_date %}
+											<strong class="price">{{ offline_price_ranges.0.price_range_price}} р.</strong>
+											<span class="price-date"> до {{ offline_price_ranges.0.price_range_end_date | date:"j E" }}</span>
+										{% else %}
+											<strong class="price">{{ offline_price_ranges.1.price_range_price}} р.</strong>
+											<span class="price-date"> до {{ offline_price_ranges.1.price_range_end_date | date:"j E" }}</span>
+										{% endif%}	
+									</div>
 								<div class="decr-price-parent">
 									<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В рассрочку
 										<strong>от 4600 р/мес</strong></a>
@@ -1951,12 +1959,12 @@
 				</div>
 				<div class="col-lg-9 d-lg-block text-left padd-0">
 					<p>Если вы хотите отправить на курс сразу нескольких сотрудников, пишите на <a
-							href="mailto:vlad@htmlbook.ru">learn@python.ru</a>,
+							href="mailto:learn@pythonа.ru">learn@python.ru</a>,
 						чтобы получить корпоративную скидку (от 5 билетов).</p>
 					<ul class="installment-plan">
 						<li><p>Начните регистрацию и выберите опцию «Выставить счет».</p></li>
 						<li><p>Свяжитесь с нами по любым вопросам, написав на <a class="mail-lnk"
-																				 href="mailto:vlad@htmlbook.ru">team@python.ru</a>.
+																				 href="mailto:learn@python.ru">learn@python.ru</a>.
 						</p></li>
 					</ul>
 				</div>
