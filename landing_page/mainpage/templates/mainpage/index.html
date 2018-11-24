@@ -1788,191 +1788,23 @@
 					</div>
 				</div>
 				<ul class="col-12 col-lg-9 mentor-list">
-					<li>
-						<div class="darked">
-							<div class="img-wrapper">
-								<img class="img-fluid" src="{% static 'images/mentor/mentor1.jpg' %}" alt="ЗЛАТА ОБУХОВСКАЯ">
-								<h4 class="teacher-name brackets brackets-blue-yellow">ЗЛАТА ОБУХОВСКАЯ</h4>
+					{% for curator in curators_list %}
+						<li>
+							<div class="darked">
+								<div class="img-wrapper">
+									{% if curator.curator_photo %}
+										<img class="img-fluid" src="{{curator.curator_photo.url}}" alt="{{curator.curator_name}}">
+									{%endif%}
+									<h4 class="teacher-name brackets brackets-blue-yellow">{{curator.curator_name}}</h4>
+								</div>
+								<div class="teacher-info">
+									<p>
+										{{ curator.curator_bio }}
+									</p>
+								</div>
 							</div>
-							<div class="teacher-info">
-								<p>
-									Тимлид в Nvidia. Ранее - разработчик в Облаке Mail.ru, тимлид в Рамблер-Новостях и
-									программист-исследователь в Яндексе.
-								</p>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="darked">
-							<div class="img-wrapper">
-								<img class="img-fluid" src="{% static 'images/mentor/mentor2.jpg' %}" alt="АЛЕКСАНДР СТРОГАНОВ">
-								<h4 class="teacher-name brackets brackets-blue-yellow">АЛЕКСАНДР СТРОГАНОВ</h4>
-							</div>
-							<div class="teacher-info">
-								<p>
-									Миддл-разработчик в Biganto Visual. Ассистент курса «Разработка ПО» в Бауманке.
-								</p>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="darked">
-							<div class="img-wrapper">
-
-								<img class="img-fluid" src="{% static 'images/mentor/mentor3.jpg' %}" alt="АЛЕВТИНА ЩЕКОТУРОВА">
-								<h4 class="teacher-name brackets brackets-blue-yellow">АЛЕВТИНА ЩЕКОТУРОВА</h4>
-							</div>
-							<div class="teacher-info">
-								<p>
-									Разработчик биллинга в ivi. Ранее — старший тестировщик в ivi и тестировщик в
-									Tutu.ru.
-								</p>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="darked">
-							<div class="img-wrapper">
-
-								<img class="img-fluid" src="{% static 'images/mentor/mentor4.jpg' %}" alt="АЛЕКСЕЙ ШТЫРНЯЕВ">
-								<h4 class="teacher-name brackets brackets-blue-yellow">АЛЕКСЕЙ ШТЫРНЯЕВ</h4>
-							</div>
-							<div class="teacher-info">
-								<p>
-									Фуллстек-разработчик в инвестиционной группе FinEx. Ранее — веб-разработчик в
-									TVzavr.
-								</p>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="darked">
-							<div class="img-wrapper">
-								<h4 class="teacher-name brackets brackets-blue-yellow">Валентина Худякова</h4>
-							</div>
-							<div class="teacher-info">
-								<p>
-									Cтарший разработчик в ЦИАН. Ранее — Рамблер.
-								</p>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="darked">
-							<div class="img-wrapper">
-								<img class="img-fluid" src="{% static 'images/mentor/mentor12.jpg' %}" alt="Игорь Перипилицын"
-									 style="object-position: top;">
-								<h4 class="teacher-name brackets brackets-blue-yellow">Игорь Перипилицын</h4>
-							</div>
-							<div class="teacher-info">
-								<p>
-									Миддл-рзработчик, выпускник курсов.
-								</p>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="darked">
-							<div class="img-wrapper">
-								<img class="img-fluid" src="{% static 'images/mentor/mentor5.jpg' %}"
-									 alt="МАКСИМ БЕЛКИН">
-								<h4 class="teacher-name brackets brackets-blue-yellow">МАКСИМ БЕЛКИН</h4>
-							</div>
-							<div class="teacher-info">
-								<p>
-									Веб-разработчик в LLC Itella Connexions, занимается разработкой CRM-систем и
-									задачами автоматизации
-								</p>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="darked">
-							<div class="img-wrapper">
-
-								<img class="img-fluid" src="{% static 'images/mentor/mentor6.jpg' %}" alt="ДАНА ЗЛОЧЕВСКАЯ">
-								<h4 class="teacher-name brackets brackets-blue-yellow">ДАНА ЗЛОЧЕВСКАЯ</h4>
-							</div>
-							<div class="teacher-info">
-								<p>
-									Data Scientist в Metrix.AI. Ранее - разработчик в Поиске Mail.Ru
-								</p>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="darked">
-							<div class="img-wrapper">
-
-								<img class="img-fluid" src="{% static 'images/mentor/mentor7.jpg' %}" alt="ДЕНИС ТРОФИМОВ">
-								<h4 class="teacher-name brackets brackets-blue-yellow">ДЕНИС ТРОФИМОВ</h4>
-							</div>
-							<div class="teacher-info">
-								<p>
-									Блокчейн-разработчик. Ранее: тимлид в проекте разработки биометрии во &quot;Взор
-									Системы Идентификации&quot;
-								</p>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="darked">
-							<div class="img-wrapper">
-
-								<img class="img-fluid" src="{% static 'images/mentor/mentor8.jpg' %}" alt="ОЛЬГА ПИЧУЖКИНА">
-								<h4 class="teacher-name brackets brackets-blue-yellow">ОЛЬГА ПИЧУЖКИНА</h4>
-							</div>
-							<div class="teacher-info">
-								<p>
-									Тренер Django Girls, изучает фундаментальную и прикладную лингвистику в НИУ ВШЭ.
-								</p>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="darked">
-							<div class="img-wrapper">
-
-								<img class="img-fluid" src="{% static 'images/mentor/mentor9.jpg' %}" alt="ДМИТРИЙ РУДЕНКО">
-								<h4 class="teacher-name brackets brackets-blue-yellow">ДМИТРИЙ РУДЕНКО</h4>
-							</div>
-							<div class="teacher-info">
-								<p>
-									Data Scientist в Cybertonica ltd. Ранее работал на аналогичной позиции в Сбербанке.
-								</p>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="darked">
-							<div class="img-wrapper">
-
-								<img class="img-fluid" src="{% static 'images/mentor/mentor10.jpg' %}" alt="КСЕНИЯ СУХОВА">
-								<h4 class="teacher-name brackets brackets-blue-yellow">КСЕНИЯ СУХОВА</h4>
-							</div>
-							<div class="teacher-info">
-								<p>
-									Data Scientist в Domclick Сбербанка. Занимается обработкой естественного языка и
-									построением диалоговых систем.
-								</p>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="darked">
-							<div class="img-wrapper">
-
-								<img class="img-fluid" src="{% static 'images/mentor/mentor11.jpg' %}"
-									 alt="АЛЕКСАНДРА ВОРОНЦОВА">
-								<h4 class="teacher-name brackets brackets-blue-yellow">АЛЕКСАНДРА ВОРОНЦОВА</h4>
-							</div>
-							<div class="teacher-info">
-								<p>
-									Разработчик-аналитик в Яндексе. Тренер Django Girls.
-								</p>
-							</div>
-						</div>
-					</li>
+						</li>
+					{% endfor %}
 				</ul>
 			</div>
 
