@@ -812,7 +812,7 @@
 												<div class="col-lg-3 cont-sub-title">
 													<p>
 														<b>{{ course.course_day_2 | date:"l, j E" }},</b>
-														<b>с 11:30 (MСК).</b>
+														<b>{{ course.online_time_of_call }} (МСК).</b>
 													</p>
 												</div>
 												<div class="col-lg-9 col-12 week-main-cont">
@@ -865,7 +865,7 @@
 												<div class="col-lg-3 cont-sub-title">
 													<p>
 														<b>{{ course.course_day_3 | date:"l, j E" }},</b>
-														<b>с 11:30 (MСК).</b>
+														<b>{{ course.online_time_of_call }} (МСК).</b>
 													</p>
 												</div>
 												<div class="col-lg-9 col-12 week-main-cont">
@@ -913,7 +913,7 @@
 												<div class="col-lg-3 cont-sub-title">
 													<p>
 														<b>{{ course.course_day_4 | date:"l, j E" }},</b>
-														<b>с 11:30 (MСК).</b>
+														<b>{{ course.online_time_of_call }} (МСК).</b>
 													</p>
 												</div>
 												<div class="col-lg-9 col-12 week-main-cont">
@@ -967,7 +967,7 @@
 												<div class="col-lg-3 cont-sub-title">
 													<p>
 														<b>{{ course.course_day_5 | date:"l, j E" }},</b>
-														<b>с 11:30 (MСК).</b>
+														<b>{{ course.online_time_of_call }} (МСК).</b>
 													</p>
 												</div>
 												<div class="col-lg-9 col-12 week-main-cont">
@@ -1006,7 +1006,7 @@
 												<div class="col-lg-3 cont-sub-title">
 													<p>
 														<b>{{ course.course_day_6 | date:"l, j E" }},</b>
-														<b>с 11:30 (MСК).</b>
+														<b>{{ course.online_time_of_call }} (МСК).</b>
 													</p>
 												</div>
 												<div class="col-lg-9 col-12 week-main-cont">
@@ -1050,7 +1050,7 @@
 												<div class="col-lg-3 cont-sub-title">
 													<p>
 														<b>{{ course.course_day_7 | date:"l, j E" }},</b>
-														<b>с 11:30 (MСК).</b>
+														<b>{{ course.online_time_of_call }} (МСК).</b>
 													</p>
 												</div>
 												<div class="col-lg-9 col-12 week-main-cont">
@@ -1092,7 +1092,7 @@
 												<div class="col-lg-3 cont-sub-title">
 													<p>
 														<b>{{ course.course_day_8 | date:"l, j E" }},</b>
-														<b>с 11:30 (MСК).</b>
+														<b>{{ course.online_time_of_call }} (МСК).</b>
 													</p>
 												</div>
 												<div class="col-lg-9 col-12 week-main-cont">
@@ -1133,7 +1133,7 @@
 												<div class="col-lg-3 cont-sub-title">
 													<p>
 														<b>{{ course.course_day_9 | date:"l, j E" }},</b>
-														<b>с 11:30 (MСК).</b>
+														<b>{{ course.online_time_of_call }} (МСК).</b>
 													</p>
 												</div>
 												<div class="col-lg-9 col-12 week-main-cont">
@@ -1172,7 +1172,7 @@
 												<div class="col-lg-3 cont-sub-title">
 													<p>
 														<b>{{ course.course_end_date | date:"l, j E" }},</b>
-														<b>с 11:00 (MСК).</b>
+														<b>{{ course.online_time_of_call }} (МСК).</b>
 													</p>
 												</div>
 												<div class="col-lg-9 col-12 week-main-cont">
@@ -1252,7 +1252,7 @@
 												<div class="col-lg-3 cont-sub-title">
 													<p>
 														<b>{{ course.course_day_2 | date:"l, j E" }},</b>
-														<b>11:00-14:00</b>
+														<b>{{ course.offline_time_lessons_start }} - {{ course.offline_time_lessons_ends }}</b>
 													</p>
 												</div>
 												<div class="col-lg-9 col-12 week-main-cont">
@@ -1307,7 +1307,7 @@
 												<div class="col-lg-3 cont-sub-title">
 													<p>
 														<b>{{ course.course_day_3 | date:"l, j E" }},</b>
-														<b>11:00-14:00</b>
+														<b>{{ course.offline_time_lessons_start }} - {{ course.offline_time_lessons_ends }}</b>
 													</p>
 												</div>
 												<div class="col-lg-9 col-12 week-main-cont">
@@ -1357,7 +1357,7 @@
 												<div class="col-lg-3 cont-sub-title">
 													<p>
 														<b>{{ course.course_day_4 | date:"l, j E" }},</b>
-														<b>11:00-14:00</b>
+														<b>{{ course.offline_time_lessons_start }} - {{ course.offline_time_lessons_ends }}</b>
 													</p>
 												</div>
 												<div class="col-lg-9 col-12 week-main-cont">
@@ -1410,7 +1410,7 @@
 												<div class="col-lg-3 cont-sub-title">
 													<p>
 														<b>{{ course.course_day_5 | date:"l, j E" }},</b>
-														<b>11:00-14:00</b>
+														<b>{{ course.offline_time_lessons_start }} - {{ course.offline_time_lessons_ends }}</b>
 													</p>
 												</div>
 												<div class="col-lg-9 col-12 week-main-cont">
@@ -1447,7 +1447,7 @@
 												<div class="col-lg-3 cont-sub-title">
 													<p>
 														<b>{{ course.course_day_6 | date:"l, j E" }},</b>
-														<b>11:00-14:00</b>
+														<b>{{ course.offline_time_lessons_start }} - {{ course.offline_time_lessons_ends }}</b>
 													</p>
 												</div>
 												<div class="col-lg-9 col-12 week-main-cont">
@@ -1489,7 +1489,7 @@
 												<div class="col-lg-3 cont-sub-title">
 													<p>
 														<b>{{ course.course_day_7 | date:"l, j E" }},</b>
-														<b>11:00-14:00</b>
+														<b>{{ course.offline_time_lessons_start }} - {{ course.offline_time_lessons_ends }}</b>
 													</p>
 												</div>
 												<div class="col-lg-9 col-12 week-main-cont">
@@ -1529,7 +1529,7 @@
 												<div class="col-lg-3 cont-sub-title">
 													<p>
 														<b>{{ course.course_day_8 | date:"l, j E" }},</b>
-														<b>11:00-14:00</b>
+														<b>{{ course.offline_time_lessons_start }} - {{ course.offline_time_lessons_ends }}</b>
 													</p>
 												</div>
 												<div class="col-lg-9 col-12 week-main-cont">
@@ -1568,7 +1568,7 @@
 												<div class="col-lg-3 cont-sub-title">
 													<p>
 														<b>{{ course.course_day_9 | date:"l, j E" }},</b>
-														<b>11:00-14:00</b>
+														<b>{{ course.offline_time_lessons_start }} - {{ course.offline_time_lessons_ends }}</b>
 													</p>
 												</div>
 												<div class="col-lg-9 col-12 week-main-cont">
@@ -1605,7 +1605,7 @@
 												<div class="col-lg-3 cont-sub-title">
 													<p>
 														<b>{{ course.course_end_date | date:"l, j E" }},</b>
-														<b>11:00-14:00</b>
+														<b>{{ course.offline_time_lessons_start }} - {{ course.offline_time_lessons_ends }}</b>
 													</p>
 												</div>
 												<div class="col-lg-9 col-12 week-main-cont">

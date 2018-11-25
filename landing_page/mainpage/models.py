@@ -119,7 +119,7 @@ class LearnPythonCourse(models.Model):
         null=True
     )
 
-    time_lessons_start = models.TimeField(
+    offline_time_lessons_start = models.TimeField(
         verbose_name='Время начала занятия',
         help_text='Во сколько занятие начинается',
         default='11:00:00',
@@ -127,10 +127,18 @@ class LearnPythonCourse(models.Model):
         null=True
     )
 
-    time_lessons_ends = models.TimeField(
+    offline_time_lessons_ends = models.TimeField(
         verbose_name='Время окончания занятия',
         help_text='Во сколько занятие заканчивается',
         default='14:00:00',
+        blank=True,
+        null=True
+    )
+
+    online_time_of_call = models.TimeField(
+        verbose_name='Время начала звонка',
+        help_text='Во сколько созваниваемся?',
+        default='11:30:00',
         blank=True,
         null=True
     )

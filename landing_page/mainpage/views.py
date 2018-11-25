@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
-from .models import (MoscowPythonMeetup, LearnPythonCourse, GraduateProjects,
+from .models import (LearnPythonCourse, GraduateProjects,
                      LearnPythonCoursePrices, 
                      Feedback, Curators, GraduateStories)
 from datetime import date
@@ -26,12 +26,6 @@ def index(request):
     # Student projects data
     student_projects = list(GraduateProjects.objects.all())
 
-    # Time for lessons
-    lesson_start_time = LearnPythonCourse.objects\
-        .all()[:1].get().time_lessons_start
-    lesson_end_time = LearnPythonCourse.objects\
-        .all()[:1].get().offline_session_end
-
     # User stories
     graduate_stories_list = list(GraduateStories.objects.all())
 
@@ -46,8 +40,6 @@ def index(request):
         'projects': student_projects,
         'online_price_ranges': online_prices,
         'offline_price_ranges': offline_prices,
-        'lesson_start_time': lesson_start_time,
-        'lessons_end_time': lesson_end_time,
         'registration_closes_date': current_course.end_registration_date
         .strftime(
                 '%b %d, %Y %H:%M:%S'
