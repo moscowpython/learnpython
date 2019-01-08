@@ -87,4 +87,4 @@ def webhook(request):
         return HttpResponseForbidden('Permission denied.')
 
     # If request reached this point we are in a good shape
-    return HttpResponse('pong')
+    return HttpResponse(status=200)
