@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 from django.template import loader
 from .models import (LearnPythonCourse, GraduateProjects,
                      LearnPythonCoursePrices, 
@@ -55,3 +56,8 @@ def index(request):
 
 def online(request):
     return render(request, 'mainpage/page3759545.html')
+
+
+@csrf_exempt
+def webhook(request):
+    return HttpResponse('pong')
