@@ -5,5 +5,5 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('online', views.online, name='online'),
-    path('/api/webhook/', views.webhook, name='webhook')
+    path(r'^api/webhook/$', views.webhook, name='webhook')
 ]
