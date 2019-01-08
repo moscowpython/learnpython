@@ -130,3 +130,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, '../media')
 
 MEDIA_URL = '/media/'
 
+WEBHOOK_KEY = '0001VypAArY7lFDgMdyC5kwutDGQdDc6rXljuIcI5iBttpPe200'
