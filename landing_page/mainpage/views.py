@@ -6,7 +6,7 @@ from django.conf import settings
 from django.http import (
     HttpResponse, HttpResponseForbidden, HttpResponseServerError
     )
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_exempt, require_POST
 from django.template import loader
 from .models import (LearnPythonCourse, GraduateProjects,
                      LearnPythonCoursePrices, 
@@ -66,6 +66,7 @@ def online(request):
 
 
 @csrf_exempt
+@require_POST
 def webhook(request):
     # Verify secret code
     header_signature = request.META.get('HTTP_X_HUB_SIGNATURE')
