@@ -1,18 +1,17 @@
-import hmac
-from hashlib import sha1
+# import hmac
+# from hashlib import sha1
 
 from django.shortcuts import render
 from django.conf import settings
 from django.http import (
-    HttpResponse, HttpResponseForbidden, HttpResponseServerError
-    )
-from django.views.decorators.csrf import csrf_exempt, require_POST
+    HttpResponse)
+# from django.views.decorators.csrf import csrf_exempt, require_POST
 from django.template import loader
 from .models import (LearnPythonCourse, GraduateProjects,
-                     LearnPythonCoursePrices, 
+                     LearnPythonCoursePrices,
                      Feedback, Curators, GraduateStories)
 from datetime import date
-from django.utils.encoding import force_bytes
+# from django.utils.encoding import force_bytes
 
 
 def index(request):
@@ -63,6 +62,7 @@ def index(request):
 
 def online(request):
     return render(request, 'mainpage/page3759545.html')
+
 
 '''
 @csrf_exempt
