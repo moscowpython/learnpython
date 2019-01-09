@@ -66,7 +66,6 @@ def online(request):
 
 
 @csrf_exempt
-@require_POST
 def webhook(request):
     # Verify secret code
     header_signature = request.META.get('HTTP_X_HUB_SIGNATURE')
