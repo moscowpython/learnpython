@@ -64,8 +64,9 @@ def index(request):
 def online(request):
     return render(request, 'mainpage/page3759545.html')
 
-
+'''
 @csrf_exempt
+@require_POST
 def webhook(request):
     # Verify secret code
     header_signature = request.META.get('HTTP_X_HUB_SIGNATURE')
@@ -87,3 +88,4 @@ def webhook(request):
 
     # If request reached this point we are in a good shape
     return HttpResponse(status=200)
+'''
