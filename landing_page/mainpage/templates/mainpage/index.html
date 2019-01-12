@@ -114,6 +114,9 @@
 				<h4 class="curs-place col-12 col-md-8 col-xl-12 fadeInLeft animated-on-ready">
 					С {{course.course_start_date | date:"j E" }} по {{course.course_end_date | date:"j E" }}
 				</h4>
+				<h4 class="curs-place col-12 col-md-8 col-xl-12 fadeInLeft animated-on-ready">
+					Регистрация закроется {{course.end_registration_date | date:"j E" }}
+				</h4>
 				<div class="hero-time col-md-auto col-xl-4 d-flex justify-content-center counter-container"
 					 data-count-down="{{ registration_closes_date }}">
 					<div class="row justify-content-center"><b class="d-block">00</b><span class="tm-name">дней</span>
