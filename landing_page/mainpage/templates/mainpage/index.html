@@ -528,55 +528,14 @@
 				Проекты, созданные во время обучения
 			</h2>
 			<div class="examples-slider row">
-				<div class="text-center ">
-					<img src="{% static 'images/example-project/sl2_l8rpFat.png' %}" alt="slide">
-					<p class="text-center">Агрегатор личных цифровых данных и система поиск по ним</p>
-				</div>
-
-				<div class="text-center ">
-					<img src="{% static 'images/example-project/sl1_Cj4bKxp.png' %}" alt="slide">
-					<p class="text-center">Своя система управления проектами</p>
-				</div>
-				<div class="text-center ">
-					<img src="{% static 'images/example-project/example-project1.png' %}" alt="slide">
-					<p class="text-center">Сервис, который прогнозирует рост цен на квартиры в зависимости от строящейся
-						рядом инфраструктуры</p>
-				</div>
-
-				<div class="text-center ">
-					<img src="{% static 'images/example-project/example-project2.png' %}" alt="slide">
-					<p class="text-center">Полностью своя игра-стрелялка с нуля</p>
-				</div>
-
-				<div class="text-center ">
-					<img src="{% static 'images/example-project/example-project3.png' %}" alt="slide">
-					<p class="text-center">Навык для голосового помощника «Алиса»</p>
-				</div>
-
-				<div class="text-center ">
-					<img src="{% static 'images/example-project/example-project4.png' %}" alt="slide">
-					<p class="text-center">Свой сервис для создания опросов и анализа их результатов</p>
-				</div>
-
-				<div class="text-center ">
-					<img src="{% static 'images/example-project/sl3.png' %}" alt="slide">
-					<p class="text-center">Бот для изучения иностранного языка</p>
-				</div>
-
-				<div class="text-center ">
-					<img src="{% static 'images/example-project/sl4.png' %}" alt="slide">
-					<p class="text-center">Свой переводчик на десятки языков</p>
-				</div>
-
-				<div class="text-center ">
-					<img src="{% static 'images/example-project/sl5.png' %}" alt="slide">
-					<p class="text-center">Программа для совместного просмотра видео</p>
-				</div>
-
-				<div class="text-center ">
-					<img src="{% static 'images/example-project/sl6.png' %}" alt="slide">
-					<p class="text-center">Система учета расходов мобильной связи</p>
-				</div>
+				{% if projects %}
+					{% for project in student_projects %}
+						<div class="text-center ">
+							<img src="{{ project.project_image.url }}" alt="slide">
+							<p class="text-center">{{ project.project_name }}</p>
+						</div>
+					{% endfor %}
+				{% endif %}
 			</div>
 		</div>
 	</section>

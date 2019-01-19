@@ -56,6 +56,7 @@ def index(request):
         'student_feedback': student_feedback,
         'curators_list': curators_list,
         'graduate_stories': graduate_stories_list,
+        'student_projects': student_projects,
         'today': date.today()
 
     }
