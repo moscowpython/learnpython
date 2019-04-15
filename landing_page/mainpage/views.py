@@ -63,10 +63,6 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 
-def online(request):
-    return render(request, 'mainpage/page3759545.html')
-
-
 @csrf_exempt
 @require_POST
 def webhook(request):
