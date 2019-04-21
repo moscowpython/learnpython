@@ -425,3 +425,15 @@ class GraduateProjectsVideos(models.Model):
         help_text='Ссылка на Youtube',
         default=None
     )
+
+    project_course = models.CharField(
+        max_length=5,
+        help_text='Номер Выпуска',
+        default=None
+    )
+
+    project_description = models.TextField(
+        verbose_name='Описание проект',
+        help_text='Краткое описание проекта',
+        default=None
+    )
