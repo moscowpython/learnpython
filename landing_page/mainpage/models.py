@@ -405,3 +405,23 @@ class GraduateProjects(models.Model):
         default=None,
         upload_to='projects/'
     )
+
+
+class GraduateProjectsVideos(models.Model):
+    class Meta:
+        verbose_name_plural = 'LearnPython Видео проектов Учеников'
+
+    def __str__(self):
+        return f'Проект "{self.project_name}"'
+
+    project_name = models.CharField(
+        max_length=150,
+        help_text='Название проекта',
+        default=None
+    )
+
+    project_url = models.CharField(
+        max_length=250,
+        help_text='Ссылка на Youtube',
+        default=None
+    )
