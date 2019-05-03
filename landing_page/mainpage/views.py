@@ -61,10 +61,10 @@ def projects(request):
     template = loader.get_template('mainpage/projects.html')
 
     # Student projects data
-    student_projects = list(GraduateProjects.objects.all())
+    student_projects_videos = list(GraduateProjectsVideos.objects.all())
 
     context = {
-        'student_projects': student_projects,
+        'student_projects': student_projects_videos,
         'today': date.today()
 
     }
