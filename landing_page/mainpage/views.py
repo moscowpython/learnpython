@@ -1,19 +1,13 @@
-import hmac
-from hashlib import sha1
-
 from django.shortcuts import render
 from django.conf import settings
 from django.http import (
     HttpResponse, HttpResponseForbidden,
     HttpResponseServerError)
-from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_POST
 from django.template import loader
 from .models import (LearnPythonCourse, GraduateProjects,
                      LearnPythonCoursePrices,
-                     Feedback, Curators, GraduateStories)
+                     Feedback, Curators, GraduateStories, GraduateProjectsVideos)
 from datetime import date
-from django.utils.encoding import force_bytes
 
 
 def index(request):
@@ -56,6 +50,20 @@ def index(request):
         'student_feedback': student_feedback,
         'curators_list': curators_list,
         'graduate_stories': graduate_stories_list,
+        'today': date.today()
+
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def projects(request):
+    '''Docstring testc'''
+    template = loader.get_template('mainpage/projects.html')
+
+    # Student projects data
+    student_projects = list(GraduateProjects.objects.all())
+
+    context = {
         'student_projects': student_projects,
         'today': date.today()
 
