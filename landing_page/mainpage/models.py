@@ -395,12 +395,14 @@ class GraduateProjects(models.Model):
         return f'Проект "{self.project_name}"'
 
     project_name = models.CharField(
+        verbose_name='Название проекта',
         max_length=150,
         help_text='Название проекта',
         default=None
     )
 
     project_image = models.ImageField(
+        verbose_name='Пример интерфейса',
         help_text="Пример интерфейса проекта",
         default=None,
         upload_to='projects/'
@@ -415,18 +417,21 @@ class GraduateProjectsVideos(models.Model):
         return f'Проект "{self.project_name}"'
 
     project_name = models.CharField(
+        verbose_name='Название проекта',
         max_length=150,
         help_text='Название проекта',
         default=None
     )
 
     project_url = models.CharField(
+        verbose_name='Ссылка',
         max_length=250,
         help_text='Ссылка на Youtube',
         default=None
     )
 
     project_course = models.CharField(
+        verbose_name='Номер набора',
         max_length=5,
         help_text='Номер Выпуска',
         default=None
