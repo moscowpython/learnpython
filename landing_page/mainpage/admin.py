@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from .models import (
     MoscowPythonMeetup, LearnPythonCourse, Curators, Feedback, GraduateProjects, GraduateStories,
-    LearnPythonCoursePrices
+    LearnPythonCoursePrices, GraduateProjectsVideos
 )
 
 admin.site.register(MoscowPythonMeetup)
@@ -12,5 +12,4 @@ admin.site.register(Feedback)
 admin.site.register(GraduateProjects)
 admin.site.register(GraduateStories)
 admin.site.register(LearnPythonCoursePrices)
-
-# Register your models here.
+admin.site.register(GraduateProjectsVideos)
