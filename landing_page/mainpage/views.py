@@ -61,7 +61,7 @@ def projects(request):
     template = loader.get_template('mainpage/projects.html')
 
     # Student projects data
-    student_projects_videos = list(GraduateProjectsVideos.objects.all())
+    student_projects_videos = list(GraduateProjectsVideos.objects.all().order_by('-project_course'))
 
     context = {
         'student_projects': student_projects_videos,
