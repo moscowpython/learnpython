@@ -38,6 +38,12 @@ class LearnPythonCourse(models.Model):
         help_text='Порядковый номер набора'
     )
 
+    timepad_event_id = models.TextField(
+        verbose_name='Номер евента в Timepad',
+        help_text='/dashboard/event/909971 <- вот этот',
+        null=True
+    )
+
     course_start_date = models.DateField(
         verbose_name='Дата начала курса',
         help_text='Дата первого занятия'
