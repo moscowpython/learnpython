@@ -38,9 +38,10 @@ class LearnPythonCourse(models.Model):
         help_text='Порядковый номер набора'
     )
 
-    timepad_event_id = models.TextField(
-        verbose_name='Номер евента в Timepad',
+    timepad_event_id = models.CharField(
+        verbose_name='Номер эвента в Timepad',
         help_text='/dashboard/event/909971 <- вот этот',
+        max_length=20,
         null=True
     )
 
