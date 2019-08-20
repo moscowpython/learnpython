@@ -6,7 +6,8 @@ from django.http import (
 from django.template import loader
 from .models import (LearnPythonCourse, GraduateProjects,
                      LearnPythonCoursePrices,
-                     Feedback, Curators, GraduateStories, GraduateProjectsVideos)
+                     Feedback, Curators, GraduateStories, GraduateProjectsVideos,
+                     Podcasts,)
 from datetime import date
 
 
@@ -32,6 +33,9 @@ def index(request):
     # User stories
     graduate_stories_list = list(GraduateStories.objects.all())
 
+    # User podcasts
+    podcasts_list = list(Podcasts.objects.all())
+
     # Curators data
     curators_list = Curators.objects.filter(curator_status=True)
 
@@ -50,7 +54,8 @@ def index(request):
         'student_feedback': student_feedback,
         'curators_list': curators_list,
         'graduate_stories': graduate_stories_list,
-        'today': date.today()
+        'podcasts_list': podcasts_list,
+        'today': date.today(),
 
     }
     return HttpResponse(template.render(context, request))

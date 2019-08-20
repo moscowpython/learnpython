@@ -449,3 +449,26 @@ class GraduateProjectsVideos(models.Model):
         help_text='Краткое описание проекта',
         default=None
     )
+
+
+class Podcasts(models.Model):
+
+    class Meta:
+        verbose_name_plural = 'LearnPython Подкаст с учеником'
+
+    def __str__(self):
+        return f'Проект "{self.podcast_name}"'
+
+    podcast_name = models.CharField(
+        verbose_name='Название подкаста',
+        max_length=150,
+        help_text='Название подкаста',
+        default=None
+    )
+
+    podcast_url = models.CharField(
+        verbose_name='Ссылка',
+        max_length=250,
+        help_text='Ссылка на Youtube',
+        default=None
+    )
