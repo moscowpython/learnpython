@@ -231,7 +231,7 @@ class Curators(models.Model):
     curator_name = models.CharField(
         max_length=50,
         verbose_name='Имя и фамилия куратора',
-        help_text='Сначало имя, потом фамилия'
+        help_text='Сначала имя, потом фамилия'
     )
 
     curator_bio = models.TextField(
