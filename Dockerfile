@@ -20,11 +20,8 @@ RUN pip3 install -r /opt/requirements.txt
 COPY landing_page /opt/app
 
 WORKDIR /opt/app
-RUN mkdir -p /opt/app/static
-RUN mkdir -p /opt/staticfiles
-RUN python3 manage.py collectstatic --noinput
-
-RUN apt-get autoremove -y ${BUILD_DEPS} \
+RUN mkdir -p /opt/app/static && mkdir -p /opt/staticfiles && python3 manage.py collectstatic --noinput && \
+    apt-get autoremove -y ${BUILD_DEPS} \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 EXPOSE 80
