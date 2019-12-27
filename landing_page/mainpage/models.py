@@ -185,7 +185,8 @@ class LearnPythonCoursePrices(models.Model):
     course_type = [
         ('Online', 'Online'),
         ('Offline', 'Offline'),
-        ('OfflinePenza', 'OfflinePenza')
+        ('OfflinePenza', 'OfflinePenza'),
+        ('OfflineSpb', 'OfflineSpb')
     ]
 
     course_type = models.TextField(

@@ -28,6 +28,8 @@ def index(request):
         course_type='Offline').order_by('price_range_price')
     offline_prices_penza = LearnPythonCoursePrices.objects.filter(
         course_type='OfflinePenza').order_by('price_range_price')
+    offline_prices_spb = LearnPythonCoursePrices.objects.filter(
+        course_type='OfflineSpb').order_by('price_range_price')
 
     # Student projects data
     student_projects = list(GraduateProjects.objects.all())
@@ -50,6 +52,7 @@ def index(request):
         'online_price_ranges': online_prices,
         'offline_price_ranges': offline_prices,
         'offline_price_penza_ranges': offline_prices_penza,
+        'offline_price_spb_ranges': offline_prices_spb,
         'registration_closes_date': current_course.end_registration_date
         .strftime(
                 '%b %d, %Y %H:%M:%S'
