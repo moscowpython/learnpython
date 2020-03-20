@@ -278,6 +278,14 @@
 														Telegram-чат в другие дни</span>
 												</li>
 											</ul>
+											{% if is_offline_closed%}
+											<div
+												class="pt-lg-3 align-items-center d-flex justify-content-between smooth-scroll flex-wrap">
+												<div class="price-parent">
+												<h3>Регистрация закрыта ввиду эпидемиологической ситуации</h3>
+												</div>
+											</div>
+											{% else %}
 											<div
 												class="pt-lg-3 align-items-center d-flex justify-content-between smooth-scroll flex-wrap">
 												<div class="price-parent">
@@ -302,6 +310,7 @@
 														рассрочка</a>
 												</div>
 											</div>
+											{% endif %}
 										</div>
 										<div id="spb" class="tab-pane timetable-tab-spb fade">
 											<p class="hdescr">
@@ -315,6 +324,14 @@
 														Telegram-чат в другие дни</span>
 												</li>
 											</ul>
+											{% if is_offline_closed%}
+											<div
+												class="pt-lg-3 align-items-center d-flex justify-content-between smooth-scroll flex-wrap">
+												<div class="price-parent">
+												<h3>Регистрация закрыта ввиду эпидемиологической ситуации</h3>
+												</div>
+											</div>
+											{% else %}
 											<div
 												class="pt-lg-3 align-items-center d-flex justify-content-between smooth-scroll flex-wrap">
 												<div class="price-parent">
@@ -341,6 +358,7 @@
 														рассрочка</a>
 												</div>
 											</div>
+											{% endif %}
 										</div>
 										<div id="penza" class="tab-pane timetable-tab-penza fade">
 											<p class="hdescr">
@@ -355,6 +373,14 @@
 														Telegram-чат в другие дни</span>
 												</li>
 											</ul>
+											{% if is_offline_closed%}
+											<div
+												class="pt-lg-3 align-items-center d-flex justify-content-between smooth-scroll flex-wrap">
+												<div class="price-parent">
+												<h3>Регистрация закрыта ввиду эпидемиологической ситуации</h3>
+												</div>
+											</div>
+											{% else %}
 											<div
 												class="pt-lg-3 align-items-center d-flex justify-content-between smooth-scroll flex-wrap">
 												<div class="price-parent">
@@ -381,13 +407,21 @@
 														рассрочка</a>
 												</div>
 											</div>
+											{% endif %}
 										</div>
 									</div>
 								</div>
+								{% if is_offline_closed%}
+								<button class="btn btn-info btn-add disabled" data-toggle="modal" data-target="#overlay"
+									onclick="dataLayer.push({'event':'form_online_cost'});">
+									Записаться
+								</button>
+								{% else %}
 								<button class="btn btn-info btn-add" data-toggle="modal" data-target="#overlay"
 									onclick="dataLayer.push({'event':'form_online_cost'});">
 									Записаться
 								</button>
+								{% endif %}
 							</div>
 						</div>
 					</div>

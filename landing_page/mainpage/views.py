@@ -46,6 +46,11 @@ def index(request):
     # Feedback data
     student_feedback = list(Feedback.objects.all())
 
+    # Closed sessions
+    is_online_closed = current_course.online_session_closed
+
+    is_offline_closed = current_course.offline_session_closed
+
     context = {
         'course': current_course,
         'projects': student_projects,
@@ -62,6 +67,8 @@ def index(request):
         'graduate_stories': graduate_stories_list,
         'podcasts_list': podcasts_list,
         'today': date.today(),
+        'is_online_closed': is_online_closed,
+        'is_offline_closed': is_offline_closed,
 
     }
     return HttpResponse(template.render(context, request))
