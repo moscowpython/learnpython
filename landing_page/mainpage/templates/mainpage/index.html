@@ -245,9 +245,7 @@
 										data-target="#overlay" onclick="dataLayer.push({'event':'form_online_cost'});">
 										Записаться
 									</button>
-
 								</div>
-
 							</div>
 						</div>
 					</div>
@@ -259,13 +257,11 @@
 									<ul class="nav nav-tabs flex-lg-nowrap justify-content-start button-tab-group d-lg-inline-flex mb-3 mt-3"
 										style="min-height:40px;">
 										<li><a class="active px-5" data-toggle="tab" href="#moscow">Москва</a></li>
-										<li><a class="px-5" data-toggle="tab" href="#penza">Пенза</a></li>
-										<li><a class="px-5" data-toggle="tab" href="#spb">Питер</a></li>
 									</ul>
 									<div id="tb-city" class="tab-content">
-										<button class="m-show-timetable-moscow d-none"
+										<!-- <button class="m-show-timetable-moscow d-none"
 											onclick="$('#moscow').toggleClass('tab-m-active');$('#penza').removeClass('tab-m-active');">
-										</button>
+										</button> -->
 										<div id="moscow" class="tab-pane timetable-tab-moscow fade active show">
 											<p class="hdescr">
 												Приходите на занятия по субботам в центре Москвы, решайте задачи и
@@ -312,7 +308,7 @@
 											</div>
 											{% endif %}
 										</div>
-										<div id="spb" class="tab-pane timetable-tab-spb fade">
+										<!-- <div id="spb" class="tab-pane timetable-tab-spb fade">
 											<p class="hdescr">
 												Приходите на занятия по субботам в Санкт-Петербурге,
 												решайте задачи и смотрите видео из дома в остальные дни.
@@ -359,8 +355,8 @@
 												</div>
 											</div>
 											{% endif %}
-										</div>
-										<div id="penza" class="tab-pane timetable-tab-penza fade">
+										</div> -->
+										<!-- <div id="penza" class="tab-pane timetable-tab-penza fade">
 											<p class="hdescr">
 												Приходите на занятия по субботам в Пензе,
 												решайте задачи и смотрите видео из дома в остальные дни.
@@ -408,7 +404,7 @@
 												</div>
 											</div>
 											{% endif %}
-										</div>
+										</div> -->
 									</div>
 								</div>
 								{% if is_offline_closed%}
