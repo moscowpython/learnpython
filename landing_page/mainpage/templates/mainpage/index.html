@@ -169,7 +169,7 @@
 					<h1 class="col-12 col-md-10 col-xl-8">Курс программирования на <span
 							class="js-type-it color-yellow">Python 3.7</span>
 						для любого уровня c упором на практику</h1>
-					<h3 class="h3 col-12 col-md-10 col-xl-8">Онлайн | В Москве | В Санкт-Петербурге | В Пензе</h3>
+					<h3 class="h3 col-12 col-md-10 col-xl-8">Онлайн | В Москве</h3>
 					<p class="hdescr col-12 col-md-8 col-xl-8">
 						Вы создадите Telegram-бота на первом же уроке. Познакомитесь с основами data science и
 						веб-разработки.
@@ -245,9 +245,7 @@
 										data-target="#overlay" onclick="dataLayer.push({'event':'form_online_cost'});">
 										Записаться
 									</button>
-
 								</div>
-
 							</div>
 						</div>
 					</div>
@@ -259,13 +257,11 @@
 									<ul class="nav nav-tabs flex-lg-nowrap justify-content-start button-tab-group d-lg-inline-flex mb-3 mt-3"
 										style="min-height:40px;">
 										<li><a class="active px-5" data-toggle="tab" href="#moscow">Москва</a></li>
-										<li><a class="px-5" data-toggle="tab" href="#penza">Пенза</a></li>
-										<li><a class="px-5" data-toggle="tab" href="#spb">Питер</a></li>
 									</ul>
 									<div id="tb-city" class="tab-content">
-										<button class="m-show-timetable-moscow d-none"
+										<!-- <button class="m-show-timetable-moscow d-none"
 											onclick="$('#moscow').toggleClass('tab-m-active');$('#penza').removeClass('tab-m-active');">
-										</button>
+										</button> -->
 										<div id="moscow" class="tab-pane timetable-tab-moscow fade active show">
 											<p class="hdescr">
 												Приходите на занятия по субботам в центре Москвы, решайте задачи и
@@ -278,6 +274,14 @@
 														Telegram-чат в другие дни</span>
 												</li>
 											</ul>
+											{% if is_offline_closed%}
+											<div
+												class="pt-lg-3 align-items-center d-flex justify-content-between smooth-scroll flex-wrap">
+												<div class="price-parent">
+												<h3>Регистрация закрыта ввиду эпидемиологической ситуации</h3>
+												</div>
+											</div>
+											{% else %}
 											<div
 												class="pt-lg-3 align-items-center d-flex justify-content-between smooth-scroll flex-wrap">
 												<div class="price-parent">
@@ -302,19 +306,28 @@
 														рассрочка</a>
 												</div>
 											</div>
+											{% endif %}
 										</div>
-										<div id="spb" class="tab-pane timetable-tab-spb fade">
+										<!-- <div id="spb" class="tab-pane timetable-tab-spb fade">
 											<p class="hdescr">
 												Приходите на занятия по субботам в Санкт-Петербурге,
 												решайте задачи и смотрите видео из дома в остальные дни.
 											</p>
 											<ul class="lambda-style blu-lamb">
-												<li><span>Занятия проходят в центре города.</span>	
+												<li><span>Занятия проходят в центре города, по адресу Большая Морская, д.3, БЦ Lidval</span>	
 												</li>
 												<li><span>Группа из 5-7 человек вашего уровня плюс куратор на месте.
 														Telegram-чат в другие дни</span>
 												</li>
 											</ul>
+											{% if is_offline_closed%}
+											<div
+												class="pt-lg-3 align-items-center d-flex justify-content-between smooth-scroll flex-wrap">
+												<div class="price-parent">
+												<h3>Регистрация закрыта ввиду эпидемиологической ситуации</h3>
+												</div>
+											</div>
+											{% else %}
 											<div
 												class="pt-lg-3 align-items-center d-flex justify-content-between smooth-scroll flex-wrap">
 												<div class="price-parent">
@@ -341,8 +354,9 @@
 														рассрочка</a>
 												</div>
 											</div>
-										</div>
-										<div id="penza" class="tab-pane timetable-tab-penza fade">
+											{% endif %}
+										</div> -->
+										<!-- <div id="penza" class="tab-pane timetable-tab-penza fade">
 											<p class="hdescr">
 												Приходите на занятия по субботам в Пензе,
 												решайте задачи и смотрите видео из дома в остальные дни.
@@ -355,6 +369,14 @@
 														Telegram-чат в другие дни</span>
 												</li>
 											</ul>
+											{% if is_offline_closed%}
+											<div
+												class="pt-lg-3 align-items-center d-flex justify-content-between smooth-scroll flex-wrap">
+												<div class="price-parent">
+												<h3>Регистрация закрыта ввиду эпидемиологической ситуации</h3>
+												</div>
+											</div>
+											{% else %}
 											<div
 												class="pt-lg-3 align-items-center d-flex justify-content-between smooth-scroll flex-wrap">
 												<div class="price-parent">
@@ -381,13 +403,21 @@
 														рассрочка</a>
 												</div>
 											</div>
-										</div>
+											{% endif %}
+										</div> -->
 									</div>
 								</div>
+								{% if is_offline_closed%}
+								<button class="btn btn-info btn-add disabled" data-toggle="modal" data-target="#overlay"
+									onclick="dataLayer.push({'event':'form_online_cost'});">
+									Записаться
+								</button>
+								{% else %}
 								<button class="btn btn-info btn-add" data-toggle="modal" data-target="#overlay"
 									onclick="dataLayer.push({'event':'form_online_cost'});">
 									Записаться
 								</button>
+								{% endif %}
 							</div>
 						</div>
 					</div>
@@ -3032,11 +3062,7 @@
 	</div>
 
 	<div class="button-fix" style="position: fixed; right: 30px;bottom: 40px;z-index: 999;">
-		<!-- Кнопка звонка
-  <a class="call-buton" href="#">
-		<i class="material-icons">phone</i>
-  </a>
-  -->
+	<script src="//code.jivosite.com/widget/u8UotTOGre" async></script>
 		<button id="scrollup" class="goOnTop"><i class="material-icons">arrow_upward</i></button>
 	</div>
 	<script src="{% static 'vendor/js/jquery-3.3.1.min.js' %}"></script>
