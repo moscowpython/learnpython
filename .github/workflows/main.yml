@@ -22,7 +22,9 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
+        script_stop: true
         script: |
           cd /opt/servers
-          docker-compose pull learnpython && docker-compose -f compose-altima.yml up -d
+          docker-compose pull learnpython
+          docker-compose up -d
           docker exec -i servers_learnpython_1 python3 manage.py migrate --noinput
