@@ -1,5 +1,6 @@
-name: Duild and deploy container
-push:
+name: Duild and deploy Docker container
+on:
+  push:
     branches:
       - master
 jobs:
