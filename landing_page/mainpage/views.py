@@ -78,10 +78,16 @@ def projects(request):
     '''Docstring testc'''
     template = loader.get_template('mainpage/projects.html')
 
+    try:
+        current_course = LearnPythonCourse.objects.latest('course_index')
+    except LearnPythonCourse.DoesNotExist:
+        current_course = LearnPythonCourse()
+
     # Student projects data
     student_projects_videos = list(GraduateProjectsVideos.objects.all().order_by('-project_course'))
 
     context = {
+        'course': current_course,
         'student_projects': student_projects_videos,
         'today': date.today()
 
