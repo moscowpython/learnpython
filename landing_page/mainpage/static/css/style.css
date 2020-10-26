@@ -2826,7 +2826,7 @@ ul.installment-plan li:before {
 		border-bottom: 1px solid #E0E0E0;
 	}
 
-	.curse-program. m-section-header {
+	.curse-program .m-section-header {
 		padding-bottom: 30px;
 	}
 	.week-main-cont {
@@ -3441,3 +3441,51 @@ ul.installment-plan li:before {
 	}
 }
 
+.timetable-container .button-tab-group li > a {
+    text-transform: none;
+    padding: 18px 30px;
+}
+
+.timetable-container .button-tab-group li:nth-child(1n) > a.active {
+    background-color: #f2c94c;
+}
+.timetable-container .button-tab-group li:nth-child(2n) > a.active {
+    background-color: #2d9cdb;
+    color: #fff;
+}
+
+.timetable-container .tab-content>.tab-pane {
+	display: none;
+}
+.timetable-container .tab-content>.active {
+    display: block;
+}
+
+.timetable-container .tab-pane {
+    padding: 30px 10px 40px 40px;
+}
+
+.timetable-container .tab-pane h3 {
+    margin-bottom: 20px;
+    text-transform: none;
+    color: #444;
+}
+
+.timetable-container .tab-pane h4 {
+    margin-bottom: 9px;
+    text-transform: none;
+    color: #444;
+}
+
+.timetable-container .tab-pane ul {
+    list-style: none;
+}
+
+.timetable-container .tab-pane ul li::before {
+    content: "\2022";
+    color: #2d9cdb;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
