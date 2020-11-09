@@ -2591,12 +2591,12 @@ ul.installment-plan li:before {
 		border-color: #2D9CDB;
 	}
 
-	section.timetable.show1 .m-section-header-dis h4:before {
+	/* section.timetable.show1 .m-section-header-dis h4:before {
 		content: '-';
 		color: #fff;
 		background: #E0E0E0;
 		border-color: #E0E0E0;
-	}
+	} */
 
 	.about  {
 		padding: 40px 0 9px;
@@ -3488,4 +3488,16 @@ ul.installment-plan li:before {
     display: inline-block;
     width: 1em;
     margin-left: -1em;
+}
+
+.timetable-container .slick-next {
+	margin-top: 22px;
+}
+
+.timetable-container .slick-dots li button:after {
+	background: #ccc;
+}
+
+.timetable-container .slick-dots li.slick-active button:after {
+    background: #f2c94c;
 }

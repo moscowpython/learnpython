@@ -281,33 +281,44 @@ class LearnPython {
 		}
 	}
 
-	_addEventsWeek(e) {
-		const currentTarget = $(e.currentTarget).children('i');
-		const nextTarget = $(e.currentTarget).next('.week-content');
-		nextTarget.toggleClass('show-week');
-		$('.week-title-onl > i, .week-title-offln > i').each(function (i,el) {
-			if (currentTarget[0] != el) {
-				$( this )[0].innerText = 'keyboard_arrow_down';
-			}
-		});
-		$('.week-content.show-week').each(function (i,el){
-			if (nextTarget[0] != el) {
-				$( this ).removeClass('show-week');
-			}
-		});
-		(currentTarget[0].innerText == "keyboard_arrow_up") ? currentTarget[0].innerText = "keyboard_arrow_down" :
-			currentTarget[0].innerText = "keyboard_arrow_up";
-	}
+	// _addEventsWeek(e) {
+	// 	console.log(currentTarget)
+	// 	const currentTarget = $(e.currentTarget).children('i');
+	// 	const nextTarget = $(e.currentTarget).next('.week-content');
+	// 	nextTarget.toggleClass('show-week');
+	// 	$('.week-title-onl > i, .week-title-offln > i').each(function (i,el) {
+	// 		if (currentTarget[0] != el) {
+	// 			$( this )[0].innerText = 'keyboard_arrow_down';
+	// 		}
+	// 	});
+	// 	$('.week-content.show-week').each(function (i,el){
+	// 		if (nextTarget[0] != el) {
+	// 			$( this ).removeClass('show-week');
+	// 		}
+	// 	});
+	// 	(currentTarget[0].innerText == "keyboard_arrow_up") ? currentTarget[0].innerText = "keyboard_arrow_down" :
+	// 		currentTarget[0].innerText = "keyboard_arrow_up";
+	// }
 
 	mobiTimetableInit() {
 		if (this._isSmallScreen() && (!this.mobiOpeWeek)) {
-			this.mobiOpeWeek = $('div.week-title-onl, div.week-title-offln').on('click', this._addEventsWeek);
+			this.mobiOpeWeek = $('.timetable-container .tab-content').slick({
+				infinite: true,
+				prevArrow: '<button class="time-tb-button slick-prev" type="button"><i class="material-icons"> arrow_back </i></button>',
+				nextArrow: '<button class="time-tb-button slick-next" type="button"><i class="material-icons"> arrow_forward </i></button>',
+				arrows: true,
+				dots: true,
+				adaptiveHeight: true,
+				fade: true
+
+			})
+			// this.mobiOpeWeek = $('div.timetable-title-onl, div.timetable-title-offln').on('click', this._addEventsWeek);
 		}
 	}
 
 	_destroyWeekEvent() {
 		if (!this._isSmallScreen() && (this.mobiOpeWeek)) {
-			$('div.week-title-onl, div.week-title-offln').off('click', this._addEventsWeek);
+			this.mobiOpeWeek.slick('unslick');
 			this.mobiOpeWeek = null;
 		}
 	}
