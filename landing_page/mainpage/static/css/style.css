@@ -1221,7 +1221,7 @@ iframe#ytplayer {
 	min-height: 64px;
 	display: inline-flex;
 	align-items: center;
-	margin-bottom: 40px;
+	margin-bottom: 20px;
 	margin-left: 6px;
 }
 
@@ -1306,15 +1306,16 @@ iframe#ytplayer {
 
 
 .time-tb-button {
-	width: 64px;
-	height: 60px;
+	width: 45px;
+	height: 45px;
 	background: #fff;
 	display: flex;
 	outline: none;
 	align-items: center;
 	justify-content: center;
 	position: absolute;
-	right: 64px;
+	right: 45px;
+	top: 0;
 	z-index: 999;
 	border: none;
 	cursor: pointer;
@@ -2519,7 +2520,7 @@ ul.installment-plan li:before {
 		display: none;
 	}
 
-	section.about .m-hide, section.teachers .m-hide, section.reviews .m-hide {
+	section.about:not(.show1) .m-hide, section.teachers:not(.show1) .m-hide, section.reviews:not(.show1) .m-hide {
 		height: 0;
 		display: block;
 		overflow: hidden;
@@ -3440,18 +3441,18 @@ ul.installment-plan li:before {
 		bottom: initial;
 	}
 }
+.timetable-container .button-tab-group{
+	border: none;
+}
+
 
 .timetable-container .button-tab-group li > a {
     text-transform: none;
     padding: 18px 30px;
 }
 
-.timetable-container .button-tab-group li:nth-child(1n) > a.active {
+.timetable-container .button-tab-group li > a.active {
     background-color: #f2c94c;
-}
-.timetable-container .button-tab-group li:nth-child(2n) > a.active {
-    background-color: #2d9cdb;
-    color: #fff;
 }
 
 .timetable-container .tab-content>.tab-pane {
@@ -3488,10 +3489,6 @@ ul.installment-plan li:before {
     display: inline-block;
     width: 1em;
     margin-left: -1em;
-}
-
-.timetable-container .slick-next {
-	margin-top: 22px;
 }
 
 .timetable-container .slick-dots li button:after {

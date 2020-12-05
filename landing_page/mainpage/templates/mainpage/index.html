@@ -315,7 +315,7 @@
 												решайте задачи и смотрите видео из дома в остальные дни.
 											</p>
 											<ul class="lambda-style blu-lamb">
-												<li><span>Занятия проходят в центре города, по адресу Большая Морская, д.3, БЦ Lidval</span>	
+												<li><span>Занятия проходят в центре города, по адресу Большая Морская, д.3, БЦ Lidval</span>
 												</li>
 												<li><span>Группа из 5-7 человек вашего уровня плюс куратор на месте.
 														Telegram-чат в другие дни</span>
@@ -364,7 +364,7 @@
 											</p>
 											<ul class="lambda-style blu-lamb">
 												<li><span>Занятия проходят в офисе компании <a target="_blank" href="https://osinit.com">"Открытые решения"</a>
-													по адресу: улица Московская 29, офис 704</span>	
+													по адресу: улица Московская 29, офис 704</span>
 												</li>
 												<li><span>Группа из 5-7 человек вашего уровня плюс куратор на месте.
 														Telegram-чат в другие дни</span>
@@ -426,7 +426,7 @@
 			</div>
 		</section>
 
-		<section id="about" class="about">
+		<section id="about" class="about show1">
 			<div class="container d-lg-none">
 				<div class="m-section-header">
 					<h4>Что дает этот курс</h4>
@@ -437,7 +437,7 @@
 					<h2>О курсе</h2>
 				</div>
 			</div>
-			<div class="container m-hide ">
+			<div class="container m-hide">
 				<div class="row d-lg-none mobi-list-opp">
 					<ul class="list-mobi-about">
 						<li>
@@ -838,7 +838,7 @@
 			</div>
 		</section>
 
-		<section id="curse-program" class="curse-program">
+		<section id="curse-program" class="curse-program show1">
 			<div class="mobile-color">
 				<div class="container d-lg-none">
 					<div class="curse-program-info m-section-header">
@@ -848,7 +848,7 @@
 			</div>
 			<div class="container d-none d-lg-block">
 				<div class="pc-section-header ">
-					<h2>Программа и расписание</h2>
+					<h2>Как проходит курс</h2>
 				</div>
 			</div>
 			<div class="container m-hide">
@@ -937,14 +937,14 @@
 		<section id="timetable" class="timetable show1">
 			<div class="container d-lg-none">
 				<div class="timetable-lf-info m-section-header">
-					<h4>Расписание</h4>
+					<h4>Программа</h4>
 				</div>
 			</div>
 			<div class="container m-hide">
 				<div class="row mx-row">
 					<div class="col-lg-3 pl-0 d-none d-lg-block pb-lg-5">
 						<div class="curse-heading">
-							<h3>Расписание</h3>
+							<h3>Программа</h3>
 							<p class="curse-hdescr">
 								На курсе мы учим программированию на Python в целом - "Основной" трек.</p>
 							<p class="curse-hdescr">
@@ -973,13 +973,13 @@
 								<div id="tab1" class="tab-pane timetable-tab-onl active show fade">
 									{% include "mainpage/include/track_main.html" %}
 								</div>
-								<div id="tab2" class="tab-pane timetable-tab-offln fade">
+								<div id="tab2" class="tab-pane timetable-tab-onl fade">
 									{% include "mainpage/include/track_web.html" %}
 								</div>
 								<div id="tab3" class="tab-pane timetable-tab-onl fade">
 									{% include "mainpage/include/track_ds.html" %}
 								</div>
-								<div id="tab4" class="tab-pane timetable-tab-offln fade">
+								<div id="tab4" class="tab-pane timetable-tab-onl fade">
 									{% include "mainpage/include/track_bots.html" %}
 								</div>
 							</div>
@@ -1531,6 +1531,8 @@
 
 				</ul>
 			</div>
+
+			{% if 0 %}
 			<div class="dark-cont">
 				<div class="container m-hide">
 					<div class="reviews-carousel col-xl-10" style="margin: 0 auto;">
@@ -1555,6 +1557,41 @@
 											<h5 class="name text-uppercase d-block">{{feedback.feedback_author}}</h5>
 											<span>{{feedback.feedback_author_position}}</span>
 										</div>
+									</div>
+								</div>
+							</div>
+							{% endfor %}
+
+						</div>
+						<div class="slider-nav nav-container">
+							<a class="carousel-control prev d-none d-lg-flex" role="button" data-slide="prev">
+								<i class="material-icons">arrow_back</i>
+							</a>
+							<span class="pagerSelector"></span>
+							<a class="carousel-control next d-none d-lg-flex" role="button" data-slide="next">
+								<i class="material-icons">arrow_forward</i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% endif %}
+
+			<div class="dark-cont">
+				<div class="container m-hide">
+					<div class="reviews-carousel col-xl-10" style="margin: 0 auto;">
+						<div class="reviews-carousel-slider">
+							{% for video in student_videos %}
+							<div class="slick-custom-slide">
+								<div class="slide-wrapper">
+									<h3 class="slide-heading">
+										{{video.title}}
+									</h3>
+									<div>
+										<iframe width="800" height="400" src="https://www.youtube.com/embed/{{video.youtube_id}}"
+												frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+												allowfullscreen>
+										</iframe>
 									</div>
 								</div>
 							</div>
