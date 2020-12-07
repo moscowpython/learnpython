@@ -815,7 +815,7 @@ li.nav-item.d-none.d-lg-block a.btn {
 }
 
 .about {
-	padding: 195px 0 123px;
+	padding: 0 0 123px;
 }
 
 .pc-section-header {
@@ -3497,12 +3497,27 @@ ul.installment-plan li:before {
 }
 
 .video-answers{
-	padding: 200px 0 100px;
+	padding: 200px 0 50px;
+	position: relative;
 }
 
 .video-answers .answers iframe{
 	display: block;
 	margin: 50px auto;
+}
+
+.video-answers .answers-heading{
+	position: sticky;
+	top: 120px;
+	text-align: left;
+}
+
+.video-answers .answers-heading h3{
+	font-size: 28px;
+}
+
+.video-answers .pc-section-header{
+	padding-bottom: 40px;
 }
 
 .price-list{
@@ -3613,6 +3628,8 @@ ul.installment-plan li:before {
 	border-box: none;
 	background: #ffffff;
 }
+
+
 
 
 
