@@ -79,7 +79,7 @@ button#scrollup:focus {
 	color: #554537 !important;
 }
 .btn-warning {
-	color: #fff !important;
+	color: #fff;
 	background-color: #f2c94c;
 	border-color: #f2c94c;
 }
@@ -773,9 +773,9 @@ li.nav-item.d-none.d-lg-block a.btn {
 
 .price-parent {
 	display: flex;
-	flex-wrap: wrap;
-	justify-content: left;
-	text-align: left;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
 }
 
 .price-old {
@@ -1206,7 +1206,7 @@ iframe#ytplayer {
 }
 
 .timetable-container .timetable-tab-onl {
-	border: 2px solid #F2C94C;
+	//border: 2px solid #F2C94C;
 	border-radius: 3px;
 }
 
@@ -1232,7 +1232,7 @@ iframe#ytplayer {
 	text-transform: uppercase;
 	background-color: transparent;
 	padding: 18px 78px;
-	border-radius: 100px;
+	border-radius: 27px;
 	color: #333;
 	font-family: 'Ubuntu';
 	transform: scale(1.05);
@@ -3448,7 +3448,7 @@ ul.installment-plan li:before {
 
 .timetable-container .button-tab-group li > a {
     text-transform: none;
-    padding: 18px 30px;
+    padding: 14px 30px;
 }
 
 .timetable-container .button-tab-group li > a.active {
@@ -3497,4 +3497,86 @@ ul.installment-plan li:before {
 
 .timetable-container .slick-dots li.slick-active button:after {
     background: #f2c94c;
+}
+
+.video-answers{
+	padding: 200px 0 100px;
+}
+
+.video-answers .answers iframe{
+	display: block;
+	margin: 50px auto;
+}
+
+.hero .price-list{
+	display: flex;
+	flex-direction: row;
+	margin: 0 -25px;
+}
+
+.hero .price-list.offline-list{
+	padding-top: 10px;
+}
+
+.hero .price-list .price-item{
+	padding: 10px;
+	margin: 0 25px;
+}
+
+@media(max-width: 1360px){
+	.hero .price-list{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin: 0;
+	}
+
+	.hero .price-list .price-item{
+		margin: 20px 0;
+	}
+}
+
+.hero .price-list .price-item.payment-before{
+	background: rgba(236, 202, 98, 0.2);
+	box-shadow: 0 0 15px #9c9c9c;
+}
+
+.hero .price-list .price-item.payment-before.offline{
+	background: rgba(77, 155, 214, 0.2);
+}
+
+.hero .price-list .price-item.payment-after{
+	border: 1px solid #C4C4C4;
+}
+
+.hero .price-list .price-item.payment-after.offline{
+	border: 1px solid #C4C4C4;
+}
+
+.hero .price-list .price-item .btn{
+	padding: 12px 65px;
+}
+
+.hero .price-list .price-item.payment-before .btn:hover{
+	color: #ffffff;
+}
+
+.hero .price-list .price-item.payment-after .btn{
+	background: #C4C4C4;
+	border: 1px solid #C4C4C4;
+	color: #4f4f4f;
+	padding: 12px 26px;
+}
+
+.hero .price-list .price-item.payment-before.offline .btn{
+	background: #4D9BD6;
+	border: 1px solid #4D9BD6;
+}
+
+.hero .price-list .price-item.payment-before.offline .btn:hover{
+	box-shadow: 0 3px 0 #2e729e;
+}
+
+.hero .price-list .price-item.payment-after .btn:hover{
+	box-shadow: 0 3px 0 #acabab;
 }
