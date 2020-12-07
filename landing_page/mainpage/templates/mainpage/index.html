@@ -1436,252 +1436,144 @@
 							</div>
 						</div>
 					</div>
-
-					<div class="ticket-block row ">
-						<div class="col-md-12 col-lg-6">
-							<div class="card slideInUp animated-on-ready">
-								<div class="card-body d-flex flex-column justify-content-between">
-									<h3 class="card-heading brackets brackets-yellow">Учитесь онлайн</h3>
-									<p class="hdescr">
-										Версия курса для тех, кто много работает, живет не в Москве или за рубежом.
-									</p>
-									<ul class="lambda-style">
-										<li><span>Те же преподаватели и задачи, что и у оффлайн-группы</span></li>
-										<li><span>Индивидуальные созвоны с куратором в субботу. Telegram-чат в другие
-											дни</span>
-										</li>
-									</ul>
-									<div class="price-list">
-										<div class="price-item payment-before">
-											<div
-													class="pt-lg-3">
-												<div class="price-parent">
-													{% if today <= online_price_ranges.0.price_range_end_date %}
-													<div class="price-date"> До
-														{{ online_price_ranges.0.price_range_end_date | date:"j E" }}</div>
-													<strong class="price">{{ online_price_ranges.0.price_range_price}}
-														р.</strong>
-
-													{% else %}
-													<div class="price-date"> До
-														{{ online_price_ranges.1.price_range_end_date | date:"j E" }}</div>
-													<strong class="price">{{ online_price_ranges.1.price_range_price}}
-														р.</strong>
-													{% endif%}
-												</div>
-												<div class="decr-price-parent">
-													<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
-														рассрочку
-														<strong>от 3500 р/мес</strong></a>
-													<a href="#howToPay" class="decr-price d-lg-none scroll-to"
-													   style="padding-top: 5px">Есть
-														рассрочка</a>
-												</div>
-											</div>
-											<button class="yellow btn btn-warning btn-add" data-toggle="modal"
-													data-target="#overlay" onclick="dataLayer.push({'event':'form_online_cost'});">
-												Записаться
-											</button>
-										</div>
-
-										<div class="price-item payment-after">
-											<div
-													class="pt-lg-3">
-												<div class="price-parent">
-													{% if today <= online_price_ranges.0.price_range_end_date %}
-													<strong class="price">{{ online_price_ranges.0.price_range_price}}
-														р.</strong>
-													<div class="price-date"> С
-														{{ online_price_ranges.0.price_range_end_date | date:"j E" }}</div>
-													{% else %}
-													<div class="price-date"> С
-														{{ online_price_ranges.1.price_range_end_date | date:"j E" }}</div>
-													<strong class="price">{{ online_price_ranges.1.price_range_price}}
-														р.</strong>
-													{% endif%}
-												</div>
-												<div class="decr-price-parent">
-													<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
-														рассрочку
-														<strong>от 4000 р/мес</strong></a>
-													<a href="#howToPay" class="decr-price d-lg-none scroll-to"
-													   style="padding-top: 5px">Есть
-														рассрочка</a>
-												</div>
-											</div>
-											<button class="btn btn-warning btn-add" data-toggle="modal"
-													data-target="#overlay" onclick="dataLayer.push({'event':'form_online_cost'});">
-												С 01 ЯНВАРЯ 2021 ГОДА
-											</button>
-										</div>
-									</div>
-
-								</div>
-							</div>
-						</div>
-						<div class="col-md-12 col-lg-6">
-							<div class="card slideInUp animated-on-ready">
-								<div class="card-body">
-									<h3 class="card-heading brackets brackets-blue">Учитесь оффлайн в Москве</span></h3>
-									<div>
-
-										<div id="tb-city" class="tab-content">
-
-											<div id="moscow" class="tab-pane timetable-tab-moscow fade active show">
-												<p class="hdescr">
-													Приходите на занятия по субботам, решайте задачи и
-													смотрите видео из
-													дома в остальные дни.
-												</p>
-												<ul class="lambda-style blu-lamb">
-													<li><span>Учимся в Deworkacy Русаковская - рядом с метро Красносельская</span></li>
-													<li><span>Группа из 5-7 человек вашего уровня плюс куратор на месте.
-														Telegram-чат в другие дни</span>
-													</li>
-												</ul>
-												{% if is_offline_closed%}
-												<div
-														class="pt-lg-3 align-items-center d-flex justify-content-between smooth-scroll flex-wrap">
-													<div class="price-parent">
-														<h3>Регистрация закрыта ввиду эпидемиологической ситуации</h3>
-													</div>
-												</div>
-												{% else %}
-												<div class="price-list offline-list">
-													<div class="price-item payment-before offline">
-														<div
-																class="pt-lg-3">
-															<div class="price-parent">
-																{% if today <= online_price_ranges.0.price_range_end_date %}
-																<div class="price-date"> До
-																	{{ online_price_ranges.0.price_range_end_date | date:"j E" }}</div>
-																<strong class="price">{{ online_price_ranges.0.price_range_price}}
-																	р.</strong>
-
-																{% else %}
-																<div class="price-date"> До
-																	{{ online_price_ranges.1.price_range_end_date | date:"j E" }}</div>
-																<strong class="price">{{ online_price_ranges.1.price_range_price}}
-																	р.</strong>
-																{% endif%}
-															</div>
-															<div class="decr-price-parent">
-																<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
-																	рассрочку
-																	<strong>от 4000 р/мес</strong></a>
-																<a href="#howToPay" class="decr-price d-lg-none scroll-to"
-																   style="padding-top: 5px">Есть
-																	рассрочка</a>
-															</div>
-														</div>
-														<button class="yellow btn btn-warning btn-add" data-toggle="modal"
-																data-target="#overlay" onclick="dataLayer.push({'event':'form_online_cost'});">
-															Записаться
-														</button>
-													</div>
-
-													<div class="price-item payment-after offline">
-														<div
-																class="pt-lg-3">
-															<div class="price-parent">
-																{% if today <= online_price_ranges.0.price_range_end_date %}
-																<strong class="price">{{ online_price_ranges.0.price_range_price}}
-																	р.</strong>
-																<div class="price-date"> С
-																	{{ online_price_ranges.0.price_range_end_date | date:"j E" }}</div>
-																{% else %}
-																<div class="price-date"> С
-																	{{ online_price_ranges.1.price_range_end_date | date:"j E" }}</div>
-																<strong class="price">{{ online_price_ranges.1.price_range_price}}
-																	р.</strong>
-																{% endif%}
-															</div>
-															<div class="decr-price-parent">
-																<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
-																	рассрочку
-																	<strong>от 4500 р/мес</strong></a>
-																<a href="#howToPay" class="decr-price d-lg-none scroll-to"
-																   style="padding-top: 5px">Есть
-																	рассрочка</a>
-															</div>
-														</div>
-														<button class="btn btn-warning btn-add" data-toggle="modal"
-																data-target="#overlay" onclick="dataLayer.push({'event':'form_online_cost'});">
-															С 01 ЯНВАРЯ 2021 ГОДА
-														</button>
-													</div>
-												</div>
-												{% endif %}
-											</div>
-
-										</div>
-									</div>
-
-								</div>
-							</div>
-						</div>
-					</div>
-
-					{% if 0 %}
 					<div class="col-12 col-lg-10 col-xl-6 online-tab active">
 						<div class="price-second bg-yellow">
 							<h3 class="text-center d-none d-lg-block">онлайн курс</h3>
-							<div
-								class="pt-lg-4 pb-lg-5 align-items-end d-flex justify-content-between smooth-scroll mobi-fomrmater">
-								<div class="price-parent">
-									{% if today <= online_price_ranges.0.price_range_end_date %}
-									<strong class="price">{{ online_price_ranges.0.price_range_price}} р.</strong>
-									<span class="price-date"> до
-										{{ online_price_ranges.0.price_range_end_date | date:"j E" }}</span>
-									{% else %}
-									<strong class="price">{{ online_price_ranges.1.price_range_price}} р.</strong>
-									<span class="price-date"> до
-										{{ online_price_ranges.1.price_range_end_date | date:"j E" }}</span>
-									{% endif%}
+							<div class="price-list">
+								<div class="price-item payment-before">
+									<div
+											class="pt-lg-3">
+										<div class="price-parent">
+											{% if today <= online_price_ranges.0.price_range_end_date %}
+											<div class="price-date"> До
+												{{ online_price_ranges.0.price_range_end_date | date:"j E" }}</div>
+											<strong class="price">{{ online_price_ranges.0.price_range_price}}
+												р.</strong>
+
+											{% else %}
+											<div class="price-date"> До
+												{{ online_price_ranges.1.price_range_end_date | date:"j E" }}</div>
+											<strong class="price">{{ online_price_ranges.1.price_range_price}}
+												р.</strong>
+											{% endif%}
+										</div>
+										<div class="decr-price-parent">
+											<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
+												рассрочку
+												<strong>от 3500 р/мес</strong></a>
+											<a href="#howToPay" class="decr-price d-lg-none scroll-to"
+											   style="padding-top: 5px">Есть
+												рассрочка</a>
+										</div>
+									</div>
+									<button class="yellow btn btn-warning btn-add" data-toggle="modal"
+											data-target="#overlay" onclick="dataLayer.push({'event':'form_online_cost'});">
+										Записаться
+									</button>
 								</div>
-								<div>
-									<a href="#howToPay" class="decr-price d-lg-none scroll-to">Есть рассрочка</a>
-									<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В рассрочку
-										<strong>от
-											3500 р/мес</strong></a>
+
+								<div class="price-item payment-after">
+									<div
+											class="pt-lg-3">
+										<div class="price-parent">
+											{% if today <= online_price_ranges.0.price_range_end_date %}
+											<strong class="price">{{ online_price_ranges.0.price_range_price}}
+												р.</strong>
+											<div class="price-date"> С
+												{{ online_price_ranges.0.price_range_end_date | date:"j E" }}</div>
+											{% else %}
+											<div class="price-date"> С
+												{{ online_price_ranges.1.price_range_end_date | date:"j E" }}</div>
+											<strong class="price">{{ online_price_ranges.1.price_range_price}}
+												р.</strong>
+											{% endif%}
+										</div>
+										<div class="decr-price-parent">
+											<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
+												рассрочку
+												<strong>от 4000 р/мес</strong></a>
+											<a href="#howToPay" class="decr-price d-lg-none scroll-to"
+											   style="padding-top: 5px">Есть
+												рассрочка</a>
+										</div>
+									</div>
+									<button class="btn btn-warning btn-add" data-toggle="modal"
+											data-target="#overlay" onclick="dataLayer.push({'event':'form_online_cost'});">
+										С 01 ЯНВАРЯ 2021 ГОДА
+									</button>
 								</div>
 							</div>
-							<button data-toggle="modal" data-target="#overlay" class="btn btn-special"
-								onclick="dataLayer.push({'event':'form_offline_cost'});">
-								Записаться <span class="d-none d-lg-inline">сейчас</span>
-							</button>
 						</div>
 					</div>
 					<div class="col-12 col-lg-10 col-xl-6 offline-tab">
 						<div class="price-second bg-blue">
 							<h3 class="text-center d-none d-lg-block">оффлайн курс</h3>
-							<div
-								class="pt-lg-4 pb-lg-5 align-items-end d-flex justify-content-between smooth-scroll mobi-fomrmater">
-								<div class="price-parent">
-									{% if today <= offline_price_ranges.0.price_range_end_date %}
-									<strong class="price">{{ offline_price_ranges.0.price_range_price}} р.</strong>
-									<span class="price-date"> до
-										{{ offline_price_ranges.0.price_range_end_date | date:"j E" }}</span>
-									{% else %}
-									<strong class="price">{{ offline_price_ranges.1.price_range_price}} р.</strong>
-									<span class="price-date"> до
-										{{ offline_price_ranges.1.price_range_end_date | date:"j E" }}</span>
-									{% endif%}
+							<div class="price-list offline-list">
+								<div class="price-item payment-before offline">
+									<div
+											class="pt-lg-3">
+										<div class="price-parent">
+											{% if today <= online_price_ranges.0.price_range_end_date %}
+											<div class="price-date"> До
+												{{ online_price_ranges.0.price_range_end_date | date:"j E" }}</div>
+											<strong class="price">{{ online_price_ranges.0.price_range_price}}
+												р.</strong>
+
+											{% else %}
+											<div class="price-date"> До
+												{{ online_price_ranges.1.price_range_end_date | date:"j E" }}</div>
+											<strong class="price">{{ online_price_ranges.1.price_range_price}}
+												р.</strong>
+											{% endif%}
+										</div>
+										<div class="decr-price-parent">
+											<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
+												рассрочку
+												<strong>от 4000 р/мес</strong></a>
+											<a href="#howToPay" class="decr-price d-lg-none scroll-to"
+											   style="padding-top: 5px">Есть
+												рассрочка</a>
+										</div>
+									</div>
+									<button class="yellow btn btn-warning btn-add" data-toggle="modal"
+											data-target="#overlay" onclick="dataLayer.push({'event':'form_online_cost'});">
+										Записаться
+									</button>
 								</div>
-								<div>
-									<a href="#howToPay" class="decr-price d-lg-none scroll-to">Есть рассрочка</a>
-									<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В рассрочку
-										<strong>от
-											4000 р/мес</strong></a>
+
+								<div class="price-item payment-after offline">
+									<div
+											class="pt-lg-3">
+										<div class="price-parent">
+											{% if today <= online_price_ranges.0.price_range_end_date %}
+											<strong class="price">{{ online_price_ranges.0.price_range_price}}
+												р.</strong>
+											<div class="price-date"> С
+												{{ online_price_ranges.0.price_range_end_date | date:"j E" }}</div>
+											{% else %}
+											<div class="price-date"> С
+												{{ online_price_ranges.1.price_range_end_date | date:"j E" }}</div>
+											<strong class="price">{{ online_price_ranges.1.price_range_price}}
+												р.</strong>
+											{% endif%}
+										</div>
+										<div class="decr-price-parent">
+											<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
+												рассрочку
+												<strong>от 4500 р/мес</strong></a>
+											<a href="#howToPay" class="decr-price d-lg-none scroll-to"
+											   style="padding-top: 5px">Есть
+												рассрочка</a>
+										</div>
+									</div>
+									<button class="btn btn-warning btn-add" data-toggle="modal"
+											data-target="#overlay" onclick="dataLayer.push({'event':'form_online_cost'});">
+										С 01 ЯНВАРЯ 2021 ГОДА
+									</button>
 								</div>
 							</div>
-							<button data-toggle="modal" data-target="#overlay" class="btn btn-special"
-								onclick="dataLayer.push({'event':'form_offline_cost'});">
-								Записаться <span class="d-none d-lg-inline">сейчас</span>
-							</button>
 						</div>
 					</div>
-					{% endif %}
 				</div>
 
 			</div>

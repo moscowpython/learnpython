@@ -251,7 +251,7 @@ label {
 	cursor: pointer;
 }
 .card-body {
-	padding: 3.5rem;
+	padding: 2.5rem;
 }
 .form-group {
 	margin-bottom: 1.5rem;
@@ -775,6 +775,7 @@ li.nav-item.d-none.d-lg-block a.btn {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	align-items: center;
 	text-align: center;
 }
 
@@ -798,7 +799,7 @@ li.nav-item.d-none.d-lg-block a.btn {
 }
 
 .counter .offline-tab .decr-price, .counter .offline-tab .decr-price:hover {
-	color: #fff;
+	color: #4f4f4f;
 }
 
 .counter .online-tab .decr-price, .counter .online-tab .decr-price:hover {
@@ -1570,12 +1571,8 @@ ul.who-we-icon {
 	color: #b4b4b4;
 }
 .counter .price-second {
-	padding: 50px;
+	padding: 50px 40px;
 	border-radius: 3px;
-}
-
-.counter .price-parent {
-	align-items: baseline;
 }
 
 .counter .price {
@@ -1626,7 +1623,7 @@ ul.who-we-icon {
 	color: #333;
 }
 .counter .price-second.bg-blue {
-	color: #fff;
+	color: #4f4f4f;
 }
 .counter .price-second.bg-blue .btn-link {
 	color: #fff;
@@ -3508,75 +3505,114 @@ ul.installment-plan li:before {
 	margin: 50px auto;
 }
 
-.hero .price-list{
+.price-list{
 	display: flex;
 	flex-direction: row;
 	margin: 0 -25px;
 }
 
-.hero .price-list.offline-list{
+.price-list.offline-list{
 	padding-top: 10px;
 }
 
-.hero .price-list .price-item{
+.price-list .price-item{
 	padding: 10px;
 	margin: 0 25px;
 }
 
 @media(max-width: 1360px){
-	.hero .price-list{
+	.price-list{
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		margin: 0;
 	}
 
-	.hero .price-list .price-item{
+	.price-list .price-item{
 		margin: 20px 0;
 	}
 }
 
-.hero .price-list .price-item.payment-before{
-	background: rgba(236, 202, 98, 0.2);
-	box-shadow: 0 0 15px #9c9c9c;
+.price-list .price-item.payment-before{
+	background: #FBF4E0;
+	box-shadow: 0 0 15px rgba(236, 202, 98, 1);
 }
 
-.hero .price-list .price-item.payment-before.offline{
-	background: rgba(77, 155, 214, 0.2);
+.price-list .price-item.payment-before.offline{
+	background: #DBEBF7;
+	box-shadow: 0 0 15px rgba(77, 155, 214, 1);
 }
 
-.hero .price-list .price-item.payment-after{
+.price-list .price-item.payment-after{
+	border: 1px solid #C4C4C4;
+	background: #FFFFFF;
+	color: #4f4f4f;
+}
+
+.price-list .price-item.payment-after.offline{
 	border: 1px solid #C4C4C4;
 }
 
-.hero .price-list .price-item.payment-after.offline{
-	border: 1px solid #C4C4C4;
-}
-
-.hero .price-list .price-item .btn{
+.price-list .price-item .btn{
 	padding: 12px 65px;
 }
 
-.hero .price-list .price-item.payment-before .btn:hover{
+.price-list .price-item.payment-before .btn:hover{
 	color: #ffffff;
 }
 
-.hero .price-list .price-item.payment-after .btn{
+.price-list .price-item.payment-after .btn{
 	background: #C4C4C4;
 	border: 1px solid #C4C4C4;
 	color: #4f4f4f;
 	padding: 12px 26px;
 }
 
-.hero .price-list .price-item.payment-before.offline .btn{
+.price-list .price-item.payment-before.offline .btn{
 	background: #4D9BD6;
 	border: 1px solid #4D9BD6;
 }
 
-.hero .price-list .price-item.payment-before.offline .btn:hover{
+.price-list .price-item.payment-before.offline .btn:hover{
 	box-shadow: 0 3px 0 #2e729e;
 }
 
-.hero .price-list .price-item.payment-after .btn:hover{
+.price-list .price-item.payment-after .btn:hover{
 	box-shadow: 0 3px 0 #acabab;
 }
+
+.price-second h3{
+	margin-bottom: 30px;
+}
+
+.price-second .price-list.offline-list{
+	padding-top: 0;
+}
+
+.price-second .price-list .price-item{
+	padding: 20px;
+	margin: 0 15px;
+}
+
+.price-second .price-item.payment-after{
+	border: none;
+	background: #ffffff;
+}
+
+.price-second .price-item.payment-before{
+	border-box: none;
+	background: #ffffff;
+}
+
+.price-second .price-item.payment-after.offline{
+	border: none;
+	background: #ffffff;
+}
+
+.price-second .price-item.payment-before.offline{
+	border-box: none;
+	background: #ffffff;
+}
+
+
+
