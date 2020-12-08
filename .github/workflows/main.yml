@@ -28,3 +28,4 @@ jobs:
           docker-compose pull learnpython
           docker-compose up -d
           docker exec -i servers_learnpython_1 python3 manage.py migrate --noinput
+          docker exec -i servers_learnpython_1 python3 manage.py collectstatic --noinput

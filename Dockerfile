@@ -55,7 +55,7 @@ RUN chmod +x /opt/app/entrypoint.sh
 RUN chmod +x /opt/app/wait-for-it.sh
 
 WORKDIR /opt/app
-RUN mkdir -p /opt/app/static && mkdir -p /opt/staticfiles && python3 manage.py collectstatic --noinput
+RUN mkdir -p /opt/app/static && mkdir -p /opt/staticfiles
 
 RUN chown -R unprivileged:unprivileged /opt/app
 
