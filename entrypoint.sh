@@ -11,7 +11,7 @@ if [ "${DO_CONNECTION_CHECK}" = true ]; then
     done
 fi
 
-LOG_LEVEL='DEBUG'
+LOG_LEVEL='INFO'
 
 if [ "$1" == 'runworker' ]; then
     cd /opt/app
@@ -26,7 +26,7 @@ if [ "$1" == 'runserver' ]; then
          --access-logfile - \
          --error-logfile - \
          --log-level info \
-         --workers 8 \
+         --workers 4 \
          --bind 0.0.0.0:8000 \
     landing_page.wsgi:application
 fi
