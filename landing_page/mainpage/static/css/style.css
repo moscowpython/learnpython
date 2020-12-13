@@ -875,6 +875,7 @@ li.nav-item.d-none.d-lg-block a.btn {
 	padding: 0;
 }
 
+
 .about .about-hdescr {
 	padding-top: 10px;
 	text-align: left;
@@ -931,6 +932,7 @@ li.nav-item.d-none.d-lg-block a.btn {
 .can-first-par {
 	padding-bottom: 100px;
 }
+
 
 .about-grid-block {
 	display: grid;
@@ -1246,7 +1248,6 @@ iframe#ytplayer {
 }
 .button-tab-group li:last-child > a.active {
 	background-color: #2d9cdb;
-	color: #fff;
 }
 
 .online-timetable, .offline-timetable {
@@ -1781,6 +1782,13 @@ ul.installment-plan li:before {
 .reviews h5 {
 	color: #fff;
 	margin-bottom: 0;
+}
+
+@media (max-width: 700px) {
+	.reviews iframe{
+		width: 90vw;
+		height: 60vw;
+	}
 }
 
 
@@ -2510,7 +2518,7 @@ ul.installment-plan li:before {
 	}
 
 	.about-grid-block {
-		grid-template-columns: 1fr;
+		display: block;
 	}
 
 	section:not(.show):not(.show1):not(.about):not(.teachers):not(.reviews) .m-hide {
@@ -2569,25 +2577,25 @@ ul.installment-plan li:before {
 
 	}
 
-	.m-section-header h4:before,  .m-section-header-dis h4:before {
-		content: '+';
-		height: 24px;
-		width: 24px;
-		border: 2px solid #f2c94c;
-		display: inline-block;
-		text-align: center;
-		font-size: 22px;
-		line-height: 18px;
-		color: #f2c94c;
-		border-radius: 3px;
-		margin-right: 12px;
-	}
-	section.show .m-section-header h4:before {
-		content: '-';
-		color: #fff;
-		background: #2D9CDB;
-		border-color: #2D9CDB;
-	}
+	/*.m-section-header h4:before,  .m-section-header-dis h4:before {*/
+	/*	content: '+';*/
+	/*	height: 24px;*/
+	/*	width: 24px;*/
+	/*	border: 2px solid #f2c94c;*/
+	/*	display: inline-block;*/
+	/*	text-align: center;*/
+	/*	font-size: 22px;*/
+	/*	line-height: 18px;*/
+	/*	color: #f2c94c;*/
+	/*	border-radius: 3px;*/
+	/*	margin-right: 12px;*/
+	/*}*/
+	/*section.show .m-section-header h4:before {*/
+	/*	content: '-';*/
+	/*	color: #fff;*/
+	/*	background: #2D9CDB;*/
+	/*	border-color: #2D9CDB;*/
+	/*}*/
 
 	/* section.timetable.show1 .m-section-header-dis h4:before {
 		content: '-';
@@ -2648,6 +2656,13 @@ ul.installment-plan li:before {
 
 	.about iframe#ytplayer {
 		width: 100%;
+	}
+
+	@media (max-width: 700px){
+		.about iframe#ytplayer{
+			width: 90vw;
+			height: 60vw;
+		}
 	}
 
 	.details-section {
@@ -3047,7 +3062,7 @@ ul.installment-plan li:before {
 		line-height: 1.3;
 	}
 	.counter .tab-holder {
-		padding: 28px 15px 34px;
+		padding: 0;
 		text-align: center;
 		margin-right: -15px;
 		margin-left: -15px;
@@ -3071,14 +3086,12 @@ ul.installment-plan li:before {
 		display: inline-block;
 		width: 50%;
 		font-weight: bold;
-		padding-bottom: 20px;
 		margin-bottom: -1px;
+		padding: 20px 15px;
 	}
-	.counter .tab-holder .button-holder .custom-tab.active[data-target=".online-tab"] {
-		border-bottom: 2px solid #fff;
-	}
-	.counter .tab-holder .button-holder .custom-tab.active[data-target=".offline-tab"] {
-		border-bottom: 2px solid #fff;
+
+	.counter .tab-holder .button-holder .custom-tab:not(.active){
+		background: #ffffff;
 	}
 
 	.mobi-fomrmater {
@@ -3120,7 +3133,7 @@ ul.installment-plan li:before {
 		display: none;
 	}
 	.counter .price-second {
-		padding: 0 15px 30px;
+		padding: 10px 15px 30px;
 		border-radius: 0;
 		margin-right: -15px;
 		margin-left: -15px;
@@ -3177,7 +3190,7 @@ ul.installment-plan li:before {
 
 
 	.reviews {
-		padding: 9px 0;
+		padding: 9px 0 40px;
 	}
 
 	.reviews .who-are-icon {
@@ -3520,6 +3533,27 @@ ul.installment-plan li:before {
 	padding-bottom: 40px;
 }
 
+@media (max-width: 700px){
+	.video-answers{
+		padding: 40px 0 0;
+	}
+}
+@media (max-width: 700px){
+	.video-answers h2{
+		font-size: 24px;
+	}
+}
+@media (max-width: 700px){
+	.video-answers .pc-section-header {
+		padding-bottom: 20px;
+	}
+}
+@media (max-width: 700px){
+	.video-answers iframe {
+		width: 90vw;
+		height: 60vw;
+	}
+}
 .price-list{
 	display: flex;
 	flex-direction: row;
@@ -3580,7 +3614,7 @@ ul.installment-plan li:before {
 	background: #C4C4C4;
 	border: 1px solid #C4C4C4;
 	color: #4f4f4f;
-	padding: 12px 26px;
+	padding: 12px 22px;
 }
 
 .price-list .price-item.payment-before.offline .btn{
@@ -3606,7 +3640,7 @@ ul.installment-plan li:before {
 
 .price-second .price-list .price-item{
 	padding: 20px;
-	margin: 0 15px;
+	margin:  15px;
 }
 
 .price-second .price-item.payment-after{

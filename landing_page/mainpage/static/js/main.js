@@ -250,13 +250,13 @@ class LearnPython {
 
 	initAboutSlider() {
 		if (!this.aboutSlider && this._isSmallScreen()) {
-			this.aboutSlider = $('.about-grid-block').slick({
-				infinite: true,
-				arrows: false,
-				dots: true,
-				initialSlide: 3,
-				adaptiveHeight: true,
-			})
+			// this.aboutSlider = $('.about-grid-block').slick({
+			// 	infinite: true,
+			// 	arrows: false,
+			// 	dots: true,
+			// 	initialSlide: 3,
+			// 	adaptiveHeight: true,
+			// })
 		}
 	}
 
