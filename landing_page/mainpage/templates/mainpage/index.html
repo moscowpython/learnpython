@@ -161,7 +161,7 @@
 	</header>
 
 	<main>
-		<section id="hero" class="hero">
+		<section id="hero" class="hero show1">
 			<div class="container">
 				<div class="row">
 					<div class="col-12 d-lg-none py-2 logo">
@@ -217,36 +217,73 @@
 											дни</span>
 									</li>
 								</ul>
-								<div>
-									<div
-										class="pt-lg-3 align-items-center d-flex justify-content-between smooth-scroll flex-wrap">
-										<div class="price-parent">
-											{% if today <= online_price_ranges.0.price_range_end_date %}
-											<strong class="price">{{ online_price_ranges.0.price_range_price}}
-												р.</strong>
-											<span class="price-date"> до
-												{{ online_price_ranges.0.price_range_end_date | date:"j E" }}</span>
-											{% else %}
-											<strong class="price">{{ online_price_ranges.1.price_range_price}}
-												р.</strong>
-											<span class="price-date"> до
-												{{ online_price_ranges.1.price_range_end_date | date:"j E" }}</span>
-											{% endif%}
+								<div class="price-list">
+									<div class="price-item payment-before">
+										<div
+												class="pt-lg-3">
+											<div class="price-parent">
+												{% if today <= online_price_ranges.0.price_range_end_date %}
+												<div class="price-date"> До
+													{{ online_price_ranges.0.price_range_end_date | date:"j E" }}</div>
+												<strong class="price">{{ online_price_ranges.0.price_range_price}}
+													р.</strong>
+
+												{% else %}
+												<div class="price-date"> До
+													{{ online_price_ranges.1.price_range_end_date | date:"j E" }}</div>
+												<strong class="price">{{ online_price_ranges.1.price_range_price}}
+													р.</strong>
+												{% endif%}
+											</div>
+											<div class="decr-price-parent">
+												<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
+													рассрочку
+													<strong>от 3500 р/мес</strong></a>
+												<a href="#howToPay" class="decr-price d-lg-none scroll-to"
+												   style="padding-top: 5px">Есть
+													рассрочка</a>
+											</div>
 										</div>
-										<div class="decr-price-parent">
-											<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
-												рассрочку
-												<strong>от 3500 р/мес</strong></a>
-											<a href="#howToPay" class="decr-price d-lg-none scroll-to"
-												style="padding-top: 5px">Есть
-												рассрочка</a>
-										</div>
+										<button class="yellow btn btn-warning btn-add" data-toggle="modal"
+												data-target="#overlay" onclick="dataLayer.push({'event':'form_online_cost'});">
+											Записаться
+										</button>
 									</div>
-									<button class="yellow btn btn-warning btn-add" data-toggle="modal"
-										data-target="#overlay" onclick="dataLayer.push({'event':'form_online_cost'});">
-										Записаться
-									</button>
+
+									<div class="price-item payment-after">
+										<div
+												class="pt-lg-3">
+											<div class="price-parent">
+												{% if today <= online_price_ranges.0.price_range_end_date %}
+												<strong class="price">{{ online_price_ranges.0.price_range_price}}
+													р.</strong>
+												<div class="price-date"> С
+												{{ online_price_ranges.0.price_range_end_date | date:"j E" }}</div>
+												{% else %}
+												<div class="price-date"> С
+													{{ online_price_ranges.1.price_range_end_date | date:"j E" }}</div>
+												<strong class="price">{{ online_price_ranges.1.price_range_price}}
+													р.</strong>
+												{% endif%}
+											</div>
+											<div class="decr-price-parent">
+												<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
+													рассрочку
+													<strong>от 4000 р/мес</strong></a>
+												<a href="#howToPay" class="decr-price d-lg-none scroll-to"
+												   style="padding-top: 5px">Есть
+													рассрочка</a>
+											</div>
+										</div>
+										<button class="btn btn-warning btn-add"
+												disabled
+												data-toggle="modal"
+												data-target="#overlay" onclick="dataLayer.push({'event':'form_online_cost'});">
+											С 01 ЯНВАРЯ 2021 ГОДА
+										</button>
+									</div>
 								</div>
+
 							</div>
 						</div>
 					</div>
@@ -283,28 +320,70 @@
 												</div>
 											</div>
 											{% else %}
-											<div
-												class="pt-lg-3 align-items-center d-flex justify-content-between smooth-scroll flex-wrap">
-												<div class="price-parent">
-													{% if today <= offline_price_ranges.0.price_range_end_date %}
-													<strong class="price">{{ offline_price_ranges.0.price_range_price}}
-														р.</strong>
-													<span class="price-date"> до
-														{{ offline_price_ranges.0.price_range_end_date | date:"j E" }}</span>
-													{% else %}
-													<strong class="price">{{ offline_price_ranges.1.price_range_price}}
-														р.</strong>
-													<span class="price-date"> до
-														{{ offline_price_ranges.1.price_range_end_date | date:"j E" }}</span>
-													{% endif%}
+											<div class="price-list offline-list">
+												<div class="price-item payment-before offline">
+													<div
+															class="pt-lg-3">
+														<div class="price-parent">
+															{% if today <= online_price_ranges.0.price_range_end_date %}
+															<div class="price-date"> До
+																{{ online_price_ranges.0.price_range_end_date | date:"j E" }}</div>
+															<strong class="price">{{ online_price_ranges.0.price_range_price}}
+																р.</strong>
+
+															{% else %}
+															<div class="price-date"> До
+																{{ online_price_ranges.1.price_range_end_date | date:"j E" }}</div>
+															<strong class="price">{{ online_price_ranges.1.price_range_price}}
+																р.</strong>
+															{% endif%}
+														</div>
+														<div class="decr-price-parent">
+															<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
+																рассрочку
+																<strong>от 4000 р/мес</strong></a>
+															<a href="#howToPay" class="decr-price d-lg-none scroll-to"
+															   style="padding-top: 5px">Есть
+																рассрочка</a>
+														</div>
+													</div>
+													<button class="yellow btn btn-warning btn-add" data-toggle="modal"
+															data-target="#overlay" onclick="dataLayer.push({'event':'form_online_cost'});">
+														Записаться
+													</button>
 												</div>
-												<div class="decr-price-parent">
-													<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
-														рассрочку
-														<strong>от 4000 р/мес</strong></a>
-													<a href="#howToPay" class="decr-price d-lg-none scroll-to"
-														style="padding-top: 5px">Есть
-														рассрочка</a>
+
+												<div class="price-item payment-after offline">
+													<div
+															class="pt-lg-3">
+														<div class="price-parent">
+															{% if today <= online_price_ranges.0.price_range_end_date %}
+															<strong class="price">{{ online_price_ranges.0.price_range_price}}
+																р.</strong>
+															<div class="price-date"> С
+																{{ online_price_ranges.0.price_range_end_date | date:"j E" }}</div>
+															{% else %}
+															<div class="price-date"> С
+																{{ online_price_ranges.1.price_range_end_date | date:"j E" }}</div>
+															<strong class="price">{{ online_price_ranges.1.price_range_price}}
+																р.</strong>
+															{% endif%}
+														</div>
+														<div class="decr-price-parent">
+															<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
+																рассрочку
+																<strong>от 4500 р/мес</strong></a>
+															<a href="#howToPay" class="decr-price d-lg-none scroll-to"
+															   style="padding-top: 5px">Есть
+																рассрочка</a>
+														</div>
+													</div>
+													<button class="btn btn-warning btn-add"
+															disabled
+															data-toggle="modal"
+															data-target="#overlay" onclick="dataLayer.push({'event':'form_online_cost'});">
+														С 01 ЯНВАРЯ 2021 ГОДА
+													</button>
 												</div>
 											</div>
 											{% endif %}
@@ -315,7 +394,7 @@
 												решайте задачи и смотрите видео из дома в остальные дни.
 											</p>
 											<ul class="lambda-style blu-lamb">
-												<li><span>Занятия проходят в центре города, по адресу Большая Морская, д.3, БЦ Lidval</span>	
+												<li><span>Занятия проходят в центре города, по адресу Большая Морская, д.3, БЦ Lidval</span>
 												</li>
 												<li><span>Группа из 5-7 человек вашего уровня плюс куратор на месте.
 														Telegram-чат в другие дни</span>
@@ -364,7 +443,7 @@
 											</p>
 											<ul class="lambda-style blu-lamb">
 												<li><span>Занятия проходят в офисе компании <a target="_blank" href="https://osinit.com">"Открытые решения"</a>
-													по адресу: улица Московская 29, офис 704</span>	
+													по адресу: улица Московская 29, офис 704</span>
 												</li>
 												<li><span>Группа из 5-7 человек вашего уровня плюс куратор на месте.
 														Telegram-чат в другие дни</span>
@@ -408,17 +487,7 @@
 										</div> -->
 									</div>
 								</div>
-								{% if is_offline_closed%}
-								<button class="btn btn-info btn-add disabled" data-toggle="modal" data-target="#overlay"
-									onclick="dataLayer.push({'event':'form_online_cost'});">
-									Записаться
-								</button>
-								{% else %}
-								<button class="btn btn-info btn-add" data-toggle="modal" data-target="#overlay"
-									onclick="dataLayer.push({'event':'form_online_cost'});">
-									Записаться
-								</button>
-								{% endif %}
+
 							</div>
 						</div>
 					</div>
@@ -426,18 +495,49 @@
 			</div>
 		</section>
 
-		<section id="about" class="about">
+		<section id="video-answers" class="video-answers show1">
+			<div class="container">
+				<div class="pc-section-header">
+					<h2>О курсе</h2>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row d-lg-flex m-0">
+					<div class="col-lg-3 pl-0 col-12">
+						<div class="answers-heading">
+							<h3 class="d-none d-lg-block">Видеоответ на все вопросы</h3>
+							<p class="about-hdescr d-none d-lg-block">
+								Как устроен наш курс, чему  вы научитесь,
+								нужно ли знать математику и можно ли устроиться на работу после курса
+							</p>
+						</div>
+					</div>
+					<div class="col-lg-9 col-12">
+						<div class="row">
+							<iframe width="100%" height="500px" src="https://www.youtube.com/embed/sA7h-yiJIi4"
+									frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+									allowfullscreen>
+							</iframe>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="about" class="about show1">
 			<div class="container d-lg-none">
 				<div class="m-section-header">
 					<h4>Что дает этот курс</h4>
 				</div>
 			</div>
+			{% if 0 %}
 			<div class="container  d-none d-lg-block">
 				<div class="pc-section-header">
 					<h2>О курсе</h2>
 				</div>
 			</div>
-			<div class="container m-hide ">
+			{% endif %}
+			<div class="container m-hide">
 				<div class="row d-lg-none mobi-list-opp">
 					<ul class="list-mobi-about">
 						<li>
@@ -748,7 +848,7 @@
 			</div>
 		</section>
 
-		<section id="example-project" class="example-project darked d-none d-lg-block">
+		<section id="example-project" class="example-project darked d-none d-lg-block show1">
 			<div class="container-fluid">
 				<h2 class="section-heading text-center col-md-8 mx-auto">
 					Проекты, созданные во время обучения
@@ -771,7 +871,7 @@
 			</div>
 		</section>
 
-		<section id="after-curse" class="after-curse d-none d-lg-block">
+		<section id="after-curse" class="after-curse d-none d-lg-block show1">
 			<div class="container m-hide">
 				<div class="row mx-0">
 					<div class="col-lg-3 pl-0 d-none d-lg-block pb-lg-5">
@@ -838,7 +938,7 @@
 			</div>
 		</section>
 
-		<section id="curse-program" class="curse-program">
+		<section id="curse-program" class="curse-program show1">
 			<div class="mobile-color">
 				<div class="container d-lg-none">
 					<div class="curse-program-info m-section-header">
@@ -848,14 +948,14 @@
 			</div>
 			<div class="container d-none d-lg-block">
 				<div class="pc-section-header ">
-					<h2>Программа и расписание</h2>
+					<h2>Как проходит курс</h2>
 				</div>
 			</div>
 			<div class="container m-hide">
 				<div class="row" style="margin-left: 0;">
 					<div class="col-lg-3 pl-0 d-none d-lg-block pb-lg-5">
 						<div class="curse-heading">
-							<h3>Как проходит курс</h3>
+							<h3>Что вас ждет</h3>
 							<p class="curse-hdescr">
 								Вы будете много работать самостоятельно по вечерам и выходным, а преподаватели будут
 								рядом, чтобы подсказать.
@@ -937,14 +1037,14 @@
 		<section id="timetable" class="timetable show1">
 			<div class="container d-lg-none">
 				<div class="timetable-lf-info m-section-header">
-					<h4>Расписание</h4>
+					<h4>Программа</h4>
 				</div>
 			</div>
 			<div class="container m-hide">
 				<div class="row mx-row">
 					<div class="col-lg-3 pl-0 d-none d-lg-block pb-lg-5">
 						<div class="curse-heading">
-							<h3>Расписание</h3>
+							<h3>Программа</h3>
 							<p class="curse-hdescr">
 								На курсе мы учим программированию на Python в целом - "Основной" трек.</p>
 							<p class="curse-hdescr">
@@ -973,13 +1073,13 @@
 								<div id="tab1" class="tab-pane timetable-tab-onl active show fade">
 									{% include "mainpage/include/track_main.html" %}
 								</div>
-								<div id="tab2" class="tab-pane timetable-tab-offln fade">
+								<div id="tab2" class="tab-pane timetable-tab-onl fade">
 									{% include "mainpage/include/track_web.html" %}
 								</div>
 								<div id="tab3" class="tab-pane timetable-tab-onl fade">
 									{% include "mainpage/include/track_ds.html" %}
 								</div>
-								<div id="tab4" class="tab-pane timetable-tab-offln fade">
+								<div id="tab4" class="tab-pane timetable-tab-onl fade">
 									{% include "mainpage/include/track_bots.html" %}
 								</div>
 							</div>
@@ -989,7 +1089,7 @@
 			</div>
 		</section>
 
-		<section id="teachers" class="teachers">
+		<section id="teachers" class="teachers show1">
 			<div class="container d-lg-none">
 				<div class="m-section-header">
 					<h4>Курс ведут</h4>
@@ -1227,7 +1327,7 @@
 			</div>
 		</section>
 
-		<section id="labor-program" class="labor-program">
+		<section id="labor-program" class="labor-program show1">
 			<br>
 			<div class="mobile-color">
 				<div class="container d-lg-none">
@@ -1320,7 +1420,7 @@
 			</div>
 		</section>
 
-		<section id="counter" class="counter">
+		<section id="counter" class="counter show1">
 			<div class="container d-lg-none">
 				<div class="m-section-header">
 					<h4>Стоимость</h4>
@@ -1344,59 +1444,144 @@
 					<div class="col-12 col-lg-10 col-xl-6 online-tab active">
 						<div class="price-second bg-yellow">
 							<h3 class="text-center d-none d-lg-block">онлайн курс</h3>
-							<div
-								class="pt-lg-4 pb-lg-5 align-items-end d-flex justify-content-between smooth-scroll mobi-fomrmater">
-								<div class="price-parent">
-									{% if today <= online_price_ranges.0.price_range_end_date %}
-									<strong class="price">{{ online_price_ranges.0.price_range_price}} р.</strong>
-									<span class="price-date"> до
-										{{ online_price_ranges.0.price_range_end_date | date:"j E" }}</span>
-									{% else %}
-									<strong class="price">{{ online_price_ranges.1.price_range_price}} р.</strong>
-									<span class="price-date"> до
-										{{ online_price_ranges.1.price_range_end_date | date:"j E" }}</span>
-									{% endif%}
+							<div class="price-list">
+								<div class="price-item payment-before">
+									<div
+											class="pt-lg-3">
+										<div class="price-parent">
+											{% if today <= online_price_ranges.0.price_range_end_date %}
+											<div class="price-date"> До
+												{{ online_price_ranges.0.price_range_end_date | date:"j E" }}</div>
+											<strong class="price">{{ online_price_ranges.0.price_range_price}}
+												р.</strong>
+
+											{% else %}
+											<div class="price-date"> До
+												{{ online_price_ranges.1.price_range_end_date | date:"j E" }}</div>
+											<strong class="price">{{ online_price_ranges.1.price_range_price}}
+												р.</strong>
+											{% endif%}
+										</div>
+										<div class="decr-price-parent">
+											<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
+												рассрочку
+												<strong>от 3500 р/мес</strong></a>
+											<a href="#howToPay" class="decr-price d-lg-none scroll-to"
+											   style="padding-top: 5px">Есть
+												рассрочка</a>
+										</div>
+									</div>
+									<button class="yellow btn btn-warning btn-add"
+											data-toggle="modal"
+											data-target="#overlay" onclick="dataLayer.push({'event':'form_online_cost'});">
+										Записаться
+									</button>
 								</div>
-								<div>
-									<a href="#howToPay" class="decr-price d-lg-none scroll-to">Есть рассрочка</a>
-									<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В рассрочку
-										<strong>от
-											3500 р/мес</strong></a>
+
+								<div class="price-item payment-after">
+									<div
+											class="pt-lg-3">
+										<div class="price-parent">
+											{% if today <= online_price_ranges.0.price_range_end_date %}
+											<strong class="price">{{ online_price_ranges.0.price_range_price}}
+												р.</strong>
+											<div class="price-date"> С
+												{{ online_price_ranges.0.price_range_end_date | date:"j E" }}</div>
+											{% else %}
+											<div class="price-date"> С
+												{{ online_price_ranges.1.price_range_end_date | date:"j E" }}</div>
+											<strong class="price">{{ online_price_ranges.1.price_range_price}}
+												р.</strong>
+											{% endif%}
+										</div>
+										<div class="decr-price-parent">
+											<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
+												рассрочку
+												<strong>от 4000 р/мес</strong></a>
+											<a href="#howToPay" class="decr-price d-lg-none scroll-to"
+											   style="padding-top: 5px">Есть
+												рассрочка</a>
+										</div>
+									</div>
+									<button class="btn btn-warning btn-add"
+											disabled
+											data-toggle="modal"
+											data-target="#overlay" onclick="dataLayer.push({'event':'form_online_cost'});">
+										С 01 ЯНВАРЯ 2021 ГОДА
+									</button>
 								</div>
 							</div>
-							<button data-toggle="modal" data-target="#overlay" class="btn btn-special"
-								onclick="dataLayer.push({'event':'form_offline_cost'});">
-								Записаться <span class="d-none d-lg-inline">сейчас</span>
-							</button>
 						</div>
 					</div>
 					<div class="col-12 col-lg-10 col-xl-6 offline-tab">
 						<div class="price-second bg-blue">
 							<h3 class="text-center d-none d-lg-block">оффлайн курс</h3>
-							<div
-								class="pt-lg-4 pb-lg-5 align-items-end d-flex justify-content-between smooth-scroll mobi-fomrmater">
-								<div class="price-parent">
-									{% if today <= offline_price_ranges.0.price_range_end_date %}
-									<strong class="price">{{ offline_price_ranges.0.price_range_price}} р.</strong>
-									<span class="price-date"> до
-										{{ offline_price_ranges.0.price_range_end_date | date:"j E" }}</span>
-									{% else %}
-									<strong class="price">{{ offline_price_ranges.1.price_range_price}} р.</strong>
-									<span class="price-date"> до
-										{{ offline_price_ranges.1.price_range_end_date | date:"j E" }}</span>
-									{% endif%}
+							<div class="price-list offline-list">
+								<div class="price-item payment-before offline">
+									<div
+											class="pt-lg-3">
+										<div class="price-parent">
+											{% if today <= online_price_ranges.0.price_range_end_date %}
+											<div class="price-date"> До
+												{{ online_price_ranges.0.price_range_end_date | date:"j E" }}</div>
+											<strong class="price">{{ online_price_ranges.0.price_range_price}}
+												р.</strong>
+
+											{% else %}
+											<div class="price-date"> До
+												{{ online_price_ranges.1.price_range_end_date | date:"j E" }}</div>
+											<strong class="price">{{ online_price_ranges.1.price_range_price}}
+												р.</strong>
+											{% endif%}
+										</div>
+										<div class="decr-price-parent">
+											<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
+												рассрочку
+												<strong>от 4000 р/мес</strong></a>
+											<a href="#howToPay" class="decr-price d-lg-none scroll-to"
+											   style="padding-top: 5px">Есть
+												рассрочка</a>
+										</div>
+									</div>
+									<button class="yellow btn btn-warning btn-add" data-toggle="modal"
+											data-target="#overlay" onclick="dataLayer.push({'event':'form_online_cost'});">
+										Записаться
+									</button>
 								</div>
-								<div>
-									<a href="#howToPay" class="decr-price d-lg-none scroll-to">Есть рассрочка</a>
-									<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В рассрочку
-										<strong>от
-											4000 р/мес</strong></a>
+
+								<div class="price-item payment-after offline">
+									<div
+											class="pt-lg-3">
+										<div class="price-parent">
+											{% if today <= online_price_ranges.0.price_range_end_date %}
+											<strong class="price">{{ online_price_ranges.0.price_range_price}}
+												р.</strong>
+											<div class="price-date"> С
+												{{ online_price_ranges.0.price_range_end_date | date:"j E" }}</div>
+											{% else %}
+											<div class="price-date"> С
+												{{ online_price_ranges.1.price_range_end_date | date:"j E" }}</div>
+											<strong class="price">{{ online_price_ranges.1.price_range_price}}
+												р.</strong>
+											{% endif%}
+										</div>
+										<div class="decr-price-parent">
+											<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
+												рассрочку
+												<strong>от 4500 р/мес</strong></a>
+											<a href="#howToPay" class="decr-price d-lg-none scroll-to"
+											   style="padding-top: 5px">Есть
+												рассрочка</a>
+										</div>
+									</div>
+									<button class="btn btn-warning btn-add"
+											disabled
+											data-toggle="modal"
+											data-target="#overlay" onclick="dataLayer.push({'event':'form_online_cost'});">
+										С 01 ЯНВАРЯ 2021 ГОДА
+									</button>
 								</div>
 							</div>
-							<button data-toggle="modal" data-target="#overlay" class="btn btn-special"
-								onclick="dataLayer.push({'event':'form_offline_cost'});">
-								Записаться <span class="d-none d-lg-inline">сейчас</span>
-							</button>
 						</div>
 					</div>
 				</div>
@@ -1404,7 +1589,7 @@
 			</div>
 		</section>
 
-		<section class="how-to-pay" id="howToPay">
+		<section class="how-to-pay show1" id="howToPay">
 			<div class="container d-lg-none">
 				<div class="m-section-header">
 					<h4>Как оплатить</h4>
@@ -1496,7 +1681,7 @@
 			</div>
 		</section>
 
-		<section id="reviews" class="reviews darked">
+		<section id="reviews" class="reviews darked show1">
 			<div class="container d-lg-none">
 				<div class="m-section-header">
 					<h4>Отзывы</h4>
@@ -1531,6 +1716,8 @@
 
 				</ul>
 			</div>
+
+			{% if 0 %}
 			<div class="dark-cont">
 				<div class="container m-hide">
 					<div class="reviews-carousel col-xl-10" style="margin: 0 auto;">
@@ -1573,10 +1760,45 @@
 					</div>
 				</div>
 			</div>
+			{% endif %}
+
+			<div class="dark-cont">
+				<div class="container m-hide">
+					<div class="reviews-carousel col-xl-10" style="margin: 0 auto;">
+						<div class="reviews-carousel-slider">
+							{% for video in student_videos %}
+							<div class="slick-custom-slide">
+								<div class="slide-wrapper">
+									<h3 class="slide-heading">
+										{{video.title}}
+									</h3>
+									<div>
+										<iframe width="800" height="400" src="https://www.youtube.com/embed/{{video.youtube_id}}"
+												frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+												allowfullscreen>
+										</iframe>
+									</div>
+								</div>
+							</div>
+							{% endfor %}
+
+						</div>
+						<div class="slider-nav nav-container">
+							<a class="carousel-control prev d-lg-flex" role="button" data-slide="prev">
+								<i class="material-icons">arrow_back</i>
+							</a>
+							<span class="pagerSelector"></span>
+							<a class="carousel-control next d-lg-flex" role="button" data-slide="next">
+								<i class="material-icons">arrow_forward</i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
 		</section>
 
-		<section id="faq" class="faq d-none d-lg-block">
-			<div class="container d-none d-lg-block">
+		<section id="faq" class="faq d-lg-block show1">
+			<div class="container d-lg-block">
 				<div class="pc-section-header">
 					<h2>FAQ</h2>
 				</div>
@@ -1997,7 +2219,7 @@
 			</div>
 		</section>
 
-		<section id="contact" class="footer darked">
+		<section id="contact" class="footer darked show1">
 			<div class="container d-lg-none">
 				<div class="m-section-header">
 					<h4>Контакты</h4>

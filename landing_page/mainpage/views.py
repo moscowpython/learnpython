@@ -63,6 +63,20 @@ def index(request):
                 '%b %d, %Y %H:%M:%S'
             ),
         'student_feedback': student_feedback,
+        'student_videos': [
+            {
+                'title': 'Как войти в разработку за считанные месяцы',
+                'youtube_id': 'DkHWpgctTuA'
+            },
+            {
+                'title': 'Личный опыт джуниора: удачи, фейлы, рецепты',
+                'youtube_id': 'vKKqsJ8IvAg'
+            },
+            {
+                'title': 'Python для врача и медицина для программиста.',
+                'youtube_id': 's_ZNqjIW3ZA'
+            }
+        ],
         'curators_list': curators_list,
         'graduate_stories': graduate_stories_list,
         'podcasts_list': podcasts_list,
