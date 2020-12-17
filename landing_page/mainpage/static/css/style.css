@@ -3921,7 +3921,8 @@ ul.installment-plan li:before {
 }
 
 .video-answers {
-    padding: 200px 0 50px;
+    margin-top: 55px;
+    padding: 150px 0 50px;
     position: relative;
 }
 
@@ -4127,4 +4128,7 @@ ul.installment-plan li:before {
     }
 }
 
+.btn-buy {
+    text-transform: none;
+}
 

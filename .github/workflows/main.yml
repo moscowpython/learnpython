@@ -1,4 +1,4 @@
-name: Duild and deploy Docker container
+name: Build and deploy Docker container
 on:
   push:
     branches:
