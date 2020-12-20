@@ -223,18 +223,10 @@
 												class="pt-lg-3">
 											<div class="price-parent">
 												<div class="price-date"><b>Ранняя регистрация</b></div>
-												{% if today <= online_price_ranges.0.price_range_end_date %}
 												<div class="price-date"> До
 													{{ online_price_ranges.0.price_range_end_date | date:"j E" }}</div>
 												<strong class="price">{{ online_price_ranges.0.price_range_price}}
 													р.</strong>
-
-												{% else %}
-												<div class="price-date"> До
-													{{ online_price_ranges.1.price_range_end_date | date:"j E" }}</div>
-												<strong class="price">{{ online_price_ranges.1.price_range_price}}
-													р.</strong>
-												{% endif%}
 											</div>
 											<div class="decr-price-parent">
 												<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
@@ -245,10 +237,18 @@
 													рассрочка</a>
 											</div>
 										</div>
+										{% if today <= online_price_ranges.0.price_range_end_date %}
 										<button class="yellow btn btn-warning btn-add btn-buy" data-toggle="modal"
 												data-target="#overlay" onclick="dataLayer.push({'event':'form_online_cost'});">
-											Записаться
+												Купить билет
 										</button>
+										{%else%}
+										<button class="yellow btn btn-warning btn-add btn-buy" data-toggle="modal"
+												disabled
+												data-target="#overlay" onclick="dataLayer.push({'event':'form_online_cost'});">
+												Регистрация закрыта
+										</button>
+										{%endif%}
 									</div>
 
 									<div class="price-item payment-after">
@@ -256,17 +256,10 @@
 												class="pt-lg-3">
 											<div class="price-parent">
 												<div class="price-date"><b>Обычная регистрация</b></div>
-												{% if today <= online_price_ranges.0.price_range_end_date %}
 												<div class="price-date"> С
-													{{ online_price_ranges.0.price_range_end_date | date:"j E" }}</div>
-												<strong class="price">{{ online_price_ranges.0.price_range_price}}
-													р.</strong>
-												{% else %}
-												<div class="price-date"> С
-													{{ online_price_ranges.1.price_range_end_date | date:"j E" }}</div>
+													{{ online_price_ranges.1.price_range_start_date | date:"j E" }}</div>
 												<strong class="price">{{ online_price_ranges.1.price_range_price}}
 													р.</strong>
-												{% endif%}
 											</div>
 											<div class="decr-price-parent">
 												<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
@@ -277,12 +270,20 @@
 													рассрочка</a>
 											</div>
 										</div>
+										{% if today >= online_price_ranges.1.price_range_start_date %}
+										<button class="btn btn-warning btn-add btn-buy"
+												data-toggle="modal"
+												data-target="#overlay" onclick="dataLayer.push({'event':'form_online_cost'});">
+												Купить билет
+										</button>
+										{%else%}
 										<button class="btn btn-warning btn-add btn-buy"
 												disabled
 												data-toggle="modal"
 												data-target="#overlay" onclick="dataLayer.push({'event':'form_online_cost'});">
-											С 01 Января 2021 ГОДА
+											С {{ online_price_ranges.1.price_range_start_date | date:"j E Y" }} ГОДА
 										</button>
+										{%endif%}
 									</div>
 								</div>
 
@@ -328,18 +329,10 @@
 															class="pt-lg-3">
 														<div class="price-parent">
 															<div class="price-date"><b>Ранняя регистрация</b></div>
-															{% if today <= offline_price_ranges.0.price_range_end_date %}
 															<div class="price-date"> До
 																{{ offline_price_ranges.0.price_range_end_date | date:"j E" }}</div>
 															<strong class="price">{{ offline_price_ranges.0.price_range_price}}
 																р.</strong>
-
-															{% else %}
-															<div class="price-date"> До
-																{{ offline_price_ranges.1.price_range_end_date | date:"j E" }}</div>
-															<strong class="price">{{ offline_price_ranges.1.price_range_price}}
-																р.</strong>
-															{% endif%}
 														</div>
 														<div class="decr-price-parent">
 															<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
@@ -350,10 +343,18 @@
 																рассрочка</a>
 														</div>
 													</div>
+													{% if today <= offline_price_ranges.0.price_range_end_date %}
 													<button class="yellow btn btn-warning btn-add btn-buy" data-toggle="modal"
 															data-target="#overlay" onclick="dataLayer.push({'event':'form_online_cost'});">
-														Записаться
+															Купить билет
 													</button>
+													{%else%}
+													<button class="yellow btn btn-warning btn-add btn-buy" data-toggle="modal"
+															disabled
+															data-target="#overlay" onclick="dataLayer.push({'event':'form_online_cost'});">
+															Регистрация закрыта
+													</button>
+													{%endif%}
 												</div>
 
 												<div class="price-item payment-after offline">
@@ -361,17 +362,10 @@
 															class="pt-lg-3">
 														<div class="price-parent">
 															<div class="price-date"><b>Обычная регистрация</b></div>
-															{% if today <= offline_price_ranges.0.price_range_end_date %}
 															<div class="price-date"> С
-																{{ offline_price_ranges.0.price_range_end_date | date:"j E" }}</div>
-															<strong class="price">{{ offline_price_ranges.0.price_range_price}}
-																р.</strong>
-															{% else %}
-															<div class="price-date"> С
-																{{ offline_price_ranges.1.price_range_end_date | date:"j E" }}</div>
+																{{ offline_price_ranges.1.price_range_start_date | date:"j E" }}</div>
 															<strong class="price">{{ offline_price_ranges.1.price_range_price}}
 																р.</strong>
-															{% endif%}
 														</div>
 														<div class="decr-price-parent">
 															<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
@@ -382,12 +376,20 @@
 																рассрочка</a>
 														</div>
 													</div>
+													{% if today >= offline_price_ranges.1.price_range_start_date %}
+													<button class="btn btn-warning btn-add btn-buy"
+															data-toggle="modal"
+															data-target="#overlay" onclick="dataLayer.push({'event':'form_online_cost'});">
+															Купить билет
+													</button>
+													{%else%}
 													<button class="btn btn-warning btn-add btn-buy"
 															disabled
 															data-toggle="modal"
 															data-target="#overlay" onclick="dataLayer.push({'event':'form_online_cost'});">
-														С 01 Января 2021 ГОДА
+														С {{ offline_price_ranges.1.price_range_start_date | date:"j E Y" }} ГОДА
 													</button>
+													{%endif%}
 												</div>
 											</div>
 											{% endif %}
@@ -1454,18 +1456,10 @@
 											class="pt-lg-3">
 										<div class="price-parent">
 											<div class="price-date"><b>Ранняя регистрация</b></div>
-											{% if today <= online_price_ranges.0.price_range_end_date %}
 											<div class="price-date"> До
 												{{ online_price_ranges.0.price_range_end_date | date:"j E" }}</div>
 											<strong class="price">{{ online_price_ranges.0.price_range_price}}
 												р.</strong>
-
-											{% else %}
-											<div class="price-date"> До
-												{{ online_price_ranges.1.price_range_end_date | date:"j E" }}</div>
-											<strong class="price">{{ online_price_ranges.1.price_range_price}}
-												р.</strong>
-											{% endif%}
 										</div>
 										<div class="decr-price-parent">
 											<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
@@ -1476,11 +1470,18 @@
 												рассрочка</a>
 										</div>
 									</div>
-									<button class="yellow btn btn-warning btn-add btn-buy"
-											data-toggle="modal"
+									{% if today <= online_price_ranges.0.price_range_end_date %}
+									<button class="yellow btn btn-warning btn-add btn-buy" data-toggle="modal"
 											data-target="#overlay" onclick="dataLayer.push({'event':'form_online_cost'});">
-										Записаться
+											Купить билет
 									</button>
+									{%else%}
+									<button class="yellow btn btn-warning btn-add btn-buy" data-toggle="modal"
+											disabled
+											data-target="#overlay" onclick="dataLayer.push({'event':'form_online_cost'});">
+											Регистрация закрыта
+									</button>
+									{%endif%}
 								</div>
 
 								<div class="price-item payment-after">
@@ -1488,17 +1489,10 @@
 											class="pt-lg-3">
 										<div class="price-parent">
 											<div class="price-date"><b>Обычная регистрация</b></div>
-											{% if today <= online_price_ranges.0.price_range_end_date %}
 											<div class="price-date"> С
-												{{ online_price_ranges.0.price_range_end_date | date:"j E" }}</div>
-											<strong class="price">{{ online_price_ranges.0.price_range_price}}
-												р.</strong>
-											{% else %}
-											<div class="price-date"> С
-												{{ online_price_ranges.1.price_range_end_date | date:"j E" }}</div>
+												{{ online_price_ranges.1.price_range_start_date | date:"j E" }}</div>
 											<strong class="price">{{ online_price_ranges.1.price_range_price}}
 												р.</strong>
-											{% endif%}
 										</div>
 										<div class="decr-price-parent">
 											<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
@@ -1509,12 +1503,20 @@
 												рассрочка</a>
 										</div>
 									</div>
+									{% if today >= online_price_ranges.1.price_range_start_date %}
+									<button class="btn btn-warning btn-add btn-buy"
+											data-toggle="modal"
+											data-target="#overlay" onclick="dataLayer.push({'event':'form_online_cost'});">
+											Купить билет
+									</button>
+									{%else%}
 									<button class="btn btn-warning btn-add btn-buy"
 											disabled
 											data-toggle="modal"
 											data-target="#overlay" onclick="dataLayer.push({'event':'form_online_cost'});">
-										С 01 Января 2021 ГОДА
+										С {{ online_price_ranges.1.price_range_start_date | date:"j E Y" }} ГОДА
 									</button>
+									{%endif%}
 								</div>
 							</div>
 						</div>
@@ -1528,18 +1530,10 @@
 											class="pt-lg-3">
 										<div class="price-parent">
 											<div class="price-date"><b>Ранняя регистрация</b></div>
-											{% if today <= offline_price_ranges.0.price_range_end_date %}
 											<div class="price-date"> До
 												{{ offline_price_ranges.0.price_range_end_date | date:"j E" }}</div>
 											<strong class="price">{{ offline_price_ranges.0.price_range_price}}
 												р.</strong>
-
-											{% else %}
-											<div class="price-date"> До
-												{{ offline_price_ranges.1.price_range_end_date | date:"j E" }}</div>
-											<strong class="price">{{ offline_price_ranges.1.price_range_price}}
-												р.</strong>
-											{% endif%}
 										</div>
 										<div class="decr-price-parent">
 											<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
@@ -1550,10 +1544,18 @@
 												рассрочка</a>
 										</div>
 									</div>
+									{% if today <= offline_price_ranges.0.price_range_end_date %}
 									<button class="yellow btn btn-warning btn-add btn-buy" data-toggle="modal"
 											data-target="#overlay" onclick="dataLayer.push({'event':'form_online_cost'});">
-										Записаться
+											Купить билет
 									</button>
+									{%else%}
+									<button class="yellow btn btn-warning btn-add btn-buy" data-toggle="modal"
+											disabled
+											data-target="#overlay" onclick="dataLayer.push({'event':'form_online_cost'});">
+											Регистрация закрыта
+									</button>
+									{%endif%}
 								</div>
 
 								<div class="price-item payment-after offline">
@@ -1561,17 +1563,10 @@
 											class="pt-lg-3">
 										<div class="price-parent">
 											<div class="price-date"><b>Обычная регистрация</b></div>
-											{% if today <= offline_price_ranges.0.price_range_end_date %}
 											<div class="price-date"> С
-												{{ offline_price_ranges.0.price_range_end_date | date:"j E" }}</div>
-											<strong class="price">{{ offline_price_ranges.0.price_range_price}}
-												р.</strong>
-											{% else %}
-											<div class="price-date"> С
-												{{ offline_price_ranges.1.price_range_end_date | date:"j E" }}</div>
+												{{ offline_price_ranges.1.price_range_start_date | date:"j E" }}</div>
 											<strong class="price">{{ offline_price_ranges.1.price_range_price}}
 												р.</strong>
-											{% endif%}
 										</div>
 										<div class="decr-price-parent">
 											<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
@@ -1582,12 +1577,20 @@
 												рассрочка</a>
 										</div>
 									</div>
+									{% if today >= offline_price_ranges.1.price_range_start_date %}
+									<button class="btn btn-warning btn-add btn-buy"
+											data-toggle="modal"
+											data-target="#overlay" onclick="dataLayer.push({'event':'form_online_cost'});">
+											Купить билет
+									</button>
+									{%else%}
 									<button class="btn btn-warning btn-add btn-buy"
 											disabled
 											data-toggle="modal"
 											data-target="#overlay" onclick="dataLayer.push({'event':'form_online_cost'});">
-										С 01 Января 2021 ГОДА
+										С {{ offline_price_ranges.1.price_range_start_date | date:"j E Y" }} ГОДА
 									</button>
+									{%endif%}
 								</div>
 							</div>
 						</div>
