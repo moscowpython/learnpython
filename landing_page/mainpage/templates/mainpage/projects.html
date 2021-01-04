@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="{% static 'vendor/css/bootstrap-grid.min.css' %}">
 	<link rel="stylesheet" href="{% static 'vendor/css/bootstrap.min.css' %}">
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-	<link rel="stylesheet" href="{% static 'css/style.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 	<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
 	<title>Learn Python - учимся программировать на Python за 2 месяца</title>
 
@@ -108,7 +108,7 @@
 	<section id="videos" class="teachers">
 		{% if student_projects %}
 			{% for project in student_projects %}
-				<div class="container m-hide">
+				<div class="container">
 					<div class="row mx-row teachers-list-parent">
 						<div class="col-lg-3 pl-0 d-none d-lg-block">
 							<div class="curse-heading">
@@ -205,8 +205,6 @@
 <script src="{% static 'vendor/js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'vendor/js/bootstrap.min.js' %}"></script>
 <script src="{% static 'vendor/js/slick.min.js' %}"></script>
-<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
-<script src="{% static 'js/yandex_map.js' %}"></script>
 <script src="{% static 'js/main.min.js' %}"></script>
 </body>
 </html>
