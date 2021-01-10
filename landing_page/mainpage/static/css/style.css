@@ -1643,6 +1643,38 @@ ul.who-we-icon {
     overflow: hidden;
 }
 
+@media (max-width: 780px){
+    .teachers .teachers-list li{
+        width: 100%;
+        display: block;
+    }
+    .teachers .teachers-list li .darked iframe{
+        width: 100%; !important;
+        height: 50vw; !important;
+    }
+
+    body .example-project .section-heading{
+        font-size: 26px;
+    }
+
+    body .example-project{
+        padding: 90px 0 20px;
+    }
+
+    body .curse-heading h3{
+        font-size: 18px;
+    }
+
+    .curse-heading .curse-hdescr{
+        margin: 1rem 0 2rem;
+    }
+
+    .curse-heading{
+        position: static;
+        top: unset;
+    }
+}
+
 .teachers .teachers-list li .img-wrapper {
     flex: 0 0 31.8%;
 }
@@ -2484,8 +2516,16 @@ ul.installment-plan li:before {
         padding: 10px 5px;
     }
 
-    .about, .example-project, .after-curse, .curse-program, .timetable, .teachers, .how-to-pay, .reviews, .faq {
+    .about, .after-curse, .curse-program, .timetable, .teachers, .how-to-pay, .reviews, .faq {
         padding: 50px 0;
+    }
+
+    .example-project{
+        padding: 100px 0 50px;
+    }
+
+    .example-project .section-heading{
+        font-size: 38px;
     }
 
     .counter, .contact-container {
@@ -3280,7 +3320,7 @@ ul.installment-plan li:before {
     }
 
     .teachers {
-        padding: 9px 0;
+        padding: 50px 0;
         background-color: #ffffff;
     }
 
