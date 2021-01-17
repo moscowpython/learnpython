@@ -1,0 +1,2 @@
+*,:before,:after{box-sizing:border-box}html,body{margin:0;padding:0;font-family:'Open Sans',sans-serif}@media (max-width:780px){body.mobile-menu-opened{overflow:hidden}}ul.navigation>li:not(.active) a{color:#000}ul.navigation>li.active a{color:red}
+/*# sourceMappingURL=layout.css.map */

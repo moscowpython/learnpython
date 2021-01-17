@@ -1,0 +1,324 @@
+{% load static %}
+{% load l10n %}
+{% include "new-design/include/header.html" %}
+
+<!--SECTION PROJECTS START-->
+<section class="projects_wrapper">
+    <div class="projects_list">
+        <div class="project_item learn_python">
+            <h6>Наш проект</h6>
+            <div class="logo">
+                <a href="/">
+                    <p class="logo_title">
+                        <span class="blue">L</span>EARN <span class="yellow">P</span>YTHON
+                    </p>
+                </a>
+            </div>
+            <h4>
+                Курс программирования
+                на Python 3.8 для любого уровня
+                с упором на практику
+            </h4>
+            <p class="date">
+                <span>[</span>5 — 7 ноября 2020<span>]</span>
+            </p>
+            <p class="descr">Место для краткого описания</p>
+        </div>
+        <div class="project_item python_week">
+            <h6>Наш проект</h6>
+            <div class="logo">
+                <a href="#">
+                    <img src="{% static 'new-design/img/python_week.png' %}" alt="logo">
+                </a>
+            </div>
+            <h4>
+                Профессиональная
+                конференция для Python
+                разработчиков
+            </h4>
+            <p class="date">
+                14 — 18 сентября 2020
+            </p>
+            <p class="descr">Место для краткого описания</p>
+        </div>
+        <div class="project_item moscow_python">
+            <h6>Наш проект</h6>
+            <div class="logo">
+                <a href="#">
+                    <img src="{% static 'new-design/img/moscow_python.png' %}" alt="logo">
+                </a>
+            </div>
+            <h4>
+                Подкаст о Python. Актуальные события мира IT, тренды, подходы и тд.
+            </h4>
+            <p class="date">
+                Каждую неделю
+            </p>
+            <p class="descr">Место для краткого описания</p>
+        </div>
+    </div>
+</section>
+<!--SECTION PROJECTS END-->
+
+<!--SECTION DISTRIBUTION FORM START-->
+<section class="distribution_form_wrapper">
+    <div class="container">
+        <div class="distribution">
+            <div class="distribution_form">
+                <div class="distribution_item">
+                    <img src="{% static 'new-design/img/emaillove.png' %}" alt="email">
+                </div>
+                <div class="distribution_item">
+                    <div class="form_wrapper">
+                        <p class="title">
+                            Подпишитесь на рассылку с последними
+                            новостями от PythonRu <span>, причем без спама</span>
+                        </p>
+                        <form action="" method="post">
+                            <div class="forma">
+                                <input name="email" type="email" placeholder="Hello@Python.ru" required>
+                                <button type="submit" class="btn_distr">подписаться</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--SECTION DISTRIBUTION FORM END-->
+
+<!--SECTION POSTS START-->
+<section class="posts_wrapper">
+    <div class="container">
+        <h2>Последние посты</h2>
+        <div class="posts_list">
+            <div class="posts_item">
+                <h4>Тэги</h4>
+                <ul class="tags">
+                    <li><a href="#"># Tutorials</a></li>
+                    <li><a href="#"># Tutorials</a></li>
+                    <li><a href="#"># Tutorials</a></li>
+                    <li><a href="#"># Tutorials</a></li>
+                    <li><a href="#"># Tutorials</a></li>
+                    <li><a href="#"># Tutorials</a></li>
+                    <li><a href="#"># Tutorials</a></li>
+                    <li><a href="#"># Tutorials</a></li>
+                    <li><a href="#"># Tutorials</a></li>
+                    <li><a href="#"># Tutorials</a></li>
+                </ul>
+            </div>
+            <div class="posts_item sec_col">
+                <div class="articles">
+                    {% for article in articles %}
+                    <article>
+                        <a href="#">
+                            <div class="user_info_content">
+                                <div class="avatar">
+                                    <img src="{% static 'new-design/img/avatar.png' %}" alt="avatar">
+                                </div>
+                                <div class="user_info">
+                                    <div class="name">Алексей Штырняев <span class="job">[X5 Group]</span></div>
+                                    <div class="date">17 апреля</div>
+                                </div>
+                            </div>
+                            <div class="article_title">
+                                HR-аналитика и Python для чайников (есть котики)
+                            </div>
+                        </a>
+                        <ul class="article_tags">
+                            <li><a href="#">#Поиск работы</a></li>
+                            <li><a href="#">#Аналитика</a></li>
+                        </ul>
+                        <div class="article_descr">
+                            В своём стремлении улучшить пользовательский опыт мы упускаем,
+                            что сделанные на базе интернет-аналитики выводы.
+                        </div>
+                    </article>
+                    {% endfor %}
+
+                    <div class="bonus_mobile">
+                        <a href="#">
+                            <img src="{% static 'new-design/img/bonus.jpg' %}" alt="image">
+                        </a>
+                    </div>
+                </div>
+                <button class="btn">все посты</button>
+            </div>
+            <div class="posts_item">
+                <div class="bonus">
+                    <a href="#">
+                        <img src="{% static 'new-design/img/bonus.jpg' %}" alt="image">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--SECTION POSTS END-->
+
+<!--SECTION BADGES START-->
+<section class="badges_wrapper">
+    <div class="container">
+        <div class="badges_list">
+            <div class="badges_item">
+                <img src="{% static 'new-design/img/open.png' %}" alt="badge">
+                <p>
+                    Открытое
+                    сообщество
+                </p>
+            </div>
+            <div class="badges_item">
+                <img src="{% static 'new-design/img/speech-bubble.png' %}" alt="badge">
+                <p>
+                    Поддержка
+                    от практиков
+                </p>
+            </div>
+            <div class="badges_item">
+                <img src="{% static 'new-design/img/python2.png' %}" alt="badge">
+                <p>
+                    Не а бы какие
+                    ребата
+                </p>
+            </div>
+            <div class="badges_item">
+                <img src="{% static 'new-design/img/social.png' %}" alt="badge">
+                <p>
+                    Не только
+                    мемчики постим
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<!--SECTION BADGES END-->
+
+<!--SECTION EVENTS MAIN PAGE START-->
+<section class="events_wrapper">
+    <div class="container">
+        <h2>Ближайшие мероприятия</h2>
+        <div class="events_list">
+            <div class="events_item">
+                <div class="event_info">
+                    <div class="event_logo">
+                        <img src="{% static 'new-design/img/event_logo.png' %}" alt="event_logo">
+                    </div>
+                    <div class="event_date">
+                        <p class="date">25</p>
+                        <p class="month">Декабря</p>
+                    </div>
+                    <div class="event_location">
+                        <div class="place">Москва</div>
+                        <div class="day">Пятница / <span class="time">16:00</span></div>
+                    </div>
+                    <div class="price">
+                        5500
+                        <i class="fa fa-rub" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="event_title">
+                    Moscow Python Cong
+                </div>
+                <div class="event_descr">
+                    В целом, конечно, существующая теория однозначно фиксирует
+                    необходимость приоритизации разума над эмоциями. Господа,
+                    постоянное информационно-пропагандистское обеспечение нашей
+                    деятельности обеспечивает актуальность поставленных обществом.
+                </div>
+                <a href="#" class="event_detail">Подробнее</a>
+            </div>
+            <div class="events_item">
+                <div class="event_info">
+                    <div class="event_logo">
+                        <img src="{% static 'new-design/img/event_logo.png' %}" alt="event_logo">
+                    </div>
+                    <div class="event_date">
+                        <p class="date">11</p>
+                        <p class="month">Января</p>
+                    </div>
+                    <div class="event_location">
+                        <div class="place">Online</div>
+                        <div class="day">Пятница / <span class="time">16:00</span></div>
+                    </div>
+                    <div class="price">
+                        5500
+                        <i class="fa fa-rub" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="event_title">
+                    Moscow Python Cong
+                </div>
+                <div class="event_descr">
+                    В целом, конечно, существующая теория однозначно фиксирует
+                    необходимость приоритизации разума над эмоциями. Господа,
+                    постоянное информационно-пропагандистское обеспечение нашей
+                    деятельности обеспечивает актуальность поставленных обществом.
+                </div>
+                <a href="#" class="event_detail">Подробнее</a>
+            </div>
+            <div class="events_item">
+                <div class="event_info">
+                    <div class="event_logo">
+                        <img src="{% static 'new-design/img/event_logo.png' %}" alt="event_logo">
+                    </div>
+                    <div class="event_date">
+                        <p class="date">18</p>
+                        <p class="month">Января</p>
+                    </div>
+                    <div class="event_location">
+                        <div class="place">Online</div>
+                        <div class="day">Пятница / <span class="time">16:00</span></div>
+                    </div>
+                    <div class="price">
+                        5500
+                        <i class="fa fa-rub" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="event_title">
+                    Moscow Python Cong
+                </div>
+                <div class="event_descr">
+                    В целом, конечно, существующая теория однозначно фиксирует
+                    необходимость приоритизации разума над эмоциями. Господа,
+                    постоянное информационно-пропагандистское обеспечение нашей
+                    деятельности обеспечивает актуальность поставленных обществом.
+                </div>
+                <a href="#" class="event_detail">Подробнее</a>
+            </div>
+            <div class="events_item">
+                <div class="event_info">
+                    <div class="event_logo">
+                        <img src="{% static 'new-design/img/event_logo.png' %}" alt="event_logo">
+                    </div>
+                    <div class="event_date">
+                        <p class="date">4</p>
+                        <p class="month">Февраля</p>
+                    </div>
+                    <div class="event_location">
+                        <div class="place">Тольятти</div>
+                        <div class="day">Пятница / <span class="time">16:00</span></div>
+                    </div>
+                    <div class="price">
+                        5500
+                        <i class="fa fa-rub" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="event_title">
+                    Moscow Python Cong
+                </div>
+                <div class="event_descr">
+                    В целом, конечно, существующая теория однозначно фиксирует
+                    необходимость приоритизации разума над эмоциями. Господа,
+                    постоянное информационно-пропагандистское обеспечение нашей
+                    деятельности обеспечивает актуальность поставленных обществом.
+                </div>
+                <a href="#" class="event_detail">Подробнее</a>
+            </div>
+        </div>
+        <button class="btn">все мероприятия</button>
+    </div>
+</section>
+<!--SECTION EVENTS MAIN PAGE END-->
+
+{% include "new-design/include/footer.html" %}

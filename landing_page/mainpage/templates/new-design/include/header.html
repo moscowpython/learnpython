@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+{% load l10n %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{% static 'new-design/css/layout.css' %}">
+</head>
+<body class="loading">
+<!--HEADER START-->
+<header class="header_wrapper">
+    {% if request.path != '/new' %}
+    <div class="projects_logo_wrapper">
+        <div class="learn_python">
+            <div class="logo">
+                <a href="/">
+                    <p class="logo_title">
+                        <span class="blue">L</span>EARN <span class="yellow">P</span>YTHON
+                    </p>
+                </a>
+            </div>
+        </div>
+        <div class="python_week">
+            <div class="logo">
+                <a href="#">
+                    <img src="{% static 'new-design/img/python_week.png' %}" alt="logo">
+                </a>
+            </div>
+        </div>
+        <div class="moscow_python">
+            <div class="logo">
+                <a href="#">
+                    <img src="{% static 'new-design/img/moscow_python.png' %}" alt="logo">
+                </a>
+            </div>
+        </div>
+        <div class="projects_list">
+            <div class="project_item learn_python">
+                <h6>Наш проект</h6>
+                <div class="logo">
+                    <a href="/">
+                        <p class="logo_title">
+                            <span class="blue">L</span>EARN <span class="yellow">P</span>YTHON
+                        </p>
+                    </a>
+                </div>
+                <h4>
+                    Курс программирования
+                    на Python 3.8 для любого уровня
+                    с упором на практику
+                </h4>
+                <p class="date">
+                    <span>[</span>5 — 7 ноября 2020<span>]</span>
+                </p>
+                <p class="descr">Место для краткого описания</p>
+            </div>
+            <div class="project_item python_week">
+                <h6>Наш проект</h6>
+                <div class="logo">
+                    <a href="#">
+                        <img src="{% static 'new-design/img/python_week.png' %}" alt="logo">
+                    </a>
+                </div>
+                <h4>
+                    Профессиональная
+                    конференция для Python
+                    разработчиков
+                </h4>
+                <p class="date">
+                    14 — 18 сентября 2020
+                </p>
+                <p class="descr">Место для краткого описания</p>
+            </div>
+            <div class="project_item moscow_python">
+                <h6>Наш проект</h6>
+                <div class="logo">
+                    <a href="#">
+                        <img src="{% static 'new-design/img/moscow_python.png' %}" alt="logo">
+                    </a>
+                </div>
+                <h4>
+                    Подкаст о Python. Актуальные события мира IT, тренды, подходы и тд.
+                </h4>
+                <p class="date">
+                    Каждую неделю
+                </p>
+                <p class="descr">Место для краткого описания</p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="container">
+        <div class="main_menu_logo_wrapper">
+            <div class="mobile_menu_bg"></div>
+            <div class="logo">
+                <a href="/">
+                    <img src="{% static 'new-design/img/python.png' %}" alt="logo">
+                    <img src="{% static 'new-design/img/PythonRu.png' %}" alt="logo">
+                </a>
+            </div>
+            <div class="main_menu_wrapper">
+                <a href="#" class="mobile_menu_btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+                <div class="main_menu_block">
+                    <div class="main_menu">
+                        <ul class="nav">
+                            <li class="{% if request.path == '/new' %}active{% endif %}">
+                                <a href="/new">О проекте</a>
+                            </li>
+                            <li class="{% if request.path == '/new/blog' %}active{% endif %}">
+                                <a href="/new/blog">Блог</a>
+                            </li>
+                            <li class="{% if request.path == '/new/events' %}active{% endif %}">
+                                <a href="/new/events">Мероприятия</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mobile_projects_logo_wrapper">
+                        <h6>Наши проекты</h6>
+                        <div class="learn_python">
+                            <div class="logo">
+                                <a href="/">
+                                    <p class="logo_title">
+                                        <span class="blue">L</span>EARN <span class="yellow">P</span>YTHON
+                                    </p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="python_week">
+                            <div class="logo">
+                                <a href="#">
+                                    <img src="{% static 'new-design/img/python_week.png' %}" alt="logo">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="moscow_python">
+                            <div class="logo">
+                                <a href="#">
+                                    <img src="{% static 'new-design/img/moscow_python.png' %}" alt="logo">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!--HEADER END-->
+
+

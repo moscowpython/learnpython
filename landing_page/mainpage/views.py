@@ -107,3 +107,10 @@ def projects(request):
 
     }
     return HttpResponse(template.render(context, request))
+
+def mainPage(request):
+    '''Docstring testc'''
+    template = loader.get_template('new-design/index.html')
+    context = {}
+
+    return HttpResponse(template.render(context, request))

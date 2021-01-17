@@ -1,0 +1,268 @@
+{% load static %}
+{% load l10n %}
+{% include "new-design/include/header.html" %}
+
+<!--SECTION SEARCH START -->
+<section class="events_page_search_wrapper">
+    <div class="container">
+        <div class="form_wrapper">
+            <form action="" method="post">
+                <div class="forma">
+                    <div class="form-group">
+                        <div class="search_block">
+                            <input type="search" placeholder="Поиск по мероприятиям">
+                            <button type="submit">
+                                <img src="{% static 'new-design/img/search.png' %}" alt="search">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="filter">
+                            <div class="filter_item">
+                                <input id="filter_all_input" type="radio" name="filter">
+                                <label for="filter_all_input">Все</label>
+                            </div>
+                            <div class="filter_item">
+                                <input id="filter_online_input" type="radio" name="filter">
+                                <label for="filter_online_input">Online</label>
+                            </div>
+                            <div class="filter_item">
+                                <input id="filter_offline_input" type="radio" name="filter">
+                                <label for="filter_offline_input">Offline</label>
+                            </div>
+                        </div>
+                        <div class="select_wrapper">
+                            <select>
+                                <option value="Все города">Все города</option>
+                                <option>Москва</option>
+                                <option>Санкт-Петербург</option>
+                                <option>Казань</option>
+                                <option>Тольятти</option>
+                                <option>Екатеренбург</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<!--SECTION SEARCH END -->
+
+<!--SECTION EVENTS PAGE EVENTS START-->
+<section class="events_page_events_wrapper">
+    <div class="container">
+        <div class="events_list">
+            <div class="events_item">
+                <h4>Тэги</h4>
+                <ul class="tags">
+                    <li><a href="#"># Tutorials</a></li>
+                    <li><a href="#"># Tutorials</a></li>
+                    <li><a href="#"># Tutorials</a></li>
+                    <li><a href="#"># Tutorials</a></li>
+                    <li><a href="#"># Tutorials</a></li>
+                    <li><a href="#"># Tutorials</a></li>
+                    <li><a href="#"># Tutorials</a></li>
+                    <li><a href="#"># Tutorials</a></li>
+                    <li><a href="#"># Tutorials</a></li>
+                    <li><a href="#"># Tutorials</a></li>
+                </ul>
+                <div class="sponsor_wrapper">
+                    <div class="sponsor_title">
+                        <div class="title">Community sponsor</div>
+                        <div class="heart">
+                            <i class="fa fa-heart" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="sponsor_list">
+                        <div class="sponsor_item">
+                            <img src="{% static 'new-design/img/drylabs.png' %}" alt="sponsor">
+                            <p class="sponsor_name">Drylabs</p>
+                        </div>
+                        <div class="sponsor_item">
+                            <img src="{% static 'new-design/img/itcanfly.png' %}" alt="sponsor">
+                            <p class="sponsor_name">itcanfly</p>
+                        </div>
+                        <div class="sponsor_item">
+                            <img src="{% static 'new-design/img/best.png' %}" alt="sponsor">
+                            <p class="sponsor_name">BestDoctor</p>
+                        </div>
+                        <div class="sponsor_item">
+                            <img src="{% static 'new-design/img/evrone.png' %}" alt="sponsor">
+                            <p class="sponsor_name">Evrone</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="events_item sec_col">
+                <h1>Мероприятия</h1>
+                <div class="articles">
+                    {% for article in articles %}
+                    <article>
+                        <div class="event">
+                            <div class="image_wrapper">
+                                <img src="{% static 'new-design/img/event.png' %}" alt="event">
+                            </div>
+                         <div class="content_wrapper">
+                             <div class="event_info">
+                                 <div class="event_logo">
+                                     <img src="{% static 'new-design/img/event_logo.png' %}" alt="event_logo">
+                                 </div>
+                                 <div class="event_date">
+                                     <p class="date">25</p>
+                                     <p class="month">Декабря</p>
+                                 </div>
+                                 <div class="event_location">
+                                     <div class="place">Москва</div>
+                                     <div class="day">Пятница / <span class="time">16:00</span></div>
+                                 </div>
+                                 <div class="price">
+                                     5500
+                                     <i class="fa fa-rub" aria-hidden="true"></i>
+                                 </div>
+                             </div>
+                             <div class="event_title">
+                                 Moscow Python Cong
+                             </div>
+                             <div class="event_descr">
+                                 В целом, конечно, существующая теория однозначно фиксирует
+                                 необходимость приоритизации разума над эмоциями. Господа,
+                                 постоянное информационно-пропагандистское обеспечение нашей
+                                 деятельности обеспечивает актуальность поставленных обществом.
+                             </div>
+                             <a href="#" class="event_detail">Подробнее</a>
+                         </div>
+                        </div>
+                    </article>
+                    {% endfor %}
+
+                    <div class="bonus_mobile">
+                        <a href="#">
+                            <img src="{% static 'new-design/img/bonus.jpg' %}" alt="image">
+                        </a>
+                    </div>
+                </div>
+                <button class="btn">еще 5</button>
+            </div>
+            <div class="events_item">
+                <div class="bonus">
+                    <a href="#">
+                        <img src="{% static 'new-design/img/bonus.jpg' %}" alt="image">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--SECTION EVENTS PAGE EVENTS END-->
+
+<!--SECTION EVENTS PAGE LAST POSTS START-->
+<section class="events_page_posts">
+    <div class="container">
+        <h2>Последние посты</h2>
+        <div class="posts_list">
+            <div class="posts_item">
+                <a href="#">
+                    <div class="user_info_content">
+                        <div class="avatar">
+                            <img src="{% static 'new-design/img/avatar.png' %}" alt="avatar">
+                        </div>
+                        <div class="user_info">
+                            <div class="name">Алексей Штырняев <span class="job">[X5 Group]</span></div>
+                            <div class="date">17 апреля</div>
+                        </div>
+                    </div>
+                    <div class="article_title">
+                        HR-аналитика и Python для чайников (есть котики)
+                    </div>
+                </a>
+                <ul class="article_tags">
+                    <li><a href="#">#Поиск работы</a></li>
+                    <li><a href="#">#Аналитика</a></li>
+                </ul>
+                <div class="article_descr">
+                    В своём стремлении улучшить пользовательский опыт мы упускаем,
+                    что сделанные на базе интернет-аналитики выводы.
+                </div>
+            </div>
+            <div class="posts_item">
+                <a href="#">
+                    <div class="user_info_content">
+                        <div class="avatar">
+                            <img src="{% static 'new-design/img/avatar.png' %}" alt="avatar">
+                        </div>
+                        <div class="user_info">
+                            <div class="name">Алексей Штырняев <span class="job">[X5 Group]</span></div>
+                            <div class="date">17 апреля</div>
+                        </div>
+                    </div>
+                    <div class="article_title">
+                        HR-аналитика и Python для чайников (есть котики)
+                    </div>
+                </a>
+                <ul class="article_tags">
+                    <li><a href="#">#Поиск работы</a></li>
+                    <li><a href="#">#Аналитика</a></li>
+                </ul>
+                <div class="article_descr">
+                    В своём стремлении улучшить пользовательский опыт мы упускаем,
+                    что сделанные на базе интернет-аналитики выводы.
+                </div>
+            </div>
+            <div class="posts_item">
+                <a href="#">
+                    <div class="user_info_content">
+                        <div class="avatar">
+                            <img src="{% static 'new-design/img/avatar.png' %}" alt="avatar">
+                        </div>
+                        <div class="user_info">
+                            <div class="name">Алексей Штырняев <span class="job">[X5 Group]</span></div>
+                            <div class="date">17 апреля</div>
+                        </div>
+                    </div>
+                    <div class="article_title">
+                        HR-аналитика и Python для чайников (есть котики)
+                    </div>
+                </a>
+                <ul class="article_tags">
+                    <li><a href="#">#Поиск работы</a></li>
+                    <li><a href="#">#Аналитика</a></li>
+                </ul>
+                <div class="article_descr">
+                    В своём стремлении улучшить пользовательский опыт мы упускаем,
+                    что сделанные на базе интернет-аналитики выводы.
+                </div>
+            </div>
+            <div class="posts_item">
+                <a href="#">
+                    <div class="user_info_content">
+                        <div class="avatar">
+                            <img src="{% static 'new-design/img/avatar.png' %}" alt="avatar">
+                        </div>
+                        <div class="user_info">
+                            <div class="name">Алексей Штырняев <span class="job">[X5 Group]</span></div>
+                            <div class="date">17 апреля</div>
+                        </div>
+                    </div>
+                    <div class="article_title">
+                        HR-аналитика и Python для чайников (есть котики)
+                    </div>
+                </a>
+                <ul class="article_tags">
+                    <li><a href="#">#Поиск работы</a></li>
+                    <li><a href="#">#Аналитика</a></li>
+                </ul>
+                <div class="article_descr">
+                    В своём стремлении улучшить пользовательский опыт мы упускаем,
+                    что сделанные на базе интернет-аналитики выводы.
+                </div>
+            </div>
+        </div>
+        <button class="btn">все посты</button>
+    </div>
+</section>
+<!--SECTION EVENTS PAGE LAST POSTS END-->
+
+
+
+{% include "new-design/include/footer.html" %}
