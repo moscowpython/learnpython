@@ -9,7 +9,50 @@ jQuery(function() {
         // Offline map
         (() => {
             let $offline_cities = jQuery('#offline-cities-json'),
-                offline_cities = [];
+                offline_cities = [],
+                balloon_width = 570,
+                balloon_height = 317,
+                balloon_offset = [30, 340],
+                icon_inactive_sizes = [28, 40],
+                icon_active_sizes = [42, 60],
+                panMargin = 150;
+
+            if (window.matchMedia('(max-width: 760px)').matches){
+                    balloon_width = 400;
+                    balloon_height = 220;
+                    balloon_offset = [30, 240];
+                    icon_inactive_sizes = [20, 32];
+                    icon_active_sizes = [30, 48];
+                    panMargin = [110, 70];
+            }
+
+            if (window.matchMedia('(max-width: 500px)').matches){
+                balloon_width = 350;
+                balloon_height = 198;
+                balloon_offset = [30, 220];
+                icon_inactive_sizes = [20, 32];
+                icon_active_sizes = [30, 48];
+                panMargin = [110, 50];
+            }
+
+            if (window.matchMedia('(max-width: 400px)').matches){
+                balloon_width = 250;
+                balloon_height = 327;
+                balloon_offset = [30, 348];
+                icon_inactive_sizes = [20, 32];
+                icon_active_sizes = [30, 48];
+                panMargin = [70, 50];
+            }
+
+
+            let icon_inactive_offset = [
+                    -1 * icon_inactive_sizes[0] / 2,
+                    -1 * icon_inactive_sizes[1]
+                ],
+                icon_active_offset = [
+                    -1 * icon_active_sizes[0] / 2,
+                    -1 * icon_active_sizes[1]
+                ];
 
             try {
                 offline_cities = JSON.parse($offline_cities.html() || '[]');
@@ -24,7 +67,7 @@ jQuery(function() {
             let map = new ymaps.Map('offline-map', {
                 center: [
                     offline_cities[0].coords[0] - 2,
-                    offline_cities[0].coords[1] + 5,
+                    offline_cities[0].coords[1] + 5
                 ],
                 zoom: 6
             }, {
@@ -35,7 +78,7 @@ jQuery(function() {
                 let early_date = parse_date(city.early_date),
                     basic_date = parse_date(city.basic_date),
                     placemark = new ymaps.Placemark(city.coords, {
-                    balloonContent: `
+                        balloonContent: `
 <div class="offline_city_content_wrapper">
     <h3>${city.name}</h3>
     <div class="offline_city_content_list">
@@ -61,27 +104,27 @@ jQuery(function() {
         </div>
     </div>
 </div>`
-                }, {
-                    // Опции.
-                    // Необходимо указать данный тип макета.
-                    iconLayout: 'default#imageWithContent',
-                    // Своё изображение иконки метки.
-                    iconImageHref: 'static/images/yellow-mark.svg',
-                    hideIconOnBalloonOpen: false,
-                    // Размеры метки.
-                    iconImageSize: [28, 40],
-                    // Смещение левого верхнего угла иконки относительно
-                    // её "ножки" (точки привязки).
-                    iconImageOffset: [-14, -40],
+                    }, {
+                        // Опции.
+                        // Необходимо указать данный тип макета.
+                        iconLayout: 'default#imageWithContent',
+                        // Своё изображение иконки метки.
+                        iconImageHref: 'static/images/yellow-mark.svg',
+                        hideIconOnBalloonOpen: false,
+                        // Размеры метки.
+                        iconImageSize: icon_inactive_sizes,
+                        // Смещение левого верхнего угла иконки относительно
+                        // её "ножки" (точки привязки).
+                        iconImageOffset: icon_inactive_offset,
 
-                    balloonOffset: [30, 340],
-                    balloonMaxWidth: 570,
-                    balloonMinWidth: 570,
-                    balloonMaxHeight: 317,
-                    balloonMinHeight: 317,
-                    balloonCloseButton: false,
-                    balloonAutoPanMargin: 150
-                });
+                        balloonOffset: balloon_offset,
+                        balloonMaxWidth: balloon_width,
+                        balloonMinWidth: balloon_width,
+                        balloonMaxHeight: balloon_height,
+                        balloonMinHeight: balloon_height,
+                        balloonCloseButton: false,
+                        balloonAutoPanMargin: panMargin
+                    });
 
                 city.placemark = placemark;
 
@@ -89,14 +132,14 @@ jQuery(function() {
                     activateCityByName(city.name);
 
                     placemark.options.set('iconImageHref', 'static/images/blue-mark.svg');
-                    placemark.options.set('iconImageSize', [42, 60]);
-                    placemark.options.set('iconImageOffset', [-21, -60]);
+                    placemark.options.set('iconImageSize', icon_active_sizes);
+                    placemark.options.set('iconImageOffset', icon_active_offset);
                 });
 
                 placemark.events.add('balloonclose', function() {
                     placemark.options.set('iconImageHref', 'static/images/yellow-mark.svg');
-                    placemark.options.set('iconImageSize', [28, 40]);
-                    placemark.options.set('iconImageOffset', [-14, -40]);
+                    placemark.options.set('iconImageSize', icon_inactive_sizes);
+                    placemark.options.set('iconImageOffset', icon_inactive_offset);
                 });
 
                 map.geoObjects.add(placemark);
@@ -170,7 +213,7 @@ jQuery(function() {
     }
 
     function format_date(date) {
-        return parse_date(date).toLocaleString({month: "long", day: "numeric"});
+        return parse_date(date).toLocaleString({month: 'long', day: 'numeric'});
     }
 
     function format_date_with_year(date) {

@@ -123,6 +123,7 @@ def index(request):
              'basic_price': 36500,
              'basic_installment_price': 3500
          }
+
      ]
 
     context = {

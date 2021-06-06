@@ -15,6 +15,7 @@ class LearnPython {
 		this.initScrollupbut();
 		this.fixHeader();
 		this.initSlider();
+		this.initSimpleBar();
 		this.initOnlineSlider();
 		this.mobiTimetableInit();
 		this.initTeacherSlider();
@@ -78,6 +79,12 @@ class LearnPython {
 			arrows: true,
 			centerPadding: '0'
 		});
+	}
+
+	initSimpleBar() {
+		if (window.matchMedia('(min-width: 1160px)').matches){
+			new SimpleBar(document.getElementById('city-simplebar'));
+		}
 	}
 
 	initOnlineSlider() {

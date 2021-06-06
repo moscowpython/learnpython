@@ -1377,12 +1377,12 @@
 		</section>
 
 		<section id="counter" class="counter show1">
-			<div class="container d-lg-none">
-				<div class="m-section-header">
-					<h4>Стоимость</h4>
-				</div>
-			</div>
-			<div class="container d-none d-lg-block">
+<!--			<div class="container d-lg-none">-->
+<!--				<div class="m-section-header">-->
+<!--					<h4>Стоимость</h4>-->
+<!--				</div>-->
+<!--			</div>-->
+			<div class="container">
 				<div class="pc-section-header">
 					<h2>Записаться на онлайн курс</h2>
 				</div>
@@ -1468,17 +1468,18 @@
 		</section>
 
 		<section class="offline-map">
-			<div class="container d-none d-lg-block">
+			<div class="container">
 				<div class="pc-section-header">
 					<h2>Записаться на оффлайн курс <br>
 						в 7 городах РФ
 					</h2>
 				</div>
 			</div>
+
 			<div class="offline-map-wrapper">
 				<div class="offline-map-city-list">
 					<script id="offline-cities-json" type="application/json">{{ offline_cities_json|safe }}</script>
-					<ul class="city-list" data-simplebar data-simplebar-auto-hide="false">
+					<ul class="city-list" id="city-simplebar" data-simplebar-auto-hide="false">
 						{% for city in offline_cities %}
 						<li>
 							<a href="#" data-offline-city-name="{{city.name}}">{{city.name}}</a>
