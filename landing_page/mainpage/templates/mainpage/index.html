@@ -14,6 +14,9 @@
 	<link
 		href="https://fonts.googleapis.com/css?family=Material+Icons|Rubik|Roboto|PT+Mono|Ubuntu:300,400,600,500,700&amp;subset=cyrillic"
 		rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplebar/5.3.2/simplebar.min.css"
+		  integrity="sha512-uZTwaYYhJLFXaXYm1jdNiH6JZ1wLCTVnarJza7iZ1OKQmvi6prtk85NMvicoSobylP5K4FCdGEc4vk1AYT8b9Q=="
+		  crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" href="{% static 'vendor/css/bootstrap-reboot.min.css' %}">
 	<link rel="stylesheet" href="{% static 'vendor/css/bootstrap-grid.min.css' %}">
 	<link rel="stylesheet" href="{% static 'vendor/css/bootstrap.min.css' %}">
@@ -1381,22 +1384,13 @@
 			</div>
 			<div class="container d-none d-lg-block">
 				<div class="pc-section-header">
-					<h2>Записаться</h2>
+					<h2>Записаться на онлайн курс</h2>
 				</div>
 			</div>
 			<div class="container m-hide">
-				<div class="price-second-container row justify-content-center">
-					<div class="col-12 d-lg-none ">
-						<div class="tab-holder bg-yellow">
-							<div class="button-holder">
-								<a data-target=".online-tab" class="custom-tab active">онлайн</a>
-								<a class="custom-tab" data-target=".offline-tab">оффлайн</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-12 col-lg-10 col-xl-6 online-tab active">
+				<div class="price-second-container">
+					<div class="online-tab active">
 						<div class="price-second bg-yellow">
-							<h3 class="text-center d-none d-lg-block">онлайн курс</h3>
 							<div class="price-list">
 								<div class="price-item payment-before">
 									<div
@@ -1468,82 +1462,31 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-12 col-lg-10 col-xl-6 offline-tab">
-						<div class="price-second bg-blue">
-							<h3 class="text-center d-none d-lg-block">оффлайн курс</h3>
-							<div class="price-list offline-list">
-								<div class="price-item payment-before offline">
-									<div
-											class="pt-lg-3">
-										<div class="price-parent">
-											<div class="price-date"><b>Ранняя регистрация</b></div>
-											<div class="price-date"> До
-												{{ offline_price_ranges.0.price_range_end_date | date:"j E" }}</div>
-											<strong class="price">{{ offline_price_ranges.0.price_range_price}}
-												р.</strong>
-										</div>
-										<div class="decr-price-parent">
-											<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
-												рассрочку
-												<strong>от 4000 р/мес</strong></a>
-											<a href="#howToPay" class="decr-price d-lg-none scroll-to"
-											   style="padding-top: 5px">Есть
-												рассрочка</a>
-										</div>
-									</div>
-									{% if today <= offline_price_ranges.0.price_range_end_date %}
-									<button class="yellow btn btn-warning btn-add btn-buy" data-toggle="modal"
-											data-target="#overlay">
-											Купить билет
-									</button>
-									{%else%}
-									<button class="yellow btn btn-warning btn-add btn-buy" data-toggle="modal"
-											disabled
-											data-target="#overlay">
-											Регистрация закрыта
-									</button>
-									{%endif%}
-								</div>
-
-								<div class="price-item payment-after offline">
-									<div
-											class="pt-lg-3">
-										<div class="price-parent">
-											<div class="price-date"><b>Обычная регистрация</b></div>
-											<div class="price-date"> С
-												{{ offline_price_ranges.1.price_range_start_date | date:"j E" }}</div>
-											<strong class="price">{{ offline_price_ranges.1.price_range_price}}
-												р.</strong>
-										</div>
-										<div class="decr-price-parent">
-											<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
-												рассрочку
-												<strong>от 4500 р/мес</strong></a>
-											<a href="#howToPay" class="decr-price d-lg-none scroll-to"
-											   style="padding-top: 5px">Есть
-												рассрочка</a>
-										</div>
-									</div>
-									{% if today >= offline_price_ranges.1.price_range_start_date %}
-									<button class="btn btn-warning btn-add btn-buy"
-											data-toggle="modal"
-											data-target="#overlay">
-											Купить билет
-									</button>
-									{%else%}
-									<button class="btn btn-warning btn-add btn-buy"
-											disabled
-											data-toggle="modal"
-											data-target="#overlay">
-										С {{ offline_price_ranges.1.price_range_start_date | date:"j E Y" }} года
-									</button>
-									{%endif%}
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 
+			</div>
+		</section>
+
+		<section class="offline-map">
+			<div class="container d-none d-lg-block">
+				<div class="pc-section-header">
+					<h2>Записаться на оффлайн курс <br>
+						в 7 городах РФ
+					</h2>
+				</div>
+			</div>
+			<div class="offline-map-wrapper">
+				<div class="offline-map-city-list">
+					<script id="offline-cities-json" type="application/json">{{ offline_cities_json|safe }}</script>
+					<ul class="city-list" data-simplebar data-simplebar-auto-hide="false">
+						{% for city in offline_cities %}
+						<li>
+							<a href="#" data-offline-city-name="{{city.name}}">{{city.name}}</a>
+						</li>
+						{% endfor %}
+					</ul>
+				</div>
+				<div id="offline-map"></div>
 			</div>
 		</section>
 
@@ -2305,13 +2248,22 @@
 	<script src="//code.jivosite.com/widget/u8UotTOGre" async></script>
 		<button id="scrollup" class="goOnTop"><i class="material-icons">arrow_upward</i></button>
 	</div>
+
 	<script src="{% static 'vendor/js/jquery-3.3.1.min.js' %}"></script>
 	<script src="{% static 'vendor/js/bootstrap.bundle.min.js' %}"></script>
 	<script src="{% static 'vendor/js/bootstrap.min.js' %}"></script>
 	<script src="{% static 'vendor/js/slick.min.js' %}"></script>
-	<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/simplebar/5.3.2/simplebar.min.js"
+			integrity="sha512-t5ONTEmbf892tq6YhM2eSBdDALGVbnQgqSy5fez2Dki/raOHJxKuf1DWSyHs8qvXoNDg2aJ9RdukRj0lRspfAw=="
+			crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!--	подключаем конретную версию 2.1.78, так как в яндекс в названии своих css классов использует номер версии и это используется в стилях проекта-->
+	<script src="https://api-maps.yandex.ru/2.1.78/?lang=ru_RU" type="text/javascript"></script>
 	<script src="{% static 'js/yandex_map.js' %}"></script>
 	<script src="{% static 'js/main.js' %}?v=1.1"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/1.26.0/luxon.min.js"
+			integrity="sha512-cYjGoxnM2sxryDRpKhwi8uTszEw2zufuDVz1dWlm1+wlvwnhQ4wu00BokHH4IKlogGJNL+2a2GYvHN+xaoUxjQ=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"></script>
 </body>
 
 </html>
