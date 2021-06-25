@@ -825,7 +825,7 @@ header {
 .hero {
     background: url("../images/imagehero.jpg") #252526 50% 50% no-repeat;
     color: #ffffff;
-    padding: 170px 0 0;
+    padding: 170px 0 50px;
     background-size: cover;
 }
 
@@ -4010,10 +4010,16 @@ ul.installment-plan li:before {
     }
 }
 
-.price-second .price-list {
+#swich_block_online .price-second .price-list {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    margin: 0 -25px;
+}
+
+.price-list {
+    display: flex;
+    flex-direction: row;
     margin: 0 -25px;
 }
 
@@ -4102,9 +4108,14 @@ ul.installment-plan li:before {
     padding-top: 0;
 }
 
-.price-second .price-list .price-item {
+#swich_block_online .price-list .price-item {
     padding: 20px;
     margin: 15px 100px;
+}
+
+.price-second .price-list .price-item {
+    padding: 20px;
+    margin: 15px;
 }
 
 @media (max-width: 1300px){
@@ -4135,6 +4146,10 @@ ul.installment-plan li:before {
 }
 .offline-map{
     padding: 100px 0;
+}
+
+.offline-map.upper{
+    padding: 100px 0 0;
 }
 
 .offline-map .pc-section-header{
@@ -4258,6 +4273,10 @@ ul.installment-plan li:before {
         padding: 0px;
     }
 
+    .offline-map.upper {
+        padding: 0px;
+    }
+
     .offline-map .pc-section-header h2 {
         text-align: left;
         text-transform: uppercase;
@@ -4293,7 +4312,7 @@ ul.installment-plan li:before {
         font-size: 16px;
     }
 
-    .price-second .price-list{
+    #swich_block_online .price-second .price-list{
         flex-direction: column;
     }
 }
@@ -4404,9 +4423,19 @@ ul.installment-plan li:before {
     height: 826px;
 }
 
+#upper-offline-map {
+    width: 100%;
+    height: 826px;
+}
+
 @media (max-width: 992px) {
 
     #offline-map{
+        height: 560px;
+        margin-bottom: 30px;
+    }
+
+    #upper-offline-map{
         height: 560px;
         margin-bottom: 30px;
     }
@@ -4414,6 +4443,10 @@ ul.installment-plan li:before {
 
 @media (max-width: 760px){
     #offline-map{
+        height: 400px;
+    }
+
+    #upper-offline-map{
         height: 400px;
     }
 
@@ -4469,6 +4502,10 @@ ul.installment-plan li:before {
         height: 400px;
     }
 
+    #upper-offline-map{
+        height: 400px;
+    }
+
     .offline_city_content_wrapper h3{
         font-size: 18px;
         margin: 0 0 24px;
@@ -4518,6 +4555,10 @@ ul.installment-plan li:before {
 
 @media (max-width: 400px){
     #offline-map{
+        height: 550px;
+    }
+
+    #upper-offline-map{
         height: 550px;
     }
 
@@ -4579,7 +4620,18 @@ ul.installment-plan li:before {
     box-sizing: border-box !important;
 }
 
+#upper-offline-map .ymaps-2-1-78-balloon,
+#upper-offline-map .ymaps-2-1-78-balloon *,
+#upper-offline-map .ymaps-2-1-78-balloon *:before,
+#upper-offline-map .ymaps-2-1-78-balloon *:after {
+    box-sizing: border-box !important;
+}
+
 #offline-map .ymaps-2-1-78-balloon__tail:after{
+    display: none;
+}
+
+#upper-offline-map .ymaps-2-1-78-balloon__tail:after{
     display: none;
 }
 
@@ -4587,11 +4639,26 @@ ul.installment-plan li:before {
     padding: 0 !important;
 }
 
+#upper-offline-map .ymaps-2-1-78-balloon__close+.ymaps-2-1-78-balloon__content{
+    padding: 0 !important;
+}
+
 #offline-map .ymaps-2-1-78-balloon__content {
     padding: 0 !important;
 }
 
+#upper-offline-map .ymaps-2-1-78-balloon__content {
+    padding: 0 !important;
+}
+
 #offline-map .ymaps-2-1-78-balloon__content > ymaps[id] {
+    /*width: 100% !important;*/
+    /*height: 100% !important;*/
+    /*overflow: visible !important;*/
+    padding: 30px;
+}
+
+#upper-offline-map .ymaps-2-1-78-balloon__content > ymaps[id] {
     /*width: 100% !important;*/
     /*height: 100% !important;*/
     /*overflow: visible !important;*/
@@ -4603,8 +4670,17 @@ ul.installment-plan li:before {
     height: 100%;
 }
 
+#upper-offline-map .ymaps-2-1-78-balloon__layout{
+    width: 100%;
+    height: 100%;
+}
+
 @media (max-width: 760px){
     #offline-map .ymaps-2-1-78-balloon__content > ymaps[id] {
+        padding: 20px;
+    }
+
+    #upper-offline-map .ymaps-2-1-78-balloon__content > ymaps[id] {
         padding: 20px;
     }
 }
@@ -4613,10 +4689,18 @@ ul.installment-plan li:before {
     #offline-map .ymaps-2-1-78-balloon__content > ymaps[id] {
         padding: 12px;
     }
+
+    #upper-offline-map .ymaps-2-1-78-balloon__content > ymaps[id] {
+        padding: 12px;
+    }
 }
 
 @media (max-width: 400px){
     #offline-map .ymaps-2-1-78-balloon__content > ymaps[id] {
+        padding: 17px;
+    }
+
+    #upper-offline-map .ymaps-2-1-78-balloon__content > ymaps[id] {
         padding: 17px;
     }
 }

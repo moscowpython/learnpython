@@ -85,6 +85,10 @@ class LearnPython {
 		if (window.matchMedia('(min-width: 1160px)').matches){
 			new SimpleBar(document.getElementById('city-simplebar'));
 		}
+
+		if (window.matchMedia('(min-width: 1160px)').matches){
+			new SimpleBar(document.getElementById('upper-city-simplebar'));
+		}
 	}
 
 	initOnlineSlider() {
