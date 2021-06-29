@@ -825,7 +825,7 @@ header {
 .hero {
     background: url("../images/imagehero.jpg") #252526 50% 50% no-repeat;
     color: #ffffff;
-    padding: 170px 0 50px;
+    padding: 170px 0 0;
     background-size: cover;
 }
 
@@ -3542,7 +3542,7 @@ ul.installment-plan li:before {
     }
 
     .counter .price-second {
-        padding: 10px 15px 30px;
+        padding: 30px 15px 30px;
         border-radius: 0;
         margin-right: -15px;
         margin-left: -15px;
@@ -4255,6 +4255,11 @@ ul.installment-plan li:before {
         width: max-content;
         padding: 13px;
     }
+
+
+    #swich_block_online .price-list .price-item {
+        margin: 15px;
+    }
 }
 
 @media (max-width: 992px) {
@@ -4298,6 +4303,12 @@ ul.installment-plan li:before {
     }
 }
 
+@media (max-width: 900px){
+    #swich_block_online .price-second .price-list{
+        flex-direction: column;
+    }
+}
+
 @media (max-width: 600px){
     .offline-map-city-list{
         padding: 15px;
@@ -4310,10 +4321,6 @@ ul.installment-plan li:before {
     .city-list li a{
         padding: 10px;
         font-size: 16px;
-    }
-
-    #swich_block_online .price-second .price-list{
-        flex-direction: column;
     }
 }
 
