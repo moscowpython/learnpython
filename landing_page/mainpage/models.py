@@ -225,8 +225,11 @@ class LearnPythonCoursePrices(models.Model):
 class LearnPythonMultiCityCourses(models.Model):
     class Meta:
         verbose_name_plural = 'LearnPython Цены на курсы в разных городах'
+        
+    def __str__(self):
+        return f'Курсы в городе {self.city_name}'
     
-    cityname = models.CharField(
+    city_name = models.CharField(
         max_length=50,
         verbose_name='Название города',
         help_text='Какой город указывать в списке'

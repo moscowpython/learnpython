@@ -7,7 +7,7 @@ from django.template import loader
 from .models import (LearnPythonCourse, GraduateProjects,
                      LearnPythonCoursePrices,
                      Feedback, Curators, GraduateStories, GraduateProjectsVideos,
-                     Podcasts,)
+                     Podcasts, LearnPythonMultiCityCourses,)
 from datetime import date
 import json
 
@@ -51,80 +51,20 @@ def index(request):
     is_online_closed = current_course.online_session_closed
 
     is_offline_closed = current_course.offline_session_closed
-
-    offline_cities = [
-         {
-             'name': 'Москва',
-             'coords': [55.755988, 37.643448],
-             'early_date': '2021-03-31',
-             'early_price': 36500,
-             'early_installment_price': 3500,
-             'basic_date': '2021-04-01',
-             'basic_price': 36500,
-             'basic_installment_price': 3500
-         },
-         {
-             'name': 'Санкт-Петербург',
-             'coords': [59.935800, 30.318139],
-             'early_date': '2021-04-30',
-             'early_price': 36500,
-             'early_installment_price': 3500,
-             'basic_date': '2021-05-01',
-             'basic_price': 36500,
-             'basic_installment_price': 3500
-         },
-         {
-             'name': 'Екатеринбург',
-             'coords': [56.826403, 60.614272],
-             'early_date': '2021-05-31',
-             'early_price': 36500,
-             'early_installment_price': 3500,
-             'basic_date': '2021-06-01',
-             'basic_price': 36500,
-             'basic_installment_price': 3500
-         },
-         {
-             'name': 'Самара',
-             'coords': [53.192632, 50.110934],
-             'early_date': '2021-06-30',
-             'early_price': 36500,
-             'early_installment_price': 3500,
-             'basic_date': '2021-07-01',
-             'basic_price': 36500,
-             'basic_installment_price': 3500
-         },
-         {
-             'name': 'Тольятти',
-             'coords': [53.503970, 49.424335],
-             'early_date': '2021-07-31',
-             'early_price': 36500,
-             'early_installment_price': 3500,
-             'basic_date': '2021-08-01',
-             'basic_price': 36500,
-             'basic_installment_price': 3500
-         },
-         {
-             'name': 'Сызрань',
-             'coords': [53.150426, 48.475794],
-             'early_date': '2021-08-31',
-             'early_price': 36500,
-             'early_installment_price': 3500,
-             'basic_date': '2021-09-01',
-             'basic_price': 36500,
-             'basic_installment_price': 3500
-         },
-         {
-             'name': 'Казань',
-             'coords': [55.795976, 49.111556],
-             'early_date': '2021-09-30',
-             'early_price': 36500,
-             'early_installment_price': 3500,
-             'basic_date': '2021-10-01',
-             'basic_price': 36500,
-             'basic_installment_price': 3500
-         }
-
-     ]
+    
+    listed_cities = [city for city in LearnPythonMultiCityCourses.objects.all()]
+    
+    offline_cities = [ 
+        {'name': city.city_name,
+         'coords': [float(city.long), float(city.lat)],
+         'early_date': str(city.early_date),
+         'early_price': str(city.early_price),
+         'early_installment_price': city.early_installment_price,
+         'basic_date': str(city.basic_date),
+         'basic_price': str(city.basic_price),
+         'basic_installment_price': city.basic_installment_price
+         } for city in listed_cities      
+    ]
 
     context = {
         'course': current_course,
