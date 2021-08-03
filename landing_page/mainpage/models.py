@@ -222,6 +222,62 @@ class LearnPythonCoursePrices(models.Model):
     def past_due_date(self):
         return date.today() > self.price_range_end_date
 
+class LearnPythonMultiCityCourses(models.Model):
+    class Meta:
+        verbose_name_plural = 'LearnPython Цены на курсы в разных городах'
+    
+    cityname = models.CharField(
+        max_length=50,
+        verbose_name='Название города',
+        help_text='Какой город указывать в списке'
+        )
+    
+    long = models.DecimalField(
+        max_digits=9,
+        decimal_places=6
+    )
+
+    lat = models.DecimalField(
+        max_digits=9,
+        decimal_places=6
+    )
+    
+    early_date = models.DateField(
+        verbose_name='Дата окончания ранней регистрации',
+        blank=False,
+        null=False
+    )
+    
+    early_price = models.IntegerField(
+        verbose_name="Стоимость курса в раннюю регистрацию",
+        null=False,
+        blank=False
+    )
+    
+    early_installment_price = models.IntegerField(
+        verbose_name="Стоимость рассрочки",
+        null=False,
+        blank=False
+    )
+    
+    basic_date = models.DateField(
+        verbose_name='Дата начала основной регистрации',
+        blank=False,
+        null=False
+    )
+    
+    basic_price = models.IntegerField(
+        verbose_name="Стоимость курса в обычную регистрацию",
+        null=False,
+        blank=False
+    )
+    
+    basic_installment_price = models.IntegerField(
+        verbose_name="Стоимость рассрочки",
+        null=False,
+        blank=False
+    )
+
 
 class Curators(models.Model):
     class Meta:
