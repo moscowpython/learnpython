@@ -174,7 +174,7 @@
 					<h1 class="col-12 col-md-10 col-xl-8">Курс программирования на <span
 							class="js-type-it color-yellow">Python 3.9</span>
 						для любого уровня c упором на практику</h1>
-					<h3 class="h3 col-12 col-md-10 col-xl-8">Онлайн | В Москве</h3>
+					<h3 class="h3 col-12 col-md-10 col-xl-8">Онлайн | В Москве | В Уфе | В Ставрополе</h3>
 					<p class="hdescr col-12 col-md-8 col-xl-8">
 						Вы создадите Telegram-бота на первом же уроке. Познакомитесь с основами data science и
 						веб-разработки.
@@ -254,7 +254,6 @@
 										</button>
 										{%endif%}
 									</div>
-
 									<div class="price-item payment-after">
 										<div
 												class="pt-lg-3">
@@ -310,8 +309,7 @@
 										<div id="moscow" class="tab-pane timetable-tab-moscow fade active show">
 											<p class="hdescr">
 												Приходите на занятия по субботам, решайте задачи и
-												смотрите видео из
-												дома в остальные дни.
+												смотрите видео из дома в остальные дни.
 											</p>
 											<ul class="lambda-style blu-lamb">
 												<li><span>Учимся в Impact Hub - рядом с метро Китай-город</span></li>
@@ -398,103 +396,6 @@
 											</div>
 											{% endif %}
 										</div>
-										<!-- <div id="spb" class="tab-pane timetable-tab-spb fade">
-											<p class="hdescr">
-												Приходите на занятия по субботам в Санкт-Петербурге,
-												решайте задачи и смотрите видео из дома в остальные дни.
-											</p>
-											<ul class="lambda-style blu-lamb">
-												<li><span>Занятия проходят в центре города, по адресу Большая Морская, д.3, БЦ Lidval</span>
-												</li>
-												<li><span>Группа из 5-7 человек вашего уровня плюс куратор на месте.
-														Telegram-чат в другие дни</span>
-												</li>
-											</ul>
-											{% if is_offline_closed%}
-											<div
-												class="pt-lg-3 align-items-center d-flex justify-content-between smooth-scroll flex-wrap">
-												<div class="price-parent">
-												<h3>Регистрация закрыта: закончились места</h3>
-												</div>
-											</div>
-											{% else %}
-											<div
-												class="pt-lg-3 align-items-center d-flex justify-content-between smooth-scroll flex-wrap">
-												<div class="price-parent">
-													{% if today <= offline_price_spb_ranges.0.price_range_end_date %}
-													<strong
-														class="price">{{ offline_price_spb_ranges.0.price_range_price}}
-														р.</strong>
-													<span class="price-date"> до
-														{{ offline_price_spb_ranges.0.price_range_end_date | date:"j E" }}</span>
-													{% else %}
-													<strong
-														class="price">{{ offline_price_spb_ranges.1.price_range_price}}
-														р.</strong>
-													<span class="price-date"> до
-														{{ offline_price_spb_ranges.1.price_range_end_date | date:"j E" }}</span>
-													{% endif%}
-												</div>
-												<div class="decr-price-parent">
-													<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
-														рассрочку
-														<strong>от 4460 р/мес</strong></a>
-													<a href="#howToPay" class="decr-price d-lg-none scroll-to"
-														style="padding-top: 5px">Есть
-														рассрочка</a>
-												</div>
-											</div>
-											{% endif %}
-										</div> -->
-										<!-- <div id="penza" class="tab-pane timetable-tab-penza fade">
-											<p class="hdescr">
-												Приходите на занятия по субботам в Пензе,
-												решайте задачи и смотрите видео из дома в остальные дни.
-											</p>
-											<ul class="lambda-style blu-lamb">
-												<li><span>Занятия проходят в офисе компании <a target="_blank" href="https://osinit.com">"Открытые решения"</a>
-													по адресу: улица Московская 29, офис 704</span>
-												</li>
-												<li><span>Группа из 5-7 человек вашего уровня плюс куратор на месте.
-														Telegram-чат в другие дни</span>
-												</li>
-											</ul>
-											{% if is_offline_closed%}
-											<div
-												class="pt-lg-3 align-items-center d-flex justify-content-between smooth-scroll flex-wrap">
-												<div class="price-parent">
-												<h3>Регистрация закрыта: закончились места</h3>
-												</div>
-											</div>
-											{% else %}
-											<div
-												class="pt-lg-3 align-items-center d-flex justify-content-between smooth-scroll flex-wrap">
-												<div class="price-parent">
-													{% if today <= offline_price_penza_ranges.0.price_range_end_date %}
-													<strong
-														class="price">{{ offline_price_penza_ranges.0.price_range_price}}
-														р.</strong>
-													<span class="price-date"> до
-														{{ offline_price_penza_ranges.0.price_range_end_date | date:"j E" }}</span>
-													{% else %}
-													<strong
-														class="price">{{ offline_price_penza_ranges.1.price_range_price}}
-														р.</strong>
-													<span class="price-date"> до
-														{{ offline_price_penza_ranges.1.price_range_end_date | date:"j E" }}</span>
-													{% endif%}
-												</div>
-												<div class="decr-price-parent">
-													<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
-														рассрочку
-														<strong>от 4460 р/мес</strong></a>
-													<a href="#howToPay" class="decr-price d-lg-none scroll-to"
-														style="padding-top: 5px">Есть
-														рассрочка</a>
-												</div>
-											</div>
-											{% endif %}
-										</div> -->
 									</div>
 								</div>
 
@@ -595,7 +496,7 @@
 				<div class="container">
 					<div class="pc-section-header">
 						<h2>Записаться на оффлайн курс <br>
-							в 7 городах РФ
+							в городах РФ
 						</h2>
 					</div>
 				</div>
