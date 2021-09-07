@@ -7,8 +7,9 @@ from django.template import loader
 from .models import (LearnPythonCourse, GraduateProjects,
                      LearnPythonCoursePrices,
                      Feedback, Curators, GraduateStories, GraduateProjectsVideos,
-                     Podcasts,)
+                     Podcasts, LearnPythonMultiCityCourses,)
 from datetime import date
+import json
 
 
 def index(request):
@@ -50,6 +51,20 @@ def index(request):
     is_online_closed = current_course.online_session_closed
 
     is_offline_closed = current_course.offline_session_closed
+    
+    listed_cities = [city for city in LearnPythonMultiCityCourses.objects.all()]
+    
+    offline_cities = [ 
+        {'name': city.city_name,
+         'coords': [float(city.long), float(city.lat)],
+         'early_date': str(city.early_date),
+         'early_price': str(city.early_price),
+         'early_installment_price': city.early_installment_price,
+         'basic_date': str(city.basic_date),
+         'basic_price': str(city.basic_price),
+         'basic_installment_price': city.basic_installment_price
+         } for city in listed_cities      
+    ]
 
     context = {
         'course': current_course,
@@ -83,7 +98,8 @@ def index(request):
         'today': date.today(),
         'is_online_closed': is_online_closed,
         'is_offline_closed': is_offline_closed,
-
+        'offline_cities': offline_cities,
+        'offline_cities_json': json.dumps(offline_cities)
     }
     return HttpResponse(template.render(context, request))
 

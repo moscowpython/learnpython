@@ -3427,7 +3427,7 @@ ul.installment-plan li:before {
     }
 
     .counter {
-        padding: 9px 0;
+        padding: 9px 0 30px;
     }
 
     .price-second-container {
@@ -3542,7 +3542,7 @@ ul.installment-plan li:before {
     }
 
     .counter .price-second {
-        padding: 10px 15px 30px;
+        padding: 30px 15px 30px;
         border-radius: 0;
         margin-right: -15px;
         margin-left: -15px;
@@ -4010,6 +4010,13 @@ ul.installment-plan li:before {
     }
 }
 
+#swich_block_online .price-second .price-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0 -25px;
+}
+
 .price-list {
     display: flex;
     flex-direction: row;
@@ -4101,9 +4108,21 @@ ul.installment-plan li:before {
     padding-top: 0;
 }
 
+#swich_block_online .price-list .price-item {
+    padding: 20px;
+    margin: 15px 100px;
+}
+
 .price-second .price-list .price-item {
     padding: 20px;
     margin: 15px;
+}
+
+@media (max-width: 1300px){
+    .price-second .price-list .price-item {
+        padding: 20px;
+        margin: 15px;
+    }
 }
 
 .price-second .price-item.payment-after {
@@ -4124,6 +4143,573 @@ ul.installment-plan li:before {
 .price-second .price-item.payment-before.offline {
     border-box: none;
     background: #ffffff;
+}
+.offline-map{
+    padding: 100px 0;
+}
+
+.offline-map.upper{
+    padding: 100px 0 0;
+}
+
+.offline-map .pc-section-header{
+    padding-bottom: 67px;
+}
+
+.offline-map-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+.offline-map-city-list{
+    width: 737px;
+    height: 826px;
+    flex-shrink: 0;
+    background-color: #333333;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 44px 25px 0 0;
+}
+
+.city-list{
+    list-style: none;
+    margin: 0;
+    padding: 0 370px 0 0;
+}
+
+.city-list ::-webkit-scrollbar-thumb {
+    background: red;
+    border-radius: 10px;
+}
+
+.simplebar-scrollbar::before {
+    background-color: rgba(45, 156, 219, 0.6);
+    border-radius: 12px;
+    height: 472px;
+}
+
+.city-list li a{
+    display: block;
+    text-decoration: none;
+    font-family: 'Ubuntu', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    padding: 16px 0;
+}
+
+.city-list li a.active{
+    color: #F2C94C;
+}
+
+.city-list li a:hover{
+    color: #F2C94C;
+}
+
+@media (max-width: 1600px){
+    .offline-map-city-list{
+        width: 400px;
+    }
+
+    .city-list{
+        padding: 0 280px 0 0;
+    }
+
+    .city-list li a{
+        font-size: 27px;
+        padding: 13px 0;
+    }
+}
+
+@media (max-width: 1160px){
+    .offline-map-wrapper{
+        display: block;
+    }
+
+    .offline-map-city-list{
+        width: 100%;
+        height: auto;
+        flex-shrink: unset;
+        background-color: #333333;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 30px 25px;
+    }
+
+    .city-list{
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    .city-list li a{
+        width: max-content;
+        padding: 13px;
+    }
+
+
+    #swich_block_online .price-list .price-item {
+        margin: 15px;
+    }
+}
+
+@media (max-width: 992px) {
+    .counter .pc-section-header {
+        padding-bottom: 0px;
+    }
+
+    .counter .pc-section-header h2 {
+        text-align: left;
+        text-transform: uppercase;
+        font-size: 1.4rem;
+        color: #333333;
+    }
+
+    .offline-map {
+        padding: 0px;
+    }
+
+    .offline-map.upper {
+        padding: 0px;
+    }
+
+    .offline-map .pc-section-header h2 {
+        text-align: left;
+        text-transform: uppercase;
+        font-size: 1.4rem;
+        color: #333333;
+        margin-bottom: 32px;
+    }
+
+    .offline-map .pc-section-header h2 br{
+        display: none;
+    }
+
+    .offline-map .pc-section-header {
+        padding-bottom: 0;
+    }
+
+    .city-list li a {
+        font-size: 23px;
+    }
+}
+
+@media (max-width: 900px){
+    #swich_block_online .price-second .price-list{
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 600px){
+    .offline-map-city-list{
+        padding: 15px;
+    }
+
+    .city-list{
+        justify-content: center;
+    }
+
+    .city-list li a{
+        padding: 10px;
+        font-size: 16px;
+    }
+}
+
+.offline_city_content_wrapper h3{
+    font-family: 'Ubuntu', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1;
+    text-transform: uppercase;
+    color: #333333;
+    margin: 0 0 34px;
+}
+
+.offline_city_content_list{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 -15px;
+}
+
+.offline_city_content_item{
+    width: calc(100%/2 - 30px);
+    margin: 0 15px;
+}
+
+.offline_city_content_item button{
+    width: 100%;
+    height: 46px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #2D9CDB;
+    font-family: 'Ubuntu', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1;
+    text-align: center;
+    color: #FFFFFF;
+    border-radius: 54px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+}
+
+.offline_city_content_item button:hover{
+    box-shadow: 0 3px 0 #2e729e;
+}
+
+.offline_city_content_item button:disabled{
+    background-color: #D3D3D3;
+    color: #7B7B7B;
+    cursor: auto;
+}
+
+.offline_city_content_item button:disabled:hover{
+    box-shadow: none;
+}
+
+.offline_city_content_item .title{
+    font-family: 'Ubuntu', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 18px;
+    color: #333333;
+    margin: 0 0 5px;
+}
+
+.offline_city_content_item .offline_date{
+    font-family: 'Ubuntu', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 18px;
+    color: #333333;
+    margin: 0 0 10px;
+}
+
+.offline_city_content_item .offline_price{
+    font-family: 'Ubuntu', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 32px;
+    color: #333333;
+    margin: 0 0 6px;
+}
+
+.offline_city_content_item .decr-price{
+    text-decoration: none;
+    display: block;
+    font-family: 'Ubuntu', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 18px;
+    color: #333333;
+    margin: 0 0 33px;
+}
+
+#offline-map {
+    width: 100%;
+    height: 826px;
+}
+
+#upper-offline-map {
+    width: 100%;
+    height: 826px;
+}
+
+@media (max-width: 992px) {
+
+    #offline-map{
+        height: 560px;
+        margin-bottom: 30px;
+    }
+
+    #upper-offline-map{
+        height: 560px;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 760px){
+    #offline-map{
+        height: 400px;
+    }
+
+    #upper-offline-map{
+        height: 400px;
+    }
+
+    .offline_city_content_wrapper h3{
+        font-size: 20px;
+        margin: 0 0 24px;
+    }
+
+    .offline_city_content_list{
+        margin: 0 -10px;
+    }
+
+    .offline_city_content_item{
+        width: calc(100%/2 - 20px);
+        margin: 0 10px;
+    }
+
+    .offline_city_content_item button{
+        width: 100%;
+        height: 40px;
+        font-size: 12px;
+        border-radius: 54px;
+    }
+
+    .offline_city_content_item .title{
+        font-size: 14px;
+        line-height: 1.2;
+        margin: 0 0 5px;
+    }
+
+    .offline_city_content_item .offline_date{
+        font-size: 14px;
+        line-height: 1.2;
+    }
+
+    .offline_city_content_item .offline_price{
+        font-size: 20px;
+        line-height: 1.2;
+        margin: 0 0 25px;
+    }
+
+    .offline_city_content_item .decr-price{
+        font-size: 14px;
+        line-height: 1.2;
+        margin: 0 0 25px;
+    }
+
+
+}
+
+@media (max-width: 500px){
+    #offline-map{
+        height: 400px;
+    }
+
+    #upper-offline-map{
+        height: 400px;
+    }
+
+    .offline_city_content_wrapper h3{
+        font-size: 18px;
+        margin: 0 0 24px;
+    }
+
+    .offline_city_content_list{
+        margin: 0 -5px;
+    }
+
+    .offline_city_content_item{
+        width: calc(100%/2 - 10px);
+        margin: 0 5px;
+    }
+
+    .offline_city_content_item button{
+        width: 100%;
+        height: 34px;
+        font-size: 11px;
+        border-radius: 54px;
+    }
+
+    .offline_city_content_item .title{
+        font-size: 13px;
+        line-height: 1.2;
+        margin: 0 0 5px;
+    }
+
+    .offline_city_content_item .offline_date{
+        font-size: 14px;
+        line-height: 1.2;
+    }
+
+    .offline_city_content_item .offline_price{
+        font-size: 18px;
+        line-height: 1.2;
+        margin: 0 0 25px;
+    }
+
+    .offline_city_content_item .decr-price{
+        font-size: 14px;
+        line-height: 1.2;
+        margin: 0 0 25px;
+    }
+
+
+}
+
+@media (max-width: 400px){
+    #offline-map{
+        height: 550px;
+    }
+
+    #upper-offline-map{
+        height: 550px;
+    }
+
+    .offline_city_content_wrapper h3{
+        font-size: 16px;
+        margin: 0 0 25px;
+    }
+
+    .offline_city_content_list{
+        flex-direction: column;
+        margin: 0;
+    }
+
+    .offline_city_content_item{
+        width: 100%;
+    }
+
+    .offline_city_content_item + .offline_city_content_item{
+        margin-top: 20px;
+    }
+
+    .offline_city_content_item button{
+        width: 100%;
+        height: 34px;
+        font-size: 11px;
+        border-radius: 54px;
+    }
+
+    .offline_city_content_item .title{
+        font-size: 13px;
+        line-height: 1.2;
+        margin: 0 0 5px;
+    }
+
+    .offline_city_content_item .offline_date{
+        font-size: 14px;
+        line-height: 1.2;
+    }
+
+    .offline_city_content_item .offline_price{
+        font-size: 18px;
+        line-height: 1.2;
+        margin: 0 0 15px;
+    }
+
+    .offline_city_content_item .decr-price{
+        font-size: 14px;
+        line-height: 1.2;
+        margin: 0 0 25px;
+    }
+
+
+}
+
+#offline-map .ymaps-2-1-78-balloon,
+#offline-map .ymaps-2-1-78-balloon *,
+#offline-map .ymaps-2-1-78-balloon *:before,
+#offline-map .ymaps-2-1-78-balloon *:after {
+    box-sizing: border-box !important;
+}
+
+#upper-offline-map .ymaps-2-1-78-balloon,
+#upper-offline-map .ymaps-2-1-78-balloon *,
+#upper-offline-map .ymaps-2-1-78-balloon *:before,
+#upper-offline-map .ymaps-2-1-78-balloon *:after {
+    box-sizing: border-box !important;
+}
+
+#offline-map .ymaps-2-1-78-balloon__tail:after{
+    display: none;
+}
+
+#upper-offline-map .ymaps-2-1-78-balloon__tail:after{
+    display: none;
+}
+
+#offline-map .ymaps-2-1-78-balloon__close+.ymaps-2-1-78-balloon__content{
+    padding: 0 !important;
+}
+
+#upper-offline-map .ymaps-2-1-78-balloon__close+.ymaps-2-1-78-balloon__content{
+    padding: 0 !important;
+}
+
+#offline-map .ymaps-2-1-78-balloon__content {
+    padding: 0 !important;
+}
+
+#upper-offline-map .ymaps-2-1-78-balloon__content {
+    padding: 0 !important;
+}
+
+#offline-map .ymaps-2-1-78-balloon__content > ymaps[id] {
+    /*width: 100% !important;*/
+    /*height: 100% !important;*/
+    /*overflow: visible !important;*/
+    padding: 30px;
+}
+
+#upper-offline-map .ymaps-2-1-78-balloon__content > ymaps[id] {
+    /*width: 100% !important;*/
+    /*height: 100% !important;*/
+    /*overflow: visible !important;*/
+    padding: 30px;
+}
+
+#offline-map .ymaps-2-1-78-balloon__layout{
+    width: 100%;
+    height: 100%;
+}
+
+#upper-offline-map .ymaps-2-1-78-balloon__layout{
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 760px){
+    #offline-map .ymaps-2-1-78-balloon__content > ymaps[id] {
+        padding: 20px;
+    }
+
+    #upper-offline-map .ymaps-2-1-78-balloon__content > ymaps[id] {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 500px){
+    #offline-map .ymaps-2-1-78-balloon__content > ymaps[id] {
+        padding: 12px;
+    }
+
+    #upper-offline-map .ymaps-2-1-78-balloon__content > ymaps[id] {
+        padding: 12px;
+    }
+}
+
+@media (max-width: 400px){
+    #offline-map .ymaps-2-1-78-balloon__content > ymaps[id] {
+        padding: 17px;
+    }
+
+    #upper-offline-map .ymaps-2-1-78-balloon__content > ymaps[id] {
+        padding: 17px;
+    }
 }
 
 @media (max-width: 992px) {
