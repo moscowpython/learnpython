@@ -37,6 +37,9 @@ def index(request):
 
     # User stories
     graduate_stories_list = list(GraduateStories.objects.all())
+    
+    # City counter
+    city_counter = len(list(LearnPythonMultiCityCourses.objects.all()))
 
     # User podcasts
     podcasts_list = list(Podcasts.objects.all())
@@ -99,7 +102,8 @@ def index(request):
         'is_online_closed': is_online_closed,
         'is_offline_closed': is_offline_closed,
         'offline_cities': offline_cities,
-        'offline_cities_json': json.dumps(offline_cities)
+        'offline_cities_json': json.dumps(offline_cities),
+        'offlice_cities_counter': city_counter
     }
     return HttpResponse(template.render(context, request))
 
