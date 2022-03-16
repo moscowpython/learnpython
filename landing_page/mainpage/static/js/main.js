@@ -15,7 +15,7 @@ class LearnPython {
 		this.initScrollupbut();
 		this.fixHeader();
 		this.initSlider();
-		this.initSimpleBar();
+		// this.initSimpleBar();
 		this.initOnlineSlider();
 		this.mobiTimetableInit();
 		this.initTeacherSlider();

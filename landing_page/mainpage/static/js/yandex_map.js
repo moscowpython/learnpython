@@ -165,8 +165,8 @@ jQuery(function() {
                 }
             }
 
-            InitOfflinemap('offline-map');
-            InitOfflinemap('upper-offline-map');
+            //InitOfflinemap('offline-map');
+            //InitOfflinemap('upper-offline-map');
         })();
 
         // Footer map
