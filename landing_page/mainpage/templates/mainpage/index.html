@@ -148,18 +148,18 @@
 						<li class="nav-item">
 							<a class="nav-link scroll-to" href="#contact">Контакты</a>
 						</li>
-						<li class="nav-item d-none d-lg-block">
+						{% comment %} <li class="nav-item d-none d-lg-block">
 							<a data-toggle="modal" data-target="#overlay" class="custom-btn btn" href="#counter">
 								Записаться
 							</a>
-						</li>
+						</li> {% endcomment %}
 					</ul>
 				</nav>
 
-				<div class="d-lg-none">
+				{% comment %} <div class="d-lg-none">
 					<a data-toggle="modal" data-target="#overlay" class="custom-btn btn btn-outline-warning"
 						href="#counter">Записаться</a>
-				</div>
+				</div> {% endcomment %}
 			</div>
 		</div>
 	</header>
@@ -188,7 +188,33 @@
 					<h4 class="curs-place col-12 col-md-8 col-xl-12 fadeInLeft animated-on-ready">
 						Регистрация закроется {{course.end_registration_date | date:"j E" }}
 					</h4>
-					<div class="hero-time col-md-auto col-xl-4 d-flex justify-content-center counter-container"
+					<div class="hero-time col-md-auto d-flex justify-content-center">
+						<form method="POST" 
+						action="https://cp.selzy.com/en/subscribe?hash=61i59irnnggz3cu38hroqtqh4niuuaoh88i53ydj6dzkixzkhekny" 
+						name="subscribtion_form">
+							<h6 class="curs-place col-12 col-md-8 col-xl-12">
+								Оставьте свои контакты
+							</h6>
+							<p class="hdescr ">И мы сообщим о начале регистрации на следующий набор</p>
+							<div class="col-xl-12">
+								<input class="form-control" type="text" name="email" value="" placeholder="E-mail">
+							</div>
+							<div class="d-lg-block">
+								<input class="custom-btn btn btn-warning" type="submit" value="Подписаться">
+							</div>
+							<input type="hidden" name="charset" value="UTF-8">
+							<input type="hidden" name="default_list_id" value="5">
+							<input type="hidden" name="list_ids[]" value="5">
+							<input type="hidden" name="list_ids[]" value="12">
+							<input type="hidden" name="list_ids[]" value="13">
+							<input type="hidden" name="list_ids[]" value="15">
+							<input type="hidden" name="list_ids[]" value="16">
+							<input type="hidden" name="overwrite" value="2">
+							<input type="hidden" name="is_v5" value="1">
+						</form>
+					</div>
+					
+					{% comment %} <div class="hero-time col-md-auto col-xl-4 d-flex justify-content-center counter-container"
 						data-count-down="{{ registration_closes_date }}">
 						<div class="row justify-content-center"><b class="d-block">00</b><span
 								class="tm-name">дней</span>
@@ -205,7 +231,7 @@
 						<div class="row justify-content-center"><b class="d-block">00</b><span
 								class="tm-name">секунд</span>
 						</div>
-					</div>
+					</div> {% endcomment %}
 				</div>
 				<div class="ticket-block row ">
 					<div class="col-md-12 col-lg-8">
@@ -1555,6 +1581,10 @@
 								<p><span>Наличными через салоны «Связной».</span> <img
 										src="{% static 'images/icon-svg/sv.svg' %}" alt="Связной"></p>
 							</li>
+							<li>
+								<p>Для оплаты зарубежной картой свяжитесь с нами <a class="mail-lnk" 
+									href="mailto:learn@python.ru">learn@python.ru</a>.</p>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -2214,6 +2244,11 @@
 								После регистрации вы получите всю необходимую информацию о том, что стоит подготовить к
 								первому занятию.
 							</p>
+							<p class="modal-descr col-lg-8">
+								Для оплаты картой не РФ-банка: напишите нам на learn@python.ru, что хотите оплатить зарубежной картой.
+							</br>
+								Если возникнут вопросы/проблемы с оплатой, пишите на learn@python.ru
+							</p>
 						</div>
 					</div>
 				</div>
@@ -2244,10 +2279,10 @@
 
 	</div>
 
-	<div class="button-fix" style="position: fixed; right: 30px;bottom: 40px;z-index: 999;">
-		<!--script src="//code.jivosite.com/widget/u8UotTOGre" async></script-->
+	{% comment %} <div class="button-fix" style="position: fixed; right: 30px;bottom: 40px;z-index: 999;">
+	<script src="//code.jivosite.com/widget/u8UotTOGre" async></script>
 		<button id="scrollup" class="goOnTop"><i class="material-icons">arrow_upward</i></button>
-	</div>
+	</div> {% endcomment %}
 
 	<script src="{% static 'vendor/js/jquery-3.3.1.min.js' %}"></script>
 	<script src="{% static 'vendor/js/bootstrap.bundle.min.js' %}"></script>
