@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 from datetime import date, timedelta
 
@@ -6,7 +8,7 @@ class MoscowPythonMeetup(models.Model):
     class Meta:
         verbose_name_plural = "MoscowPython Митапы"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f'MoscowPython Meetup № {self.meetup_number}'
 
     meetup_number = models.IntegerField(
@@ -30,7 +32,7 @@ class LearnPythonCourse(models.Model):
     class Meta:
         verbose_name_plural = "LearnPython Наборы"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f'LearnPython Набор № {self.course_index}'
 
     course_index = models.IntegerField(
@@ -162,10 +164,10 @@ class LearnPythonCourse(models.Model):
         default=False,
     )
 
-    def get_date_after_first_lesson(self):
+    def get_date_after_first_lesson(self) -> datetime.date:
         return self.course_start_date + timedelta(days=1)
 
-    def get_day_before_last_lesson(self):
+    def get_day_before_last_lesson(self) -> datetime.date:
         return self.course_end_date - timedelta(days=1)
 
 
@@ -173,7 +175,7 @@ class LearnPythonCoursePrices(models.Model):
     class Meta:
         verbose_name_plural = 'LearnPython Цены на курсы'
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f'Интервал {self.price_range} на {self.course_type}'
 
     price_range = models.IntegerField(
@@ -215,18 +217,19 @@ class LearnPythonCoursePrices(models.Model):
     )
 
     @property
-    def within_price_range(self):
+    def within_price_range(self) -> bool:
         return self.price_range_start_date <= date.today() <= self.price_range_end_date
 
     @property
-    def past_due_date(self):
+    def past_due_date(self) -> bool:
         return date.today() > self.price_range_end_date
+
 
 class LearnPythonMultiCityCourses(models.Model):
     class Meta:
         verbose_name_plural = 'LearnPython Цены на курсы в разных городах'
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f'Курсы в городе {self.city_name}'
 
     city_name = models.CharField(
@@ -286,7 +289,7 @@ class Curators(models.Model):
     class Meta:
         verbose_name_plural = 'LearnPython Кураторы'
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f'Куратор {self.curator_name}'
 
     curator_name = models.CharField(
@@ -338,7 +341,7 @@ class Feedback(models.Model):
     class Meta:
         verbose_name_plural = "LearnPython Отзывы"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f'Отзыв участника {self.feedback_author}'
 
     feedback_author = models.CharField(
@@ -387,7 +390,7 @@ class GraduateStories(models.Model):
     class Meta:
         verbose_name_plural = 'Learn Python Истории учеников'
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f'История участника {self.story_author}'
 
     story_author = models.CharField(
@@ -459,7 +462,7 @@ class GraduateProjects(models.Model):
     class Meta:
         verbose_name_plural = 'LearnPython Проекты Учеников'
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f'Проект "{self.project_name}"'
 
     project_name = models.CharField(
@@ -481,7 +484,7 @@ class GraduateProjectsVideos(models.Model):
     class Meta:
         verbose_name_plural = 'LearnPython Видео проектов Учеников'
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f'Проект "{self.project_name}"'
 
     project_name = models.CharField(
@@ -517,7 +520,7 @@ class Podcasts(models.Model):
     class Meta:
         verbose_name_plural = 'LearnPython Подкаст с учеником'
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f'Проект "{self.podcast_name}"'
 
     podcast_name = models.CharField(

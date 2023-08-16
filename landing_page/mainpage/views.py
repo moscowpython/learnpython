@@ -2,7 +2,7 @@ import dataclasses
 import datetime
 from typing import Optional
 
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpRequest
 from django.template import loader
 from .models import (LearnPythonCourse, GraduateProjects,
                      Feedback, Curators, GraduateProjectsVideos
@@ -27,7 +27,7 @@ class Enrollment:
     late_price: CoursePrice
 
 
-def index(request):
+def index(request: HttpRequest) -> HttpResponse:
     template = loader.get_template('mainpage/index.html')
 
     enrollment = Enrollment(
@@ -65,7 +65,7 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 
-def projects(request):
+def projects(request: HttpRequest) -> HttpResponse:
     template = loader.get_template('mainpage/projects.html')
 
     try:
