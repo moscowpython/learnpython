@@ -183,10 +183,10 @@
 						проверять
 						ваш код и давать рекомендации.</p>
 					<h4 class="curs-place col-12 col-md-8 col-xl-12 fadeInLeft animated-on-ready">
-						С {{course.course_start_date | date:"j E" }} по {{course.course_end_date | date:"j E" }}
+						С {{enrollment.start_date | date:"j E" }} по {{enrollment.end_date | date:"j E" }}
 					</h4>
 					<h4 class="curs-place col-12 col-md-8 col-xl-12 fadeInLeft animated-on-ready">
-						Регистрация закроется {{course.end_registration_date | date:"j E" }}
+						Регистрация закроется {{enrollment.end_registration_date | date:"j E" }}
 					</h4>
 					{% comment %} <div class="hero-time col-md-auto d-flex justify-content-center">
 						<form method="POST"
@@ -215,7 +215,7 @@
 					</div> {% endcomment %}
 
 					<div class="hero-time col-md-auto col-xl-4 d-flex justify-content-center counter-container"
-						data-count-down="{{ registration_closes_date }}">
+						data-count-down="{{ registration_closes_date_formatted }}">
 						<div class="row justify-content-center"><b class="d-block">00</b><span
 								class="tm-name">дней</span>
 						</div>
@@ -254,8 +254,8 @@
 											<div class="price-parent">
 												<div class="price-date"><b>Ранняя регистрация</b></div>
 												<div class="price-date"> До
-													{{ online_price_ranges.0.price_range_end_date | date:"j E" }}</div>
-												<strong class="price">{{ online_price_ranges.0.price_range_price}}
+													{{ enrollment.early_price.date_to | date:"j E" }}</div>
+												<strong class="price">{{ enrollment.early_price.price_rub }}
 													р.</strong>
 											</div>
 											<div class="decr-price-parent">
@@ -263,11 +263,10 @@
 													рассрочку
 													<strong>от 3500 р/мес</strong></a>
 												<a href="#howToPay" class="decr-price d-lg-none scroll-to"
-												   style="padding-top: 5px">Есть
-													рассрочка</a>
+												   style="padding-top: 5px">Есть рассрочка</a>
 											</div>
 										</div>
-										{% if today <= online_price_ranges.0.price_range_end_date %}
+										{% if today <= enrollment.early_price.date_to %}
 										<button class="yellow btn btn-warning btn-add btn-buy" data-toggle="modal"
 												data-target="#overlay">
 												Купить билет
@@ -286,8 +285,8 @@
 											<div class="price-parent">
 												<div class="price-date"><b>Обычная регистрация</b></div>
 												<div class="price-date"> С
-													{{ online_price_ranges.1.price_range_start_date | date:"j E" }}</div>
-												<strong class="price">{{ online_price_ranges.1.price_range_price}}
+													{{ enrollment.late_price.date_from | date:"j E" }}</div>
+												<strong class="price">{{ enrollment.late_price.price_rub }}
 													р.</strong>
 											</div>
 											<div class="decr-price-parent">
@@ -299,7 +298,7 @@
 													рассрочка</a>
 											</div>
 										</div>
-										{% if today >= online_price_ranges.1.price_range_start_date %}
+										{% if today >= enrollment.late_price.date_from %}
 										<button class="btn btn-warning btn-add btn-buy"
 												data-toggle="modal"
 												data-target="#overlay">
@@ -310,7 +309,7 @@
 												disabled
 												data-toggle="modal"
 												data-target="#overlay">
-											С {{ online_price_ranges.1.price_range_start_date | date:"j E Y" }} года
+											Регистрация закрыта
 										</button>
 										{%endif%}
 									</div>
@@ -1224,8 +1223,8 @@
 										<div class="price-parent">
 											<div class="price-date"><b>Ранняя регистрация</b></div>
 											<div class="price-date"> До
-												{{ online_price_ranges.0.price_range_end_date | date:"j E" }}</div>
-											<strong class="price">{{ online_price_ranges.0.price_range_price}}
+												{{ enrollment.early_price.date_to | date:"j E" }}</div>
+											<strong class="price">{{ enrollment.early_price.price_rub }}
 												р.</strong>
 										</div>
 										<div class="decr-price-parent">
@@ -1237,7 +1236,7 @@
 												рассрочка</a>
 										</div>
 									</div>
-									{% if today <= online_price_ranges.0.price_range_end_date %}
+									{% if today <= enrollment.early_price.date_to %}
 									<button class="yellow btn btn-warning btn-add btn-buy" data-toggle="modal"
 											data-target="#overlay">
 										Купить билет
@@ -1257,8 +1256,8 @@
 										<div class="price-parent">
 											<div class="price-date"><b>Обычная регистрация</b></div>
 											<div class="price-date"> С
-												{{ online_price_ranges.1.price_range_start_date | date:"j E" }}</div>
-											<strong class="price">{{ online_price_ranges.1.price_range_price}}
+												{{ enrollment.late_price.date_from | date:"j E" }}</div>
+											<strong class="price">{{ enrollment.late_price.price_rub }}
 												р.</strong>
 										</div>
 										<div class="decr-price-parent">
@@ -1270,7 +1269,7 @@
 												рассрочка</a>
 										</div>
 									</div>
-									{% if today >= online_price_ranges.1.price_range_start_date %}
+									{% if today >= enrollment.late_price.date_from %}
 									<button class="btn btn-warning btn-add btn-buy"
 											data-toggle="modal"
 											data-target="#overlay">
@@ -1281,7 +1280,7 @@
 											disabled
 											data-toggle="modal"
 											data-target="#overlay">
-										С {{ online_price_ranges.1.price_range_start_date | date:"j E Y" }} года
+										Регистрация закрыта
 									</button>
 									{%endif%}
 								</div>
@@ -1975,7 +1974,7 @@
 							<div class="px-0 col-12 col-lg-6 register-test">
 								<script type="text/javascript" async="async" defer="defer" charset="UTF-8"
 									src="https://timepad.ru/js/tpwf/loader/min/loader.js"
-									data-timepad-customized="12675" data-twf2s-event--id={{ course.timepad_event_id }}
+									data-timepad-customized="12675" data-twf2s-event--id={{ enrollment.timepad_event_id }}
 									data-timepad-widget-v2="event_register">
 									(function () {
 										return {
