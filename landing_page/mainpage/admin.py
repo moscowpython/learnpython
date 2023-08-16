@@ -1,8 +1,16 @@
 from django.contrib import admin
 
 from .models import (
-    MoscowPythonMeetup, LearnPythonCourse, Curators, Feedback, GraduateProjects, GraduateStories,
-    LearnPythonCoursePrices, GraduateProjectsVideos, Podcasts, LearnPythonMultiCityCourses
+    Curators,
+    Feedback,
+    GraduateProjects,
+    GraduateProjectsVideos,
+    GraduateStories,
+    LearnPythonCourse,
+    LearnPythonCoursePrices,
+    LearnPythonMultiCityCourses,
+    MoscowPythonMeetup,
+    Podcasts,
 )
 
 admin.site.register(MoscowPythonMeetup)
