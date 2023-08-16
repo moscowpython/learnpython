@@ -1,7 +1,7 @@
 import datetime
+from datetime import date, timedelta
 
 from django.db import models
-from datetime import date, timedelta
 
 
 class MoscowPythonMeetup(models.Model):

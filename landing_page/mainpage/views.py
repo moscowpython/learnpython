@@ -1,13 +1,12 @@
 import dataclasses
 import datetime
+from datetime import date
 from typing import Optional
 
-from django.http import HttpResponse, HttpRequest
+from django.http import HttpRequest, HttpResponse
 from django.template import loader
-from .models import (LearnPythonCourse, GraduateProjects,
-                     Feedback, Curators, GraduateProjectsVideos
-                     )
-from datetime import date
+
+from .models import Curators, Feedback, GraduateProjects, GraduateProjectsVideos, LearnPythonCourse
 
 
 @dataclasses.dataclass
