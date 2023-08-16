@@ -159,7 +159,7 @@
 				<div class="d-lg-none">
 					<a data-toggle="modal" data-target="#overlay" class="custom-btn btn btn-outline-warning"
 						href="#counter">Записаться</a>
-				</div> 
+				</div>
 			</div>
 		</div>
 	</header>
@@ -189,8 +189,8 @@
 						Регистрация закроется {{course.end_registration_date | date:"j E" }}
 					</h4>
 					{% comment %} <div class="hero-time col-md-auto d-flex justify-content-center">
-						<form method="POST" 
-						action="https://cp.selzy.com/en/subscribe?hash=61i59irnnggz3cu38hroqtqh4niuuaoh88i53ydj6dzkixzkhekny" 
+						<form method="POST"
+						action="https://cp.selzy.com/en/subscribe?hash=61i59irnnggz3cu38hroqtqh4niuuaoh88i53ydj6dzkixzkhekny"
 						name="subscribtion_form">
 							<h6 class="curs-place col-12 col-md-8 col-xl-12">
 								Оставьте свои контакты
@@ -213,7 +213,7 @@
 							<input type="hidden" name="is_v5" value="1">
 						</form>
 					</div> {% endcomment %}
-					
+
 					<div class="hero-time col-md-auto col-xl-4 d-flex justify-content-center counter-container"
 						data-count-down="{{ registration_closes_date }}">
 						<div class="row justify-content-center"><b class="d-block">00</b><span
@@ -319,132 +319,10 @@
 							</div>
 						</div>
 					</div>
-					<!-- <div class="col-md-12 col-lg-6">
-						<div class="card slideInUp animated-on-ready">
-							<div class="card-body d-flex flex-column justify-content-between">
-								<h3 class="card-heading brackets brackets-blue">Учитесь оффлайн в Москве</span></h3>
-											<p class="hdescr">
-												Приходите на занятия по субботам, решайте задачи и
-												смотрите видео из дома в остальные дни.
-											</p>
-											<ul class="lambda-style blu-lamb">
-												<li><span>Учимся в Impact Hub - рядом с метро Китай-город</span></li>
-												<li><span>Группа из 5-7 человек вашего уровня плюс куратор на месте.
-														Telegram-чат в другие дни</span>
-												</li>
-											</ul>
-											{% if is_offline_closed%}
-											<div
-												class="pt-lg-3 align-items-center d-flex justify-content-between smooth-scroll flex-wrap">
-												<div class="price-parent">
-												<h3>Регистрация закрыта: закончились места</h3>
-												</div>
-											</div>
-											{% else %}
-											<div class="price-list offline-list">
-												<div class="price-item payment-before offline">
-													<div
-															class="pt-lg-3">
-														<div class="price-parent">
-															<div class="price-date"><b>Ранняя регистрация</b></div>
-															<div class="price-date"> До
-																{{ offline_price_ranges.0.price_range_end_date | date:"j E" }}</div>
-															<strong class="price">{{ offline_price_ranges.0.price_range_price}}
-																р.</strong>
-														</div>
-														<div class="decr-price-parent">
-															<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
-																рассрочку
-																<strong>от 4000 р/мес</strong></a>
-															<a href="#howToPay" class="decr-price d-lg-none scroll-to"
-															   style="padding-top: 5px">Есть
-																рассрочка</a>
-														</div>
-													</div>
-													{% if today <= offline_price_ranges.0.price_range_end_date %}
-													<button class="yellow btn btn-warning btn-add btn-buy" data-toggle="modal"
-															data-target="#overlay">
-															Купить билет
-													</button>
-													{%else%}
-													<button class="yellow btn btn-warning btn-add btn-buy" data-toggle="modal"
-															disabled
-															data-target="#overlay">
-															Регистрация закрыта
-													</button>
-													{%endif%}
-												</div>
-
-												<div class="price-item payment-after offline">
-													<div
-															class="pt-lg-3">
-														<div class="price-parent">
-															<div class="price-date"><b>Обычная регистрация</b></div>
-															<div class="price-date"> С
-																{{ offline_price_ranges.1.price_range_start_date | date:"j E" }}</div>
-															<strong class="price">{{ offline_price_ranges.1.price_range_price}}
-																р.</strong>
-														</div>
-														<div class="decr-price-parent">
-															<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
-																рассрочку
-																<strong>от 4500 р/мес</strong></a>
-															<a href="#howToPay" class="decr-price d-lg-none scroll-to"
-															   style="padding-top: 5px">Есть
-																рассрочка</a>
-														</div>
-													</div>
-													{% if today >= offline_price_ranges.1.price_range_start_date %}
-													<button class="btn btn-warning btn-add btn-buy"
-															data-toggle="modal"
-															data-target="#overlay">
-															Купить билет
-													</button>
-													{%else%}
-													<button class="btn btn-warning btn-add btn-buy"
-															disabled
-															data-toggle="modal"
-															data-target="#overlay">
-														С {{ offline_price_ranges.1.price_range_start_date | date:"j E Y" }} года
-													</button>
-													{%endif%}
-												</div>
-											</div>
-											{% endif %}
-
-							</div>
-						</div>
-					</div> -->
-				</div>
+                </div>
 			</div>
 		</section>
 		<br>
-		<!-- <div>
-			<section class="offline-map upper">
-				<div class="container">
-					<div class="pc-section-header">
-						<h2>Записаться на оффлайн курс <br>
-							в {{ offlice_cities_counter }} городах РФ
-						</h2>
-					</div>
-				</div>
-
-				<div class="offline-map-wrapper">
-					<div class="offline-map-city-list">
-						<script id="offline-cities-json" type="application/json">{{ offline_cities_json|safe }}</script>
-						<ul class="city-list" id="upper-city-simplebar" data-simplebar-auto-hide="false">
-							{% for city in offline_cities %}
-							<li>
-								<a href="#" data-offline-city-name="{{city.name}}">{{city.name}}</a>
-							</li>
-							{% endfor %}
-						</ul>
-					</div>
-					<div id="upper-offline-map"></div>
-				</div>
-			</section>
-		</div> -->
-
 		<section id="video-answers" class="video-answers show1">
 			<div class="container">
 				<div class="pc-section-header">
@@ -916,15 +794,14 @@
 						<div class="row">
 							<div class="col-12 d-none d-lg-block program-descr-parent">
 								<p class="program-descr">
-									<kbd>Онлайн- и оффлайн-группы занимаются по одной программе</kbd> и получают
+									<kbd>Все группы занимаются по одной программе</kbd> и получают
 									одинаковое
 									внимание
 									преподавателей и кураторов.
 								</p>
 								<p class="program-descr">
-									<kbd>Каждую субботу</kbd> оффлайн-группа встречается с преподавателями, а онлайн -
-									созванивается с
-									ними. Затем в течение недели вы изучаете материалы и пишете код, укладываясь в
+									<kbd>Каждую субботу</kbd> онлайн-группа созванивается со своим преподавателям.
+                                    Затем в течение недели вы изучаете материалы и пишете код, укладываясь в
 									дедлайны.
 									Как только накопятся вопросы - пишете в общий чат или куратору.
 								</p>
@@ -1411,111 +1288,9 @@
 							</div>
 						</div>
 					</div>
-					<!-- <div class="col-12 col-lg-10 col-xl-6 offline-tab">
-						<div class="price-second bg-blue">
-							<h3 class="text-center d-none d-lg-block">оффлайн курс в Москве</h3>
-							<div class="price-list offline-list">
-								<div class="price-item payment-before offline">
-									<div
-											class="pt-lg-3">
-										<div class="price-parent">
-											<div class="price-date"><b>Ранняя регистрация</b></div>
-											<div class="price-date"> До
-												{{ offline_price_ranges.0.price_range_end_date | date:"j E" }}</div>
-											<strong class="price">{{ offline_price_ranges.0.price_range_price}}
-												р.</strong>
-										</div>
-										<div class="decr-price-parent">
-											<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
-												рассрочку
-												<strong>от 4000 р/мес</strong></a>
-											<a href="#howToPay" class="decr-price d-lg-none scroll-to"
-											   style="padding-top: 5px">Есть
-												рассрочка</a>
-										</div>
-									</div>
-									{% if today <= offline_price_ranges.0.price_range_end_date %}
-									<button class="yellow btn btn-warning btn-add btn-buy" data-toggle="modal"
-											data-target="#overlay">
-										Купить билет
-									</button>
-									{%else%}
-									<button class="yellow btn btn-warning btn-add btn-buy" data-toggle="modal"
-											disabled
-											data-target="#overlay">
-										Регистрация закрыта
-									</button>
-									{%endif%}
-								</div>
-
-								<div class="price-item payment-after offline">
-									<div
-											class="pt-lg-3">
-										<div class="price-parent">
-											<div class="price-date"><b>Обычная регистрация</b></div>
-											<div class="price-date"> С
-												{{ offline_price_ranges.1.price_range_start_date | date:"j E" }}</div>
-											<strong class="price">{{ offline_price_ranges.1.price_range_price}}
-												р.</strong>
-										</div>
-										<div class="decr-price-parent">
-											<a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
-												рассрочку
-												<strong>от 4500 р/мес</strong></a>
-											<a href="#howToPay" class="decr-price d-lg-none scroll-to"
-											   style="padding-top: 5px">Есть
-												рассрочка</a>
-										</div>
-									</div>
-									{% if today >= offline_price_ranges.1.price_range_start_date %}
-									<button class="btn btn-warning btn-add btn-buy"
-											data-toggle="modal"
-											data-target="#overlay">
-										Купить билет
-									</button>
-									{%else%}
-									<button class="btn btn-warning btn-add btn-buy"
-											disabled
-											data-toggle="modal"
-											data-target="#overlay">
-										С {{ offline_price_ranges.1.price_range_start_date | date:"j E Y" }} года
-									</button>
-									{%endif%}
-								</div>
-							</div>
-						</div>
-					</div> -->
 				</div>
-
 			</div>
 		</section>
-
-    <!-- <div>
-			<section class="offline-map">
-				<div class="container">
-					<div class="pc-section-header">
-						<h2>Записаться на оффлайн курс <br>
-							в {{ offlice_cities_counter }} городах РФ
-						</h2>
-					</div>
-				</div>
-
-				<div class="offline-map-wrapper">
-					<div class="offline-map-city-list">
-						<script id="offline-cities-json" type="application/json">{{ offline_cities_json|safe }}</script>
-						<ul class="city-list" id="city-simplebar" data-simplebar-auto-hide="false">
-							{% for city in offline_cities %}
-							<li>
-								<a href="#" data-offline-city-name="{{city.name}}">{{city.name}}</a>
-							</li>
-							{% endfor %}
-						</ul>
-					</div>
-					<div id="offline-map"></div>
-				</div>
-			</section>
-		</div> -->
-
 		<section class="how-to-pay show1" id="howToPay">
 			<div class="container d-lg-none">
 				<div class="m-section-header">
@@ -1582,7 +1357,7 @@
 										src="{% static 'images/icon-svg/sv.svg' %}" alt="Связной"></p>
 							</li>
 							<li>
-								<p>Для оплаты зарубежной картой свяжитесь с нами <a class="mail-lnk" 
+								<p>Для оплаты зарубежной картой свяжитесь с нами <a class="mail-lnk"
 									href="mailto:learn@python.ru">learn@python.ru</a>.</p>
 							</li>
 						</ul>
@@ -1924,25 +1699,6 @@
 								</div>
 							</div>
 							<div>
-								<div id="headingEight">
-									<h5 class="mb-0">
-										<span class=" collapsed" data-toggle="collapse" data-target="#collapseEight"
-											aria-expanded="false" aria-controls="collapseEight">
-											Можно ли проходить курс онлайн?
-										</span>
-									</h5>
-								</div>
-								<div id="collapseEight" class="collapse" aria-labelledby="headingEight"
-									data-parent="#accordion">
-									<div>
-										Да, такая возможность есть. В этом случае вы пропускаете оффлайн-занятия, однако
-										вы
-										сможете общаться
-										с куратором по Скайпу.
-									</div>
-								</div>
-							</div>
-							<div>
 								<div id="headingNine">
 									<h5 class="mb-0">
 										<span class=" collapsed" data-toggle="collapse" data-target="#collapseNine"
@@ -2062,10 +1818,7 @@
 								<div id="collapseThirteen" class="collapse" aria-labelledby="headingThirteen"
 									data-parent="#accordion">
 									<div>
-										Да, обязательно иметь свой ноутбук или компьютер. Если вы учитесь оффлайн:
-										приносите
-										и
-										уносите ноутбук с собой, а мы обеспечим розетки, стол, стул, чай и печеньки.
+										Да, обязательно иметь свой ноутбук или компьютер
 									</div>
 								</div>
 							</div>
@@ -2109,24 +1862,6 @@
 								</div>
 							</div>
 							<div>
-								<div id="headingSixteen">
-									<h5 class="mb-0">
-										<span class=" collapsed" data-toggle="collapse" data-target="#collapseSixteen"
-											aria-expanded="false" aria-controls="collapseSixteen">
-											Могу я перевестись с онлайн-группы на оффлайн и наоборот?
-										</span>
-									</h5>
-								</div>
-								<div id="collapseSixteen" class="collapse" aria-labelledby="headingSixteen"
-									data-parent="#accordion">
-									<div>
-										Можно перейти с оффлайна на онлайн-обучение. Сделать наоборот не получится -
-										места
-										в оффлайн-группе ограничены.
-									</div>
-								</div>
-							</div>
-							<div>
 								<div id="headingEighteen">
 									<h5 class="mb-0">
 										<span class=" collapsed" data-toggle="collapse" data-target="#collapseEighteen"
@@ -2157,15 +1892,6 @@
 				</div>
 			</div>
 			<footer class="d-flex d-lg-block flex-wrap">
-				<div class="map-container-fluid order-1 container-fluid position-absolute h-100 m-hide">
-					<div class="row h-100">
-						<div class="col-12 col-lg-6 p-0 offset-lg-6 h-100">
-							<div class="map-container h-100">
-								<div id="map" class="fh5co-map h-100 w-100"></div>
-							</div>
-						</div>
-					</div>
-				</div>
 				<div class="container m-hide">
 					<div class="row">
 						<div class="col-12 col-lg-6 darked contact-container">
@@ -2174,18 +1900,9 @@
 									<h2 class="d-none d-lg-block">Наши контакты</h2>
 								</div>
 								<ul class="contact-list">
-									<!--li>
-										<h4>Телефон</h4><a href="tel:+7495">+7 495 </a>
-									</li-->
 									<li>
 										<h4>Email</h4><a target="_blank"
 											href="mailto:learn@python.ru">learn@python.ru</a>
-									</li>
-									<li>
-										<h4>Адрес занятий для оффлайн-группы</h4>
-										<address>Impact Hub, Хохловский пер., 7-9с2, подъезд 3, этаж 1
-											(м. Китай-город)
-										</address>
 									</li>
 									<li>
 										<h4>Наш сайт</h4><a target="_blank"
@@ -2208,7 +1925,7 @@
 								</ul>
 							</div>
 							<div class="copyright d-none d-lg-block">
-								<small>&copy; 2016-2022 MoscowPython</small>
+								<small>&copy; 2016-2023 MoscowPython</small>
 							</div>
 						</div>
 					</div>
@@ -2218,7 +1935,7 @@
 
 		<div style="background-color: #252526">
 			<div class="copyright d-lg-none container text-center">
-				<small>&copy; 2016-2021 MoscowPython</small>
+				<small>&copy; 2016-2023 MoscowPython</small>
 			</div>
 		</div>
 	</main>
