@@ -1,41 +1,50 @@
+import dataclasses
+import datetime
+from typing import Optional
+
 from django.http import HttpResponse
 from django.template import loader
 from .models import (LearnPythonCourse, GraduateProjects,
-                     LearnPythonCoursePrices,
                      Feedback, Curators, GraduateProjectsVideos
                      )
 from datetime import date
 
 
+@dataclasses.dataclass
+class CoursePrice:
+    price_rub: int
+    date_from: Optional[datetime.date] = None
+    date_to: Optional[datetime.date] = None
+
+
+@dataclasses.dataclass
+class Enrollment:
+    timepad_event_id: str
+    start_date: datetime.date
+    end_date: datetime.date
+    end_registration_date: datetime.date
+    early_price: CoursePrice
+    late_price: CoursePrice
+
+
 def index(request):
     template = loader.get_template('mainpage/index.html')
 
-    try:
-        current_course = LearnPythonCourse.objects.latest('course_index')
-    except LearnPythonCourse.DoesNotExist:
-        current_course = LearnPythonCourse()
-
-    online_prices = LearnPythonCoursePrices.objects.filter(
-        course_type='Online').order_by('price_range_price')
-
-    # Student projects data
-    student_projects = list(GraduateProjects.objects.all())
-
-    # Curators data
-    curators_list = Curators.objects.filter(curator_status=True)
-
-    # Feedback data
-    student_feedback = list(Feedback.objects.all())
+    enrollment = Enrollment(
+        timepad_event_id='2441413',
+        start_date=datetime.date(2023, 9, 2),
+        end_date=datetime.date(2023, 11, 4),
+        end_registration_date=datetime.date(2023, 8, 31),
+        early_price=CoursePrice(price_rub=30000, date_to=datetime.date(2023, 6, 30)),
+        late_price=CoursePrice(price_rub=35000, date_from=datetime.date(2023, 7, 1)),
+    )
 
     context = {
-        'course': current_course,
-        'projects': student_projects,
-        'online_price_ranges': online_prices,
-        'registration_closes_date': current_course.end_registration_date
-        .strftime(
-                '%b %d, %Y %H:%M:%S'
-            ),
-        'student_feedback': student_feedback,
+        'enrollment': enrollment,
+        'projects': GraduateProjects.objects.all(),
+
+        'registration_closes_date_formatted': enrollment.end_registration_date.strftime('%b %d, %Y %H:%M:%S'),
+        'student_feedback': Feedback.objects.all(),
         'student_videos': [
             {
                 'title': 'Как войти в разработку за считанные месяцы',
@@ -50,7 +59,7 @@ def index(request):
                 'youtube_id': 's_ZNqjIW3ZA'
             }
         ],
-        'curators_list': curators_list,
+        'curators_list': Curators.objects.filter(curator_status=True),
         'today': date.today(),
     }
     return HttpResponse(template.render(context, request))
