@@ -1,0 +1,62 @@
+{% load static %}
+
+
+<div id="overlay" class="modal fade register modal--scroll" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header darked">
+                <div class="container">
+                    <div class="row">
+                        <button type="button" data-dismiss="modal" class="close">
+                            <span class="close-label">Закрыть </span>
+                            <span class="close-icon"></span>
+                        </button>
+                        <h2 class="text-lg-center col-12">записаться на курс</h2>
+                        <p class="modal-descr col-lg-8">
+                            Мы зарезервируем место в группе на 80 часов, чтобы вы могли спокойно оплатить его или
+                            получить одобрение банка на рассрочку. Если не успеть, бронь "сгорит".
+                        </p>
+                        <p class="modal-descr col-lg-8">
+                            После регистрации вы получите всю необходимую информацию о том, что стоит подготовить к
+                            первому занятию.
+                        </p>
+                        <p class="modal-descr col-lg-8">
+                            Для оплаты картой не РФ-банка: напишите нам на learn@python.ru, что хотите оплатить
+                            зарубежной картой.
+                            </br>
+                            Если возникнут вопросы/проблемы с оплатой, пишите на learn@python.ru
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="px-0 col-12 col-lg-6 register-test">
+                            <script
+                                type="text/javascript"
+                                async="async"
+                                defer="defer"
+                                charset="UTF-8"
+                                src="https://timepad.ru/js/tpwf/loader/min/loader.js"
+                                data-timepad-customized="12675"
+                                data-twf2s-event--id={{ enrollment.timepad_event_id }}
+                                data-timepad-widget-v2="event_register"
+                            >
+                                (function () {
+                                    return {
+                                        "loadCSS": [
+                                            "{% static 'css/modal.css' %}"
+                                        ],
+                                        "skipBaseCSS": false,
+                                        "disableBootstrap": false
+                                    };
+                                })();
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
