@@ -6,7 +6,7 @@ from typing import Optional
 from django.http import HttpRequest, HttpResponse
 from django.template import loader
 
-from .models import Curators, Feedback, GraduateProjects, GraduateProjectsVideos, LearnPythonCourse
+from .models import Curators, GraduateProjects, GraduateProjectsVideos, LearnPythonCourse
 
 
 @dataclasses.dataclass
@@ -43,19 +43,30 @@ def index(request: HttpRequest) -> HttpResponse:
         'projects': GraduateProjects.objects.all(),
 
         'registration_closes_date_formatted': enrollment.end_registration_date.strftime('%b %d, %Y %H:%M:%S'),
-        'student_feedback': Feedback.objects.all(),
         'student_videos': [
             {
+                'title': 'Путь джуна — из геодезиста в Support Engineer',
+                'youtube_id': 'YySKSlNHDXo',
+            },
+            {
+                'title': 'Как становятся джунами в британской компании на удалёнке',
+                'youtube_id': 'TsqEigK2WQk',
+            },
+            {
+                'title': 'Python-стрим - вход джуниора в АйТи',
+                'youtube_id': 'wvijeR-eINA',
+            },
+            {
                 'title': 'Как войти в разработку за считанные месяцы',
-                'youtube_id': 'DkHWpgctTuA'
+                'youtube_id': 'DkHWpgctTuA',
             },
             {
                 'title': 'Личный опыт джуниора: удачи, фейлы, рецепты',
-                'youtube_id': 'vKKqsJ8IvAg'
+                'youtube_id': 'vKKqsJ8IvAg',
             },
             {
                 'title': 'Python для врача и медицина для программиста.',
-                'youtube_id': 's_ZNqjIW3ZA'
+                'youtube_id': 's_ZNqjIW3ZA',
             }
         ],
         'curators_list': Curators.objects.filter(curator_status=True),
