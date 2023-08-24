@@ -8,6 +8,8 @@ DEBUG = bool(int(os.getenv('DEBUG', False)))
 
 ALLOWED_HOSTS = ['*']
 
+CSRF_TRUSTED_ORIGINS = ['https://learn.python.ru']
+
 INSTALLED_APPS = [
     'mainpage.apps.MainpageConfig',
     'django.contrib.admin',
