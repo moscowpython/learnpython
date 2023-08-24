@@ -6,7 +6,7 @@ from typing import Optional
 from django.http import HttpRequest, HttpResponse
 from django.template import loader
 
-from .models import Curators, GraduateProjects, GraduateProjectsVideos, LearnPythonCourse
+from .models import Curators, GraduateProjects
 
 
 @dataclasses.dataclass
@@ -69,26 +69,7 @@ def index(request: HttpRequest) -> HttpResponse:
                 'youtube_id': 's_ZNqjIW3ZA',
             }
         ],
-        'curators_list': Curators.objects.filter(curator_status=True),
+        'curators_list': Curators.objects.filter(is_visible=True),
         'today': date.today(),
-    }
-    return HttpResponse(template.render(context, request))
-
-
-def projects(request: HttpRequest) -> HttpResponse:
-    template = loader.get_template('mainpage/projects.html')
-
-    try:
-        current_course = LearnPythonCourse.objects.latest('course_index')
-    except LearnPythonCourse.DoesNotExist:
-        current_course = LearnPythonCourse()
-
-    student_projects_videos = list(GraduateProjectsVideos.objects.all().order_by('-project_course'))
-
-    context = {
-        'course': current_course,
-        'student_projects': student_projects_videos,
-        'today': date.today()
-
     }
     return HttpResponse(template.render(context, request))
