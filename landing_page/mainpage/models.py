@@ -52,3 +52,14 @@ class GraduateProjects(models.Model):
         default=None,
         upload_to='projects/'
     )
+
+
+class Enrollment(models.Model):
+    timepad_event_id = models.CharField(max_length=64, null=True, blank=True)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    end_registration_date = models.DateField()
+    early_price_rub = models.IntegerField()
+    late_price_rub = models.IntegerField()
+    early_price_date_to = models.DateField()
+    late_price_date_from = models.DateField()
