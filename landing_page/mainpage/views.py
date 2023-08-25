@@ -1,47 +1,16 @@
-import dataclasses
-import datetime
 from datetime import date
-from typing import Optional
 
 from django.http import HttpRequest, HttpResponse
-from django.template import loader
+from django.shortcuts import render
 
-from .models import Curators, GraduateProjects
-
-
-@dataclasses.dataclass
-class CoursePrice:
-    price_rub: int
-    date_from: Optional[datetime.date] = None
-    date_to: Optional[datetime.date] = None
-
-
-@dataclasses.dataclass
-class Enrollment:
-    timepad_event_id: str
-    start_date: datetime.date
-    end_date: datetime.date
-    end_registration_date: datetime.date
-    early_price: CoursePrice
-    late_price: CoursePrice
+from .models import Curators, Enrollment, GraduateProjects
 
 
 def index(request: HttpRequest) -> HttpResponse:
-    template = loader.get_template('mainpage/index.html')
-
-    enrollment = Enrollment(
-        timepad_event_id='2441413',
-        start_date=datetime.date(2023, 9, 2),
-        end_date=datetime.date(2023, 11, 4),
-        end_registration_date=datetime.date(2023, 8, 31),
-        early_price=CoursePrice(price_rub=30000, date_to=datetime.date(2023, 6, 30)),
-        late_price=CoursePrice(price_rub=35000, date_from=datetime.date(2023, 7, 1)),
-    )
-
+    enrollment = Enrollment.get_enrollment_with_active_registration()
     context = {
         'enrollment': enrollment,
         'projects': GraduateProjects.objects.all(),
-
         'registration_closes_date_formatted': enrollment.end_registration_date.strftime('%b %d, %Y %H:%M:%S'),
         'student_videos': [
             {
@@ -72,4 +41,4 @@ def index(request: HttpRequest) -> HttpResponse:
         'curators_list': Curators.objects.filter(is_visible=True),
         'today': date.today(),
     }
-    return HttpResponse(template.render(context, request))
+    return render(request, 'mainpage/index.html', context)
