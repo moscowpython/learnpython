@@ -45,9 +45,9 @@
                                     <div class="price-parent">
                                         <div class="price-date"><b>Ранняя регистрация</b></div>
                                         <div class="price-date">
-                                            До {{ enrollment.early_price.date_to | date:"j E" }}
+                                            До {{ enrollment.early_price_date_to | date:"j E" }}
                                         </div>
-                                        <strong class="price">{{ enrollment.early_price.price_rub }} р.</strong>
+                                        <strong class="price">{{ enrollment.early_price_rub }} р.</strong>
                                     </div>
                                     <div class="decr-price-parent">
                                         <a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">
@@ -58,7 +58,7 @@
                                         </a>
                                     </div>
                                 </div>
-                                {% if today <= enrollment.early_price.date_to %}
+                                {% if today <= enrollment.early_price_date_to %}
                                     <button class="yellow btn btn-warning btn-add btn-buy" data-toggle="modal" data-target="#overlay">
                                         Купить билет
                                     </button>
@@ -72,8 +72,8 @@
                                 <div class="pt-lg-3">
                                     <div class="price-parent">
                                         <div class="price-date"><b>Обычная регистрация</b></div>
-                                        <div class="price-date"> С {{ enrollment.late_price.date_from | date:"j E" }}</div>
-                                        <strong class="price">{{ enrollment.late_price.price_rub }} р.</strong>
+                                        <div class="price-date"> С {{ enrollment.late_price_date_from | date:"j E" }}</div>
+                                        <strong class="price">{{ enrollment.late_price_rub }} р.</strong>
                                     </div>
                                     <div class="decr-price-parent">
                                         <a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">
@@ -82,7 +82,7 @@
                                         <a href="#howToPay" class="decr-price d-lg-none scroll-to" style="padding-top: 5px">Есть рассрочка</a>
                                     </div>
                                 </div>
-                                {% if today >= enrollment.late_price.date_from %}
+                                {% if today >= enrollment.late_price_date_from %}
                                     <button class="btn btn-warning btn-add btn-buy" data-toggle="modal" data-target="#overlay">
                                         Купить билет
                                     </button>
