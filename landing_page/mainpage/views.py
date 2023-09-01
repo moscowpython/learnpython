@@ -11,7 +11,10 @@ def index(request: HttpRequest) -> HttpResponse:
     context = {
         'enrollment': enrollment,
         'projects': GraduateProjects.objects.all(),
-        'registration_closes_date_formatted': enrollment.end_registration_date.strftime('%b %d, %Y %H:%M:%S'),
+        'registration_closes_date_formatted': (
+            enrollment.end_registration_date.strftime('%b %d, %Y %H:%M:%S')
+            if enrollment else ""
+        ),
         'student_videos': [
             {
                 'title': 'Путь джуна — из геодезиста в Support Engineer',
