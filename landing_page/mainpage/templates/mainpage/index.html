@@ -303,7 +303,11 @@
                 </div>
             </section>
 
-            {% include 'mainpage/include/index_how_to_pay.html' %}
+            {% if enrollment.platim_url %}
+                {% include 'mainpage/include/index_how_to_pay_by_platim.html' %}
+            {% else %}
+                {% include 'mainpage/include/index_how_to_pay.html' %}
+            {% endif %}
 
             {% include 'mainpage/include/index_reviews.html' with student_videos=student_videos %}
 
