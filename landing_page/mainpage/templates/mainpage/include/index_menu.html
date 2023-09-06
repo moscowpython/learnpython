@@ -14,9 +14,18 @@
                         <span class="color-blue">L</span>EARN <span class="color-yellow">P</span>YTHON
                     </a>
                 </div>
-                <a data-toggle="modal" data-target="#overlay" class="custom-btn btn btn-outline-warning" href="#counter">
-                    Записаться
-                </a>
+
+                {% if enrollment %}
+                    {% if enrollment.platim_url %}
+                        <a class="custom-btn btn btn-outline-warning" href="{{ enrollment.platim_url }}" target="_blank">
+                            Записаться
+                        </a>
+                    {% else %}
+                        <a data-toggle="modal" data-target="#overlay" class="custom-btn btn btn-outline-warning" href="#counter">
+                            Записаться
+                        </a>
+                    {% endif %}
+                {% endif %}
             </div>
             <ul class="nav justify-content-start justify-content-lg-end smooth-scroll">
                 <li class="nav-item">
@@ -66,18 +75,30 @@
                 </li>
                 {% if enrollment %}
                 <li class="nav-item d-none d-lg-block">
-                    <a data-toggle="modal" data-target="#overlay" class="custom-btn btn" href="#counter">
-                        Записаться
-                    </a>
+                    {% if enrollment.platim_url %}
+                        <a class="custom-btn btn" href="{{ enrollment.platim_url }}" target="_blank">
+                            Записаться
+                        </a>
+                    {% else %}
+                        <a data-toggle="modal" data-target="#overlay" class="custom-btn btn" href="#counter">
+                            Записаться
+                        </a>
+                    {% endif %}
                 </li>
                 {% endif %}
             </ul>
         </nav>
 
         <div class="d-lg-none">
-            <a data-toggle="modal" data-target="#overlay" class="custom-btn btn btn-outline-warning"  href="#counter">
-                Записаться
-            </a>
+            {% if enrollment.platim_url %}
+                <a class="custom-btn btn" href="{{ enrollment.platim_url }}" target="_blank">
+                    Записаться
+                </a>
+            {% else %}
+                <a data-toggle="modal" data-target="#overlay" class="custom-btn btn btn-outline-warning"  href="#counter">
+                    Записаться
+                </a>
+            {% endif %}
         </div>
     </div>
 </div>
