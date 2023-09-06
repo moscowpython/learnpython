@@ -58,6 +58,8 @@ class GraduateProjects(models.Model):
 
 class Enrollment(models.Model):
     timepad_event_id = models.CharField(max_length=64, null=True, blank=True)
+    platim_url = models.CharField(max_length=254, null=True, blank=True)
+
     start_date = models.DateField()
     end_date = models.DateField()
     end_registration_date = models.DateField()
