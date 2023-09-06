@@ -71,6 +71,7 @@
                 <li class="nav-item">
                     <a class="nav-link scroll-to" href="#contact">Контакты</a>
                 </li>
+                {% if enrollment %}
                 <li class="nav-item d-none d-lg-block">
                     {% if enrollment.platim_url %}
                         <a class="custom-btn btn" href="{{ enrollment.platim_url }}" target="_blank">
@@ -82,6 +83,7 @@
                         </a>
                     {% endif %}
                 </li>
+                {% endif %}
             </ul>
         </nav>
 

@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils.timezone import now
-from mainpage.utils.typing import ensured
 
 
 class Curators(models.Model):
@@ -69,8 +68,8 @@ class Enrollment(models.Model):
     late_price_date_from = models.DateField()
 
     @staticmethod
-    def get_enrollment_with_active_registration() -> "Enrollment":
-        return ensured(Enrollment.objects.filter(end_registration_date__gte=now()).first())
+    def get_enrollment_with_active_registration() -> "Enrollment | None":
+        return Enrollment.objects.filter(end_registration_date__gte=now()).first()
 
     def __str__(self) -> str:
         return f"Enrollment ({self.start_date} - {self.end_date})"
