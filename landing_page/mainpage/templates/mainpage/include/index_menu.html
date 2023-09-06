@@ -15,14 +15,16 @@
                     </a>
                 </div>
 
-                {% if enrollment.platim_url %}
-                    <a class="custom-btn btn btn-outline-warning" href="{{ enrollment.platim_url }}" target="_blank">
-                        Записаться
-                    </a>
-                {% else %}
-                    <a data-toggle="modal" data-target="#overlay" class="custom-btn btn btn-outline-warning" href="#counter">
-                        Записаться
-                    </a>
+                {% if enrollment %}
+                    {% if enrollment.platim_url %}
+                        <a class="custom-btn btn btn-outline-warning" href="{{ enrollment.platim_url }}" target="_blank">
+                            Записаться
+                        </a>
+                    {% else %}
+                        <a data-toggle="modal" data-target="#overlay" class="custom-btn btn btn-outline-warning" href="#counter">
+                            Записаться
+                        </a>
+                    {% endif %}
                 {% endif %}
             </div>
             <ul class="nav justify-content-start justify-content-lg-end smooth-scroll">
