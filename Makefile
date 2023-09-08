@@ -10,3 +10,5 @@ check:
 	make isort style types test
 run:
 	cd landing_page; DEBUG=1 python manage.py runserver
+shell:
+	cd landing_page; DEBUG=1 python manage.py shell
