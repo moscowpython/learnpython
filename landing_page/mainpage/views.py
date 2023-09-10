@@ -53,7 +53,8 @@ def advanced_handle(request: HttpRequest) -> HttpResponse:
         request,
         'mainpage/advanced.html',
         context={
-            "enrollment": enrollment,
+            'today': date.today(),
+            'enrollment': enrollment,
             'registration_closes_date_formatted': (
                 enrollment.end_registration_date.strftime('%b %d, %Y %H:%M:%S')
                 if enrollment else ""
