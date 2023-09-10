@@ -87,4 +87,4 @@ class Enrollment(models.Model):
         ).first()
 
     def __str__(self) -> str:
-        return f"{self.type.capitalize()} enrollment ({self.start_date} - {self.end_date})"
+        return f"{self.type.capitalize() if self.type else 'NO TYPE'} enrollment ({self.start_date} - {self.end_date})"
