@@ -3,11 +3,11 @@ from datetime import date
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
-from .models import Curators, Enrollment, GraduateProjects
+from .models import Curators, Enrollment, EnrollmentType, GraduateProjects
 
 
 def index(request: HttpRequest) -> HttpResponse:
-    enrollment = Enrollment.get_enrollment_with_active_registration()
+    enrollment = Enrollment.get_enrollment_with_active_registration(enrollment_type=EnrollmentType.BASE)
     context = {
         'enrollment': enrollment,
         'projects': GraduateProjects.objects.all(),
@@ -45,3 +45,18 @@ def index(request: HttpRequest) -> HttpResponse:
         'today': date.today(),
     }
     return render(request, 'mainpage/index.html', context)
+
+
+def advanced_handle(request: HttpRequest) -> HttpResponse:
+    enrollment = Enrollment.get_enrollment_with_active_registration(enrollment_type=EnrollmentType.ADVANCED)
+    return render(
+        request,
+        'mainpage/advanced.html',
+        context={
+            "enrollment": enrollment,
+            'registration_closes_date_formatted': (
+                enrollment.end_registration_date.strftime('%b %d, %Y %H:%M:%S')
+                if enrollment else ""
+            ),
+        },
+    )

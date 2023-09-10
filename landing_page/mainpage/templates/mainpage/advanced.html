@@ -1,0 +1,313 @@
+{% load static %}
+{% load l10n %}
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="vaity-verification" content="aHR0cHM6Ly9sZWFybi5weXRob24ucnUxNjM=">
+        <meta name="google-site-verification" content="lJ1K-lLbaN028agMS86jGOQw4qNvpJLGrDgsQ2jGhfw"/>
+        <meta name="yandex-verification" content="b537bc5ee48127a9"/>
+        <link
+                href="https://fonts.googleapis.com/css?family=Material+Icons|Rubik|Roboto|PT+Mono|Ubuntu:300,400,600,500,700&amp;subset=cyrillic"
+                rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplebar/5.3.2/simplebar.min.css"
+              integrity="sha512-uZTwaYYhJLFXaXYm1jdNiH6JZ1wLCTVnarJza7iZ1OKQmvi6prtk85NMvicoSobylP5K4FCdGEc4vk1AYT8b9Q=="
+              crossorigin="anonymous" referrerpolicy="no-referrer"/>
+        <link rel="stylesheet" href="{% static 'vendor/css/bootstrap-reboot.min.css' %}">
+        <link rel="stylesheet" href="{% static 'vendor/css/bootstrap-grid.min.css' %}">
+        <link rel="stylesheet" href="{% static 'vendor/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}?v=1.6">
+        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+        <title>Learn Python - Курсы Python онлайн</title>
+
+        <!-- Facebook Pixel Code -->
+        <script>
+            !function (f, b, e, v, n, t, s) {
+                if (f.fbq) return;
+                n = f.fbq = function () {
+                    n.callMethod ?
+                        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                };
+                if (!f._fbq) f._fbq = n;
+                n.push = n;
+                n.loaded = !0;
+                n.version = '2.0';
+                n.queue = [];
+                t = b.createElement(e);
+                t.async = !0;
+                t.src = v;
+                s = b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t, s)
+            }(window, document, 'script',
+                'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '1836162336497538');
+            fbq('track', 'PageView');
+        </script>
+        <noscript><img height="1" width="1" style="display:none"
+                       src="https://www.facebook.com/tr?id=1836162336497538&ev=PageView&noscript=1"/></noscript>
+        <!-- End Facebook Pixel Code -->
+
+        <!-- Yandex.Metrika counter -->
+        <script type="text/javascript">
+            (function (m, e, t, r, i, k, a) {
+                m[i] = m[i] || function () {
+                    (m[i].a = m[i].a || []).push(arguments)
+                };
+                m[i].l = 1 * new Date();
+                k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k,
+                    a)
+            })
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+            ym(36394035, "init", {
+                clickmap: true,
+                trackLinks: true,
+                accurateTrackBounce: true,
+                webvisor: true
+            });
+        </script>
+        <noscript>
+            <div><img src="https://mc.yandex.ru/watch/36394035" style="position:absolute; left:-9999px;" alt=""/></div>
+        </noscript>
+        <!-- /Yandex.Metrika counter -->
+    </head>
+
+    <body data-spy="scroll" data-target="#navBar" data-offset="20">
+        <header class="main-header">
+            {% include 'mainpage/include/advanced/index_menu.html' %}
+        </header>
+
+        <main>
+            {% include 'mainpage/include/advanced/index_hero.html' with enrollment=enrollment registration_closes_date_formatted=registration_closes_date_formatted %}
+            <br>
+            {% include 'mainpage/include/advanced/index_about_video.html' %}
+
+            <section id="about" class="about show1">
+                <div class="container d-lg-none">
+                    <div class="m-section-header">
+                        <h4>Что дает этот курс</h4>
+                    </div>
+                </div>
+
+                <div class="container m-hide">
+                    {% include 'mainpage/include/advanced/index_course_details_mobile.html' %}
+                    {% include 'mainpage/include/advanced/index_course_details_desktop.html' %}
+                </div>
+            </section>
+
+            <section id="after-curse" class="after-curse d-none d-lg-block show1">
+                <div class="container m-hide">
+                    <div class="row mx-0">
+                        <div class="col-lg-3 pl-0 d-none d-lg-block pb-lg-5">
+                            <div class="curse-heading">
+                                <h3>После курса у вас останутся</h3>
+                                <p class="curse-hdescr">
+                                    Новые навыки, связи и полезные материалы.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 col-12 p-0">
+                            <div class=" after-curse-cont">
+                                <div class="aft-parent">
+                                    <div class="after-image-block">
+                                        <img src="{% static 'images/after-curse-1.jpg' %}"
+                                             alt="Доступ ко всем видеолекциям и презентациям">
+                                    </div>
+                                    <div class="after-content-block">
+                                        <p><kbd>Доступ ко всем видеолекциям и презентациям.</kbd></p>
+                                    </div>
+                                </div>
+                                <div class="aft-parent">
+                                    <div class="after-image-block">
+                                        <img src="{% static 'images/after-curse-2.jpg' %}"
+                                             alt="Сертификат о прохождении курса">
+                                    </div>
+                                    <div class="after-content-block">
+                                        <p><kbd>Сертификат о прохождении курса.</kbd></p>
+                                    </div>
+                                </div>
+                                <div class="aft-parent">
+                                    <div class="after-image-block">
+                                        <img src="{% static 'images/after-curse-3.png' %}"
+                                             alt="Чат со всеми преподавателями, кураторами и однокурсниками">
+                                    </div>
+                                    <div class="after-content-block">
+                                        <p><kbd>Чат со всеми преподавателями, кураторами и однокурсниками.</kbd></p>
+                                    </div>
+                                </div>
+                                <div class="aft-parent">
+                                    <div class="after-image-block">
+                                        <img src="{% static 'images/after-curse-4.png' %}"
+                                             alt="Портфолио выполненных проектов на GitHub">
+                                    </div>
+                                    <div class="after-content-block">
+                                        <p><kbd>Портфолио выполненных проектов на GitHub.</kbd></p>
+                                    </div>
+                                </div>
+                                <div class="aft-parent lst-after">
+                                    <div class="after-image-block">
+                                        <img
+                                            src="{% static 'images/advanced/technologies.png' %}"
+                                            alt="Опыт работы с Django, DRF, pytest, docker, mypy, github Actions, API популярных сервисов, другими технологиями"
+                                        >
+                                    </div>
+                                    <div class="after-content-block d-flex justify-content-center">
+                                        <p class="after-content-big"><kbd>
+                                            Опыт работы с Django, DRF, pytest, docker, mypy, github Actions,
+                                            API популярных сервисов, другими технологиями.
+                                        </kbd></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            {% include 'mainpage/include/advanced/index_modules.html' %}
+
+            {% include 'mainpage/include/advanced/index_authors.html' with curators_list=curators_list%}
+
+            <section id="counter" class="counter show1">
+                <div class="container d-lg-none">
+                    <div class="m-section-header">
+                        <h4>Стоимость</h4>
+                    </div>
+                </div>
+                <div class="container d-none d-lg-block">
+                    <div class="pc-section-header">
+                        <h2>Записаться</h2>
+                    </div>
+                </div>
+                <div class="container m-hide">
+                    <div class="price-second-container row justify-content-center">
+                        {% if enrollment %}
+                            <div class="col-12 col-lg-10 col-xl-6 online-tab active">
+                                <div class="price-second bg-yellow">
+                                    <h3 class="text-center d-none d-lg-block">онлайн курс</h3>
+                                    <div class="price-list">
+                                        <div class="price-item payment-before">
+                                            <div
+                                                    class="pt-lg-3">
+                                                <div class="price-parent">
+                                                    <div class="price-date"><b>Ранняя регистрация</b></div>
+                                                    <div class="price-date"> До
+                                                        {{ enrollment.early_price.date_to | date:"j E" }}</div>
+                                                    <strong class="price">{{ enrollment.early_price_rub }}
+                                                        р.</strong>
+                                                </div>
+                                                <div class="decr-price-parent">
+                                                    <a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
+                                                        рассрочку
+                                                        <strong>от 3500 р/мес</strong></a>
+                                                    <a href="#howToPay" class="decr-price d-lg-none scroll-to"
+                                                       style="padding-top: 5px">Есть
+                                                        рассрочка</a>
+                                                </div>
+                                            </div>
+                                            {% if today <= enrollment.early_price_date_to %}
+                                                {% if enrollment.platim_url %}
+                                                    <a class="yellow btn btn-warning btn-add btn-buy" href="{{ enrollment.platim_url }}" target="_blank">
+                                                        Купить билет
+                                                    </a>
+                                                {% else %}
+                                                    <button class="yellow btn btn-warning btn-add btn-buy" data-toggle="modal"
+                                                            data-target="#overlay">
+                                                        Купить билет
+                                                    </button>
+                                                {% endif %}
+                                            {% else %}
+                                                <button class="yellow btn btn-warning btn-add btn-buy" data-toggle="modal"
+                                                        disabled
+                                                        data-target="#overlay">
+                                                    Регистрация закрыта
+                                                </button>
+                                            {% endif %}
+                                        </div>
+
+                                        <div class="price-item payment-after">
+                                            <div
+                                                    class="pt-lg-3">
+                                                <div class="price-parent">
+                                                    <div class="price-date"><b>Обычная регистрация</b></div>
+                                                    <div class="price-date"> С
+                                                        {{ enrollment.late_price.date_from | date:"j E" }}</div>
+                                                    <strong class="price">{{ enrollment.late_price_rub }}
+                                                        р.</strong>
+                                                </div>
+                                                <div class="decr-price-parent">
+                                                    <a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">В
+                                                        рассрочку
+                                                        <strong>от 4000 р/мес</strong></a>
+                                                    <a href="#howToPay" class="decr-price d-lg-none scroll-to"
+                                                       style="padding-top: 5px">Есть
+                                                        рассрочка</a>
+                                                </div>
+                                            </div>
+                                            {% if today >= enrollment.late_price_date_from %}
+                                                {% if enrollment.platim_url %}
+                                                    <a class="yellow btn btn-warning btn-add btn-buy" href="{{ enrollment.platim_url }}" target="_blank">
+                                                        Купить билет
+                                                    </a>
+                                                {% else %}
+                                                    <button class="btn btn-warning btn-add btn-buy"
+                                                            data-toggle="modal"
+                                                            data-target="#overlay">
+                                                        Купить билет
+                                                    </button>
+                                                {% endif %}
+                                            {% else %}
+                                                <button class="btn btn-warning btn-add btn-buy"
+                                                        disabled
+                                                        data-toggle="modal"
+                                                        data-target="#overlay">
+                                                    Регистрация закрыта
+                                                </button>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </section>
+
+            {% if enrollment.platim_url %}
+                {% include 'mainpage/include/index_how_to_pay_by_platim.html' %}
+            {% else %}
+                {% include 'mainpage/include/advanced/index_how_to_pay.html' %}
+            {% endif %}
+
+            {% include 'mainpage/include/advanced/index_footer.html' %}
+
+        </main>
+
+        {% include 'mainpage/include/advanced/index_register_popup.html' with enrollment=enrollment %}
+
+
+        <script src="{% static 'vendor/js/jquery-3.3.1.min.js' %}"></script>
+        <script src="{% static 'vendor/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'vendor/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'vendor/js/slick.min.js' %}"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/simplebar/5.3.2/simplebar.min.js"
+            integrity="sha512-t5ONTEmbf892tq6YhM2eSBdDALGVbnQgqSy5fez2Dki/raOHJxKuf1DWSyHs8qvXoNDg2aJ9RdukRj0lRspfAw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+        <script src="{% static 'js/main.js' %}?v=1.2"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/luxon/1.26.0/luxon.min.js"
+            integrity="sha512-cYjGoxnM2sxryDRpKhwi8uTszEw2zufuDVz1dWlm1+wlvwnhQ4wu00BokHH4IKlogGJNL+2a2GYvHN+xaoUxjQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+    </body>
+</html>

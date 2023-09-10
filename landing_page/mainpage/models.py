@@ -1,3 +1,5 @@
+import enum
+
 from django.db import models
 from django.utils.timezone import now
 
@@ -55,10 +57,20 @@ class GraduateProjects(models.Model):
     )
 
 
+class EnrollmentType(enum.StrEnum):
+    BASE = "BASE"
+    ADVANCED = "ADVANCED"
+
+    @classmethod
+    def get_choices(cls) -> list[tuple[str, str]]:
+        return [(v, v) for v in cls]
+
+
 class Enrollment(models.Model):
     timepad_event_id = models.CharField(max_length=64, null=True, blank=True)
     platim_url = models.CharField(max_length=254, null=True, blank=True)
 
+    type = models.CharField(max_length=10, choices=EnrollmentType.get_choices(), null=True, blank=True)
     start_date = models.DateField()
     end_date = models.DateField()
     end_registration_date = models.DateField()
@@ -68,8 +80,11 @@ class Enrollment(models.Model):
     late_price_date_from = models.DateField()
 
     @staticmethod
-    def get_enrollment_with_active_registration() -> "Enrollment | None":
-        return Enrollment.objects.filter(end_registration_date__gte=now()).first()
+    def get_enrollment_with_active_registration(enrollment_type: EnrollmentType) -> "Enrollment | None":
+        return Enrollment.objects.filter(
+            type=enrollment_type,
+            end_registration_date__gte=now(),
+        ).first()
 
     def __str__(self) -> str:
-        return f"Enrollment ({self.start_date} - {self.end_date})"
+        return f"{self.type.capitalize()} enrollment ({self.start_date} - {self.end_date})"
