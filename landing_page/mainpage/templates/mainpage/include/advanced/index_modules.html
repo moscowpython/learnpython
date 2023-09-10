@@ -1,0 +1,97 @@
+{% load static %}
+
+
+<section id="curse-program" class="curse-program show1">
+    <div class="container d-none d-lg-block">
+        <div class="pc-section-header ">
+            <h2>Как проходит курс</h2>
+        </div>
+    </div>
+    <div class="container m-hide">
+        <div class="row" style="margin-left: 0;">
+            <div class="col-lg-3 pl-0 d-none d-lg-block pb-lg-5">
+                <div class="curse-heading">
+                    <h3>Что вас ждет</h3>
+                    <p class="curse-hdescr">
+                        Вы будете много работать самостоятельно по вечерам и выходным, а преподаватели будут рядом,
+                        чтобы подсказать.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-9 col-12">
+                <div class="row">
+                    <div class="col-12 d-none d-lg-block program-descr-parent">
+                        <p class="program-descr">
+                            <kbd>Все группы занимаются по одной программе</kbd>
+                            и получают одинаковое внимание преподавателей и кураторов.
+                        </p>
+                        <p class="program-descr">
+                            <kbd>Каждую субботу</kbd>
+                            мы проводим созвон всего набора, а потом каждая группа отдельно созванивается со своим
+                            преподавателем. Затем в течение недели вы изучаете материалы и пишете код, укладываясь в
+                            дедлайны. Как только накопятся вопросы - пишете в общий чат или куратору.
+                        </p>
+                        <p class="program-descr">
+                            <kbd>Всю неделю</kbd>
+                            вы выполняете задания и получаете ревью от куратора.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="timetable" class="timetable show1">
+    <div class="container d-lg-none">
+        <div class="timetable-lf-info m-section-header">
+            <h4>Программа</h4>
+        </div>
+    </div>
+    <div class="container m-hide">
+        <div class="row mx-row">
+            <div class="col-lg-3 pl-0 d-none d-lg-block pb-lg-5">
+                <div class="curse-heading">
+                    <h3>Программа</h3>
+                    <p class="curse-hdescr">На курсе есть 4 трека на выбор.</p>
+                    <p class="curse-hdescr">Вне зависимости от вашего выбора, у вас будут материалы со всех треков.</p>
+                    <ul class="curse-hdescr">
+                        <li>Практика программирования</li>
+                        <li>Инфраструктура кода</li>
+                        <li>Юнит-тесты</li>
+                        <li>Django</li>
+                    </ul>
+                    <p class="curse-hdescr">
+                        Используйте переключатели, чтобы посмотреть содержание каждого трека.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-9 col-12 timetbl-p-0">
+                <div class="timetable-container">
+                    <ul class="nav nav-tabs flex-lg-nowrap justify-content-start button-tab-group d-none d-lg-inline-flex">
+                        <li><a class="active" data-toggle="tab" href="#tab1">Практика программирования</a></li>
+                        <li><a data-toggle="tab" href="#tab2">Инфраструктура кода</a></li>
+                        <li><a data-toggle="tab" href="#tab3">Юнит-тесты</a></li>
+                        <li><a data-toggle="tab" href="#tab4">Django</a></li>
+                    </ul>
+                    <div id="tb-anc" class="tab-content">
+                        <div id="tab1" class="tab-pane timetable-tab-onl active show fade">
+                            {% include "mainpage/include/advanced/track_programming_practice.html" %}
+                        </div>
+                        <div id="tab2" class="tab-pane timetable-tab-onl fade">
+                            {% include "mainpage/include/advanced/track_code_infrastructure.html" %}
+                        </div>
+                        <div id="tab3" class="tab-pane timetable-tab-onl fade">
+                            {% include "mainpage/include/advanced/track_unittests.html" %}
+                        </div>
+                        <div id="tab4" class="tab-pane timetable-tab-onl fade">
+                            {% include "mainpage/include/advanced/track_django.html" %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

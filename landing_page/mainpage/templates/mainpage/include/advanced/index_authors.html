@@ -1,0 +1,122 @@
+{% load static %}
+
+<section id="teachers" class="teachers show1">
+    <div class="container d-lg-none">
+        <div class="m-section-header">
+            <h4>Курс ведут</h4>
+        </div>
+    </div>
+    <div class="container m-hide">
+        <div class="container d-none d-lg-block">
+            <div class="pc-section-header ">
+                <h2>Кто делает курс</h2>
+            </div>
+        </div>
+        <div class="row mx-row can-first-par d-none d-lg-flex">
+            <div class="col-lg-3 pl-0 d-none d-lg-block pb-lg-4">
+                <div class="curse-heading">
+                    <h3>Кто мы</h3>
+                </div>
+            </div>
+            <div class="col-lg-9 d-none d-lg-block">
+                <div class="row m-0" style="position: relative">
+                    <div class="img-who " style="background-image: url({% static 'images/who-we.png' %});"></div>
+                    <div class="who-cont">
+                        <div class="who-are-we">
+                            <h3>Курс организует сообщество MoscowPython</h3>
+                            <p>
+                                C 2012 года проводим митапы Python-разработчиков на площадках Яндекса, ЦИАН, Мегафона,
+                                Mail.ru Group и других компаний. Записываем видео и подкаст для питонистов.
+                                Объединили свыше 5К человек в единое комьюнити.
+                            </p>
+                            <ul class="who-we-icon">
+                                <li>
+                                    <div class="who-are-icon">
+                                        <img src="{% static 'images/icon-svg/3-year.svg' %}" alt="3 year">
+                                    </div>
+                                    <div class="who-icon-title">
+                                        <h4>5+ лет</h4>
+                                        <span>основному курсу</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="who-are-icon">
+                                        <img src="{% static 'images/icon-svg/11-sets.svg' %}" alt="11 sets">
+                                    </div>
+                                    <div class="who-icon-title">
+                                        <h4>30+ наборов</h4>
+                                        <span>прошли обучение</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="who-are-icon">
+                                        <img src="{% static 'images/icon-svg/400-graduates.svg' %}" alt="400 graduates">
+                                    </div>
+                                    <div class="who-icon-title">
+                                        <h4>1500+</h4>
+                                        <span>выпускников</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mx-row teachers-list-parent">
+            <div class="d-lg-none">
+                <div class="mobi-cur-title-main">
+                    <h4>Основные преподаватели и организаторы</h4>
+                </div>
+            </div>
+            <div class="col-lg-3 pl-0 d-none d-lg-block">
+                <div class="curse-heading">
+                    <h3>Основные преподаватели и организаторы</h3>
+                    <p class="curse-hdescr">
+                        Практики с большим опытом в разработке и управлении проектами. Разработали сам курс.
+                        Ведут занятия. Записывают видеолекции. Помогают со сложными задачами. Отвечают за
+                        организационные и административные вопросы.
+                    </p>
+                </div>
+            </div>
+            <ul class="col-12 col-lg-9 teachers-list row m-0">
+                <li>
+                    <div class="d-flex darked flex-lg-nowrap flex-wrap">
+                        <div class="img-wrapper order-lg-1">
+                            <img class="img-fluid" src="{% static 'images/mentor/teacher/new_dombrovsky.jpg' %}" alt="Валентин Домбровский"></div>
+                        <div class="teacher-info">
+                            <h3 class="teacher-name brackets brackets-blue-yellow">Валентин Домбровский</h3>
+                            <p class="d-none d-lg-block">
+                                Евангелист и сооснователь MoscowPython сообщества.
+                            </p>
+                            <p class="d-none d-lg-block">
+                                Сооснователь IT-рекрутингового агентства Geekfactor.io.
+                            </p>
+                        </div>
+                        <div class="d-lg-none hdescr">
+                            Евангелист и сооснователь MoscowPython сообщества. Сооснователь IT-рекрутингового агентства Geekfactor.io.
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="d-flex darked flex-lg-nowrap flex-wrap">
+                        <div class="img-wrapper">
+                            <img class="img-fluid" src="{% static 'images/mentor/teacher/lebedev.jpg' %}" alt="Семен Осипов">
+                        </div>
+                        <div class="teacher-info">
+                            <h3 class="teacher-name brackets brackets-blue-yellow">Илья Лебедев</h3>
+                            <p class="d-none d-lg-block">
+                                Евангелист MoscowPython, разработчик в ANNA Money, до этого – технический директор
+                                в Zipsale и BestDoctor.
+                            </p>
+                        </div>
+                        <div class="d-lg-none hdescr">
+                            Программирует и преподаёт Python больше 10 лет.
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>

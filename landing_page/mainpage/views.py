@@ -48,10 +48,15 @@ def index(request: HttpRequest) -> HttpResponse:
 
 
 def advanced_handle(request: HttpRequest) -> HttpResponse:
+    enrollment = Enrollment.get_enrollment_with_active_registration(enrollment_type=EnrollmentType.ADVANCED)
     return render(
         request,
         'mainpage/advanced.html',
         context={
-            "enrollment": Enrollment.get_enrollment_with_active_registration(enrollment_type=EnrollmentType.ADVANCED),
+            "enrollment": enrollment,
+            'registration_closes_date_formatted': (
+                enrollment.end_registration_date.strftime('%b %d, %Y %H:%M:%S')
+                if enrollment else ""
+            ),
         },
     )

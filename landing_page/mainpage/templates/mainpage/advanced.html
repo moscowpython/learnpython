@@ -79,13 +79,13 @@
 
     <body data-spy="scroll" data-target="#navBar" data-offset="20">
         <header class="main-header">
-            {% include 'mainpage/include/index_menu.html' %}
+            {% include 'mainpage/include/advanced/index_menu.html' %}
         </header>
 
         <main>
-            {% include 'mainpage/include/index_hero.html' with enrollment=enrollment registration_closes_date_formatted=registration_closes_date_formatted %}
+            {% include 'mainpage/include/advanced/index_hero.html' with enrollment=enrollment registration_closes_date_formatted=registration_closes_date_formatted %}
             <br>
-            {% include 'mainpage/include/index_about_video.html' %}
+            {% include 'mainpage/include/advanced/index_about_video.html' %}
 
             <section id="about" class="about show1">
                 <div class="container d-lg-none">
@@ -95,27 +95,8 @@
                 </div>
 
                 <div class="container m-hide">
-                    {% include 'mainpage/include/index_course_details_mobile.html' %}
-                    {% include 'mainpage/include/index_course_details_desktop.html' %}
-                    {% include 'mainpage/include/index_you_will_learn.html' %}
-                </div>
-            </section>
-
-            <section id="example-project" class="example-project darked d-none d-lg-block show1">
-                <div class="container-fluid">
-                    <h2 class="section-heading text-center col-md-8 mx-auto">
-                        Проекты, созданные во время обучения
-                    </h2>
-                    <div class="examples-slider row">
-                        {% if projects %}
-                            {% for project in projects %}
-                                <div class="text-center ">
-                                    <img src="{{ project.project_image.url }}" alt="slide">
-                                    <p class="text-center">{{ project.project_name }}</p>
-                                </div>
-                            {% endfor %}
-                        {% endif %}
-                    </div>
+                    {% include 'mainpage/include/advanced/index_course_details_mobile.html' %}
+                    {% include 'mainpage/include/advanced/index_course_details_desktop.html' %}
                 </div>
             </section>
 
@@ -170,13 +151,16 @@
                                 </div>
                                 <div class="aft-parent lst-after">
                                     <div class="after-image-block">
-                                        <img src="{% static 'images/after-curse-5.jpg' %}" alt="Опыт работы с Flask, SQLAlchemy, Jupyter Notebook, Mongo DB, Pandas, Bootstrap
-                                                (HTML/CSS), JSON">
+                                        <img
+                                            src="{% static 'images/advanced/technologies.png' %}"
+                                            alt="Опыт работы с Django, DRF, pytest, docker, mypy, github Actions, API популярных сервисов, другими технологиями"
+                                        >
                                     </div>
                                     <div class="after-content-block d-flex justify-content-center">
-                                        <p class="after-content-big"><kbd>Опыт работы с Flask, SQLAlchemy, Jupyter Notebook,
-                                            Mongo DB, Pandas, Bootstrap
-                                            (HTML/CSS), JSON, API популярных сервисов, другими технологиями.</kbd></p>
+                                        <p class="after-content-big"><kbd>
+                                            Опыт работы с Django, DRF, pytest, docker, mypy, github Actions,
+                                            API популярных сервисов, другими технологиями.
+                                        </kbd></p>
                                     </div>
                                 </div>
                             </div>
@@ -186,11 +170,9 @@
                 </div>
             </section>
 
-            {% include 'mainpage/include/index_modules.html' %}
+            {% include 'mainpage/include/advanced/index_modules.html' %}
 
-            {% include 'mainpage/include/index_authors.html' with curators_list=curators_list%}
-
-            {% include 'mainpage/include/index_labor.html' %}
+            {% include 'mainpage/include/advanced/index_authors.html' with curators_list=curators_list%}
 
             <section id="counter" class="counter show1">
                 <div class="container d-lg-none">
@@ -205,14 +187,6 @@
                 </div>
                 <div class="container m-hide">
                     <div class="price-second-container row justify-content-center">
-                        <div class="col-12 d-lg-none ">
-                            <div class="tab-holder bg-yellow">
-                                <div class="button-holder">
-                                    <a data-target=".online-tab" class="custom-tab active">онлайн</a>
-                                    <a class="custom-tab" data-target=".offline-tab">оффлайн</a>
-                                </div>
-                            </div>
-                        </div>
                         {% if enrollment %}
                             <div class="col-12 col-lg-10 col-xl-6 online-tab active">
                                 <div class="price-second bg-yellow">
@@ -308,18 +282,14 @@
             {% if enrollment.platim_url %}
                 {% include 'mainpage/include/index_how_to_pay_by_platim.html' %}
             {% else %}
-                {% include 'mainpage/include/index_how_to_pay.html' %}
+                {% include 'mainpage/include/advanced/index_how_to_pay.html' %}
             {% endif %}
 
-            {% include 'mainpage/include/index_reviews.html' with student_videos=student_videos %}
-
-            {% include 'mainpage/include/index_faq.html' %}
-
-            {% include 'mainpage/include/index_footer.html' %}
+            {% include 'mainpage/include/advanced/index_footer.html' %}
 
         </main>
 
-        {% include 'mainpage/include/index_register_popup.html' with enrollment=enrollment %}
+        {% include 'mainpage/include/advanced/index_register_popup.html' with enrollment=enrollment %}
 
 
         <script src="{% static 'vendor/js/jquery-3.3.1.min.js' %}"></script>
