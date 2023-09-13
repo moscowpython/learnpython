@@ -21,6 +21,12 @@
                 <h4 class="curs-place col-12 col-md-8 col-xl-12 fadeInLeft animated-on-ready">
                     Регистрация закроется {{ enrollment.end_registration_date | date:"j E" }}
                 </h4>
+                <h4 class="curs-place col-12 col-md-8 col-xl-12 fadeInLeft animated-on-ready">
+                    Всего
+                    <span class="js-type-it color-purple">25</span>
+                    мест в наборе – успейте присоединиться!
+                </h4>
+
                 <div
                     class="hero-time col-md-auto col-xl-4 d-flex justify-content-center counter-container"
                     data-count-down="{{ registration_closes_date_formatted }}"
