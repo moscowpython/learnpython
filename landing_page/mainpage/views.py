@@ -61,3 +61,25 @@ def advanced_handle(request: HttpRequest) -> HttpResponse:
             ),
         },
     )
+
+
+def success_handle(request: HttpRequest) -> HttpResponse:
+    enrollment = Enrollment.get_enrollment_with_active_registration(enrollment_type=EnrollmentType.BASE)
+    return render(
+        request,
+        'mainpage/success.html',
+        context={
+            'enrollment': enrollment,
+        },
+    )
+
+
+def success_handle_advanced(request: HttpRequest) -> HttpResponse:
+    enrollment = Enrollment.get_enrollment_with_active_registration(enrollment_type=EnrollmentType.ADVANCED)
+    return render(
+        request,
+        'mainpage/success.html',
+        context={
+            'enrollment': enrollment,
+        },
+    )
