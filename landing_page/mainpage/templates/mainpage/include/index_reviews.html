@@ -40,21 +40,12 @@
         <div class="container m-hide">
             <div class="reviews-carousel col-xl-10" style="margin: 0 auto;">
                 <div class="reviews-carousel-slider">
-                    {% for video in student_videos %}
+                    {% for review in reviews %}
                         <div class="slick-custom-slide">
                             <div class="slide-wrapper">
-                                <h3 class="slide-heading">{{ video.title }}</h3>
-                                <div>
-                                    <iframe
-                                        width="800"
-                                        height="400"
-                                        src="https://www.youtube.com/embed/{{ video.youtube_id }}"
-                                        frameborder="0"
-                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen
-                                    >
-                                    </iframe>
-                                </div>
+                                <h3 class="slide-heading">{{ review.title }}</h3>
+                                <div>{{ review.text }}</div>
+                                <div>{{ review.reviewer_name | default:'' }}</div>
                             </div>
                         </div>
                     {% endfor %}

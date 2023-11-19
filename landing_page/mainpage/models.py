@@ -88,3 +88,11 @@ class Enrollment(models.Model):
 
     def __str__(self) -> str:
         return f"{self.type.capitalize() if self.type else 'NO TYPE'} enrollment ({self.start_date} - {self.end_date})"
+
+
+class CourseReview(models.Model):
+    title = models.CharField(max_length=254)
+    text = models.TextField()
+    review_for = models.CharField(max_length=10, choices=EnrollmentType.get_choices(), null=True, blank=True)
+    reviewer_name = models.CharField(max_length=254, null=True, blank=True)
+    reviewed_at = models.DateField()
