@@ -9,5 +9,4 @@ urlpatterns = [
     path('advanced/', views.advanced_handle, name='index_advanced'),
     path('advanced/success/', views.success_handle_advanced, name='success_advanced'),
 
-    path('robots.txt', views.robots_txt_handle, name='robots_txt'),
 ]
