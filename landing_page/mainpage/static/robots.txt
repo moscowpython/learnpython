@@ -1,5 +1,6 @@
 User-agent: *
 Disallow: /admin/
 Disallow: /success/
+Disallow: /lessons/
 Sitemap: http://learn.python.ru/sitemap.xml
-Clean-param: *
+Clean-param: utm ref source trk 1* 2* 3* 4* 5* 6* 7* 8* 9*
