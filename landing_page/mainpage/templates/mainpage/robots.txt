@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /success/
+Sitemap: http://learn.python.ru/sitemap.xml
+Clean-param: *
