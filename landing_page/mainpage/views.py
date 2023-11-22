@@ -58,10 +58,3 @@ def success_handle_advanced(request: HttpRequest) -> HttpResponse:
             'enrollment': enrollment,
         },
     )
-
-
-def robots_txt_handle(request: HttpRequest) -> HttpResponse:
-    return render(
-        request,
-        'mainpage/robots.txt',
-    )
