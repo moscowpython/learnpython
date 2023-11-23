@@ -267,8 +267,14 @@
 
             {% include 'mainpage/include/index_faq.html' %}
 
+            {% if should_show_chat %}
+                <div
+                    style=" position: fixed; bottom: 30px !important; right: 130px !important; z-index: 10;"
+                    class="elfsight-app-7dcaa723-afe4-4ce3-9a9f-65841d5bd690"
+                    data-elfsight-app-lazy
+                ></div>
+            {% endif %}
             {% include 'mainpage/include/index_footer.html' %}
-
         </main>
 
         {% include 'mainpage/include/index_register_popup.html' with enrollment=enrollment %}
@@ -291,5 +297,6 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         ></script>
+        <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
     </body>
 </html>
