@@ -9,7 +9,7 @@ DEBUG = bool(int(os.getenv('DEBUG', False)))
 ALLOWED_HOSTS = ['*']
 
 CSRF_TRUSTED_ORIGINS = ['https://learn.python.ru']
-X_FRAME_OPTIONS = "ALLOW"
+X_FRAME_OPTIONS = "SAMEORIGIN"
 
 INSTALLED_APPS = [
     'mainpage.apps.MainpageConfig',
