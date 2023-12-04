@@ -4762,3 +4762,8 @@ ul.installment-plan li:before {
     text-transform: none;
 }
 
+.advanced-promo {
+    background: #252526;
+    color: #ffffff;
+    padding: 15px;
+}

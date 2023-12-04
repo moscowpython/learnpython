@@ -3,4 +3,4 @@ Disallow: /admin/
 Disallow: /success/
 Disallow: /lessons/
 Sitemap: http://learn.python.ru/sitemap.xml
-Clean-param: utm&ref&source&trk
+Clean-param: utm&ref&source&trk&amp&5030bbc2
