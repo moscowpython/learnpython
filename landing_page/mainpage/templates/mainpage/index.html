@@ -263,7 +263,9 @@
                 {% include 'mainpage/include/index_how_to_pay.html' %}
             {% endif %}
 
-            {% include 'mainpage/include/index_reviews.html' with reviews=reviews %}
+            {% if reviews %}
+                {% include 'mainpage/include/common/index_reviews.html' with reviews=reviews %}
+            {% endif %}
 
             {% include 'mainpage/include/index_faq.html' %}
 

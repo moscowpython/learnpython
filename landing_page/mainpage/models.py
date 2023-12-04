@@ -96,3 +96,6 @@ class CourseReview(models.Model):
     review_for = models.CharField(max_length=10, choices=EnrollmentType.get_choices(), null=True, blank=True)
     reviewer_name = models.CharField(max_length=254, null=True, blank=True)
     reviewed_at = models.DateField()
+
+    def __str__(self) -> str:
+        return f'{self.title} ({self.review_for})'

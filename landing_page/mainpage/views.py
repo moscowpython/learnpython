@@ -32,6 +32,7 @@ def advanced_handle(request: HttpRequest) -> HttpResponse:
         context={
             'today': date.today(),
             'enrollment': enrollment,
+            'reviews': CourseReview.objects.filter(review_for=EnrollmentType.ADVANCED),
             'registration_closes_date_formatted': (
                 enrollment.end_registration_date.strftime('%b %d, %Y %H:%M:%S')
                 if enrollment else ""

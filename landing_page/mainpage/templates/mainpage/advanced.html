@@ -231,6 +231,10 @@
                 </div>
             </section>
 
+            {% if reviews %}
+                {% include 'mainpage/include/common/index_reviews.html' with reviews=reviews %}
+            {% endif %}
+
             {% if enrollment.platim_url %}
                 {% include 'mainpage/include/index_how_to_pay_by_platim.html' %}
             {% else %}
