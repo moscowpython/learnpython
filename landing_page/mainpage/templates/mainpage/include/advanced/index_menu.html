@@ -17,11 +17,18 @@
 
                 {% if enrollment %}
                     {% if enrollment.platim_url %}
-                        <a class="custom-btn btn btn-outline-warning" href="{{ enrollment.platim_url }}" target="_blank">
+                        <a class="custom-btn btn btn-outline-warning"
+                            href="{{ enrollment.platim_url }}{{ utm_string }}"
+                            onclick="ym(36394035,'reachGoal','BOOK_MAINBUTTON'); return true;"
+                            target="_blank">
                             Записаться
                         </a>
                     {% else %}
-                        <a data-toggle="modal" data-target="#overlay" class="custom-btn btn btn-outline-warning" href="#counter">
+                        <a data-toggle="modal"
+                           data-target="#overlay"
+                           class="custom-btn btn btn-outline-warning"
+                           onclick="ym(36394035,'reachGoal','BOOK_MAINBUTTON'); return true;"
+                           href="#counter">
                             Записаться
                         </a>
                     {% endif %}
@@ -79,11 +86,18 @@
 
         <div class="d-lg-none">
             {% if enrollment.platim_url %}
-                <a class="custom-btn btn" href="{{ enrollment.platim_url }}" target="_blank">
+                <a class="custom-btn btn"
+                    href="{{ enrollment.platim_url }}{{ utm_string }}"
+                    onclick="ym(36394035,'reachGoal','BOOK_MAINBUTTON'); return true;"
+                    target="_blank">
                     Записаться
                 </a>
             {% else %}
-                <a data-toggle="modal" data-target="#overlay" class="custom-btn btn btn-outline-warning"  href="#counter">
+                <a data-toggle="modal"
+                   data-target="#overlay"
+                   class="custom-btn btn btn-outline-warning"
+                   onclick="ym(36394035,'reachGoal','BOOK_MAINBUTTON'); return true;"
+                   href="#counter">
                     Записаться
                 </a>
             {% endif %}

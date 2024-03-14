@@ -90,7 +90,7 @@ jQuery(function() {
             <button
                 ${today > early_date ? 'disabled' : ''}
                 data-toggle="modal"
-                data-target="#overlay">${today > early_date ? 'Регистрация закрыта' : 'Купить билет'}</button>
+                data-target="#overlay">${today > early_date ? 'Регистрация закрыта' : 'Записаться на курс'}</button>
         </div>
         <div class="offline_city_content_item">
             <p class="title">Обычная регистрация</p>
@@ -100,7 +100,7 @@ jQuery(function() {
             <button
                 ${today < basic_date ? 'disabled' : ''}
                 data-toggle="modal"
-                data-target="#overlay">${today < basic_date ? `С ${format_date_with_year(basic_date)}` : 'Купить билет'}</button>
+                data-target="#overlay">${today < basic_date ? `С ${format_date_with_year(basic_date)}` : 'Записаться на курс'}</button>
         </div>
     </div>
 </div>`

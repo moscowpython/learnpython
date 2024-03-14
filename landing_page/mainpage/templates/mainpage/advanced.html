@@ -150,7 +150,7 @@
                                                 <div class="price-parent">
                                                     <div class="price-date"><b>Ранняя регистрация</b></div>
                                                     <div class="price-date"> До
-                                                        {{ enrollment.early_price.date_to | date:"j E" }}</div>
+                                                        {{ enrollment.early_price_date_to | date:"j E" }}</div>
                                                     <strong class="price">{{ enrollment.early_price_rub }}
                                                         р.</strong>
                                                 </div>
@@ -164,16 +164,7 @@
                                                 </div>
                                             </div>
                                             {% if today <= enrollment.early_price_date_to %}
-                                                {% if enrollment.platim_url %}
-                                                    <a class="yellow btn btn-warning btn-add btn-buy" href="{{ enrollment.platim_url }}" target="_blank">
-                                                        Купить билет
-                                                    </a>
-                                                {% else %}
-                                                    <button class="yellow btn btn-warning btn-add btn-buy" data-toggle="modal"
-                                                            data-target="#overlay">
-                                                        Купить билет
-                                                    </button>
-                                                {% endif %}
+                                                {% include 'mainpage/include/buttons/order_button.html' with modal_btn='yellow ' order_btn='yellow ' %}
                                             {% else %}
                                                 <button class="yellow btn btn-warning btn-add btn-buy" data-toggle="modal"
                                                         disabled
@@ -203,17 +194,7 @@
                                                 </div>
                                             </div>
                                             {% if today >= enrollment.late_price_date_from %}
-                                                {% if enrollment.platim_url %}
-                                                    <a class="yellow btn btn-warning btn-add btn-buy" href="{{ enrollment.platim_url }}" target="_blank">
-                                                        Купить билет
-                                                    </a>
-                                                {% else %}
-                                                    <button class="btn btn-warning btn-add btn-buy"
-                                                            data-toggle="modal"
-                                                            data-target="#overlay">
-                                                        Купить билет
-                                                    </button>
-                                                {% endif %}
+                                                {% include 'mainpage/include/buttons/order_button.html' with order_btn='yellow ' %}
                                             {% else %}
                                                 <button class="btn btn-warning btn-add btn-buy"
                                                         disabled

@@ -1,0 +1,16 @@
+
+{% if enrollment.platim_url %}
+    <a onclick="ym(36394035,'reachGoal','BOOK_MAINBUTTON'); return true;"
+        class="{{order_btn}}btn btn-warning btn-add btn-buy"
+        href="{{ enrollment.platim_url }}{{ utm_string }}"
+        target="_blank">
+        Записаться на курс
+    </a>
+{% else %}
+    <button onclick="ym(36394035,'reachGoal','BOOK_MAINBUTTON'); return true;"
+            class="{{modal_btn}}btn btn-warning btn-add btn-buy"
+            data-toggle="modal"
+            data-target="#overlay">
+            Записаться на курс
+    </button>
+{% endif %}

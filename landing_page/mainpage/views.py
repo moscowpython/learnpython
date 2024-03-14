@@ -5,6 +5,7 @@ from django.shortcuts import render
 from waffle import switch_is_active
 
 from .models import CourseReview, Curators, Enrollment, EnrollmentType, GraduateProjects
+from .utils.utm_parser import get_utm_params
 
 
 def index(request: HttpRequest) -> HttpResponse:
@@ -20,6 +21,7 @@ def index(request: HttpRequest) -> HttpResponse:
         'today': date.today(),
         'reviews': CourseReview.objects.filter(review_for=EnrollmentType.BASE),
         'should_show_chat': switch_is_active('show_tg_chat_widget'),
+        'utm_string': get_utm_params(request.GET.dict())
     }
     return render(request, 'mainpage/index.html', context)
 
@@ -33,6 +35,7 @@ def advanced_handle(request: HttpRequest) -> HttpResponse:
             'today': date.today(),
             'enrollment': enrollment,
             'reviews': CourseReview.objects.filter(review_for=EnrollmentType.ADVANCED),
+            'utm_string': get_utm_params(request.GET.dict()),
             'registration_closes_date_formatted': (
                 enrollment.end_registration_date.strftime('%b %d, %Y %H:%M:%S')
                 if enrollment else ""
