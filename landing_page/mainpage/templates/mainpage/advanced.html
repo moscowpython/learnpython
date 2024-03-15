@@ -164,7 +164,7 @@
                                                 </div>
                                             </div>
                                             {% if today <= enrollment.early_price_date_to %}
-                                                {% include 'mainpage/include/buttons/order_button.html' with modal_btn='yellow ' order_btn='yellow ' %}
+                                                {% include 'mainpage/include/common/buttons/block_order_button.html' with modal_btn='yellow ' order_btn='yellow ' %}
                                             {% else %}
                                                 <button class="yellow btn btn-warning btn-add btn-buy" data-toggle="modal"
                                                         disabled
@@ -194,7 +194,7 @@
                                                 </div>
                                             </div>
                                             {% if today >= enrollment.late_price_date_from %}
-                                                {% include 'mainpage/include/buttons/order_button.html' with order_btn='yellow ' %}
+                                                {% include 'mainpage/include/common/buttons/block_order_button.html' with order_btn='yellow ' %}
                                             {% else %}
                                                 <button class="btn btn-warning btn-add btn-buy"
                                                         disabled
