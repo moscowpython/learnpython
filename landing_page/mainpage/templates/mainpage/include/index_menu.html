@@ -16,15 +16,7 @@
                 </div>
 
                 {% if enrollment %}
-                    {% if enrollment.platim_url %}
-                        <a class="custom-btn btn btn-outline-warning" href="{{ enrollment.platim_url }}" target="_blank">
-                            Записаться
-                        </a>
-                    {% else %}
-                        <a data-toggle="modal" data-target="#overlay" class="custom-btn btn btn-outline-warning" href="#counter">
-                            Записаться
-                        </a>
-                    {% endif %}
+                    {% include 'mainpage/include/common/buttons/menu_order_button.html' with subclass1=' btn-outline-warning' subclass2=' btn-outline-warning' %}
                 {% endif %}
             </div>
             <ul class="nav justify-content-start justify-content-lg-end smooth-scroll">
@@ -69,30 +61,15 @@
                 </li>
                 {% if enrollment %}
                 <li class="nav-item d-none d-lg-block">
-                    {% if enrollment.platim_url %}
-                        <a class="custom-btn btn" href="{{ enrollment.platim_url }}" target="_blank">
-                            Записаться
-                        </a>
-                    {% else %}
-                        <a data-toggle="modal" data-target="#overlay" class="custom-btn btn" href="#counter">
-                            Записаться
-                        </a>
-                    {% endif %}
+                    {% include 'mainpage/include/common/buttons/menu_order_button.html' %}
                 </li>
                 {% endif %}
             </ul>
         </nav>
-
+        {% if enrollment %}
         <div class="d-lg-none">
-            {% if enrollment.platim_url %}
-                <a class="custom-btn btn" href="{{ enrollment.platim_url }}" target="_blank">
-                    Записаться
-                </a>
-            {% else %}
-                <a data-toggle="modal" data-target="#overlay" class="custom-btn btn btn-outline-warning"  href="#counter">
-                    Записаться
-                </a>
-            {% endif %}
+            {% include 'mainpage/include/common/buttons/menu_order_button.html' with subclass2=' btn-outline-warning' %}
         </div>
+        {% endif %}
     </div>
 </div>
