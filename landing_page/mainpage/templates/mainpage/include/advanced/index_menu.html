@@ -16,7 +16,7 @@
                 </div>
 
                 {% if enrollment %}
-                    {% include 'mainpage/include/common/buttons/menu_order_button.html' with subclass1=' btn-outline-warning' subclass2=' btn-outline-warning' %}
+                    {% include 'mainpage/include/common/buttons/menu_order_button.html' %}
                 {% endif %}
             </div>
             <ul class="nav justify-content-start justify-content-lg-end smooth-scroll">
@@ -62,7 +62,7 @@
         </nav>
         {% if enrollment %}
         <div class="d-lg-none">
-            {% include 'mainpage/include/common/buttons/menu_order_button.html' with subclass2=' btn-outline-warning' %}
+            {% include 'mainpage/include/common/buttons/menu_order_button.html' %}
         </div>
         {% endif %}
     </div>
