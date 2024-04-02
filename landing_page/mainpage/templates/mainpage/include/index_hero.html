@@ -45,69 +45,17 @@
                 </h4>
             {% endif %}
         </div>
-        {% if enrollment %}
-            <div class="ticket-block row">
-                <div class="col-md-12 col-lg-8">
-                    <div class="card slideInUp animated-on-ready">
-                        <div class="card-body d-flex flex-column justify-content-between">
-                            <h3 class="card-heading brackets brackets-yellow">Учитесь онлайн</h3>
-                            <div class="price-list">
-                                <div class="price-item payment-before">
-                                    <div class="pt-lg-3">
-                                        <div class="price-parent">
-                                            <div class="price-date"><b>Ранняя регистрация</b></div>
-                                            <div class="price-date">
-                                                До {{ enrollment.early_price_date_to | date:"j E" }}
-                                            </div>
-                                            <strong class="price">{{ enrollment.early_price_rub }} р.</strong>
-                                        </div>
-                                        <div class="decr-price-parent">
-                                            <a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">
-                                                В рассрочку <strong>от 3500 р/мес</strong>
-                                            </a>
-                                            <a href="#howToPay" class="decr-price d-lg-none scroll-to" style="padding-top: 5px">
-                                                Есть рассрочка
-                                            </a>
-                                        </div>
-                                    </div>
-                                    {% if today <= enrollment.early_price_date_to %}
-                                        {% include 'mainpage/include/common/buttons/block_order_button.html' with modal_btn='yellow ' %}
-                                    {% else %}
-                                        <button class="yellow btn btn-warning btn-add btn-buy"
-                                                disabled
-                                                data-toggle="modal"
-                                                data-target="#overlay">
-                                            Регистрация закрыта
-                                        </button>
-                                    {% endif %}
-                                </div>
-                                <div class="price-item payment-after">
-                                    <div class="pt-lg-3">
-                                        <div class="price-parent">
-                                            <div class="price-date"><b>Обычная регистрация</b></div>
-                                            <div class="price-date"> С {{ enrollment.late_price_date_from | date:"j E" }}</div>
-                                            <strong class="price">{{ enrollment.late_price_rub }} р.</strong>
-                                        </div>
-                                        <div class="decr-price-parent">
-                                            <a href="#howToPay" class="decr-price d-none d-lg-block scroll-to">
-                                                В рассрочку <strong>от 4000 р/мес</strong>
-                                            </a>
-                                            <a href="#howToPay" class="decr-price d-lg-none scroll-to" style="padding-top: 5px">Есть рассрочка</a>
-                                        </div>
-                                    </div>
-                                    {% if today >= enrollment.late_price_date_from %}
-                                        {% include 'mainpage/include/common/buttons/block_order_button.html' %}
-                                    {% else %}
-                                        <button class="btn btn-warning btn-add btn-buy" disabled data-toggle="modal" data-target="#overlay">
-                                            Регистрация закрыта
-                                        </button>
-                                    {% endif %}
-                                </div>
-                            </div>
+        <div class="ticket-block row">
+            <div class="col-md-12 col-lg-8">
+                <div class="card slideInUp animated-on-ready">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <h3 class="card-heading brackets brackets-yellow">Учитесь онлайн</h3>
+                        <div class="price-list">
+                            <script id="3e6321862d90cf3a72c6198927067b35e82b0b82" src="https://learnpythonru.getcourse.ru/pl/lite/widget/script?id=1139675"></script>
                         </div>
                     </div>
                 </div>
             </div>
-        {% endif %}
+        </div>
     </div>
 </section>

@@ -1,16 +1,3 @@
-{% if enrollment.platim_url %}
-    <a class="custom-btn btn{{subclass1}}"
-        href="{{ enrollment.platim_url }}{{ utm_string }}"
-        onclick="ym(36394035,'reachGoal','BOOK_MAINBUTTON'); return true;"
-        target="_blank">
-        Записаться
-    </a>
-{% else %}
-    <a data-toggle="modal"
-        data-target="#overlay"
-        class="custom-btn btn{{subclass2}}"
-        onclick="ym(36394035,'reachGoal','BOOK_MAINBUTTON'); return true;"
-        href="#counter">
-        Записаться
-    </a>
-{% endif %}
+<a class="custom-btn btn btn-outline-warning" href="#counter">
+    Записаться
+</a>
