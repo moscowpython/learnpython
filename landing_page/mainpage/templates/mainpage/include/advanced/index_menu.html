@@ -15,9 +15,7 @@
                     </a>
                 </div>
 
-                {% if enrollment %}
-                    {% include 'mainpage/include/common/buttons/menu_order_button.html' with subclass1=' btn-outline-warning' subclass2=' btn-outline-warning' %}
-                {% endif %}
+                {% include 'mainpage/include/common/buttons/menu_order_button.html' %}
             </div>
             <ul class="nav justify-content-start justify-content-lg-end smooth-scroll">
                 <li class="nav-item">
@@ -53,17 +51,13 @@
                 <li class="nav-item">
                     <a class="nav-link scroll-to" href="#contact">Контакты</a>
                 </li>
-                {% if enrollment %}
                 <li class="nav-item d-none d-lg-block">
                     {% include 'mainpage/include/common/buttons/menu_order_button.html' %}
                 </li>
-                {% endif %}
             </ul>
         </nav>
-        {% if enrollment %}
         <div class="d-lg-none">
-            {% include 'mainpage/include/common/buttons/menu_order_button.html' with subclass2=' btn-outline-warning' %}
+            {% include 'mainpage/include/common/buttons/menu_order_button.html' %}
         </div>
-        {% endif %}
     </div>
 </div>
